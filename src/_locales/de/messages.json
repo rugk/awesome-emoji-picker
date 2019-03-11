@@ -1,0 +1,93 @@
+{
+  // manifest.json
+  "extensionName": {
+    "message": "Awesome Emoji Picker",
+    "description": "Name of the extension."
+  },
+  "extensionNameShort": {
+    "message": "Awesome Emoji",
+    "description": "Name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Allows you to do great stuff.",
+    "description": "Description of the extension."
+  },
+  "browserActionButtonTitle": {
+    "message": "Awesome Emoji Picker",
+    "description": "The title for the button, which opens the popup."
+  },
+
+  // errors or other messages (mostly for settings)
+  "errorShowingMessage": {
+    "message": "Konnte Nachricht nicht anzeigen.",
+    "description": "When there is an error when showing the error/info/…."
+  },
+  "couldNotLoadOptions": {
+    "message": "Konnte Einstellungen nicht laden.",
+    "description": "When one or all settings could not be loaded."
+  },
+  "couldNotSaveOption": {
+    "message": "Konnte diese Einstellung nicht speichern.",
+    "description": "When a setting could not be saved."
+  },
+  "messageUndoButton": {
+    "message": "Rückgängig machen",
+    "description": "The text of a button that undoes the last action."
+  },
+  "couldNotUndoAction": {
+    "message": "Konnte Aktion nicht rückgängig machen.",
+    "description": "Shown when an action cannot be undone."
+  },
+  "resettingOptionsWorked": {
+    "message": "Alle Einstellungen benutzen nun wieder die Standardwerte!",
+    "description": "The message shown, when the options of the settings were reset."
+  },
+  "resettingOptionsFailed": {
+    "message": "Konnte Optionen nicht zurück setzen!",
+    "description": "The message shown, when the options of the settings could not have been reset."
+  },
+
+  // options
+  "someSettingsAreManaged": {
+    "message": "Einige Einstellung werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
+    "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators."
+  },
+  "optionIsDisabledBecauseManaged": {
+    "message": "Diese option ist deaktiviert, weil sie von deinem Systemadministrator festgelegt wurde.",
+    "description": "The title (tooltip) shown, when hovering over a disabled, managed option."
+  },
+  "optionLearnMore": {
+    "message": "Weitere Informationen",
+    "description": "When a link to an explainer needs to be added, this is the link text."
+  },
+  "optionsResetButton": {
+    "message": "Setze alle Einstellungen auf Standardwerte zurück",
+    "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+
+  // ARIA labels/descriptions
+  "dismissIconDescription": {
+    "message": "Diese Nachricht schließen",
+    "description": "the aria label for the close button of the message box"
+  },
+  "ariaMessageLoading": {
+    "message": "Ladenachricht",
+    "description": "the aria label to label the message box as an info message box"
+  },
+  "ariaMessageInfo": {
+    "message": "Info",
+    "description": "the aria label to label the message box as an info message box"
+  },
+  "ariaMessageSuccess": {
+    "message": "Erfolg",
+    "description": "the aria label to label the message box as an success message box"
+  },
+  "ariaMessageError": {
+    "message": "Fehlermeldung",
+    "description": "the aria label to label the message box as an error message box"
+  },
+  "ariaMessageWarning": {
+    "message": "Warnung",
+    "description": "the aria label to label the message box as an warning message box"
+  }
+}
