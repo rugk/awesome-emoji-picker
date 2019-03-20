@@ -22,3 +22,9 @@
 [submodule "src/common/modules/AutomaticSettings"]
 	path = src/common/modules/AutomaticSettings
 	url = https://github.com/TinyWebEx/AutomaticSettings
+[submodule "src/popup/lib/emoji-mart-outside-react"]
+	path = src/popup/lib/emoji-mart-outside-react
+	url = https://github.com/rugk/awesome-emoji-emoji-mart-embed
+[submodule "src/popup/lib/awesome-emoji-emoji-mart-embed"]
+	path = src/popup/lib/awesome-emoji-emoji-mart-embed
+	url = https://github.com/rugk/awesome-emoji-emoji-mart-embed
