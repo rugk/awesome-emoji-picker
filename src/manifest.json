@@ -9,7 +9,7 @@
   "homepage_url": "https://github.com/user/project/awesome-emoji-picker",
 
   "browser_action": {
-    "browser_style": true,
+    "browser_style": false,
     "default_icon": "icons/icon-small-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
@@ -32,7 +32,7 @@
   },
 
   // testing version allows loading unit test libraries from CDNs
-  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
+  "content_security_policy": "default-src 'self'; img-src data: https://unpkg.com",
   "icons": {
     "16": "icons/icon-small-colored.svg",
     "32": "icons/icon-small-colored.svg",

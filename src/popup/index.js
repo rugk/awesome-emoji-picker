@@ -4,4 +4,4 @@
  */
 "use strict";
 
-
+window.emojiMart({native: true});
