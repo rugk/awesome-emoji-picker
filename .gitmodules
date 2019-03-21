@@ -26,5 +26,5 @@
 	path = src/popup/lib/emoji-mart-outside-react
 	url = https://github.com/rugk/awesome-emoji-emoji-mart-embed
 [submodule "src/popup/lib/awesome-emoji-emoji-mart-embed"]
-	path = src/popup/lib/awesome-emoji-emoji-mart-embed
+	path = src/popup/lib/emoji-mart-embed
 	url = https://github.com/rugk/emoji-mart-embed
