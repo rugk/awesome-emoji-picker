@@ -6,6 +6,22 @@
 
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
 
+// used to apply options
+import * as IconHandler from "/common/modules/IconHandler.js";
+
+/**
+ * Adjust UI if QR code size option is changed.
+ *
+ * @function
+ * @private
+ * @param  {boolean} optionValue
+ * @param  {string} [option]
+ * @returns {void}
+ */
+function applyPopupIconColor(optionValue) {
+    IconHandler.changeIconIfColored(optionValue);
+}
+
 /**
  * Adjusts the emoji set setting for saving when .
  *
@@ -93,6 +109,7 @@ export function registerTrigger() {
     // loading does not need to be overwritten, as we are fine with an extra string saved
 
     // update slider status
+    AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
 
     // handle loading of options correctly

@@ -5,6 +5,7 @@
  */
 
 export const DEFAULT_SETTINGS = Object.freeze({
+    popupIconColored: true,
     emojiPicker: {
         set: "native",
         native: true,

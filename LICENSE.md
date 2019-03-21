@@ -79,7 +79,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 
 ---
 
-More third-party licenses from used npm modules used in emoji-mart are included in the text file [`src/popup/lib/emoji-mart-embed/THIRD_PARTY_LICENSES.md`](src/popup/lib/emoji-mart-embed/THIRD_PARTY_LICENSES.md).
+More third-party licenses from used npm modules used in emoji-mart are included in the text file [`src/popup/lib/emoji-mart-embed/THIRD_PARTY_LICENSES.md`](https://github.com/rugk/emoji-mart-embed/blob/master/THIRD_PARTY_LICENSES.md).
 
 ## Emoji image sources
 
@@ -90,9 +90,16 @@ More third-party licenses from used npm modules used in emoji-mart are included 
 
 Apple images are not licensed for commerical usage. Android/Google/Noto emoji are available under the [Apache License 2.0](https://github.com/googlei18n/noto-emoji/blob/master/LICENSE). Twitter emoji are available under the [Creative Commons Attribution 4.0 license](https://github.com/twitter/twemoji/blob/gh-pages/LICENSE-GRAPHICS). Facebook and Messenger emoji have no clear licensing.
 
+---
+
 (see original license statement from upstream: https://github.com/iamcal/emoji-data/blob/master/README.md#image-sources)
 
 ## Font Awesome
 
 The following image is taken from Font Awesome, licensed under [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/) (see details here: https://fontawesome.com/license):
-* , original [`grin-alt-regular.svg`](https://fontawesome.com/icons/grin-alt?style=regular), color edited 
+* [`assets/fa-grin.svg`](assets/fa-grin.svg) and `src/icons/fa-grin-*.svg`, original [`grin-alt-regular.svg`](https://fontawesome.com/icons/grin-alt?style=regular), color edited 
+
+## Material Design icons
+The following image is taken from Material Design Icons, licensed under [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html):
+
+* [`assets/material-grin.svg`](assets/material-grin.svg) and `src/icons/material-grin-*.svg`, original [`baseline-mood-24px.svg`](https://material.io/tools/icons/?icon=mood&style=baseline), color edited 
