@@ -65,6 +65,30 @@
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
   },
 
+  // TODO
+
+  "optionEmojisPerLineStatusSingular": {
+    "message": "($INTEGER$ emojis per line)",
+    "description": "This is the number of emojis per line in its singular form.",
+    "placeholders": {
+      "integer": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "optionEmojisPerLineStatusPlural": {
+    "message": "($INTEGER$ emojis per line)",
+    "description": "This is the number of emojis per line in its plural form.",
+    "placeholders": {
+      "integer": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+
+
   // ARIA labels/descriptions
   "dismissIconDescription": {
     "message": "Close this message",

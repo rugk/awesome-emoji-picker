@@ -2,16 +2,20 @@
  * Starter module for popup.
  *
  */
-"use strict";
 
-function copyEmoji(emoji) {
-    navigator.clipboard.writeText(emoji.native);
+import * as EmojiSettings from "./module/EmojiSettings.js";
+import * as EmojiPicker from "./module/EmojiPicker.js";
+
+/**
+ * Creates the emoji picker.
+ *
+ * @private
+ * @returns {Promise}
+ */
+async function createPicker() {
+    EmojiPicker.init(
+        await EmojiSettings.getAllSettings()
+    ).catch(console.error);
 }
 
-window.defineEmojiMartElement("emoji-picker", {
-    native: true,
-    emojiTooltip: true,
-    onSelect:copyEmoji
-});
-const picker = document.createElement("emoji-picker");
-document.body.appendChild(picker);
+createPicker();

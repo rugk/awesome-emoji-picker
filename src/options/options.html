@@ -46,9 +46,46 @@
 		<form>
 			<ul>
 				<li>
-					<input class="setting save-on-change" type="checkbox" id="popupIconColored" name="popupIconColored">
-					<label data-i18n="__MSG_optionPopupIconColored__" for="popupIconColored">Colored icon</label>
-					<span data-i18n="__MSG_optionPopupIconColoredDescr__" class="helper-text">Shows a colored icon instead of the black/white icon in the toolbar.</span>
+					<label data-i18n="__MSG_optionEmojiPickerSet__" for="emojiSet">Emoji set: </label>
+					<select id="emojiSet" class="setting save-on-change" data-optiongroup="emojiPicker" name="set" size="0">
+						<option data-i18n="__MSG_optionEmojiSetNative__" value="native">Default from your OS</option>
+						<option data-i18n="__MSG_optionEmojiSetApple__" value="apple">Apple</option>
+						<option data-i18n="__MSG_optionEmojiSetGoogle__" value="google">Google</option>
+						<option data-i18n="__MSG_optionEmojiSetTwitter__" value="twitter">Twitter</option>
+						<option data-i18n="__MSG_optionEmojiSetEmojiOne__" value="emojione">EmojiOne</option>
+						<option data-i18n="__MSG_optionEmojiSetMessenger__" value="messenger">Messenger</option>
+						<option data-i18n="__MSG_optionEmojiSetFacebook__" value="facebook">Facebook</option>
+					</select>
+					<span class="helper-text">
+						<span data-i18n="__MSG_optionEmojiPickerSetDescr__">
+							What style to use for the Emojis.
+						</span>
+					</span>
+				</li>
+				<!-- <li>
+					<input class="setting save-on-change" type="checkbox" id="emojiShowPreview" data-optiongroup="emojiPicker" name="showPreview">
+					<label data-i18n="__MSG_optionEmojiPickerShowPreview__" for="emojiShowPreview">Show preview</label>
+					<span data-i18n="__MSG_optionEmojiPickerShowPreview__" class="helper-text">Shows a preview of the Emoji when hovering over it.</span>
+				</li> -->
+				<li>
+					<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Emojis per line:</label>
+					<input class="setting save-on-input" type="range" value="9" min="5" max="20" step="1" id="emojisPerLine" data-optiongroup="emojiPicker" name="perLine">
+					<span>
+						<span id="emojisPerLineStatus">(9 emojis per line)</span>
+					</span>
+					<span class="helper-text">
+						<span data-i18n="__MSG_optionEmojiPickerPerLineDescr__">How many emojis should be shown per line in the emoji picker. This affects the width of the popup.</span>
+					</span>
+				</li>
+				<li>
+					<input class="setting save-on-change" type="checkbox" id="emojiShowPreview" data-optiongroup="emojiPicker" name="showPreview">
+					<label data-i18n="__MSG_optionEmojiPickerShowPreview__" for="emojiShowPreview">Show preview</label>
+					<span data-i18n="__MSG_optionEmojiPickerShowPreview__" class="helper-text">Shows a preview of the Emoji when hovering over it.</span>
+				</li>
+
+
+				<li>
+					<button data-i18n="__MSG_optionsResetButton__" type="button" id="resetButton">Reset all settings to defaults</button>
 				</li>
 		</form>
 	</body>

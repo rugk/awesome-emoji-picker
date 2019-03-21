@@ -5,5 +5,10 @@
  */
 
 export const DEFAULT_SETTINGS = Object.freeze({
-    debugMode: false,
+    emojiPicker: {
+        set: "native",
+        native: true,
+        perLine: 9,
+        showPreview: true
+    },
 });
