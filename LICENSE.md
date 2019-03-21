@@ -61,3 +61,38 @@ Files located in the node_modules and vendor directories are externally
 maintained libraries used by this software which have their own
 licenses; we recommend you read them, as their terms may differ from the
 terms above.
+
+## Emoji-Mart
+
+Copyright (c) 2016, Missive
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---
+
+More third-party licenses from used npm modules used in emoji-mart are included in the text file [`src/popup/lib/emoji-mart-embed/THIRD_PARTY_LICENSES.md`](src/popup/lib/emoji-mart-embed/THIRD_PARTY_LICENSES.md).
+
+## Emoji image sources
+
+* Apple Emoji: Copyright © Apple Inc. - macOS 10.13 (High Sierra)
+* Android Emoji: Copyright © [The Android Open Source Project](https://s3-eu-west-1.amazonaws.com/tw-font/android/NOTICE) - 11275b5 / 2017-10-30
+* Twitter Emoji: Copyright © Twitter, Inc. - v2.3.1 2017-10-31
+* Facebook/Messenger Emoji: Copyright © Facebook, Inc. - v7, fetched 2017-11-15
+
+Apple images are not licensed for commerical usage. Android/Google/Noto emoji are available under the [Apache License 2.0](https://github.com/googlei18n/noto-emoji/blob/master/LICENSE). Twitter emoji are available under the [Creative Commons Attribution 4.0 license](https://github.com/twitter/twemoji/blob/gh-pages/LICENSE-GRAPHICS). Facebook and Messenger emoji have no clear licensing.
+
+(see original license statement from upstream: https://github.com/iamcal/emoji-data/blob/master/README.md#image-sources)
+
+## Font Awesome
+
+The following image is taken from Font Awesome, licensed under [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/) (see details here: https://fontawesome.com/license):
+* , original [`grin-alt-regular.svg`](https://fontawesome.com/icons/grin-alt?style=regular), color edited 

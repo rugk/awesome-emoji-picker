@@ -6,7 +6,7 @@ Some links and potential special rules for this repo only are listed below.
 
 ## Translations
 
-* Direct link to online translator: [Web-Ext-Translator for this add-on](https://lusito.github.io/web-ext-translator/?gh=https://github.com/user/project/awesome-emoji-picker).
+* Direct link to online translator: [Web-Ext-Translator for this add-on](https://lusito.github.io/web-ext-translator/?gh=https://github.com/rugk/awesome-emoji-picker).
 * English locales dir: [`src/_locales/en`](src/_locales/en)
 * Text assets to translate: [`assets/texts`](assets/texts)
 * Screenshots: [`assets/screenshots`](assets/screenshots)

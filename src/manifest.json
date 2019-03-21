@@ -6,20 +6,18 @@
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/user/project/awesome-emoji-picker",
+  "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
     "browser_style": false,
-    "default_icon": "icons/icon-small-dark.svg",
+    "default_icon": {
+      "16": "icons/icon_32.png",
+      "32": "icons/icon_32.png",
+      "64": "icons/icon_64.png",
+      "128": "icons/icon_128.png"
+    },
     "default_title": "__MSG_browserActionButtonTitle__",
-    "default_popup": "popup/index.html",
-    "theme_icons": [
-      {
-        "dark": "icons/icon-small-dark.svg",
-        "light": "icons/icon-small-light.svg",
-        "size": 32
-      }
-    ]
+    "default_popup": "popup/index.html"
   },
 
   "options_ui": {
@@ -34,10 +32,9 @@
   // testing version allows loading unit test libraries from CDNs
   "content_security_policy": "default-src 'self'; img-src data: https://unpkg.com",
   "icons": {
-    "16": "icons/icon-small-colored.svg",
-    "32": "icons/icon-small-colored.svg",
-    "48": "icons/icon-large.svg",
-    "96": "icons/icon-large.svg"
+    "32": "icons/icon_32.png",
+    "64": "icons/icon_64.png",
+    "128": "icons/icon_128.png"
   },
   "default_locale": "en",
 

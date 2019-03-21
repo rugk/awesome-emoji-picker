@@ -6,7 +6,7 @@
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
-  "homepage_url": "https://github.com/user/project/awesome-emoji-picker",
+  "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
     "browser_style": true,
