@@ -25,5 +25,7 @@ export function copyEmoji(emoji) {
  * @returns {Object}
  */
 export function getAllSettings() {
-    return AddonSettings.get("emojiPicker");
+    const s = AddonSettings.get("emojiPicker");
+    s.autoFocus = true;
+    return s;
 }

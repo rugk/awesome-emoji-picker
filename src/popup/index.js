@@ -13,9 +13,18 @@ import * as EmojiPicker from "./module/EmojiPicker.js";
  * @returns {Promise}
  */
 async function createPicker() {
-    EmojiPicker.init(
+    await EmojiPicker.init(
         await EmojiSettings.getAllSettings()
     ).catch(console.error);
+
+    window.setTimeout(() => {
+        // EmojiPicker.setAttribute({autoFocus: false});
+        // EmojiPicker.setAttribute({autoFocus: true});
+    }, 1000);
+        window.setTimeout(() => {
+            // EmojiPicker.setAttribute({autoFocus: false});
+            EmojiPicker.setAttribute({autoFocus: true});
+        }, 2000);
 }
 
 createPicker();
