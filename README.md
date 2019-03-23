@@ -1,4 +1,4 @@
-# Awesome Emoji Picker <!-- <img align="right" height="425" width="365" src="assets/screencasts/example.gif"> -->
+# Awesome Emoji Picker <img align="right" height="425" width="365" src="assets/screenshots/emoji-picker.png">
 
 [![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)  
 [![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)
