@@ -94,6 +94,11 @@ Apple images are not licensed for commerical usage. Android/Google/Noto emoji ar
 
 (see original license statement from upstream: https://github.com/iamcal/emoji-data/blob/master/README.md#image-sources)
 
+## EmojiOne
+
+The following image is taken from [EmojiOne](https://www.emojione.com/), licensed under [a personal free license](https://www.emojione.com/licenses/free/):
+* `src/icons/icon_*.png`, original: [star-struck Emoji](https://www.emojione.com/emoji/1f929)
+
 ## Font Awesome
 
 The following image is taken from Font Awesome, licensed under [Creative Commons Attribution 4.0 International license](https://creativecommons.org/licenses/by/4.0/) (see details here: https://fontawesome.com/license):
