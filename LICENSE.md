@@ -105,6 +105,11 @@ The following image is taken from Font Awesome, licensed under [Creative Commons
 * [`assets/fa-grin.svg`](assets/fa-grin.svg) and `src/icons/fa-grin-*.svg`, original [`grin-alt-regular.svg`](https://fontawesome.com/icons/grin-alt?style=regular), color edited 
 
 ## Material Design icons
+
 The following image is taken from Material Design Icons, licensed under [Apache license version 2.0](https://www.apache.org/licenses/LICENSE-2.0.html):
 
 * [`assets/material-grin.svg`](assets/material-grin.svg) and `src/icons/material-grin-*.svg`, original [`baseline-mood-24px.svg`](https://material.io/tools/icons/?icon=mood&style=baseline), color edited 
+
+## Special thanks
+
+* to [@nolanlawson](https://github.com/nolanlawson), who helped in an incredible way with react & how to bundle emoji-mart inside here. 
