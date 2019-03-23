@@ -19,7 +19,8 @@ export const hardcodedSettings = Object.freeze({
     autoFocus: true,
     native: true,
     emojiTooltip: true,
-    onSelect: copyEmoji
+    onSelect: copyEmoji,
+    style: { "border": "none" }
 });
 
 /**
