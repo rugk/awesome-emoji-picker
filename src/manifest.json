@@ -47,7 +47,7 @@
   "applications": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "60.0a1"
+      "strict_min_version": "63"
     }
   }
 }
