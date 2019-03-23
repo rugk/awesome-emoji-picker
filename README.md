@@ -31,6 +31,6 @@ This extension only works with modern Firefox v63 or higher.
 * Adjust many options of your Emoji picker!
 * Follows [Firefox Photon Design](https://design.firefox.com/photon).
 * Has a simple, but intuitive and usable User Interface.
-<!-- * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations) -->
 * Compatible with Firefox for Android
 * […]
+<!-- * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations) -->
