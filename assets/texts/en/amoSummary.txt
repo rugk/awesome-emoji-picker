@@ -1,1 +1,1 @@
-This add-on allows you to …
+This add-on gives you a nice emoji picker that you can use to find and emoji. It will be copied to your clipboard, when you click on it.

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "AwesomeEmojiPicker DEV VERSION",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.1",
+  "version": "0.4",
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
@@ -47,7 +47,7 @@
   "applications": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "63"
+      "strict_min_version": "63.0"
     }
   }
 }
