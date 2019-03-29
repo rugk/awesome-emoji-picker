@@ -17,8 +17,6 @@ export const EMOJI_MART_POLLING = 10; // ms
  */
 export const hardcodedSettings = Object.freeze({
     autoFocus: true,
-    native: true,
-    emojiTooltip: true,
     onSelect: copyEmoji,
     style: { "border": "none" }
 });
