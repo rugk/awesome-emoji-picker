@@ -6,6 +6,8 @@
 
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 
+let emojiMartStorage = {};
+
 /**
  * Get the specific setting for an element.
  *
@@ -28,4 +30,30 @@ export function getAllSettings() {
     const s = AddonSettings.get("emojiPicker");
     s.autoFocus = true;
     return s;
+}
+
+/**
+ * Sets the emoji-mart data storage.
+ *
+ * @private
+ * @returns {void}
+ * @see https://github.com/missive/emoji-mart#storage
+ */
+export async function initEmojiMartStorage() {
+    // get saved values
+    emojiMartStorage = await AddonSettings.get("emojiMart");
+
+    window.emojiMart.setDataStore({
+        getter: (key) => {
+            return emojiMartStorage[key];
+        },
+
+        setter: (key, value) => {
+            emojiMartStorage[key] = value;
+
+            // and actually save the new value
+            // and return promise so async things are noticed
+            return AddonSettings.set("emojiMart", emojiMartStorage);
+        }
+    });
 }

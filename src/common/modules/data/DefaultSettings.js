@@ -12,4 +12,5 @@ export const DEFAULT_SETTINGS = Object.freeze({
         perLine: 9,
         showPreview: true
     },
+    emojiMart: {}
 });

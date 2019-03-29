@@ -55,7 +55,7 @@ export function setAttribute(properties) {
 export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
 
-    const promiseCreateElement = window.defineEmojiMartElement("emoji-picker", initProperties);
+    const promiseCreateElement = window.emojiMart.definePicker("emoji-picker", initProperties);
 
     return promiseCreateElement.then(() => {
         emojiPicker = document.createElement("emoji-picker");

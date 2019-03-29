@@ -7,6 +7,17 @@ import * as EmojiSettings from "./module/EmojiSettings.js";
 import * as EmojiPicker from "./module/EmojiPicker.js";
 
 /**
+ * Sets the emoji-mart data storage.
+ *
+ * @private
+ * @returns {void}
+ * @see https://github.com/missive/emoji-mart#storage
+ */
+function initEmojiMartStorage() {
+    EmojiSettings.initEmojiMartStorage();
+}
+
+/**
  * Creates the emoji picker.
  *
  * @private
@@ -18,4 +29,5 @@ async function createPicker() {
     ).catch(console.error);
 }
 
+initEmojiMartStorage();
 createPicker();
