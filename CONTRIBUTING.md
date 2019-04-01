@@ -17,6 +17,8 @@ Some links and potential special rules for this repo only are listed below.
 
 * [editorconfig file](.editorconfig)
 
+**Attention:** For this add-on, you need to execute [`scripts/downloadEmojiImages.sh`](scripts/downloadEmojiImages.sh) to download the bundled emoji sheets if you use anything else than the "native emojis" ("emojis from your OS") in the settings of this add-on. The reason is just, that these big files are not bundled/distributed in this repo.
+
 ### Tests
 
 * Test dir: [`src/tests/`](src/tests/)

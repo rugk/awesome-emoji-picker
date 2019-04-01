@@ -6,8 +6,7 @@
 
 let emojiPicker = null;
 
-// How many ms to wait between checking whether emoji mart is already loaded.
-export const EMOJI_MART_POLLING = 10; // ms
+const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
 
 /**
  * Hardcoded settings for emoji-mart picker
@@ -18,7 +17,9 @@ export const EMOJI_MART_POLLING = 10; // ms
 export const hardcodedSettings = Object.freeze({
     autoFocus: true,
     onSelect: copyEmoji,
-    style: { "border": "none" }
+    style: { "border": "none" },
+    backgroundImageFn: getEmojiSheet,
+    // emojiSize: 64
 });
 
 /**
@@ -30,6 +31,23 @@ export const hardcodedSettings = Object.freeze({
  */
 function copyEmoji(emoji) {
     navigator.clipboard.writeText(emoji.native);
+}
+
+/**
+ * Return the emoji sheet to use.
+ *
+ * @private
+ * @param {string} set
+ * @param {string} sheetSize
+ * @returns {string} the URL to the emoji sheet
+ */
+function getEmojiSheet(set, sheetSize) {
+    // returns local saved version to speed up loading
+    return browser.runtime.getURL(`${EMOJI_SHEET_DIR}/${set}-${sheetSize}.png`);
+
+    // default online source would be this one
+    // const EMOJI_DATASOURCE_VERSION = "latest"; // with a fixed version, however
+    // return `https://unpkg.com/emoji-datasource-${set}@${EMOJI_DATASOURCE_VERSION}/img/${set}/sheets-256/${sheetSize}.png`;
 }
 
 /**

@@ -1,6 +1,4 @@
-Currently, this add-on fetches the emoji icons from https://unpkg.com.
-
-This add-on does not send any information to the add-on author.
+This add-on does not send any information to any third-party or the add-on author.
 
 An explanation of all permissions, this add-on requests, can be found at https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/en/permissions.md.
 

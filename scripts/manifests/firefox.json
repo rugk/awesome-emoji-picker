@@ -31,7 +31,7 @@
     "page": "background/background.html"
   },
 
-  "content_security_policy": "default-src 'self'; img-src https://unpkg.com",
+  "content_security_policy": "default-src 'self'",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",
