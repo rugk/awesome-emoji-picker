@@ -2,4 +2,5 @@ build/
 node_modules/
 .vscode
 
+# do not commit emoji images
 src/popup/img/emoji-images/*.png
