@@ -67,11 +67,20 @@
 						</span>
 					</span>
 				</li>
-				<!-- <li>
-					<input class="setting save-on-change" type="checkbox" id="emojiShowPreview" data-optiongroup="emojiPicker" name="showPreview">
-					<label data-i18n="__MSG_optionEmojiPickerShowPreview__" for="emojiShowPreview">Show preview</label>
-					<span data-i18n="__MSG_optionEmojiPickerShowPreview__" class="helper-text">Shows a preview of the Emoji when hovering over it.</span>
-				</li> -->
+				<li>
+					<label data-i18n="__MSG_optionEmojiPickerEmojiSize__" for="emojiSize">Emoji size: </label>
+					<select id="emojiSize" class="setting save-on-change" data-optiongroup="emojiPicker" name="emojiSize" size="0">
+						<option data-i18n="__MSG_optionEmojiSiz16px__" value="16">Small (16px)</option>
+						<option data-i18n="__MSG_optionEmojiSize24px__" value="24">Medium (24px)</option>
+						<option data-i18n="__MSG_optionEmojiSize32px__" value="32">Large (32px)</option>
+						<option data-i18n="__MSG_optionEmojiSize64px__" value="64">Extra Large (64px)</option>
+					</select>
+					<span class="helper-text">
+						<span data-i18n="__MSG_optionEmojiPickerSetDescr__">
+							What style to use for the Emojis.
+						</span>
+					</span>
+				</li>
 				<li>
 					<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Emojis per line:</label>
 					<input class="setting save-on-input" type="range" value="9" min="5" max="20" step="1" id="emojisPerLine" data-optiongroup="emojiPicker" name="perLine">

@@ -10,7 +10,8 @@ export const DEFAULT_SETTINGS = Object.freeze({
         set: "native",
         native: true,
         perLine: 9,
-        emojiTooltip: false
+        emojiTooltip: false,
+        emojiSize: 24
     },
     emojiMart: {}
 });
