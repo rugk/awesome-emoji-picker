@@ -109,6 +109,26 @@
     "message": "Wie die Emojis aussehen sollen.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
   },
+  "optionEmojiSize16px": {
+    "message": "Klein (16px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize24px": {
+    "message": "Mittel (24px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize32px": {
+    "message": "Groß (32px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize40px": {
+    "message": "Sehr groß (40px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize48px": {
+    "message": "Extra groß (48px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
   "optionEmojiPickerPerLine": {
     "message": "Breite des Auswahlfensters:",
     "description": "This is an option shown in the add-on settings."

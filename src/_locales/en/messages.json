@@ -109,6 +109,34 @@
     "message": "What style to use for the Emojis.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
   },
+  "optionEmojiPickerEmojiSize": {
+    "message": "Emoji size:",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiPickerSetDescr": {
+    "message": "What style to use for the Emojis.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerEmojiSize setting."
+  },
+  "optionEmojiSize16px": {
+    "message": "Small (16px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize24px": {
+    "message": "Medium (24px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize32px": {
+    "message": "Large (32px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize40px": {
+    "message": "Very Large (40px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize48px": {
+    "message": "Extra Large (48px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
   "optionEmojiPickerPerLine": {
     "message": "Width of picker:",
       "description": "This is an option shown in the add-on settings."

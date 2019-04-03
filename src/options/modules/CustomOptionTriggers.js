@@ -133,36 +133,59 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
     const emojiSizeValue = Number(optionValue.emojiSize);
     const elEmojisPerLine = document.getElementById("emojisPerLine");
 
-    let newMaxValue;
     // popup max with = 800px
     // see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Popups#Popup_resizing
-    switch (emojiSizeValue) {
-    case 16:
-        newMaxValue = 50; // theoretically ~800/16=50
-        break;
-    case 24:
-        newMaxValue = 20; // theoretically ~800/24=33
-        break;
-    case 32:
-        newMaxValue = 20; // theoretically ~800/24=25
-        break;
-    case 64:
-        newMaxValue = 10; // theoretically ~800/24=12
-        break;
-    default:
-        throw new TypeError(`Emoji size value ${emojiSizeValue} is unsupported.`);
-    }
-    debugger;
+    //
+    // x = emoji per line
+    // emoji border: 6px
+    // outer border: 13px
+    // tolerance: 5px
+    //
+    // calculation for width:
+
+    // x = (width - 2*outer border - tolerance) / (emoji + 2*emoji border)
+    const newMaxValue = Math.floor((800 - 2 * 13 - 5) / (emojiSizeValue + 2 * 6));
+    // width = (emoji + 2*emoji border) * x + 2*outer border (+ tolerance)
+    const estimatedWidth = (emojiSizeValue + 2 * 6) * newMaxValue + 2 * 13;
+    console.log("Caluclated a maximum number of emojis per line of", newMaxValue,
+        "for emojis of size", `${emojiSizeValue}px,`, "resulting in an estimated with of", `${estimatedWidth}px.`);
+
+    // switch (emojiSizeValue) {
+    // case 16:
+    //     newMaxValue = 50; // theoretically ~800/16=50
+    //     break;
+    // case 24:
+    //     newMaxValue = 20; // theoretically ~800/24=33
+    //     break;
+    // case 32:
+    //     newMaxValue = 20; // theoretically ~800/32=25
+    //     break;
+    // case 40:
+    //     newMaxValue = 20; // theoretically ~800/40=20
+    //     break;
+    // case 48:
+    //     newMaxValue = 12; // theoretically ~800/48=16
+    //     break;
+    // default:
+    //     throw new TypeError(`Emoji size value ${emojiSizeValue} is unsupported.`);
+    // }
 
     // apply new max value
+    const oldEmojisPerLineValue = elEmojisPerLine.value;
     elEmojisPerLine.max = newMaxValue;
 
     // adjust value if current one is too large
-    if (elEmojisPerLine.value > newMaxValue) {
+    if (oldEmojisPerLineValue > newMaxValue) {
         elEmojisPerLine.value = newMaxValue;
+
+        // manualyl update value/trigger trigger
         updatePerLineStatus({
             perLine: newMaxValue
         }, "emojiPicker");
+
+        // not best practise, but we just modify the to-be-saved object here, as
+        // manually triggering an InputEvent could lead to race conditions etc.
+        optionValue.perLine = newMaxValue;
     }
 }
 
