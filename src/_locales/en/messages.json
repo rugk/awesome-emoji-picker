@@ -65,10 +65,56 @@
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
   },
 
-  // TODO
-
+  "optionPopupIconColored": {
+    "message": "Colored icon",
+      "description": "This is an option shown in the add-on settings."
+  },
+  "optionPopupIconColoredDescr": {
+    "message": "Shows a colored icon instead of the black/white icon in the toolbar.",
+    "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
+  },
+  "optionEmojiPickerSet": {
+    "message": "Emoji set:",
+      "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiSetNative": {
+    "message": "Default from your OS",
+    "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on."
+  },
+  "optionEmojiSetApple": {
+    "message": "Apple",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetGoogle": {
+    "message": "Google",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetTwitter": {
+    "message": "Twitter",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetEmojiOne": {
+    "message": "EmojiOne",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetMessenger": {
+    "message": "Facebook Messenger",
+    "description": "Option of the emoji set. This is a product name and should thus, usually, not translated. Only translate if it's the official product translation."
+  },
+  "optionEmojiSetFacebook": {
+    "message": "Facebook",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiPickerSetDescr": {
+    "message": "What style to use for the Emojis.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
+  },
+  "optionEmojiPickerPerLine": {
+    "message": "Width of picker:",
+      "description": "This is an option shown in the add-on settings."
+  },
   "optionEmojisPerLineStatusSingular": {
-    "message": "($INTEGER$ emojis per line)",
+    "message": "($INTEGER$ emoji per line)",
     "description": "This is the number of emojis per line in its singular form.",
     "placeholders": {
       "integer": {
@@ -87,7 +133,128 @@
       }
     }
   },
+  "optionEmojiPickerPerLineDescr": {
+    "message": "How many emojis should be shown per line in the emoji picker. This affects the width of the popup.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting."
+  },
+  "optionEmojiPickerShowTooltip": {
+    "message": "Show tooltips",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiPickerShowTooltipDescr": {
+    "message": "Shows a tooltip with the name of the Emoji when hovering over it.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
+  },
 
+  "optionsLicenseDisclaimer": {
+    "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
+    "description": "This is a text shown in the add-on settings explaining the license terms.",
+    "placeholders": {
+      "link": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md\">the whole license file</a>"
+      }
+    }
+  },
+  "optionsLicenseDisclaimerLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md",
+    "description": "This is the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer. Usually, you do not need to translate this as we have only an English version."
+  },
+  "optionsLicenseDisclaimerLinkText": {
+    "message": "the whole license file",
+    "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
+  },
+
+  // emoji-mart
+  // see https://github.com/missive/emoji-mart#i18n
+  "emojiMartSearch": {
+    "message": "Search",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartClear": {
+    "message": "Clear",
+    "description": "Localisation of emoji-mart, the emoji-picker. Accessible label on \"clear\" button. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartNoEmojiFound": {
+    "message": "No Emoji Found",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkinText": {
+    "message": "Choose your default skin tone",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategorySearch": {
+    "message": "Search Results",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryRecent": {
+    "message": "Frequently Used",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryPeople": {
+    "message": "Smileys & People",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryNature": {
+    "message": "Animals & Nature",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryFoods": {
+    "message": "Food & Drink",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryActivity": {
+    "message": "Activity",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryPlaces": {
+    "message": "Travel & Places",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryObjects": {
+    "message": "Objects",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategorySymbols": {
+    "message": "Symbols",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryFlags": {
+    "message": "Flags",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryCustom": {
+    "message": "Custom",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoriesLabel": {
+    "message": "Emoji categories",
+    "description": "Localisation of emoji-mart, the emoji-picker. Accessible title for the list of categories. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone1": {
+    "message": "Default Skin Tone",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone2": {
+    "message": "Light Skin Tone",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone3": {
+    "message": "Medium-Light Skin Tone",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone4": {
+    "message": "Medium Skin Tone",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone5": {
+    "message": "Medium-Dark Skin Tone",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone6": {
+    "message": "Dark Skin Tone",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
 
   // ARIA labels/descriptions
   "dismissIconDescription": {

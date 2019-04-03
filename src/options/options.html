@@ -58,7 +58,7 @@
 						<option data-i18n="__MSG_optionEmojiSetGoogle__" value="google">Google</option>
 						<option data-i18n="__MSG_optionEmojiSetTwitter__" value="twitter">Twitter</option>
 						<option data-i18n="__MSG_optionEmojiSetEmojiOne__" value="emojione">EmojiOne</option>
-						<option data-i18n="__MSG_optionEmojiSetMessenger__" value="messenger">Messenger</option>
+						<option data-i18n="__MSG_optionEmojiSetMessenger__" value="messenger">Facebook Messenger</option>
 						<option data-i18n="__MSG_optionEmojiSetFacebook__" value="facebook">Facebook</option>
 					</select>
 					<span class="helper-text">
@@ -73,7 +73,7 @@
 					<span data-i18n="__MSG_optionEmojiPickerShowPreview__" class="helper-text">Shows a preview of the Emoji when hovering over it.</span>
 				</li> -->
 				<li>
-					<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Emojis per line:</label>
+					<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Width of picker:</label>
 					<input class="setting save-on-input" type="range" value="9" min="5" max="20" step="1" id="emojisPerLine" data-optiongroup="emojiPicker" name="perLine">
 					<span>
 						<span id="emojisPerLineStatus">(9 emojis per line)</span>
@@ -84,8 +84,8 @@
 				</li>
 				<li>
 					<input class="setting save-on-change" type="checkbox" id="emojiShowTooltip" data-optiongroup="emojiPicker" name="emojiTooltip">
-					<label data-i18n="__MSG_optionEmojiPickerShowTooltip__" for="emojiShowTooltip">Show a tooltip</label>
-					<span data-i18n="__MSG_optionEmojiPickerShowTooltip__" class="helper-text">Shows a tooltip with the name of the Emoji when hovering over it.</span>
+					<label data-i18n="__MSG_optionEmojiPickerShowTooltip__" for="emojiShowTooltip">Show tooltips</label>
+					<span data-i18n="__MSG_optionEmojiPickerShowTooltipDescr__" class="helper-text">Shows a tooltip with the name of the Emoji when hovering over it.</span>
 				</li>
 
 
@@ -94,8 +94,8 @@
 				</li>
 
 				<li>
-					<p class="helper-text">
-						All emoji images may subject to different licenses. For more information, see <a href="https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md">the whole license file</a>.
+					<p data-i18n="__MSG_optionsLicenseDisclaimer__" data-opt-i18n-keep-children class="helper-text">
+						All emoji images may subject to different licenses. For more information, see <a data-i18n="__MSG_optionsLicenseDisclaimerLinkText__" data-i18n-href="__MSG_optionsLicenseDisclaimerLink__" href="https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md">the whole license file</a>.
 					</p>
 				</li>
 		</form>
