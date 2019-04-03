@@ -5,7 +5,7 @@
 [![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/statistics/)
 [![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/)
 
-This (Firefox) add-on (WebExtension) gives you a nice emoji picker that you can use to find and emoji. It will be copied to your clipboard, when you click on it.
+This (Firefox) add-on (WebExtension) gives you a nice emoji picker that you can use to find and select emojis. It will be copied to your clipboard, when you click on it.
 
 It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications.
 

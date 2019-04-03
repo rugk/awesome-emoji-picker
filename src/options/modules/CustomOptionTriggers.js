@@ -23,7 +23,7 @@ function applyPopupIconColor(optionValue) {
 }
 
 /**
- * Adjusts the emoji set setting for saving when .
+ * Adjusts the emoji set setting for saving.
  *
  * @private
  * @param {Object} param
@@ -39,6 +39,24 @@ function saveEmojiSet(param) {
     } else {
         param.optionValue.native = false;
     }
+
+    return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
+}
+
+/**
+ * Adjusts the emoji size setting for saving.
+ *
+ * @private
+ * @param {Object} param
+ * @param {Object} param.optionValue the value of the changed option
+ * @param {string} param.option the name of the option that has been changed
+ * @param {Array} param.saveTriggerValues all values returned by potentially
+ *                                          previously run safe triggers
+ * @returns {Promise}
+ */
+function adjustEmojiSize(param) {
+    // convert emoji size to number
+    param.optionValue.emojiSize = Number(param.optionValue.emojiSize);
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
 }
@@ -96,6 +114,59 @@ function updatePerLineStatus(optionValue, option, event) {
 }
 
 /**
+ * Adjust maximum value of emojis per line when the emoji size is adjusted.
+ *
+ * @private
+ * @param {integer} optionValue
+ * @param {string} option the name of the option that has been changed
+ * @param {Event} event the event (input or change) that triggered saving
+ *                      (may not always be defined, e.g. when loading)
+ * @returns {void}
+ * @throws {Error} if no translation could be found
+ */
+function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
+    // only handle per line status (or if initialisation without event)
+    if (event && "target" in event && event.target.name !== "emojiSize") {
+        return;
+    }
+
+    const emojiSizeValue = Number(optionValue.emojiSize);
+    const elEmojisPerLine = document.getElementById("emojisPerLine");
+
+    let newMaxValue;
+    // popup max with = 800px
+    // see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Popups#Popup_resizing
+    switch (emojiSizeValue) {
+    case 16:
+        newMaxValue = 50; // theoretically ~800/16=50
+        break;
+    case 24:
+        newMaxValue = 20; // theoretically ~800/24=33
+        break;
+    case 32:
+        newMaxValue = 20; // theoretically ~800/24=25
+        break;
+    case 64:
+        newMaxValue = 10; // theoretically ~800/24=12
+        break;
+    default:
+        throw new TypeError(`Emoji size value ${emojiSizeValue} is unsupported.`);
+    }
+    debugger;
+
+    // apply new max value
+    elEmojisPerLine.max = newMaxValue;
+
+    // adjust value if current one is too large
+    if (elEmojisPerLine.value > newMaxValue) {
+        elEmojisPerLine.value = newMaxValue;
+        updatePerLineStatus({
+            perLine: newMaxValue
+        }, "emojiPicker");
+    }
+}
+
+/**
  * Binds the triggers.
  *
  * This is basically the "init" method.
@@ -106,11 +177,13 @@ function updatePerLineStatus(optionValue, option, event) {
 export function registerTrigger() {
     // override load/safe behaviour for custom fields
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", saveEmojiSet);
+    AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", adjustEmojiSize);
     // loading does not need to be overwritten, as we are fine with an extra string saved
 
     // update slider status
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
+    AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
 
     // handle loading of options correctly
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
