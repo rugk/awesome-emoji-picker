@@ -109,6 +109,10 @@
     "message": "Wie die Emojis aussehen sollen.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
   },
+  "optionEmojiPickerEmojiSize": {
+    "message": "Emoji-Größe:",
+    "description": "This is an option shown in the add-on settings."
+  },
   "optionEmojiSize16px": {
     "message": "Klein (16px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
@@ -131,10 +135,6 @@
   },
   "optionEmojiPickerPerLine": {
     "message": "Breite des Auswahlfensters:",
-    "description": "This is an option shown in the add-on settings."
-  },
-  "optionEmojiPickerShowTooltip": {
-    "message": "Zeige einen Tooltip",
     "description": "This is an option shown in the add-on settings."
   },
   "optionEmojisPerLineStatusSingular": {

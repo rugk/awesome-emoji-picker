@@ -113,10 +113,6 @@
     "message": "Emoji size:",
     "description": "This is an option shown in the add-on settings."
   },
-  "optionEmojiPickerSetDescr": {
-    "message": "What style to use for the Emojis.",
-    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerEmojiSize setting."
-  },
   "optionEmojiSize16px": {
     "message": "Small (16px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
