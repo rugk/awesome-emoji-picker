@@ -62,6 +62,57 @@ function adjustEmojiSize(param) {
 }
 
 /**
+ * Adjusts the copyEmojiColons setting for saving.
+ *
+ * @private
+ * @param {Object} param
+ * @param {Object} param.optionValue the value of the option to be loaded
+ * @param {string} param.option the name of the option that has been changed
+ * @param {HTMLElement} param.elOption where the data is supposed to be loaded
+ *                     into
+ * @param {Object} param.optionValues result of a storage.[…].get call, which
+ *                  contains the values that should be applied to the file
+ *                  Please prefer "optionValue" instead of this, as this may not
+ *                  always contain a value here.
+ * @returns {Promise}
+ */
+function prepareEmojiCopyOptionForInput(param) {
+    switch (param.optionValue) {
+    case "colons":
+        param.optionValue = true;
+        break;
+    case "native":
+        param.optionValue = false;
+        break;
+    default:
+        throw new Error("invalid parameter: ", param.option, param.optionValue);
+    }
+
+    return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
+}
+
+/**
+ * Adjusts the copyEmojiColons setting for saving.
+ *
+ * @private
+ * @param {Object} param
+ * @param {Object} param.optionValue the value of the changed option
+ * @param {string} param.option the name of the option that has been changed
+ * @param {Array} param.saveTriggerValues all values returned by potentially
+ *                                          previously run safe triggers
+ * @returns {Promise}
+ */
+function adjustEmojiCopyOption(param) {
+    if (param.optionValue) {
+        param.optionValue = "colons";
+    } else {
+        param.optionValue = "native";
+    }
+
+    return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
+}
+
+/**
  * Gets the plural form of the quiet zone translation, depending on the option value.
  *
  * @private
@@ -201,6 +252,8 @@ export function registerTrigger() {
     // override load/safe behaviour for custom fields
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", saveEmojiSet);
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", adjustEmojiSize);
+    AutomaticSettings.Trigger.addCustomLoadOverride("copyEmoji", prepareEmojiCopyOptionForInput);
+    AutomaticSettings.Trigger.addCustomSaveOverride("copyEmoji", adjustEmojiCopyOption);
     // loading does not need to be overwritten, as we are fine with an extra string saved
 
     // update slider status

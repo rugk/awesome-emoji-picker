@@ -13,5 +13,6 @@ export const DEFAULT_SETTINGS = Object.freeze({
         emojiTooltip: false,
         emojiSize: 24
     },
+    copyEmoji: "native",
     emojiMart: {}
 });

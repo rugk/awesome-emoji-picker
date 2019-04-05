@@ -4,6 +4,8 @@
  * @public
  */
 
+import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+
 let emojiPicker = null;
 
 const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
@@ -68,8 +70,18 @@ function getEmojiMartLocalised() {
  * @param {Object} emoji
  * @returns {void}
  */
-function copyEmoji(emoji) {
-    navigator.clipboard.writeText(emoji.native);
+async function copyEmoji(emoji) {
+    const emojiCopyOption = await AddonSettings.get("copyEmoji");
+    switch (emojiCopyOption) {
+    case "native":
+        navigator.clipboard.writeText(emoji.native);
+        break;
+    case "colons":
+        navigator.clipboard.writeText(emoji.colons);
+        break;
+    default:
+        throw new Error("invalid option:", "copyEmoji", emojiCopyOption);
+    }
 }
 
 /**
