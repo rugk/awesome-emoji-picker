@@ -1,4 +1,9 @@
-import * as IconHandler from "/common/modules/IconHandler.js";
+import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+
+import * as OmniboxSearch from "./modules/OmniboxSearch.js";
 
 // init modules
-IconHandler.init();
+const emojiSearch = AddonSettings.get("emojiSearch");
+if (emojiSearch) {
+    OmniboxSearch.init();
+}

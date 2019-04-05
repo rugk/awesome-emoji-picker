@@ -14,5 +14,6 @@ export const DEFAULT_SETTINGS = Object.freeze({
         emojiSize: 24
     },
     copyEmoji: "native",
-    emojiMart: {}
+    emojiMart: {},
+    emojiSearch: true
 });

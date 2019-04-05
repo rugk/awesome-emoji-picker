@@ -189,6 +189,36 @@
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
   },
 
+  // emoji-search
+  "searchTipDescription": {
+    "message": "Search for emojis via Awesome Emoji Picker…",
+    "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchResultDescription": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "The Unicode symbol for the Emoji."
+      },
+      "name": {
+        "content": "$2",
+        "example": "The name of the Emoji."
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": "The :colon: syntax of the selected Emoji."
+      }
+    }
+  },
+
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
   "emojiMartSearch": {

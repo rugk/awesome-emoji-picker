@@ -4,7 +4,7 @@
  * @public
  */
 
-import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 
 let emojiPicker = null;
 
@@ -19,7 +19,7 @@ const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
 export const hardcodedSettings = Object.freeze({
     i18n: getEmojiMartLocalised(),
     autoFocus: true,
-    onSelect: copyEmoji,
+    onSelect: EmojiInteraction.copyEmoji,
     style: { "border": "none" },
     backgroundImageFn: getEmojiSheet,
     // emojiSize: 64
@@ -61,27 +61,6 @@ function getEmojiMartLocalised() {
             6: browser.i18n.getMessage("emojiMartSkintone6"),
         }
     };
-}
-
-/**
- * Copy the Emoji to clipboard, once it has been selected.
- *
- * @private
- * @param {Object} emoji
- * @returns {void}
- */
-async function copyEmoji(emoji) {
-    const emojiCopyOption = await AddonSettings.get("copyEmoji");
-    switch (emojiCopyOption) {
-    case "native":
-        navigator.clipboard.writeText(emoji.native);
-        break;
-    case "colons":
-        navigator.clipboard.writeText(emoji.colons);
-        break;
-    default:
-        throw new Error("invalid option:", "copyEmoji", emojiCopyOption);
-    }
 }
 
 /**
