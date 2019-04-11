@@ -5,6 +5,7 @@
  */
 
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+import * as PageHandler from "./PageHandler.js";
 
 let emojiPicker = null;
 
@@ -72,15 +73,14 @@ function getEmojiMartLocalised() {
  */
 async function copyEmoji(emoji) {
     const emojiCopyOption = await AddonSettings.get("copyEmoji");
-    switch (emojiCopyOption) {
-    case "native":
-        navigator.clipboard.writeText(emoji.native);
-        break;
-    case "colons":
-        navigator.clipboard.writeText(emoji.colons);
-        break;
-    default:
-        throw new Error("invalid option:", "copyEmoji", emojiCopyOption);
+    const emojiText = emoji[emojiCopyOption];
+
+    const automaticInsert = await AddonSettings.get("automaticInsert");
+
+    navigator.clipboard.writeText(emojiText);
+
+    if (automaticInsert) {
+        PageHandler.insertIntoPage(emojiText).then(console.log);
     }
 }
 
