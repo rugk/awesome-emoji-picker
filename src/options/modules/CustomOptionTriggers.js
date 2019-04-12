@@ -201,26 +201,6 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
     console.log("Caluclated a maximum number of emojis per line of", newMaxValue,
         "for emojis of size", `${emojiSizeValue}px,`, "resulting in an estimated with of", `${estimatedWidth}px.`);
 
-    // switch (emojiSizeValue) {
-    // case 16:
-    //     newMaxValue = 50; // theoretically ~800/16=50
-    //     break;
-    // case 24:
-    //     newMaxValue = 20; // theoretically ~800/24=33
-    //     break;
-    // case 32:
-    //     newMaxValue = 20; // theoretically ~800/32=25
-    //     break;
-    // case 40:
-    //     newMaxValue = 20; // theoretically ~800/40=20
-    //     break;
-    // case 48:
-    //     newMaxValue = 12; // theoretically ~800/48=16
-    //     break;
-    // default:
-    //     throw new TypeError(`Emoji size value ${emojiSizeValue} is unsupported.`);
-    // }
-
     // apply new max value
     const oldEmojisPerLineValue = elEmojisPerLine.value;
     elEmojisPerLine.max = newMaxValue;
