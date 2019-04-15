@@ -5,9 +5,19 @@
  */
 
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
+import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
+import * as CustomMessages from "/common/modules/MessageHandler/CustomMessages.js";
 
 // used to apply options
 import * as IconHandler from "/common/modules/IconHandler.js";
+
+const CLIPBOARD_WRITE_PERMISSION = {
+    permissions: ["clipboardWrite"]
+};
+const MESSAGE_EMOJI_COPY_PERMISSION = "emojiCopyOnlyFallbackPermissionInfo";
+
+let addonHasClipboardWritePermission = false;
+let clipboardWriteRequestMessageIsShown = false;
 
 /**
  * Adjust UI if QR code size option is changed.
@@ -44,6 +54,85 @@ function saveEmojiSet(param) {
 }
 
 /**
+ * Requests the permission for pickerResult settings.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
+ * @returns {Promise}
+ */
+function applyPickerResultPermissions(optionValue, option, event) {
+    let retPromise;
+    const isUserInteractionHandler = event.type === "input" || event.type === "click" || event.type === "change";
+
+    if (optionValue.emojiCopyOnlyFallback && // if we require a permission
+        !addonHasClipboardWritePermission // and not already granted
+    ) {
+        // no action button by default
+        let actionButton = {};
+        // if we cannot actually request the permission, let's show a useful
+        // message, at least
+        if (!isUserInteractionHandler) {
+            clipboardWriteRequestMessageIsShown = true;
+
+            actionButton = {
+                text: "Grant permission",
+                action: (param) => {
+                    return applyPickerResultPermissions(optionValue, option, param.event);
+                }
+            };
+        }
+
+        CustomMessages.showMessage(MESSAGE_EMOJI_COPY_PERMISSION,
+            "We need the permission to copy data into the clipboard for this feature.",
+            false,
+            actionButton);
+
+        // if we were called from an input handler, we can request the permission
+        // otherwise, we return now
+        if (!isUserInteractionHandler) {
+            return Promise.resolve();
+        }
+
+        retPromise = browser.permissions.request(CLIPBOARD_WRITE_PERMISSION).catch((error) => {
+            console.error(error);
+            // convert error to negative return value
+            return null;
+        }).then((permissionSuccessful) => {
+            switch (permissionSuccessful) {
+            case true:
+                // permission has been granted
+                addonHasClipboardWritePermission = true;
+                return;
+            case null:
+                CommonMessages.showError("Requesting clipboard permission failed.", true);
+                break;
+            case false:
+                // CommonMessages.showError("This feature cannot be used without the clipboard permission.", true);
+                break;
+            default:
+                console.error("Unknown value for permissionSuccessful:", permissionSuccessful);
+            }
+
+            optionValue.emojiCopyOnlyFallback = false;
+            document.getElementById("emojiCopyOnlyFallback").checked = false;
+
+            throw new Error("permission request error");
+        }).finally(() => {
+            CustomMessages.hideMessage(MESSAGE_EMOJI_COPY_PERMISSION, {animate: true});
+        });
+    } else if (clipboardWriteRequestMessageIsShown) {
+        CustomMessages.hideMessage(MESSAGE_EMOJI_COPY_PERMISSION, {animate: true});
+        // only needs to be reset here, as it is only about the message with an
+        // action button
+        clipboardWriteRequestMessageIsShown = false;
+    }
+
+    return retPromise;
+}
+
+/**
  * Adjusts the emoji size setting for saving.
  *
  * @private
@@ -62,7 +151,7 @@ function adjustEmojiSize(param) {
 }
 
 /**
- * Adjusts the copyEmojiColons setting for saving.
+ * Adjusts the pickerResult->resultType setting for saving.
  *
  * @private
  * @param {Object} param
@@ -76,7 +165,7 @@ function adjustEmojiSize(param) {
  *                  always contain a value here.
  * @returns {Promise}
  */
-function prepareEmojiCopyOptionForInput(param) {
+function preparePickerResultTypeOptionForInput(param) {
     switch (param.optionValue) {
     case "colons":
         param.optionValue = true;
@@ -92,7 +181,7 @@ function prepareEmojiCopyOptionForInput(param) {
 }
 
 /**
- * Adjusts the copyEmojiColons setting for saving.
+ * Adjusts the pickerResult->resultType setting for saving.
  *
  * @private
  * @param {Object} param
@@ -102,11 +191,11 @@ function prepareEmojiCopyOptionForInput(param) {
  *                                          previously run safe triggers
  * @returns {Promise}
  */
-function adjustEmojiCopyOption(param) {
-    if (param.optionValue) {
-        param.optionValue = "colons";
+function adjustPickerResultTypeOption(param) {
+    if (param.optionValue.resultType) {
+        param.optionValue.resultType = "colons";
     } else {
-        param.optionValue = "native";
+        param.optionValue.resultType = "native";
     }
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
@@ -229,18 +318,28 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  * @returns {void}
  */
 export function registerTrigger() {
+    // query permission values, so they can be accessed syncronously
+    browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION).then((hasPermission) => {
+        addonHasClipboardWritePermission = hasPermission;
+    });
+
     // override load/safe behaviour for custom fields
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", saveEmojiSet);
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", adjustEmojiSize);
-    AutomaticSettings.Trigger.addCustomLoadOverride("copyEmoji", prepareEmojiCopyOptionForInput);
-    AutomaticSettings.Trigger.addCustomSaveOverride("copyEmoji", adjustEmojiCopyOption);
+
+    AutomaticSettings.Trigger.addCustomLoadOverride("resultType", preparePickerResultTypeOptionForInput);
+    AutomaticSettings.Trigger.addCustomSaveOverride("pickerResult", adjustPickerResultTypeOption);
     // loading does not need to be overwritten, as we are fine with an extra string saved
 
     // update slider status
+    AutomaticSettings.Trigger.registerSave("pickerResult", applyPickerResultPermissions);
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
 
     // handle loading of options correctly
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
+
+    // register custom messages
+    CustomMessages.registerMessageType(MESSAGE_EMOJI_COPY_PERMISSION, document.getElementById("emojiCopyOnlyFallbackPermissionInfo"));
 }

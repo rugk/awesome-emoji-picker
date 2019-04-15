@@ -6,9 +6,11 @@
 /**
  * Insert emoji into page.
  *
+ * Returns a Promise that results in the text that has been modified.
+ *
  * @public
  * @param {string} text
- * @returns {void}
+ * @returns {Promise}
  */
 export async function insertIntoPage(text) {
     const tabs = await browser.tabs.query({

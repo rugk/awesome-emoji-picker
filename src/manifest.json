@@ -41,8 +41,11 @@
   "default_locale": "en",
 
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
   ],
 
   "applications": {

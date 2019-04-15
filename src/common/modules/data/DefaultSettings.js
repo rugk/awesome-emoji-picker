@@ -13,7 +13,13 @@ export const DEFAULT_SETTINGS = Object.freeze({
         emojiTooltip: false,
         emojiSize: 24
     },
-    copyEmoji: "native",
-    automaticInsert: true,
+    pickerResult: {
+        automaticInsert: true,
+        emojiCopy: true,
+        // emojiCopyOnlyFallback MUST NOT be true, as optional clipboardWrite
+        // permission is required for this
+        emojiCopyOnlyFallback: true,
+        resultType: "native",
+    },
     emojiMart: {}
 });

@@ -8,6 +8,7 @@ import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as PageHandler from "./PageHandler.js";
 
 let emojiPicker = null;
+let optionPickerResult = {};
 
 const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
 
@@ -72,16 +73,48 @@ function getEmojiMartLocalised() {
  * @returns {void}
  */
 async function copyEmoji(emoji) {
-    const emojiCopyOption = await AddonSettings.get("copyEmoji");
-    const emojiText = emoji[emojiCopyOption];
+    // destructure config
+    const {
+        resultType,
+        automaticInsert,
+        emojiCopyOnlyFallback
+    } = optionPickerResult;
+    let emojiCopy = optionPickerResult.emojiCopy;
 
-    const automaticInsert = await AddonSettings.get("automaticInsert");
+    // get type to use
+    const emojiText = emoji[resultType];
 
-    navigator.clipboard.writeText(emojiText);
-
+    // insert emoji
+    let emojiInsertResult = Promise.resolve(); // successful by default
     if (automaticInsert) {
-        PageHandler.insertIntoPage(emojiText).then(console.log);
+        emojiInsertResult = PageHandler.insertIntoPage(emojiText).then(console.log);
     }
+
+    // wait for successful execution, if wanted
+    if (emojiCopyOnlyFallback) {
+        await (emojiInsertResult.then(() => {
+            // if successful, do not copy emoji
+            emojiCopy = false;
+        }).catch(() => {
+            console.error("Insertion into page failed. Use emoji copy fallback.");
+
+            emojiCopy = true;
+
+            // resolve promise, so await continues
+        }));
+    }
+
+    // copy to clipboard
+    let emojiCopyResult = Promise.resolve(); // successful by default
+    if (emojiCopy) {
+        // WARNING: If there is an asyncronous waiting (await) before, we need to
+        // request the clipboardWrite permission to be able to do this, as the
+        // function call is then not anymore assigned to a click handler
+        // TODO: rejection with undefined error -> MOZILA BUG
+        emojiCopyResult = navigator.clipboard.writeText(emojiText);
+    }
+
+    return Promise.all([emojiInsertResult, emojiCopyResult]);
 }
 
 /**
@@ -119,8 +152,12 @@ export function setAttribute(properties) {
  * @param {Object} settings
  * @returns {Promise}
  */
-export function init(settings) {
+export async function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
+
+    // request it/preload it here, so we need no async request to access it
+    // later
+    optionPickerResult = await AddonSettings.get("pickerResult");
 
     console.debug("Using these emoji-mart settings:", initProperties);
 

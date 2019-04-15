@@ -43,6 +43,10 @@
     "storage"
   ],
 
+  "optional_permissions": [
+    "clipboardWrite"
+  ],
+
   "applications": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
