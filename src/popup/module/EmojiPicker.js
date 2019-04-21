@@ -11,6 +11,11 @@ let emojiPicker = null;
 let optionPickerResult = {};
 
 const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
+const CLIPBOARD_WRITE_PERMISSION = {
+    permissions: ["clipboardWrite"]
+};
+
+let addonHasClipboardWritePermission = false;
 
 /**
  * Hardcoded settings for emoji-mart picker
@@ -81,6 +86,8 @@ async function copyEmoji(emoji) {
     } = optionPickerResult;
     let emojiCopy = optionPickerResult.emojiCopy;
 
+    console.log("Action triggered for emoji:", emoji);
+
     // get type to use
     const emojiText = emoji[resultType];
 
@@ -98,7 +105,15 @@ async function copyEmoji(emoji) {
         }).catch(() => {
             console.error("Insertion into page failed. Use emoji copy fallback.");
 
-            emojiCopy = true;
+            if (addonHasClipboardWritePermission) {
+                emojiCopy = true;
+            } else {
+                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission");
+                // Note: We cannot request the permission now, because of the same reason why we cannot actually
+                // copy without clipboardWrite permission (this is no user action anymore)
+
+                // TODO: show visible error to the user!!
+            }
 
             // resolve promise, so await continues
         }));
@@ -158,6 +173,8 @@ export async function init(settings) {
     // request it/preload it here, so we need no async request to access it
     // later
     optionPickerResult = await AddonSettings.get("pickerResult");
+    // query permission values, so they can be accessed syncronously
+    addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
 
     console.debug("Using these emoji-mart settings:", initProperties);
 

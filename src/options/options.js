@@ -9,9 +9,6 @@ import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticS
 import * as CustomOptionTriggers from "./modules/CustomOptionTriggers.js";
 
 // init modules
-window.trigger = window.trigger || 0;
-window.trigger++;
-console.error("OPTIONS PAGE INIT CODE TRIGGERED", window.trigger);
 CustomOptionTriggers.registerTrigger();
 AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
 AutomaticSettings.init();

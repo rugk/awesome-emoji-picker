@@ -4,7 +4,14 @@
  * @module data/DefaultSettings
  */
 
-export const DEFAULT_SETTINGS = Object.freeze({
+/**
+ * An object of all default settings.
+ *
+ * @private
+ * @const
+ * @type {Object}
+ */
+const defaultSettings = {
     popupIconColored: true,
     emojiPicker: {
         set: "native",
@@ -18,8 +25,23 @@ export const DEFAULT_SETTINGS = Object.freeze({
         emojiCopy: true,
         // emojiCopyOnlyFallback MUST NOT be true, as optional clipboardWrite
         // permission is required for this
-        emojiCopyOnlyFallback: true,
+        // (As it leads to an error, that may happen in reality with sync, however,
+        // it is anyway, handled in the options, but not really nice to see it
+        // directly after installing the add-on)
+        emojiCopyOnlyFallback: false,
         resultType: "native",
     },
     emojiMart: {}
-});
+};
+
+// freeze the inner objects, this is strongly recommend
+Object.values(defaultSettings).map(Object.freeze);
+
+/**
+ * Export the default settings to be used.
+ *
+ * @public
+ * @const
+ * @type {Object}
+ */
+export const DEFAULT_SETTINGS = Object.freeze(defaultSettings);
