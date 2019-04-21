@@ -71,8 +71,8 @@ input[type=radio] ~ .helper-text {
   margin-left: 28px;
 }
 
-/* when a link is used in a helper text, add margin */
-.helper-text > a {
+/* when a "Learn more" link is used in a helper text, add margin */
+.learn-more {
   margin-left: 4px;
   overflow-wrap: none;
 }
