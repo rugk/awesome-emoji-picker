@@ -3,6 +3,8 @@
  *
  */
 
+import { tips } from "/common/modules/data/Tips.js";
+import * as RandomTips from "/common/modules/RandomTips/RandomTips.js";
 import * as EmojiSettings from "./module/EmojiSettings.js";
 import * as EmojiPicker from "./module/EmojiPicker.js";
 
@@ -31,3 +33,8 @@ async function createPicker() {
 
 initEmojiMartStorage();
 createPicker();
+
+RandomTips.init(tips).then(() => {
+    RandomTips.setContext("popup");
+    RandomTips.showRandomTip();
+});

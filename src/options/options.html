@@ -14,6 +14,13 @@
 
 	<body>
 		<div class="message-container">
+			<div id="messageTips" aria-label="info message" class="message-box info invisible fade-hide">
+				<span class="message-text"></span>
+				<a href="#">
+					<button type="button" class="message-action-button micro-button info invisible"></button>
+				</a>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+			</div>
 			<div id="messageInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
 				<span class="message-text">Some settings are managed by your administrator and cannot be changed.</span>
 				<a href="#">
