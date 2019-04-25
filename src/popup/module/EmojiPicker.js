@@ -17,12 +17,12 @@ const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
  * @type {Object}
  */
 export const hardcodedSettings = Object.freeze({
+    color: "#ffb03b", // or #d42ecc ?
     i18n: getEmojiMartLocalised(),
     autoFocus: true,
     onSelect: copyEmoji,
     style: { "border": "none" },
-    backgroundImageFn: getEmojiSheet,
-    // emojiSize: 64
+    backgroundImageFn: getEmojiSheet
 });
 
 /**
