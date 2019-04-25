@@ -40,7 +40,12 @@
   "default_locale": "en",
 
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
   ],
 
   "applications": {

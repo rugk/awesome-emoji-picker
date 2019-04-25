@@ -32,7 +32,7 @@
   },
 
   // testing version allows loading unit test libraries from CDNs
-  "content_security_policy": "default-src 'self'; img-src data: https://unpkg.com",
+  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",
@@ -41,7 +41,12 @@
   "default_locale": "en",
 
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
   ],
 
   "applications": {

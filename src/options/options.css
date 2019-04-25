@@ -24,6 +24,10 @@ ul {
   margin: 0px;
   padding: 0px;
 }
+/* still show padding if ul is used for indentation */
+ul ul {
+  padding-left: 40px;
+}
 li {
   list-style-type: none;
   margin-top: 10px;
@@ -67,8 +71,8 @@ input[type=radio] ~ .helper-text {
   margin-left: 28px;
 }
 
-/* when a link is used in a helper text, add margin */
-.helper-text > a {
+/* when a "Learn more" link is used in a helper text, add margin */
+.learn-more {
   margin-left: 4px;
   overflow-wrap: none;
 }
@@ -78,4 +82,8 @@ input[type=radio] ~ .helper-text {
   border-color: var(--red-60); /* makes border quare for some reason on GNOME */
   border-radius: 2px; /* looks better on GNOME, at least */
   box-shadow: 0 0 0 2px var(--red-60-light-shadow);
+}
+
+.message-inside-options {
+  margin-top: 10px;
 }
