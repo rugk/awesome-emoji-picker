@@ -82,7 +82,8 @@ async function copyEmoji(emoji) {
     const {
         resultType,
         automaticInsert,
-        emojiCopyOnlyFallback
+        emojiCopyOnlyFallback,
+        closePopup
     } = optionPickerResult;
     let emojiCopy = optionPickerResult.emojiCopy;
 
@@ -129,7 +130,11 @@ async function copyEmoji(emoji) {
         emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
-    return Promise.all([emojiInsertResult, emojiCopyResult]);
+    return Promise.all([emojiInsertResult, emojiCopyResult]).finally(() => {
+        if (closePopup) {
+            window.close();
+        }
+    });
 }
 
 /**
