@@ -16,6 +16,10 @@
     "message": "Awesome Emoji Picker",
     "description": "The title for the button, which opens the popup."
   },
+  "commandOpenPopup": {
+    "message": "Öffne Emoji Popup",
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+.)."
+  },
 
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
