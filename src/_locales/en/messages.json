@@ -51,6 +51,39 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  // tips
+  "tipYouLikeAddon": {
+    "message": "You like this add-on?",
+    "description": "A tip shown to remind the user to rate the addon."
+  },
+  "tipYouLikeAddonButton": {
+    "message": "Rate it",
+    "description": "Button for the tip shown to remind the user to rate the addon."
+  },
+  "tipQrCodeHotkey": {
+    "message": "Remember the hot key for this add-on is Ctrl+Shift+E.",
+    "description": "A tip shown to get the user to notice that there is a hot key."
+  },
+  "tipTranslateAddon": {
+    "message": "If you speak another language you can help translating this add-on.",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on."
+  },
+  "tipTranslateAddonLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "description": "The link to a description of the translation service/way you can use."
+  },
+  "tipDonate": {
+    "message": "Enjoy using this add-on for free?",
+    "description": "A tip shown to get the remind them of a donation."
+  },
+  "tipDonateButton": {
+    "message": "Support development by donating",
+    "description": "The button of the donation tip taking the user to the donation site."
+  },
+  "tipLearnMore": {
+    "message": "Learn more",
+    "description": "The common button for tips, where you can get more information on click."
+  },
   "emojiCopyOnlyFallbackPermissionInfo": {
     "message": "The permission to copy data into the clipboard is required for this feature.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."

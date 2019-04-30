@@ -51,6 +51,39 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  // tips
+  "tipYouLikeAddon": {
+    "message": "Magst du dieses Add-on?",
+    "description": "A tip shown to remind the user to rate the addon."
+  },
+  "tipYouLikeAddonButton": {
+    "message": "Bewerte es",
+    "description": "Button for the tip shown to remind the user to rate the addon."
+  },
+  "tipQrCodeHotkey": {
+    "message": "Die Tastenkombination für dieses Add-on ist Strg+Umschalt+E.",
+    "description": "A tip shown to get the user to notice that there is a hot key."
+  },
+  "tipTranslateAddon": {
+    "message": "Wenn du eine andere Sprache sprichst, kannst du helfen, dieses Add-on zu übersetzen.",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on."
+  },
+  "tipTranslateAddonLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "description": "The link to a description of the translation service/way you can use."
+  },
+  "tipDonate": {
+    "message": "Magst du dieses kostenlose Add-on?",
+    "description": "A tip shown to get the remind them of a donation."
+  },
+  "tipDonateButton": {
+    "message": "Unterstütze die Entwicklung mit einer Spende",
+    "description": "The button of the donation tip taking the user to the donation site."
+  },
+  "tipLearnMore": {
+    "message": "Mehr Infos",
+    "description": "The common button for tips, where you can get more information on click."
+  },
   "emojiCopyOnlyFallbackPermissionInfo": {
     "message": "Für dieses Feature wird die Berechtigung Daten in die Zwischenablage zu kopieren, benötigt.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."

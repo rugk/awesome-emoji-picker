@@ -13,6 +13,9 @@
  */
 const defaultSettings = {
     popupIconColored: true,
+    randomTips: {
+        tips: {}
+    },
     emojiPicker: {
         set: "native",
         native: true,

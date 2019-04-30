@@ -2,3 +2,7 @@ body * {
   /* unset text-align style set by browserStyle from Firefox that causes an issue, see https://github.com/missive/emoji-mart/issues/318 */
   text-align: unset;
 }
+
+body, .message-container, .message-box {
+  box-sizing: border-box;
+}
