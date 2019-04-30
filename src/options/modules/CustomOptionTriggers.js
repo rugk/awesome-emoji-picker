@@ -85,7 +85,7 @@ function applyPickerResultPermissions(optionValue, option, event) {
         }
 
         CustomMessages.showMessage(MESSAGE_EMOJI_COPY_PERMISSION,
-            "We need the permission to copy data into the clipboard for this feature.",
+            "emojiCopyOnlyFallbackPermissionInfo",
             false,
             actionButton);
 

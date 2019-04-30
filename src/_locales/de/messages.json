@@ -51,6 +51,11 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "Für dieses Feature wird die Berechtigung Daten in die Zwischenablage zu kopieren, benötigt.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
+
   // options
   "someSettingsAreManaged": {
     "message": "Einige Einstellung werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
@@ -67,6 +72,11 @@
   "optionsResetButton": {
     "message": "Setze alle Einstellungen auf Standardwerte zurück",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+
+  "titleBehaviour": {
+    "message": "Verhalten",
+    "description": "The title for a settings group."
   },
 
   "optionPopupIconColored": {
@@ -172,6 +182,43 @@
   "optionEmojiPickerShowTooltipDescr": {
     "message": "Zeigt einen Tooltip wenn der Mauszeiger über dem Namen des Emojis gehalten wird.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
+  },
+
+  "optionAutomaticInsert": {
+    "message": "Füge Emoji automatisch in Webseite ein.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboard": {
+    "message": "Kopiere Emoji in die Zwischenablage.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboardFallback": {
+    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehl schlägt.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionCopyEmojiColons": {
+    "message": "Nutze die $COLON$-Syntax anstatt des Unicode-Emojis.",
+    "description": "This is an option shown in the add-on settings.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionCopyEmojiColonsCode": {
+    "message": ":Doppelpunkt:",
+    "description": "This is included in code-style in optionCopyEmojiColons."
+  },
+  "optionCopyEmojiColonsDescr": {
+    "message": "Dies ist meist nur nützlich auf spezifischen Webseiten, die diesen Text unterstützen.",
+    "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionClosePopup": {
+    "message": "Schließe den Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
+    "description": "This is an option shown in the add-on settings."
   },
 
   "optionsLicenseDisclaimer": {
