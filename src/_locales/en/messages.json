@@ -61,7 +61,7 @@
     "description": "Button for the tip shown to remind the user to rate the addon."
   },
   "tipQrCodeHotkey": {
-    "message": "Remember the hot key for this add-on is Ctrl+Shift+E.",
+    "message": "Remember the hot key for this add-on is Ctrl+Shift+Period.",
     "description": "A tip shown to get the user to notice that there is a hot key."
   },
   "tipTranslateAddon": {

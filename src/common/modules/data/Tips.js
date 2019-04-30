@@ -35,7 +35,7 @@
 import {isMobile} from "../MobileHelper.js";
 import {userSpeaksLocaleNotYetTranslated} from "../LanguageHelper.js";
 
-const DEFAULT_POPUP_HOT_KEY = "Ctrl+Shift+E";
+const DEFAULT_POPUP_HOT_KEY = "Ctrl+Shift+Period";
 
 /**
  * An array of all tips.
