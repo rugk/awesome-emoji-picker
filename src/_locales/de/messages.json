@@ -18,7 +18,7 @@
   },
   "commandOpenPopup": {
     "message": "Öffne Emoji Popup",
-    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+.)."
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
 
   // errors or other messages (mostly for settings)
