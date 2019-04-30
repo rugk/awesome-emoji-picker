@@ -3,6 +3,6 @@ body * {
   text-align: unset;
 }
 
-.message-container: {
-  /* TODO: properly style the random tip   */p
+body, .message-container, .message-box {
+  box-sizing: border-box;
 }
