@@ -66,7 +66,15 @@ function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
     const isUserInteractionHandler = event.type === "input" || event.type === "click" || event.type === "change";
 
-    if (optionValue.emojiCopyOnlyFallback && // if we require a permission
+    // switch status of sub-child
+    if (optionValue.emojiCopy) {
+        document.getElementById("emojiCopyOnlyFallback").disabled = false;
+    } else {
+        document.getElementById("emojiCopyOnlyFallback").disabled = true;
+    }
+
+    if (optionValue.emojiCopy && // only if actually enabled
+        optionValue.emojiCopyOnlyFallback && // if we require a permission
         !addonHasClipboardWritePermission // and not already granted
     ) {
         // no action button by default
@@ -85,7 +93,7 @@ function applyPickerResultPermissions(optionValue, option, event) {
         }
 
         CustomMessages.showMessage(MESSAGE_EMOJI_COPY_PERMISSION,
-            "We need the permission to copy data into the clipboard for this feature.",
+            "emojiCopyOnlyFallbackPermissionInfo",
             false,
             actionButton);
 

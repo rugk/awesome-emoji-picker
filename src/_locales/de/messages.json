@@ -16,6 +16,10 @@
     "message": "Awesome Emoji Picker",
     "description": "The title for the button, which opens the popup."
   },
+  "commandOpenPopup": {
+    "message": "Öffne Emoji Popup",
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
+  },
 
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
@@ -80,6 +84,10 @@
     "message": "Mehr Infos",
     "description": "The common button for tips, where you can get more information on click."
   },
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "Für dieses Feature wird die Berechtigung Daten in die Zwischenablage zu kopieren, benötigt.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
 
   // options
   "someSettingsAreManaged": {
@@ -97,6 +105,11 @@
   "optionsResetButton": {
     "message": "Setze alle Einstellungen auf Standardwerte zurück",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+
+  "titleBehaviour": {
+    "message": "Verhalten",
+    "description": "The title for a settings group."
   },
 
   "optionPopupIconColored": {
@@ -204,6 +217,43 @@
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
   },
 
+  "optionAutomaticInsert": {
+    "message": "Füge Emoji automatisch in Webseite ein.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboard": {
+    "message": "Kopiere Emoji in die Zwischenablage.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboardFallback": {
+    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehl schlägt.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionCopyEmojiColons": {
+    "message": "Nutze die $COLON$-Syntax anstatt des Unicode-Emojis.",
+    "description": "This is an option shown in the add-on settings.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionCopyEmojiColonsCode": {
+    "message": ":Doppelpunkt:",
+    "description": "This is included in code-style in optionCopyEmojiColons."
+  },
+  "optionCopyEmojiColonsDescr": {
+    "message": "Dies ist meist nur nützlich auf spezifischen Webseiten, die diesen Text unterstützen.",
+    "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionClosePopup": {
+    "message": "Schließe den Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
   "optionsLicenseDisclaimer": {
     "message": "Alle Emoji-Bilder können unter verschiedene Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
@@ -221,6 +271,44 @@
   "optionsLicenseDisclaimerLinkText": {
     "message": "die gesamte Lizenzdatei",
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
+  },
+
+  "translatorCredit": {
+    "message": "Dieses Add-on wurde von $TRANSLATORS$ ins Deutsche übersetzt.",
+    "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
+    "placeholders": {
+      "translators": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/\">@rugk</a>"
+      }
+    }
+  },
+  "translatorLink": {
+    "message": "https://github.com/rugk",
+    "description": "The link to the translator's GitHub profile."
+  },
+  "translatorUsername": {
+    "message": "rugk",
+    "description": "The username that the translator wants to be referred to."
+  },
+
+  "contributorsThanks": {
+    "message": "Ebenfalls vielen Dank an $CONTRIBUTORS$.",
+    "description": "Text thanking all contributors and linking to the contributors file.",
+    "placeholders": {
+      "contributors": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/…/CONTRIBUTORS\">all other contributors</a>"
+      }
+    }
+  },
+  "contributorsThanksLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS",
+    "description": "The link to the CONTRIBUTORS file."
+  },
+  "contributorsThanksLinkText": {
+    "message": "alle anderen Beitragenden",
+    "description": "The link text linking to the contributors file. See contributorsThanks."
   },
 
   // emoji-mart

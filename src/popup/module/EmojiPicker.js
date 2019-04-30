@@ -24,12 +24,12 @@ let addonHasClipboardWritePermission = false;
  * @type {Object}
  */
 export const hardcodedSettings = Object.freeze({
+    color: "#ffb03b", // or #d42ecc ?
     i18n: getEmojiMartLocalised(),
     autoFocus: true,
     onSelect: copyEmoji,
     style: { "border": "none" },
-    backgroundImageFn: getEmojiSheet,
-    // emojiSize: 64
+    backgroundImageFn: getEmojiSheet
 });
 
 /**
@@ -82,7 +82,8 @@ async function copyEmoji(emoji) {
     const {
         resultType,
         automaticInsert,
-        emojiCopyOnlyFallback
+        emojiCopyOnlyFallback,
+        closePopup
     } = optionPickerResult;
     let emojiCopy = optionPickerResult.emojiCopy;
 
@@ -129,7 +130,11 @@ async function copyEmoji(emoji) {
         emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
-    return Promise.all([emojiInsertResult, emojiCopyResult]);
+    return Promise.all([emojiInsertResult, emojiCopyResult]).finally(() => {
+        if (closePopup) {
+            window.close();
+        }
+    });
 }
 
 /**
