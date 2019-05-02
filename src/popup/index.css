@@ -3,6 +3,11 @@ body * {
   text-align: unset;
 }
 
+/* prevent message tip to grow beyond with of emoji picker, rather grow height */
+body {
+  width: min-content;
+}
+
 body, .message-container, .message-box {
   box-sizing: border-box;
 }
