@@ -6,6 +6,7 @@
 
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as PageHandler from "./PageHandler.js";
+import * as ConfirmationHint from "./ConfirmationHint.js";
 
 let emojiPicker = null;
 let optionPickerResult = {};
