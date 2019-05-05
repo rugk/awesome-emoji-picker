@@ -302,91 +302,91 @@
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
   "emojiMartSearch": {
-    "message": "Search",
+    "message": "Rechercher",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartClear": {
-    "message": "Clear",
+    "message": "Vider",
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible label on \"clear\" button. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartNoEmojiFound": {
-    "message": "No Emoji Found",
+    "message": "Aucun émoticône n'a été trouvé",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkinText": {
-    "message": "Choose your default skin tone",
+    "message": "Choisissez votre teint par défault",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategorySearch": {
-    "message": "Search Results",
+    "message": "Résultats de la recherche",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryRecent": {
-    "message": "Frequently Used",
+    "message": "Utilisés régulièrement",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryPeople": {
-    "message": "Smileys & People",
+    "message": "Émoticônes & Personnes",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryNature": {
-    "message": "Animals & Nature",
+    "message": "Animaux & Nature",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryFoods": {
-    "message": "Food & Drink",
+    "message": "Nourriture & boissons",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryActivity": {
-    "message": "Activity",
+    "message": "Activités",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryPlaces": {
-    "message": "Travel & Places",
+    "message": "Voyages & Lieux",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryObjects": {
-    "message": "Objects",
+    "message": "Objets",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategorySymbols": {
-    "message": "Symbols",
+    "message": "Symboles",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryFlags": {
-    "message": "Flags",
+    "message": "Drapeaux",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoryCustom": {
-    "message": "Custom",
+    "message": "Personalisés",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoriesLabel": {
-    "message": "Emoji categories",
+    "message": "Catégories d'émoticône",
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible title for the list of categories. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone1": {
-    "message": "Default Skin Tone",
+    "message": "Teint par défault",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone2": {
-    "message": "Light Skin Tone",
+    "message": "Teint très clair",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone3": {
-    "message": "Medium-Light Skin Tone",
+    "message": "Teint clair",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone4": {
-    "message": "Medium Skin Tone",
+    "message": "Teint moyen",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone5": {
-    "message": "Medium-Dark Skin Tone",
+    "message": "Teint foncé",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone6": {
-    "message": "Dark Skin Tone",
+    "message": "Teint très foncé",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   // ARIA labels/descriptions
