@@ -22,31 +22,31 @@
   },
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
-    "message": "Could not show this message.",
+    "message": "Impossible d'afficher ce message.",
     "description": "When there is an error when showing the error/info/…."
   },
   "couldNotLoadOptions": {
-    "message": "Could not load settings.",
+    "message": "Impossible de charger ces paramètres.",
     "description": "When one or all settings could not be loaded."
   },
   "couldNotSaveOption": {
-    "message": "Could not save this setting.",
+    "message": "Impossible de sauvegarder ces paramètres.",
     "description": "When a setting could not be saved."
   },
   "messageUndoButton": {
-    "message": "Undo",
+    "message": "Annuler",
     "description": "The text of a button that undoes the last action."
   },
   "couldNotUndoAction": {
-    "message": "Could not undo action.",
+    "message": "Impossible d'annuler cette action.",
     "description": "Shown when an action cannot be undone."
   },
   "resettingOptionsWorked": {
-    "message": "All settings are now back to defaults again!",
+    "message": "Tous les paramètres ont été réinitialisés.",
     "description": "The message shown, when the options of the settings were reset."
   },
   "resettingOptionsFailed": {
-    "message": "Could not reset options!",
+    "message": "Impossible de réinitialiser les paramètres !",
     "description": "The message shown, when the options of the settings could not have been reset."
   },
   // tips
