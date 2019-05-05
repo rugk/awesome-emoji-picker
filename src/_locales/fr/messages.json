@@ -9,7 +9,7 @@
     "description": "Name of the extension."
   },
   "extensionDescription": {
-    "message": "Allows you to do great stuff.",
+    "message": "Vous permet de trouver et de sélectionner des émoticônes.",
     "description": "Description of the extension."
   },
   "browserActionButtonTitle": {
@@ -17,7 +17,7 @@
     "description": "The title for the button, which opens the popup."
   },
   "commandOpenPopup": {
-    "message": "Open emoji popup",
+    "message": "Ouvrir la pop-up à émoticône",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
   // errors or other messages (mostly for settings)
