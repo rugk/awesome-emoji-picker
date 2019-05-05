@@ -391,27 +391,27 @@
   },
   // ARIA labels/descriptions
   "dismissIconDescription": {
-    "message": "Close this message",
+    "message": "Fermer ce message",
     "description": "the aria label for the close button of the message box"
   },
   "ariaMessageLoading": {
-    "message": "loading message",
+    "message": "message en cours de changement",
     "description": "the aria label to label the message box as an info message box"
   },
   "ariaMessageInfo": {
-    "message": "info message",
+    "message": "message d'information",
     "description": "the aria label to label the message box as an info message box"
   },
   "ariaMessageSuccess": {
-    "message": "success message",
+    "message": "message de succès",
     "description": "the aria label to label the message box as an success message box"
   },
   "ariaMessageError": {
-    "message": "error message",
+    "message": "message d'erreur",
     "description": "the aria label to label the message box as an error message box"
   },
   "ariaMessageWarning": {
-    "message": "warning message",
+    "message": "message d'avertissement",
     "description": "the aria label to label the message box as an warning message box"
   }
 }
