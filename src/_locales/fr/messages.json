@@ -88,39 +88,39 @@
   },
   // options
   "someSettingsAreManaged": {
-    "message": "Some settings are managed by your system administrator and cannot be changed.",
+    "message": "Certains paramètres sont contrôlés par votre administrateur système et ne peuvent être changés.",
     "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators."
   },
   "optionIsDisabledBecauseManaged": {
-    "message": "This option is disabled, because it has been configured by your system administrator.",
+    "message": "Cette option est désactivée, car elle est configurée par votre administrateur système.",
     "description": "The title (tooltip) shown, when hovering over a disabled, managed option."
   },
   "optionLearnMore": {
-    "message": "Learn more",
+    "message": "En savoir plus",
     "description": "When a link to an explainer needs to be added, this is the link text."
   },
   "optionsResetButton": {
-    "message": "Reset all settings to defaults",
+    "message": "Réinitialiser les paramètres.",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
   },
   "titleBehaviour": {
-    "message": "Behaviour",
+    "message": "Comportement de l'extension",
     "description": "The title for a settings group."
   },
   "optionPopupIconColored": {
-    "message": "Colored icon",
+    "message": "Icône colorée",
     "description": "This is an option shown in the add-on settings."
   },
   "optionPopupIconColoredDescr": {
-    "message": "Shows a colored icon instead of the black/white icon in the toolbar.",
+    "message": "Affiche une icône colorée au lieu de l'icône en noir et blanc dans la barre d'outils.",
     "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
   },
   "optionEmojiPickerSet": {
-    "message": "Emoji set:",
+    "message": "Style d'émoticône :",
     "description": "This is an option shown in the add-on settings."
   },
   "optionEmojiSetNative": {
-    "message": "Default from your OS",
+    "message": "Style natif de votre appareil",
     "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on."
   },
   "optionEmojiSetApple": {
@@ -140,7 +140,7 @@
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
   },
   "optionEmojiSetMessenger": {
-    "message": "Facebook Messenger",
+    "message": "Messenger Facebook",
     "description": "Option of the emoji set. This is a product name and should thus, usually, not translated. Only translate if it's the official product translation."
   },
   "optionEmojiSetFacebook": {
@@ -148,39 +148,39 @@
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
   },
   "optionEmojiPickerSetDescr": {
-    "message": "What style to use for the Emojis.",
+    "message": "Quel style doit être utilisé pour les émoticônes ?",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
   },
   "optionEmojiPickerEmojiSize": {
-    "message": "Emoji size:",
+    "message": "Taille des émoticônes :",
     "description": "This is an option shown in the add-on settings."
   },
   "optionEmojiSize16px": {
-    "message": "Small (16px)",
+    "message": "Petit (16px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize24px": {
-    "message": "Medium (24px)",
+    "message": "Moyen (24px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize32px": {
-    "message": "Large (32px)",
+    "message": "Grand (32px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize40px": {
-    "message": "Very Large (40px)",
+    "message": "Très Grand (40px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize48px": {
-    "message": "Extra Large (48px)",
+    "message": "Énorme (48px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
   },
   "optionEmojiPickerPerLine": {
-    "message": "Width of picker:",
+    "message": "Largeur de la fenêtre :",
     "description": "This is an option shown in the add-on settings."
   },
   "optionEmojisPerLineStatusSingular": {
-    "message": "($INTEGER$ emoji per line)",
+    "message": "($INTEGER$ émoticône par ligne)",
     "description": "This is the number of emojis per line in its singular form.",
     "placeholders": {
       "integer": {
@@ -190,7 +190,7 @@
     }
   },
   "optionEmojisPerLineStatusPlural": {
-    "message": "($INTEGER$ emojis per line)",
+    "message": "($INTEGER$ émoticônes par ligne)",
     "description": "This is the number of emojis per line in its plural form.",
     "placeholders": {
       "integer": {
@@ -200,31 +200,31 @@
     }
   },
   "optionEmojiPickerPerLineDescr": {
-    "message": "How many emojis should be shown per line in the emoji picker. This affects the width of the popup.",
+    "message": "Combien d'émoticônes devraient être affiché par ligne dans l'application ? Ceci affecte la largeur de la fenêtre.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting."
   },
   "optionEmojiPickerShowTooltip": {
-    "message": "Show tooltips",
+    "message": "Afficher des infos-bulles",
     "description": "This is an option shown in the add-on settings."
   },
   "optionEmojiPickerShowTooltipDescr": {
-    "message": "Shows a tooltip with the name of the Emoji when hovering over it.",
+    "message": "Afficher une infos-bulle avec le nom de l'émoticône en le survolant.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
   },
   "optionAutomaticInsert": {
-    "message": "Automatically insert emoji into web page.",
+    "message": "Insèrer automatiquement les émoticônes dans la page Web.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyClipboard": {
-    "message": "Copy emoji to clipboard.",
+    "message": "Copier les émoticônes dans le presse-papier.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyClipboardFallback": {
-    "message": "Only use as a fallback if direct emoji insertion fails.",
+    "message": "À n'utiliser que si l'insertion automatique ne fonctionne pas.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyEmojiColons": {
-    "message": "Use the $COLON$ instead of the Emoji unicode.",
+    "message": "Utiliser le $COLON$ à la place de l'émoticône en unicode.",
     "description": "This is an option shown in the add-on settings.",
     "placeholders": {
       "colon": {
@@ -234,19 +234,19 @@
     }
   },
   "optionCopyEmojiColonsCode": {
-    "message": ":colon:",
+    "message": ":nom:",
     "description": "This is included in code-style in optionCopyEmojiColons."
   },
   "optionCopyEmojiColonsDescr": {
-    "message": "Only useful to enable on specific sites that support this kind of text.",
+    "message": "Seulement utile pour les sites compatibles.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
   },
   "optionClosePopup": {
-    "message": "Close the popup after an emoji has been selected/inserted.",
+    "message": "Fermer la fenêtre après qu'un émoticône ait été sélectionné.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionsLicenseDisclaimer": {
-    "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
+    "message": "Tous les images des émoticônes peuvent être sujectes à différentes licences. Pour plus d'information, cf. $LINK$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
       "link": {
@@ -260,11 +260,11 @@
     "description": "This is the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer. Usually, you do not need to translate this as we have only an English version."
   },
   "optionsLicenseDisclaimerLinkText": {
-    "message": "the whole license file",
+    "message": "l'ensemble du fichier licence",
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
   },
   "translatorCredit": {
-    "message": "This add-on has been translated into English by $TRANSLATORS$.",
+    "message": "Cet app a été traduite en français par $TRANSLATORS$.",
     "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
     "placeholders": {
       "translators": {
@@ -274,15 +274,15 @@
     }
   },
   "translatorLink": {
-    "message": "https://github.com/rugk",
+    "message": "https://github.com/Prometheos2",
     "description": "The link to the translator's GitHub profile."
   },
   "translatorUsername": {
-    "message": "rugk",
+    "message": "Prometheos2",
     "description": "The username that the translator wants to be referred to."
   },
   "contributorsThanks": {
-    "message": "Also thanks to $CONTRIBUTORS$.",
+    "message": "Merci également aux $CONTRIBUTORS$.",
     "description": "Text thanking all contributors and linking to the contributors file.",
     "placeholders": {
       "contributors": {
@@ -296,7 +296,7 @@
     "description": "The link to the CONTRIBUTORS file."
   },
   "contributorsThanksLinkText": {
-    "message": "all other contributors",
+    "message": "tous les autres contributeurs",
     "description": "The link text linking to the contributors file. See contributorsThanks."
   },
   // emoji-mart
