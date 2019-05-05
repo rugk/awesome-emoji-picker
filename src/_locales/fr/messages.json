@@ -51,19 +51,19 @@
   },
   // tips
   "tipYouLikeAddon": {
-    "message": "You like this add-on?",
+    "message": "Est-ce que vous aimez cette application ?",
     "description": "A tip shown to remind the user to rate the addon."
   },
   "tipYouLikeAddonButton": {
-    "message": "Rate it",
+    "message": "Attribuez-lui une note !",
     "description": "Button for the tip shown to remind the user to rate the addon."
   },
   "tipPopupCodeHotkey": {
-    "message": "Remember the hot key for this add-on is Ctrl+Shift+Period.",
+    "message": "Le raccourci-clavier pour ouvrir l'extension est Ctrl+Maj+:",
     "description": "A tip shown to get the user to notice that there is a hot key."
   },
   "tipTranslateAddon": {
-    "message": "If you speak another language you can help translating this add-on.",
+    "message": "Si vous connaissez une autre langue, vous pouvez nous aider à traduire cette application.",
     "description": "A tip shown to users that potentially speak another language to translate this add-on."
   },
   "tipTranslateAddonLink": {
@@ -71,19 +71,19 @@
     "description": "The link to a description of the translation service/way you can use."
   },
   "tipDonate": {
-    "message": "Enjoy using this add-on for free?",
+    "message": "Est-ce que vous appréciez cette application gratuite ?",
     "description": "A tip shown to get the remind them of a donation."
   },
   "tipDonateButton": {
-    "message": "Support development by donating",
+    "message": "Soutenez le developpement en faisant un don !",
     "description": "The button of the donation tip taking the user to the donation site."
   },
   "tipLearnMore": {
-    "message": "Learn more",
+    "message": "En savoir plus",
     "description": "The common button for tips, where you can get more information on click."
   },
   "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "The permission to copy data into the clipboard is required for this feature.",
+    "message": "La permission pour copier des informations dans le presse-papier est nécéssaire pour cette fonctionnalité.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
   // options
