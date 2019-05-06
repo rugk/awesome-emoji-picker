@@ -13,6 +13,27 @@ const elMessage = document.getElementById("confirmation-hint-message");
 const elDescription = document.getElementById("confirmation-hint-description");
 
 /**
+ * Actually attach the popup to the position we want.
+ *
+ * @param  {HtmlElement} elPanel The panel to show..
+ * @param  {HtmlElement} anchor The anchor for the panel.
+ * @returns {void}
+ */
+function openPopup(elPanel, anchor) {
+    return Promise.resolve();
+}
+
+/**
+ * Actually attach the popup to the position we want.
+ *
+ * @param  {HtmlElement} elPanel The panel to show..
+ * @returns {void}
+ */
+function hidePopup(elPanel) {
+
+}
+
+/**
  * element, usually used in response to a user action to reaffirm that it was
  * successful and potentially provide extra context. Examples for such hints:
  * - "Saved to Library!" after bookmarking a page
@@ -27,12 +48,10 @@ const elDescription = document.getElementById("confirmation-hint-description");
  *         confirmationHint.<messageId>.label
  * @param  {HtmlElement} options An object with the following optional properties:
  * @param  {event} [options.event] The event that triggered the feedback.
- * @param  {boolean} [options.hideArrow] Optionally hide the arrow.
  * @param  {boolean} [options.showDescription] show description text (confirmationHint.<messageId>.description)
  * @returns {void}
  */
 export function show(anchor, messageId, options = {}) {
-    debugger;
     elMessage.textContent =
     browser.i18n.getMessage(`confirmationHint${messageId}`) || "example";
 
@@ -46,31 +65,20 @@ export function show(anchor, messageId, options = {}) {
         elPanel.classList.remove("with-description");
     }
 
-    if (options.hideArrow) {
-        elPanel.setAttribute("hidearrow", "true");
-    }
-
     // The timeout value used here allows the panel to stay open for
     // 1.5s second after the text transition (duration=120ms) has finished.
     // If there is a description, we show for 4s after the text transition.
     const DURATION = options.showDescription ? 4000 : 1500;
-    elPanel.addEventListener("popupshown", () => {
+
+    elPanel.hidden = false;
+    openPopup(elPanel, anchor).then(() => {
         elAnimationBox.setAttribute("animate", "true");
 
         setTimeout(() => {
-            elPanel.hidePopup(true);
+            hidePopup(elPanel);
+
+            // elAnimationBox.removeAttribute("animate");
         }, DURATION + 120);
-    }, {once: true});
-
-    elPanel.addEventListener("popuphidden", () => {
-        elPanel.removeAttribute("hidearrow");
-        elAnimationBox.removeAttribute("animate");
-    }, {once: true});
-
-    elPanel.hidden = false;
-    elPanel.openPopup(anchor, {
-        position: "bottomcenter topleft",
-        triggerEvent: options.event,
     });
 }
 

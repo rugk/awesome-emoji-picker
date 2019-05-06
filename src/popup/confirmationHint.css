@@ -6,25 +6,24 @@
  * Licensed under the Mozilla Public License, see the LICENSE.md.
  */
 
+.popup {
+  position: absolute;
+  z-index: 999;
+  padding: 8px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 2px var(--grey-50);
+  user-select: none;
+  -moz-user-select: none;
+  /* min-width: 100px; */
+}
+
 #confirmation-hint {
   background-color: #0060df;
   border-color: #0060df;
   color: #fff;
-
-  border-radius: 3.5px;
-}
-
-#confirmation-hint[hidearrow] > .panel-arrowcontainer > .panel-arrowbox {
-  /* Don't display the arrow but keep the popup at the same vertical
-     offset as other arrow panels. */
-  visibility: hidden;
-}
-
-#confirmation-hint > .panel-arrowcontainer > .panel-arrowcontent {
-  font-weight: 400;
-  font-size: 1.1rem;
-  -moz-box-align: center;
-  padding: 6px 10px;
 }
 
 #confirmation-hint-checkmark-animation-container {
