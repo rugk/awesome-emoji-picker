@@ -19,6 +19,17 @@ const CLIPBOARD_WRITE_PERMISSION = {
 let addonHasClipboardWritePermission = false;
 
 /**
+ * Saves the last click that selected an emoji.
+ *
+ * @private
+ * @property {int} posX
+ * @property {int} posY
+ * @property {Object} forEmoji
+ * @type {Object}
+ */
+const lastClick = {};
+
+/**
  * Hardcoded settings for emoji-mart picker
  *
  * @private
@@ -29,6 +40,7 @@ export const hardcodedSettings = Object.freeze({
     i18n: getEmojiMartLocalised(),
     autoFocus: true,
     onSelect: copyEmoji,
+    onClick: saveClickPosition,
     style: { "border": "none" },
     backgroundImageFn: getEmojiSheet
 });
@@ -76,11 +88,40 @@ function getEmojiMartLocalised() {
  *
  * @private
  * @param {Object} emoji
+ * @param {Object} event
+ * @returns {void}
+ */
+function saveClickPosition(emoji, event) {
+    // in case of an invalid event, ignore it
+    // see https://github.com/missive/emoji-mart/issues/342
+    if (event.pageX === 0 && event.pageY === 0) {
+        return;
+    }
+
+    lastClick.posX = event.pageX;
+    lastClick.posY = event.pageY;
+    lastClick.forEmoji = emoji;
+}
+
+/**
+ * Copy the Emoji to clipboard, once it has been selected.
+ *
+ * @private
+ * @param {Object} emoji
  * @returns {void}
  */
 async function copyEmoji(emoji) {
     // get HTML element that was clicked
-    const clickedEmoji = document.activeElement || getEmojiHtml(emoji);
+    let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
+
+    // if we clicked on the exact same emoji
+    // (object reference comparison deliberately!)
+    if (lastClick.forEmoji === emoji) {
+        clickedEmoji = {
+            left: lastClick.posX,
+            top: lastClick.posY,
+        };
+    }
 
     // destructure config
     const {
@@ -174,9 +215,12 @@ export function setAttribute(properties) {
 /**
  * Return the HtmlElement that contains the emoji.
  *
+ * Attention: As the frequently used emoji list duplicates the emoji, this just
+ * always returns the first emoji it can find.
+ *
  * @public
  * @param {Object|string} emoji
- * @returns {HtmlElement}
+ * @returns {HTMLElement}
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;

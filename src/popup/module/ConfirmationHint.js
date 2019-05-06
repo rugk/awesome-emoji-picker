@@ -15,15 +15,24 @@ const elDescription = document.getElementById("confirmation-hint-description");
 /**
  * Actually attach the popup to the position we want.
  *
- * @param  {HtmlElement} elPanel The panel to show..
- * @param  {HtmlElement} anchor The anchor for the panel.
+ * @param  {HTMLElement} elPanel The panel to show..
+ * @param  {HTMLElement|Object} position where to put the message (top left border)
+ * puts it at the bottom right border of the HTMLElement, if you pass that
+ * @param  {number} position.left if no HTMLElement is given, set a manual position here
+ * @param  {number} position.top if no HTMLElement is given, set a manual position here
  * @returns {void}
  */
-function openPopup(elPanel, anchor) {
-    const position = anchor.getBoundingClientRect();
+function openPopup(elPanel, position) {
+    if (position instanceof HTMLElement) {
+        position = position.getBoundingClientRect();
+        position = {
+            top: position.bottom,
+            left: position.right
+        };
+    }
 
-    elPanel.style.top = `${position.bottom}px`;
-    elPanel.style.left = `${position.right}px`;
+    elPanel.style.top = `${position.top}px`;
+    elPanel.style.left = `${position.left}px`;
 
     elPanel.classList.remove("invisible");
 }
@@ -31,7 +40,7 @@ function openPopup(elPanel, anchor) {
 /**
  * Actually attach the popup to the position we want.
  *
- * @param  {HtmlElement} elPanel The panel to show..
+ * @param  {HTMLElement} elPanel The panel to show..
  * @returns {void}
  */
 function hidePopup(elPanel) {
@@ -46,17 +55,19 @@ function hidePopup(elPanel) {
  * - "Queued (offline)" when attempting to send a tab to another device
  *   while offline
  *
- * @param  {HtmlElement} anchor
- *         The anchor for the panel.
+ * @param  {HTMLElement|Object} position where to put the message (top left border)
+ * puts it at the bottom right border of the HTMLElement, if you pass that
+ * @param  {number} position.left if no HTMLElement is given, set a manual position here
+ * @param  {number} position.top if no HTMLElement is given, set a manual position here
  * @param  {string} messageId
  *         For getting the message string from i18n translation:
  *         confirmationHint.<messageId>.label
- * @param  {HtmlElement} options An object with the following optional properties:
+ * @param  {HTMLElement} options An object with the following optional properties:
  * @param  {event} [options.event] The event that triggered the feedback.
  * @param  {boolean} [options.showDescription] show description text (confirmationHint.<messageId>.description)
  * @returns {void}
  */
-export function show(anchor, messageId, options = {}) {
+export function show(position, messageId, options = {}) {
     return new Promise((resolve) => {
         elMessage.textContent =
         browser.i18n.getMessage(`confirmationHint${messageId}`) || "example";
@@ -77,7 +88,7 @@ export function show(anchor, messageId, options = {}) {
         const DURATION = options.showDescription ? 4000 : 1500;
 
         // show popup
-        openPopup(elPanel, anchor);
+        openPopup(elPanel, position);
 
         elAnimationBox.setAttribute("animate", "true");
 
