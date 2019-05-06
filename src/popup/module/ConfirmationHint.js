@@ -20,7 +20,12 @@ const elDescription = document.getElementById("confirmation-hint-description");
  * @returns {void}
  */
 function openPopup(elPanel, anchor) {
-    return Promise.resolve();
+    const position = anchor.getBoundingClientRect();
+
+    elPanel.style.top = `${position.bottom}px`;
+    elPanel.style.left = `${position.right}px`;
+
+    elPanel.classList.remove("invisible");
 }
 
 /**
@@ -30,7 +35,7 @@ function openPopup(elPanel, anchor) {
  * @returns {void}
  */
 function hidePopup(elPanel) {
-
+    elPanel.classList.add("invisible");
 }
 
 /**
@@ -52,37 +57,35 @@ function hidePopup(elPanel) {
  * @returns {void}
  */
 export function show(anchor, messageId, options = {}) {
-    elMessage.textContent =
-    browser.i18n.getMessage(`confirmationHint${messageId}`) || "example";
+    return new Promise((resolve) => {
+        elMessage.textContent =
+        browser.i18n.getMessage(`confirmationHint${messageId}`) || "example";
 
-    if (options.showDescription) {
-        elDescription.textContent =
-        browser.i18n.getMessage(`confirmationHint${messageId}Description`);
-        elDescription.hidden = false;
-        elPanel.classList.add("with-description");
-    } else {
-        elDescription.hidden = true;
-        elPanel.classList.remove("with-description");
-    }
+        if (options.showDescription) {
+            elDescription.textContent =
+            browser.i18n.getMessage(`confirmationHint${messageId}Description`);
+            elDescription.hidden = false;
+            elPanel.classList.add("with-description");
+        } else {
+            elDescription.hidden = true;
+            elPanel.classList.remove("with-description");
+        }
 
-    // The timeout value used here allows the panel to stay open for
-    // 1.5s second after the text transition (duration=120ms) has finished.
-    // If there is a description, we show for 4s after the text transition.
-    const DURATION = options.showDescription ? 4000 : 1500;
+        // The timeout value used here allows the panel to stay open for
+        // 1.5s second after the text transition (duration=120ms) has finished.
+        // If there is a description, we show for 4s after the text transition.
+        const DURATION = options.showDescription ? 4000 : 1500;
 
-    elPanel.hidden = false;
-    openPopup(elPanel, anchor).then(() => {
+        // show popup
+        openPopup(elPanel, anchor);
+
         elAnimationBox.setAttribute("animate", "true");
 
         setTimeout(() => {
             hidePopup(elPanel);
 
-            // elAnimationBox.removeAttribute("animate");
+            elAnimationBox.removeAttribute("animate");
+            resolve();
         }, DURATION + 120);
     });
 }
-
-show(
-    null,
-    "someTranslation"
-);

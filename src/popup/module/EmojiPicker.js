@@ -79,6 +79,9 @@ function getEmojiMartLocalised() {
  * @returns {void}
  */
 async function copyEmoji(emoji) {
+    // get HTML element that was clicked
+    const clickedEmoji = document.activeElement || getEmojiHtml(emoji);
+
     // destructure config
     const {
         resultType,
@@ -131,7 +134,9 @@ async function copyEmoji(emoji) {
         emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
-    return Promise.all([emojiInsertResult, emojiCopyResult]).finally(() => {
+    return Promise.all([emojiInsertResult, emojiCopyResult]).finally(async () => {
+        await ConfirmationHint.show(clickedEmoji, "emojiCopied");
+
         if (closePopup) {
             window.close();
         }
@@ -164,6 +169,18 @@ function getEmojiSheet(set, sheetSize) {
  */
 export function setAttribute(properties) {
     emojiPicker.setAttribute("props-json", JSON.stringify(properties));
+}
+
+/**
+ * Return the HtmlElement that contains the emoji.
+ *
+ * @public
+ * @param {Object|string} emoji
+ * @returns {HtmlElement}
+ */
+export function getEmojiHtml(emoji) {
+    const emojiQuestion = emoji.native || emoji;
+    return document.querySelector(`.emoji-mart-scroll [aria-label^="${emojiQuestion}"]`);
 }
 
 /**
