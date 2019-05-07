@@ -51,6 +51,20 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copied",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji inserted",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copied & inserted",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+
   // tips
   "tipYouLikeAddon": {
     "message": "You like this add-on?",

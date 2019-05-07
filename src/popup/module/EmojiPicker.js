@@ -175,12 +175,38 @@ async function copyEmoji(emoji) {
         emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
-    return Promise.all([emojiInsertResult, emojiCopyResult]).finally(async () => {
-        await ConfirmationHint.show(clickedEmoji, "emojiCopied");
+    // find out results of operations
+    let isEmojiCopied = emojiCopy, isEmojiInserted = automaticInsert;
+    emojiInsertResult.catch(() => {
+        isEmojiInserted = false;
+    }).finally(() => {
+        emojiCopyResult.catch(() => {
+            isEmojiCopied = false;
+        }).finally(async () => {
+            // wait for both to succeed or fail
+            let messageToBeShown;
+            if (isEmojiInserted && isEmojiCopied) {
+                messageToBeShown = "EmojiCopiedAndInserted";
+            } else if (isEmojiInserted) {
+                messageToBeShown = "EmojiInserted";
+            } else if (isEmojiCopied) {
+                messageToBeShown = "EmojiCopied";
+            } else {
+                // some other error happened
+                messageToBeShown = "";
 
-        if (closePopup) {
-            window.close();
-        }
+                // TODO: show error
+            }
+
+            // if no error happened, show confirmation message
+            if (messageToBeShown) {
+                await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+
+                if (closePopup) {
+                    window.close();
+                }
+            }
+        });
     });
 }
 
