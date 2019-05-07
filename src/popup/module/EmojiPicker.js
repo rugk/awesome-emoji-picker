@@ -130,7 +130,8 @@ async function copyEmoji(emoji) {
         resultType,
         automaticInsert,
         emojiCopyOnlyFallback,
-        closePopup
+        closePopup,
+        showConfirmationMessage
     } = optionPickerResult;
     let emojiCopy = optionPickerResult.emojiCopy;
 
@@ -210,7 +211,9 @@ async function copyEmoji(emoji) {
 
     // if no error happened, show confirmation message
     if (messageToBeShown) {
-        await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+        if (showConfirmationMessage) {
+            await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+        }
 
         if (closePopup) {
             window.close();

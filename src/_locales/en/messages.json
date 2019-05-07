@@ -276,6 +276,11 @@
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
   },
 
+  "optionShowConfirmationMessage": {
+    "message": "Show a confirmation message when the action succeeded.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
   "optionClosePopup": {
     "message": "Close the popup after an emoji has been selected/inserted.",
     "description": "This is an option shown in the add-on settings."
