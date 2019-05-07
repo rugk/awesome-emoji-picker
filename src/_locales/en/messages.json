@@ -51,6 +51,15 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "The permission to copy data into the clipboard is required for this feature.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
+  "buttonRequestPermission": {
+    "message": "Grant permission",
+    "description": "The button label, used for requesting a permission that is missing."
+  },
+
   // tips
   "tipYouLikeAddon": {
     "message": "You like this add-on?",
@@ -83,10 +92,6 @@
   "tipLearnMore": {
     "message": "Learn more",
     "description": "The common button for tips, where you can get more information on click."
-  },
-  "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "The permission to copy data into the clipboard is required for this feature.",
-    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
 
   // options

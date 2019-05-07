@@ -85,7 +85,7 @@ function applyPickerResultPermissions(optionValue, option, event) {
             clipboardWriteRequestMessageIsShown = true;
 
             actionButton = {
-                text: "Grant permission",
+                text: "buttonRequestPermission",
                 action: (param) => {
                     return applyPickerResultPermissions(optionValue, option, param.event);
                 }
