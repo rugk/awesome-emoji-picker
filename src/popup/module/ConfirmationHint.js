@@ -7,10 +7,8 @@
  * @public
  */
 
-const elPanel = document.getElementById("confirmation-hint");
-const elAnimationBox = document.getElementById("confirmation-hint-checkmark-animation-container");
-const elMessage = document.getElementById("confirmation-hint-message");
-const elDescription = document.getElementById("confirmation-hint-description");
+const elTemplate = document.getElementById("popupTemplate");
+const elPanelTemplate = elTemplate.content.getElementById("confirmation-hint");
 
 /**
  * Calculate/correct the position, so it dos not overflow.the window (popup).
@@ -100,6 +98,9 @@ function openPopup(elPanel, position) {
  */
 function hidePopup(elPanel) {
     elPanel.classList.add("invisible");
+
+    // destroy it
+    elPanel.remove();
 }
 
 /**
@@ -124,6 +125,12 @@ function hidePopup(elPanel) {
  */
 export function show(position, messageId, options = {}) {
     return new Promise((resolve) => {
+        // HTML setup -> clone nodes
+        let elPanel = elPanelTemplate;
+        const elMessage = elPanel.querySelector("#confirmation-hint-message");
+        const elDescription = elPanel.querySelector("#confirmation-hint-description");
+
+        // get/set text
         elMessage.textContent =
         browser.i18n.getMessage(`confirmationHint${messageId}`);
 
@@ -142,11 +149,19 @@ export function show(position, messageId, options = {}) {
         // If there is a description, we show for 4s after the text transition.
         const DURATION = options.showDescription ? 4000 : 1500;
 
+        // clone and attach into active document
+        // (needs to be done before showing the popup, as we need to get the browser
+        // to calculate the size of it)
+        elPanel = document.importNode(elTemplate.content, true).getElementById("confirmation-hint");
+        document.body.appendChild(elPanel);
+        const elAnimationBox = elPanel.querySelector("#confirmation-hint-checkmark-animation-container");
+
         // show popup
         openPopup(elPanel, position);
 
         elAnimationBox.setAttribute("animate", "true");
 
+        // hide it again after timeout
         setTimeout(() => {
             hidePopup(elPanel);
 
