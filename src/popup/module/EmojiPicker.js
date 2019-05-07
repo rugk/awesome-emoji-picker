@@ -5,6 +5,7 @@
  */
 
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
 import * as PageHandler from "./PageHandler.js";
 import * as ConfirmationHint from "./ConfirmationHint.js";
 
@@ -113,6 +114,7 @@ function saveClickPosition(emoji, event) {
 async function copyEmoji(emoji) {
     // get HTML element that was clicked
     let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
+    let errorShown = false;
 
     // if we clicked on the exact same emoji
     // (object reference comparison deliberately!)
@@ -158,7 +160,11 @@ async function copyEmoji(emoji) {
                 // Note: We cannot request the permission now, because of the same reason why we cannot actually
                 // copy without clipboardWrite permission (this is no user action anymore)
 
-                // TODO: show visible error to the user!!
+                CommonMessages.showError("errorPermissionMissing", true, {
+                    text: "messageOpenOptionsButton",
+                    action: () => browser.runtime.openOptionsPage()
+                });
+                errorShown = true;
             }
 
             // resolve promise, so await continues
@@ -195,7 +201,9 @@ async function copyEmoji(emoji) {
                 // some other error happened
                 messageToBeShown = "";
 
-                // TODO: show error
+                if (!errorShown) {
+                    CommonMessages.showError("couldNotDoAction", true);
+                }
             }
 
             // if no error happened, show confirmation message

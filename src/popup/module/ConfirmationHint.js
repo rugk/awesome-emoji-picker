@@ -77,12 +77,14 @@ function openPopup(elPanel, position) {
     // we need to show it now, already, because the we cannot otherwise calculate the size
     // but we make it invisible
     elPanel.style.top = "0px"; // but make sure, it does not overflow while we temporarily show it
-    elPanel.style.top = "0px";
+    elPanel.style.left = "0px";
     elPanel.style.visibility = "hidden";
     elPanel.classList.remove("invisible");
 
+    // correct position
     position = keepMessageInsideOfPopup(position, elPanel.scrollHeight, elPanel.scrollWidth);
 
+    // set to new position
     elPanel.style.top = `${position.top}px`;
     elPanel.style.left = `${position.left}px`;
 
