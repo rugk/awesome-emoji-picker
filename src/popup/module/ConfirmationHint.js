@@ -13,8 +13,51 @@ const elMessage = document.getElementById("confirmation-hint-message");
 const elDescription = document.getElementById("confirmation-hint-description");
 
 /**
+ * Calculate/correct the position, so it dos not overflow.the window (popup).
+ *
+ * @private
+ * @param  {Object} position where to put the message (top left border)
+ * @param  {number} position.left manual position
+ * @param  {number} position.top manual position
+ * @param  {number} height the height of the popup
+ * @param  {number} width the width of the popup
+ * @returns {Object} the ficed position
+ */
+function keepMessageInsideOfPopup(position, height, width) {
+    const TOLERANCE = 3; // px
+
+    if (position instanceof HTMLElement) {
+        position = position.getBoundingClientRect();
+        position = {
+            top: position.bottom,
+            left: position.right
+        };
+    }
+
+    // fix overflow top
+    if (position.top < 0) {
+        position.top = 0 + TOLERANCE;
+    }
+    // fix overflow left
+    if (position.left < 0) {
+        position.left = 0 + TOLERANCE;
+    }
+    // fix overflow bottom
+    if (position.top + height > document.body.scrollHeight) {
+        position.top = document.body.scrollHeight - height - TOLERANCE;
+    }
+    // fix overflow right
+    if (position.left + width > document.body.scrollWidth) {
+        position.left = document.body.scrollWidth - width - TOLERANCE;
+    }
+
+    return position;
+}
+
+/**
  * Actually attach the popup to the position we want.
  *
+ * @private
  * @param  {HTMLElement} elPanel The panel to show..
  * @param  {HTMLElement|Object} position where to put the message (top left border)
  * puts it at the bottom right border of the HTMLElement, if you pass that
@@ -31,10 +74,20 @@ function openPopup(elPanel, position) {
         };
     }
 
+    // we need to show it now, already, because the we cannot otherwise calculate the size
+    // but we make it invisible
+    elPanel.style.top = "0px"; // but make sure, it does not overflow while we temporarily show it
+    elPanel.style.top = "0px";
+    elPanel.style.visibility = "hidden";
+    elPanel.classList.remove("invisible");
+
+    position = keepMessageInsideOfPopup(position, elPanel.scrollHeight, elPanel.scrollWidth);
+
     elPanel.style.top = `${position.top}px`;
     elPanel.style.left = `${position.left}px`;
 
-    elPanel.classList.remove("invisible");
+    // finally show it
+    elPanel.style.visibility = "";
 }
 
 /**
