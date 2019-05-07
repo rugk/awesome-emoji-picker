@@ -15,9 +15,12 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0px 0px 2px var(--grey-50);
+  /* min-width: 100px; */
+
+  /* no mouse interaction */
   user-select: none;
   -moz-user-select: none;
-  /* min-width: 100px; */
+  pointer-events: none;
 }
 
 #confirmation-hint {
