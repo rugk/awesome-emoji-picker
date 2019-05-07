@@ -60,7 +60,7 @@
     "description": "The text of a button that opens the options page."
   },
   "couldNotDoAction": {
-    "message": "The action you wanted to do failed.",
+    "message": "The action, you wanted to do, failed.",
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
 

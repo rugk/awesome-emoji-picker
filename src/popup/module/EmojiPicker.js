@@ -183,39 +183,41 @@ async function copyEmoji(emoji) {
 
     // find out results of operations
     let isEmojiCopied = emojiCopy, isEmojiInserted = automaticInsert;
-    emojiInsertResult.catch(() => {
+
+    // wait for both to succeed or fail (and set status)
+    await emojiInsertResult.catch(() => {
         isEmojiInserted = false;
-    }).finally(() => {
-        emojiCopyResult.catch(() => {
-            isEmojiCopied = false;
-        }).finally(async () => {
-            // wait for both to succeed or fail
-            let messageToBeShown;
-            if (isEmojiInserted && isEmojiCopied) {
-                messageToBeShown = "EmojiCopiedAndInserted";
-            } else if (isEmojiInserted) {
-                messageToBeShown = "EmojiInserted";
-            } else if (isEmojiCopied) {
-                messageToBeShown = "EmojiCopied";
-            } else {
-                // some other error happened
-                messageToBeShown = "";
-
-                if (!errorShown) {
-                    CommonMessages.showError("couldNotDoAction", true);
-                }
-            }
-
-            // if no error happened, show confirmation message
-            if (messageToBeShown) {
-                await ConfirmationHint.show(clickedEmoji, messageToBeShown);
-
-                if (closePopup) {
-                    window.close();
-                }
-            }
-        });
     });
+    await emojiCopyResult.catch(() => {
+        isEmojiCopied = false;
+    });
+
+    let messageToBeShown;
+    if (isEmojiInserted && isEmojiCopied) {
+        messageToBeShown = "EmojiCopiedAndInserted";
+    } else if (isEmojiInserted) {
+        messageToBeShown = "EmojiInserted";
+    } else if (isEmojiCopied) {
+        messageToBeShown = "EmojiCopied";
+    } else {
+        // some other error happened
+        messageToBeShown = "";
+
+        if (!errorShown) {
+            CommonMessages.showError("couldNotDoAction", true);
+        }
+    }
+
+    // if no error happened, show confirmation message
+    if (messageToBeShown) {
+        await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+
+        if (closePopup) {
+            window.close();
+        }
+    }
+
+    return Promise.all([emojiInsertResult, emojiInsertResult]);
 }
 
 /**
