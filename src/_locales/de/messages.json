@@ -60,6 +60,19 @@
     "description": "The button label, used for requesting a permission that is missing."
   },
 
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji kopiert",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji eingefügt",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji kopiert & eingefügt",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
 
   // tips
   "tipYouLikeAddon": {
@@ -253,6 +266,11 @@
   "optionCopyEmojiColonsDescr": {
     "message": "Dies ist meist nur nützlich auf spezifischen Webseiten, die diesen Text unterstützen.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionShowConfirmationMessage": {
+    "message": "Zeige eine Bestätigungsnachricht, wenn die Aktion erfolgreich war.",
+    "description": "This is an option shown in the add-on settings."
   },
 
   "optionClosePopup": {

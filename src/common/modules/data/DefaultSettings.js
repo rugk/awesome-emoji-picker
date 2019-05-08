@@ -33,6 +33,7 @@ const defaultSettings = {
         // directly after installing the add-on)
         emojiCopyOnlyFallback: false,
         resultType: "native",
+        showConfirmationMessage: true,
         closePopup: true,
     },
     emojiMart: {}

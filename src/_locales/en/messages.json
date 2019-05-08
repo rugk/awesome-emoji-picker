@@ -51,6 +51,19 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  "errorPermissionMissing": {
+    "message": "A permission is missing for this action.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
+  },
+  "messageOpenOptionsButton": {
+    "message": "Open options",
+    "description": "The text of a button that opens the options page."
+  },
+  "couldNotDoAction": {
+    "message": "The action, you wanted to do, failed.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown."
+  },
+
   "emojiCopyOnlyFallbackPermissionInfo": {
     "message": "The permission to copy data into the clipboard is required for this feature.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
@@ -58,6 +71,20 @@
   "buttonRequestPermission": {
     "message": "Grant permission",
     "description": "The button label, used for requesting a permission that is missing."
+  },
+
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copied",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji inserted",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copied & inserted",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
   },
 
   // tips
@@ -252,6 +279,11 @@
   "optionCopyEmojiColonsDescr": {
     "message": "Only useful to enable on specific sites that support this kind of text.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionShowConfirmationMessage": {
+    "message": "Show a confirmation message when the action succeeded.",
+    "description": "This is an option shown in the add-on settings."
   },
 
   "optionClosePopup": {
