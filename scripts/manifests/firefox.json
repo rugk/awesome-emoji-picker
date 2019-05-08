@@ -21,14 +21,6 @@
       }
     ]
   },
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Period"
-      },
-      "description": "__MSG_commandOpenPopup__"
-    }
-  },
 
   "options_ui": {
     "page": "options/options.html",
