@@ -52,7 +52,7 @@
   },
 
   "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "Für dieses Feature wird die Berechtigung Daten in die Zwischenablage zu kopieren, benötigt.",
+    "message": "Für dieses Feature wird die Berechtigung, Daten in die Zwischenablage zu kopieren, benötigt.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
   "buttonRequestPermission": {
