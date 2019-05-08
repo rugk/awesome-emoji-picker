@@ -2,7 +2,11 @@
  * Module for showing a confirmation to the user.
  *
  * Adapted from Firefox source code {@link https://searchfox.org/mozilla-central/source/browser/base/content/browser.js#8462}.
- * Licensed under the Mozilla Public License, see the LICENSE.md.
+ * Licensed under the Mozilla Public License, v. 2.0, see the LICENSE.md.
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  *
  * @public
  */
