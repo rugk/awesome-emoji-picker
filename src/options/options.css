@@ -16,7 +16,8 @@ body.mobile .mobile-incompatible {
 }
 
 /* https://design.firefox.com/photon/patterns/inactive.html */
-[disabled] {
+[disabled],
+input[disabled] ~ label {
   opacity: 0.4;
 }
 
