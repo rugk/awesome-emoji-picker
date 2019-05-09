@@ -2,22 +2,22 @@
   // manifest.json
   "extensionName": {
     "message": "Awesome Emoji Picker",
-    "description": "Name of the extension."
+    "description": "Name of the extension. I suggest not to translate it."
   },
   "extensionNameShort": {
     "message": "Awesome Emoji",
-    "description": "Name of the extension."
+    "description": "Short name of the extension. I suggest not to translate it."
   },
   "extensionDescription": {
-    "message": "Allows you to do great stuff.",
+    "message": "Dieses Add-on bietet einen modernen Emoji-Picker, den du zum Suchen von Emojis nutzen kannst. Du kannst das Emoji dann in die Zwischenablage kopieren oder in die aktive Webseite einfügen.",
     "description": "Description of the extension."
   },
   "browserActionButtonTitle": {
     "message": "Awesome Emoji Picker",
-    "description": "The title for the button, which opens the popup."
+    "description": "The title for the button, which opens the popup. I suggest not to translate it."
   },
   "commandOpenPopup": {
-    "message": "Öffne Emoji Popup",
+    "message": "Öffne Emoji-Picker",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
 

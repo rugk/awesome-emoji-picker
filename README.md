@@ -5,13 +5,22 @@
 [![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/statistics/)
 [![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/)
 
-This (Firefox) add-on (WebExtension) gives you a nice emoji picker that you can use to find and select emojis. It will be copied to your clipboard, when you click on it.
+This (Firefox) add-on (WebExtension) gives you a modern emoji picker that you can use to find and select emojis (i.e. the emoticons/smileys you know from messengers such as 😃, 😎 or 🤪). It will be directly copied to your clipboard and/or inserted into the active input on the page, when you choose it.
 
-It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications.
+You can then use the emojis on almost any web page, including your favorite messenger (such as WhatsApp, Telegram, Threema, Signal, Wire etc.), social media (Facebook, Instagram, Twitter, Mastodon etc.) and even e-mails.
+
+It will remember your recently used emojis across sites, and may often be faster than the emoji picker on the site itself.
+
+It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
+* Apple emojis
+* Google emojis
+* Twitter emojis ([Twemoji](https://twemoji.twitter.com/))
+* EmojiOne emojis (now [JoyPixels](https://www.joypixels.com/))
+* or just what your system/browser offers (e.g. on Windows thus Windows emojis will be used)
 
 It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). You can test many features there already, before installing it.
 
-This extension only works with modern Firefox v63 or higher.
+This extension only works with Firefox v63 or higher.
 
 ## Download
 
@@ -27,10 +36,20 @@ This extension only works with modern Firefox v63 or higher.
 
 ## Features
 * Display the emojis in the design of Apple, Google, Twitter, EmojiOne or just the native style your browser uses.
-* Quickly search for any emoji.
-* Adjust many options of your Emoji picker!
-* Follows [Firefox Photon Design](https://design.firefox.com/photon).
-* Has a simple, but intuitive and usable User Interface.
+* Quickly search for any emoji with many keywords.
+* Copy emoji to your clipboard.
+* …or directly insert it into the page.
+* Remembers frequently used emojis.
+* Emoji skin tone is adjustable and is remembered.
+* You can also insert the emoji's `:colon:` syntax instead of the Unicode emoji that is used by default.
+* Use the hot key (by default <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Period</kbd>) to quickly access the emoji picker.
+* Integrates into Firefox Sync, so you have all your emojis/settings on all devices.
+* Adjust the style and many other options to your liking.
+* The size of the whole emoji picker and the emojis itself is also adjustable.
+* Use a colored toolbar icon or a decent monochrome (black/white) one.
+* Follows the [Firefox Photon Design](https://design.firefox.com/photon).
+* It does not violate your privacy and does send data anywhere.
 * Compatible with Firefox for Android
-* […]
-<!-- * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations) -->
+* Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
+* Compatible with Firefox for Android
+* Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))
