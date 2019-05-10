@@ -9,7 +9,7 @@
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
-    "browser_style": false,
+    "browser_style": true,
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
