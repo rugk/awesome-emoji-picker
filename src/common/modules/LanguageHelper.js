@@ -18,7 +18,6 @@
 const ADDON_TRANSLATED_INTO = [
     "de", "en", // base languages
     "de-DE", "en-US" // locale versions, we actually (seem to) target
-    // Chinese not included yet, as it is not 100%ly translated
 ].map((lang) => lang.toLowerCase());
 
 /**
