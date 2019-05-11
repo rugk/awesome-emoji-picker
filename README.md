@@ -1,4 +1,4 @@
-# Awesome Emoji Picker <img align="right" height="425" width="365" src="assets/screenshots/emoji-picker.png">
+# Awesome Emoji Picker <img align="right" height="425" width="365" src="assets/screenshots/popupSelectFemaleDetective.png">
 
 [![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)  
 [![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)
@@ -28,7 +28,7 @@ This extension only works with Firefox v63 or higher.
 
 ## In action…
 
-![Writing toot on Mastodon with text "Let's search for an emoji…", click on smiley icon, emoji picker opens, search for "banan" and a banana 🍌 and monkey 🐒 emoji are shown as results. Click on banana emoji, it insert it into the message.](assets/screencasts/searchBanana.gif)
+![Writing toot on Mastodon with text "Let's search for an emoji…", click on smiley icon, emoji picker opens, search for "banan" and a banana 🍌 and monkey 🐒 emoji are shown as results. After clicking on banana emoji it inserts it into the message.](assets/screencasts/searchBanana.gif)
 
 See:
 * [More screencasts](assets/screencasts)
