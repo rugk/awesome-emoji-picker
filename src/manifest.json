@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "AwesomeEmojiPicker DEV VERSION",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.9",
+  "version": "1.0",
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
