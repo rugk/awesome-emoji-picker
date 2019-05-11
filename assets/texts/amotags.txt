@@ -1,0 +1,1 @@
+emoji, emoji-picker, emoji-cheat-sheet, smiley, unicode, emoticon
