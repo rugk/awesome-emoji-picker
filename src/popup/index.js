@@ -36,5 +36,5 @@ createPicker();
 
 RandomTips.init(tips).then(() => {
     RandomTips.setContext("popup");
-    RandomTips.showRandomTip();
+    RandomTips.showRandomTipIfWanted();
 });
