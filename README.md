@@ -26,13 +26,13 @@ This extension only works with Firefox v63 or higher.
 
 **[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-download)**
 
-<!-- ## In action…
+## In action…
 
-![what shows this screencast description in alt text](assets/screencasts/someThing.gif) -->
+![Writing toot on Mastodon with text "Let's search for an emoji…", click on smiley icon, emoji picker opens, search for "banan" and a banana 🍌 and monkey 🐒 emoji are shown as results. Click on banana emoji, it insert it into the message.](assets/screencasts/searchBanana.gif)
 
-<!-- See:
+See:
 * [More screencasts](assets/screencasts)
-* [More screenshots](assets/screenshots) -->
+* [More screenshots](assets/screenshots)
 
 ## Features
 * Display the emojis in the design of Apple, Google, Twitter, EmojiOne or just the native style your browser uses.
