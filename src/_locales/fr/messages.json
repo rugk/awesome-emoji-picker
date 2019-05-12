@@ -20,7 +20,6 @@
     "message": "Ouvrir la pop-up à émoticône",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
-
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
     "message": "Impossible d'afficher ce message.",
@@ -49,6 +48,39 @@
   "resettingOptionsFailed": {
     "message": "Impossible de réinitialiser les paramètres !",
     "description": "The message shown, when the options of the settings could not have been reset."
+  },
+  "errorPermissionMissing": {
+    "message": "Une autorisation est manquante pour cette action.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
+  },
+  "messageOpenOptionsButton": {
+    "message": "Ouvrir les paramètres",
+    "description": "The text of a button that opens the options page."
+  },
+  "couldNotDoAction": {
+    "message": "L'action, que vous vouliez faire, a échouée.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown."
+  },
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "L'autorisation de copier des données dans le presse-papier est nécéssaire pour cette fonctionnalité.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
+  "buttonRequestPermission": {
+    "message": "Donner l'autorisation",
+    "description": "The button label, used for requesting a permission that is missing."
+  },
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copied",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji inserted",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copied & inserted",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
   },
   // tips
   "tipYouLikeAddon": {
@@ -83,7 +115,6 @@
     "message": "En savoir plus",
     "description": "The common button for tips, where you can get more information on click."
   },
-
   // options
   "someSettingsAreManaged": {
     "message": "Certains paramètres sont contrôlés par votre administrateur système et ne peuvent être changés.",
@@ -247,7 +278,6 @@
     "message": "Affiche un message de confirmation quand l'action a réussi.",
     "description": "This is an option shown in the add-on settings."
   },
-
   "optionClosePopup": {
     "message": "Fermer la fenêtre après qu'un émoticône ait été sélectionné.",
     "description": "This is an option shown in the add-on settings."
