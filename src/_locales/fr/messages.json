@@ -2,24 +2,25 @@
   // manifest.json
   "extensionName": {
     "message": "Awesome Emoji Picker",
-    "description": "Name of the extension."
+    "description": "Name of the extension. I suggest not to translate it."
   },
   "extensionNameShort": {
     "message": "Awesome Emoji",
-    "description": "Name of the extension."
+    "description": "Short name of the extension. I suggest not to translate it."
   },
   "extensionDescription": {
-    "message": "Vous permet de trouver et de sélectionner des émoticônes.",
+    "message": "Vous permet de trouver et de sélectionner des émoticônes. Vous pouvez ensuite les copier ou les insèrer directement dans la page Web",
     "description": "Description of the extension."
   },
   "browserActionButtonTitle": {
     "message": "Awesome Emoji Picker",
-    "description": "The title for the button, which opens the popup."
+    "description": "The title for the button, which opens the popup. I suggest not to translate it."
   },
   "commandOpenPopup": {
     "message": "Ouvrir la pop-up à émoticône",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
+
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
     "message": "Impossible d'afficher ce message.",
@@ -82,10 +83,7 @@
     "message": "En savoir plus",
     "description": "The common button for tips, where you can get more information on click."
   },
-  "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "La permission pour copier des informations dans le presse-papier est nécéssaire pour cette fonctionnalité.",
-    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
-  },
+
   // options
   "someSettingsAreManaged": {
     "message": "Certains paramètres sont contrôlés par votre administrateur système et ne peuvent être changés.",
@@ -102,6 +100,10 @@
   "optionsResetButton": {
     "message": "Réinitialiser les paramètres.",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+  "titleAppearance": {
+    "message": "Apparence",
+    "description": "The title for a settings group."
   },
   "titleBehaviour": {
     "message": "Comportement de l'extension",
@@ -241,6 +243,11 @@
     "message": "Seulement utile pour les sites compatibles.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
   },
+  "optionShowConfirmationMessage": {
+    "message": "Affiche un message de confirmation quand l'action a réussi.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
   "optionClosePopup": {
     "message": "Fermer la fenêtre après qu'un émoticône ait été sélectionné.",
     "description": "This is an option shown in the add-on settings."
