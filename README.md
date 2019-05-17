@@ -33,7 +33,7 @@ You can e.g. **review and like the add-on** or this GitHub repo, you can add tra
 
 See the [contributing guidelines](CONTRIBUTING.md) for more information on how you can help and vote for this browser extension.
 
-In any case, spread the word and recommend it to others! 😍
+In any case, spread the word and recommend it to others! 🤗😍
 
 ## In action…
 

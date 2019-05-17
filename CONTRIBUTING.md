@@ -9,7 +9,7 @@ Some links and potential special rules for this repo only are listed below.
 You like this add-on, but have no idea how to support us?
 
 Here are some easy things you can always do:
-* Spread the word and recommend it to others! 😍
+* Spread the word and recommend it to others! 🤗😍
 * Leave a rating [at addons.mozilla.org](https://addons.mozilla.org/firefox/addon/mastodon-simplified-federation/reviews/) if you like it!
 * Star this project [on GitHub](https://github.com/rugk/awesome-emoji-picker) by clicking the "star" icon!
 * Leave a [review at alternativeto.net](https://alternativeto.net/software/-awesome-emoji-picker-/reviews/) and click the like button there, if you want. (Also, you can obviously recommend this add-on as an alternative to other emoji pickers.)
