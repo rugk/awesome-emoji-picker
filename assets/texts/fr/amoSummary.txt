@@ -1,0 +1,4 @@
+Ce module complémentaire vous donne un bon petit sélecteur d'émoticônes que vous pouvez pour en trouver 🔎 et en sélectionner. 😀
+Il sera ajouté à votre presse-papier 📋 (de façon similaire à un "copier-coller") quand vous cliquez 🖱️ dessus.
+
+Vous allez l'adorer. 😎

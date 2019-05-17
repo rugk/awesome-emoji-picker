@@ -1,0 +1,10 @@
+Ce module complémentaire n'envoit aucune information à qui que ce soit (y compris l'auteur de l'extension).
+
+Une explication de toutes les autorisations dont cette extension a besoin peut être trouvée ici :
+https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/fr/permissions.md.
+
+== SERVICES TIERS ==
+
+Cette extension utilise le "stockage synchronisé" ("sync storage") de votre navigateur pour stocker les paramètres. Si l'utilisateur active "Sync" dans le navigateur, les paramètres sont mis en ligne et synchronisés entre vos appareils connectés à votre compte. Si vous ne faites pas ceci, les données sont seulement stockées localement sur votre appareil.
+Dans Mozilla Firefox, les données sont encryptées d'un bout à l'autre et stockées sur des serveurs par Mozilla.
+Cf. https://accounts.firefox.com/legal/privacy et https://www.mozilla.org/fr/privacy/firefox/#c-privacy-topic-8 pour des informations sur la politique de vie privée de Mozilla à ce sujet.

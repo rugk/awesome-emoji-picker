@@ -23,6 +23,8 @@ const ADDON_TRANSLATED_INTO = [
     "de", "de-DE",
     // English
     "en", "en-US",
+    // French
+    "fr", "fr-FR",
 ].map((lang) => lang.toLowerCase());
 
 /**
