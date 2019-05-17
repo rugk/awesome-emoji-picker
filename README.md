@@ -34,6 +34,15 @@ See:
 * [More screencasts](assets/screencasts)
 * [More screenshots](assets/screenshots)
 
+## How to support us?
+
+You don't need to be able to write code to support this project!
+You can e.g. **review and like the add-on** or this GitHub repo, you can add translations or do documentation tasks.
+
+See the [contributing guidelines](CONTRIBUTING.md) for more information on how you can help and vote for this browser extension.
+
+In any case, spread the word and recommend it to others! 😍
+
 ## Features
 * Display the emojis in the design of Apple, Google, Twitter, EmojiOne or just the native style your browser uses.
 * Quickly search for any emoji with many keywords.
