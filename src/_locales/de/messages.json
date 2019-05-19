@@ -51,6 +51,19 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  "errorPermissionMissing": {
+    "message": "Eine Berechtigung wird für diese Aktion benötigt.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
+  },
+  "messageOpenOptionsButton": {
+    "message": "Optionen öffnen",
+    "description": "The text of a button that opens the options page."
+  },
+  "couldNotDoAction": {
+    "message": "Die Aktion, die ausgeführt werden sollte, ist fehlgeschlagen.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown."
+  },
+
   "emojiCopyOnlyFallbackPermissionInfo": {
     "message": "Für dieses Feature wird die Berechtigung, Daten in die Zwischenablage zu kopieren, benötigt.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
