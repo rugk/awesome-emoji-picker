@@ -354,6 +354,7 @@
 
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
+  // for help also see https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations
   "emojiMartSearch": {
     "message": "Search",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
@@ -380,35 +381,35 @@
   },
   "emojiMartCategoryPeople": {
     "message": "Smileys & People",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryNature": {
     "message": "Animals & Nature",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryFoods": {
     "message": "Food & Drink",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryActivity": {
     "message": "Activity",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryPlaces": {
     "message": "Travel & Places",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryObjects": {
     "message": "Objects",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategorySymbols": {
     "message": "Symbols",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryFlags": {
     "message": "Flags",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartCategoryCustom": {
     "message": "Custom",
@@ -420,27 +421,27 @@
   },
   "emojiMartSkintone1": {
     "message": "Default Skin Tone",
-    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartSkintone2": {
     "message": "Light Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartSkintone3": {
     "message": "Medium-Light Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartSkintone4": {
     "message": "Medium Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartSkintone5": {
     "message": "Medium-Dark Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
   "emojiMartSkintone6": {
     "message": "Dark Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations"
   },
 
   // ARIA labels/descriptions
