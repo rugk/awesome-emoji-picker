@@ -14,101 +14,185 @@
 
 	<body>
 		<div class="message-container">
+			<div id="messageTips" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+				<span class="message-text"></span>
+				<a href="#">
+					<button type="button" class="message-action-button micro-button info invisible"></button>
+				</a>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+			</div>
 			<div id="messageInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
 				<span class="message-text">Some settings are managed by your administrator and cannot be changed.</span>
 				<a href="#">
-					<button class="message-action-button micro-button info invisible"></button>
+					<button type="button" class="message-action-button micro-button info invisible"></button>
 				</a>
 				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
 			<div id="messageSuccess" aria-label="success message" data-i18n data-i18n-aria-label="__MSG_ariaMessageSuccess__" class="message-box success invisible fade-hide">
 				<span class="message-text">That worked!</span>
 				<a href="#">
-					<button class="message-action-button micro-button success invisible"></button>
+					<button type="button" class="message-action-button micro-button success invisible"></button>
 				</a>
 				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
-			<div id="messageError" aria-label="error message" data-i18n data-i18n-aria-label="__MSG_ariaMessageError__" data-i18n-aria-label="__MSG_ariaMessageError__" class="message-box error invisible fade-hide">
+			<div id="messageError" aria-label="error message" data-i18n data-i18n-aria-label="__MSG_ariaMessageError__" class="message-box error invisible fade-hide">
 				<span class="message-text">An error happened.</span>
 				<a href="#">
-					<button class="message-action-button micro-button error invisible"></button>
+					<button type="button" class="message-action-button micro-button error invisible"></button>
 				</a>
 				<img class="icon-dismiss invisible" src="/common/img/close-white.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
 			<div id="messageWarning" aria-label="warning message" data-i18n data-i18n-aria-label="__MSG_ariaMessageWarning__" class="message-box warning invisible fade-hide">
 				<span class="message-text">There were some difficulties.</span>
 				<a href="#">
-					<button class="message-action-button micro-button warning invisible"></button>
+					<button type="button" class="message-action-button micro-button warning invisible"></button>
 				</a>
 				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
 		</div>
 		<form>
-			<ul>
-				<li class="mobile-incompatible">
-					<input class="setting save-on-change" type="checkbox" id="popupIconColored" name="popupIconColored">
-					<label data-i18n="__MSG_optionPopupIconColored__" for="popupIconColored">Colored icon</label>
-					<span data-i18n="__MSG_optionPopupIconColoredDescr__" class="helper-text">Shows a colored icon instead of the black/white icon in the toolbar.</span>
-				</li>
-				<li>
-					<label data-i18n="__MSG_optionEmojiPickerSet__" for="emojiSet">Emoji set: </label>
-					<select id="emojiSet" class="setting save-on-change" data-optiongroup="emojiPicker" name="set" size="0">
-						<option data-i18n="__MSG_optionEmojiSetNative__" value="native">Default from your OS</option>
-						<option data-i18n="__MSG_optionEmojiSetApple__" value="apple">Apple</option>
-						<option data-i18n="__MSG_optionEmojiSetGoogle__" value="google">Google</option>
-						<option data-i18n="__MSG_optionEmojiSetTwitter__" value="twitter">Twitter</option>
-						<option data-i18n="__MSG_optionEmojiSetEmojiOne__" value="emojione">EmojiOne</option>
-						<option data-i18n="__MSG_optionEmojiSetMessenger__" value="messenger">Facebook Messenger</option>
-						<option data-i18n="__MSG_optionEmojiSetFacebook__" value="facebook">Facebook</option>
-					</select>
-					<span class="helper-text">
-						<span data-i18n="__MSG_optionEmojiPickerSetDescr__">
-							What style to use for the Emojis.
+			<section>
+				<h1 data-i18n="__MSG_titleAppearance__">Appearance</h1>
+				<ul>
+					<li class="mobile-incompatible">
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="popupIconColored" name="popupIconColored">
+							<label data-i18n="__MSG_optionPopupIconColored__" for="popupIconColored">Colored icon</label>
+						</div>
+						<div class="line indent">
+							<span data-i18n="__MSG_optionPopupIconColoredDescr__" class="helper-text">Shows a colored icon instead of the black/white icon in the toolbar.</span>
+						</div>
+					</li>
+					<li>
+						<div class="line">
+							<label data-i18n="__MSG_optionEmojiPickerSet__" for="emojiSet">Emoji set: </label>
+							<select id="emojiSet" class="setting save-on-change" data-optiongroup="emojiPicker" name="set" size="0">
+								<option data-i18n="__MSG_optionEmojiSetNative__" value="native">Default from your OS</option>
+								<option data-i18n="__MSG_optionEmojiSetApple__" value="apple">Apple</option>
+								<option data-i18n="__MSG_optionEmojiSetGoogle__" value="google">Google</option>
+								<option data-i18n="__MSG_optionEmojiSetTwitter__" value="twitter">Twitter</option>
+								<option data-i18n="__MSG_optionEmojiSetEmojiOne__" value="emojione">EmojiOne</option>
+								<option data-i18n="__MSG_optionEmojiSetMessenger__" value="messenger">Facebook Messenger</option>
+								<option data-i18n="__MSG_optionEmojiSetFacebook__" value="facebook">Facebook</option>
+							</select>
+						</div>
+						<span class="line helper-text">
+							<span data-i18n="__MSG_optionEmojiPickerSetDescr__">
+								What style to use for the Emojis.
+							</span>
 						</span>
-					</span>
-				</li>
-				<li>
-					<label data-i18n="__MSG_optionEmojiPickerEmojiSize__" for="emojiSize">Emoji size: </label>
-					<select id="emojiSize" class="setting save-on-change" data-optiongroup="emojiPicker" name="emojiSize" size="0">
-						<option data-i18n="__MSG_optionEmojiSize16px__" value="16">Small (16px)</option>
-						<option data-i18n="__MSG_optionEmojiSize24px__" value="24">Medium (24px)</option>
-						<option data-i18n="__MSG_optionEmojiSize32px__" value="32">Large (32px)</option>
-						<option data-i18n="__MSG_optionEmojiSize40px__" value="40">Very Large (40px)</option>
-						<option data-i18n="__MSG_optionEmojiSize48px__" value="48">Extra Large (48px)</option>
-					</select>
-				</li>
-				<li>
-					<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Width of picker:</label>
-					<input class="setting save-on-input" type="range" value="9" min="5" max="20" step="1" id="emojisPerLine" data-optiongroup="emojiPicker" name="perLine">
-					<span>
-						<span id="emojisPerLineStatus">(9 emojis per line)</span>
-					</span>
-					<span class="helper-text">
-						<span data-i18n="__MSG_optionEmojiPickerPerLineDescr__">How many emojis should be shown per line in the emoji picker. This affects the width of the popup.</span>
-					</span>
-				</li>
-				<li>
-					<input class="setting save-on-change" type="checkbox" id="emojiShowTooltip" data-optiongroup="emojiPicker" name="emojiTooltip">
-					<label data-i18n="__MSG_optionEmojiPickerShowTooltip__" for="emojiShowTooltip">Show tooltips</label>
-					<span data-i18n="__MSG_optionEmojiPickerShowTooltipDescr__" class="helper-text">Shows a tooltip with the name of the Emoji when hovering over it.</span>
-				</li>
-				<li>
-					<input class="setting save-on-change" type="checkbox" id="copyEmojiColons" name="copyEmoji">
-					<label data-i18n="__MSG_optionCopyEmojiColons__" for="copyEmojiColons">Copy the <code>:colon:</code> code instead of the Emoji unicode.</label>
-					<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="helper-text">Only useful to enable on specific sites that support this kind of text.</span>
-				</li>
+					</li>
+					<li>
+						<div class="line">
+							<label data-i18n="__MSG_optionEmojiPickerEmojiSize__" for="emojiSize">Emoji size: </label>
+							<select id="emojiSize" class="setting save-on-change" data-optiongroup="emojiPicker" name="emojiSize" size="0">
+								<option data-i18n="__MSG_optionEmojiSize16px__" value="16">Small (16px)</option>
+								<option data-i18n="__MSG_optionEmojiSize24px__" value="24">Medium (24px)</option>
+								<option data-i18n="__MSG_optionEmojiSize32px__" value="32">Large (32px)</option>
+								<option data-i18n="__MSG_optionEmojiSize40px__" value="40">Very Large (40px)</option>
+								<option data-i18n="__MSG_optionEmojiSize48px__" value="48">Extra Large (48px)</option>
+							</select>
+						</div>
+					</li>
+					<li>
+						<div class="line">
+							<label data-i18n="__MSG_optionEmojiPickerPerLine__" for="emojisPerLine">Width of picker:</label>
+							<input class="setting save-on-input" type="range" value="9" min="5" max="20" step="1" id="emojisPerLine" data-optiongroup="emojiPicker" name="perLine">
+							<span>
+								<span id="emojisPerLineStatus">(9 emojis per line)</span>
+							</span>
+						</div>
+						<span class="line helper-text">
+							<span data-i18n="__MSG_optionEmojiPickerPerLineDescr__">How many emojis should be shown per line in the emoji picker. This affects the width of the popup.</span>
+						</span>
+					</li>
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="emojiShowTooltip" data-optiongroup="emojiPicker" name="emojiTooltip">
+							<label data-i18n="__MSG_optionEmojiPickerShowTooltip__" for="emojiShowTooltip">Show tooltips</label>
+						</div>
+						<span data-i18n="__MSG_optionEmojiPickerShowTooltipDescr__" class="line indent helper-text">Shows a tooltip with the name of the Emoji when hovering over it.</span>
+					</li>
+				</ul>
+			</section>
 
+			<section>
+				<ul>
+					<h1 data-i18n="__MSG_titleBehaviour__">Behaviour</h1>
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="automaticInsert" data-optiongroup="pickerResult" name="automaticInsert">
+							<label data-i18n="__MSG_optionAutomaticInsert__" for="automaticInsert">Automatically insert emoji into web page.</label>
+						</div>
+					</li>
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="emojiCopy" data-optiongroup="pickerResult" name="emojiCopy">
+							<label data-i18n="__MSG_optionCopyClipboard__" for="emojiCopy">Copy emoji to clipboard.</label>
+						</div>
+						<ul>
+							<li>
+								<div class="line">
+									<input class="setting save-on-change" type="checkbox" id="emojiCopyOnlyFallback" data-optiongroup="pickerResult" name="emojiCopyOnlyFallback">
+									<label data-i18n="__MSG_optionCopyClipboardFallback__" for="emojiCopyOnlyFallback">Only use as a fallback if direct emoji insertion fails.</label>
+								</div>
+							</li>
 
-				<li>
-					<button data-i18n="__MSG_optionsResetButton__" type="button" id="resetButton">Reset all settings to defaults</button>
-				</li>
+							<div class="message-container line">
+								<div id="emojiCopyOnlyFallbackPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+									<span class="message-text">Permission requested.</span>
+									<a href="#">
+										<button type="button" class="message-action-button micro-button info invisible"></button>
+									</a>
+									<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+								</div>
+							</div>
+						</ul>
+					</li>
 
-				<li>
-					<p data-i18n="__MSG_optionsLicenseDisclaimer__" data-opt-i18n-keep-children class="helper-text">
-						All emoji images may subject to different licenses. For more information, see <a data-i18n="__MSG_optionsLicenseDisclaimerLinkText__" data-i18n-href="__MSG_optionsLicenseDisclaimerLink__" href="https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md">the whole license file</a>.
-					</p>
-				</li>
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="resultType" data-optiongroup="pickerResult" name="resultType">
+							<label data-i18n="__MSG_optionCopyEmojiColons__" data-opt-i18n-keep-children for="resultType">Use the <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> code instead of the Emoji unicode.</label>
+						</div>
+						<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="line indent helper-text">Only useful to enable on specific sites that support this kind of text.</span>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="showConfirmationMessage" data-optiongroup="pickerResult" name="showConfirmationMessage">
+							<label data-i18n="__MSG_optionShowConfirmationMessage__" for="showConfirmationMessage">Show a confirmation message when the action succeeded.</label>
+						</div>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="closePopup" data-optiongroup="pickerResult" name="closePopup">
+							<label data-i18n="__MSG_optionClosePopup__" for="closePopup">Close the popup after an emoji has been selected/inserted.</label>
+						</div>
+					</li>
+				</ul>
+			</section>
+
+			<div>
+				<hr /><br />
+				<button data-i18n="__MSG_optionsResetButton__" type="button" id="resetButton">Reset all settings to defaults</button>
+			</div>
 		</form>
+
+		<p class="helper-text">
+			<span data-i18n="__MSG_optionsLicenseDisclaimer__" data-opt-i18n-keep-children class="helper-text">
+				All emoji images may subject to different licenses. For more information, see <a data-i18n="__MSG_optionsLicenseDisclaimerLinkText__" data-i18n-href="__MSG_optionsLicenseDisclaimerLink__" href="https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md">the whole license file</a>.
+			</span><br>
+			<span data-i18n="__MSG_translatorCredit__" data-opt-i18n-keep-children>
+				This add-on has been translated into English by
+				<a data-i18n="__MSG_translatorUsername__" data-i18n-href="__MSG_translatorLink__" href="https://github.com/XY">somone</a>.
+			</span>
+			<span data-i18n="__MSG_contributorsThanks__" data-opt-i18n-keep-children>
+				Also thanks to
+				<a data-i18n="__MSG_contributorsThanksLinkText__" data-i18n-href="__MSG_contributorsThanksLink__" href="https://github.com/XY">all other contributors</a>.
+			</span>
+		</p>
 	</body>
 
 </html>

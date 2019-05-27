@@ -2,19 +2,23 @@
   // manifest.json
   "extensionName": {
     "message": "Awesome Emoji Picker",
-    "description": "Name of the extension."
+    "description": "Name of the extension. I suggest not to translate it."
   },
   "extensionNameShort": {
     "message": "Awesome Emoji",
-    "description": "Name of the extension."
+    "description": "Short name of the extension. I suggest not to translate it."
   },
   "extensionDescription": {
-    "message": "Allows you to do great stuff.",
+    "message": "This add-on provides you with a modern emoji picker that you can use to find emojis. You can  then copy it to the clipboard or insert emoji into the active web page.",
     "description": "Description of the extension."
   },
   "browserActionButtonTitle": {
     "message": "Awesome Emoji Picker",
-    "description": "The title for the button, which opens the popup."
+    "description": "The title for the button, which opens the popup. I suggest not to translate it."
+  },
+  "commandOpenPopup": {
+    "message": "Open emoji picker",
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
 
   // errors or other messages (mostly for settings)
@@ -47,6 +51,76 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
+  "errorPermissionMissing": {
+    "message": "A permission is missing for this action.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
+  },
+  "messageOpenOptionsButton": {
+    "message": "Open options",
+    "description": "The text of a button that opens the options page."
+  },
+  "couldNotDoAction": {
+    "message": "The action, you wanted to do, failed.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown."
+  },
+
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "The permission to copy data into the clipboard is required for this feature.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
+  "buttonRequestPermission": {
+    "message": "Grant permission",
+    "description": "The button label, used for requesting a permission that is missing."
+  },
+
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copied",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji inserted",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copied & inserted",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+
+  // tips
+  "tipYouLikeAddon": {
+    "message": "You like this add-on?",
+    "description": "A tip shown to remind the user to rate the addon."
+  },
+  "tipYouLikeAddonButton": {
+    "message": "Rate it",
+    "description": "Button for the tip shown to remind the user to rate the addon."
+  },
+  "tipPopupCodeHotkey": {
+    "message": "Remember the hot key for this add-on is Ctrl+Shift+Period.",
+    "description": "A tip shown to get the user to notice that there is a hot key."
+  },
+  "tipTranslateAddon": {
+    "message": "If you speak another language you can help translating this add-on.",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on."
+  },
+  "tipTranslateAddonLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "The link to a description of the translation service/way you can use."
+  },
+  "tipDonate": {
+    "message": "Enjoy using this add-on for free?",
+    "description": "A tip shown to get the remind them of a donation."
+  },
+  "tipDonateButton": {
+    "message": "Support development by donating",
+    "description": "The button of the donation tip taking the user to the donation site."
+  },
+  "tipLearnMore": {
+    "message": "Learn more",
+    "description": "The common button for tips, where you can get more information on click."
+  },
+
   // options
   "someSettingsAreManaged": {
     "message": "Some settings are managed by your system administrator and cannot be changed.",
@@ -63,6 +137,15 @@
   "optionsResetButton": {
     "message": "Reset all settings to defaults",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+
+  "titleAppearance": {
+    "message": "Appearance",
+    "description": "The title for a settings group."
+  },
+  "titleBehaviour": {
+    "message": "Behaviour",
+    "description": "The title for a settings group."
   },
 
   "optionPopupIconColored": {
@@ -170,6 +253,48 @@
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
   },
 
+  "optionAutomaticInsert": {
+    "message": "Automatically insert emoji into web page.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboard": {
+    "message": "Copy emoji to clipboard.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboardFallback": {
+    "message": "Only use as a fallback if direct emoji insertion fails.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionCopyEmojiColons": {
+    "message": "Use the $COLON$ instead of the Emoji unicode.",
+    "description": "This is an option shown in the add-on settings.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionCopyEmojiColonsCode": {
+    "message": ":colon:",
+    "description": "This is included in code-style in optionCopyEmojiColons."
+  },
+  "optionCopyEmojiColonsDescr": {
+    "message": "Only useful to enable on specific sites that support this kind of text.",
+    "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionShowConfirmationMessage": {
+    "message": "Show a confirmation message when the action succeeded.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionClosePopup": {
+    "message": "Close the popup after an emoji has been selected/inserted.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
   "optionsLicenseDisclaimer": {
     "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
@@ -187,6 +312,44 @@
   "optionsLicenseDisclaimerLinkText": {
     "message": "the whole license file",
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
+  },
+
+  "translatorCredit": {
+    "message": "This add-on has been translated into English by $TRANSLATORS$.",
+    "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
+    "placeholders": {
+      "translators": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/\">@rugk</a>"
+      }
+    }
+  },
+  "translatorLink": {
+    "message": "https://github.com/rugk",
+    "description": "The link to the translator's GitHub profile."
+  },
+  "translatorUsername": {
+    "message": "rugk",
+    "description": "The username that the translator wants to be referred to."
+  },
+
+  "contributorsThanks": {
+    "message": "Also thanks to $CONTRIBUTORS$.",
+    "description": "Text thanking all contributors and linking to the contributors file.",
+    "placeholders": {
+      "contributors": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/…/CONTRIBUTORS\">all other contributors</a>"
+      }
+    }
+  },
+  "contributorsThanksLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS",
+    "description": "The link to the CONTRIBUTORS file."
+  },
+  "contributorsThanksLinkText": {
+    "message": "all other contributors",
+    "description": "The link text linking to the contributors file. See contributorsThanks."
   },
 
   // emoji-search
@@ -221,6 +384,7 @@
 
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
+  // for help also see https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
   "emojiMartSearch": {
     "message": "Search",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
@@ -247,35 +411,35 @@
   },
   "emojiMartCategoryPeople": {
     "message": "Smileys & People",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryNature": {
     "message": "Animals & Nature",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryFoods": {
     "message": "Food & Drink",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryActivity": {
     "message": "Activity",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryPlaces": {
     "message": "Travel & Places",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryObjects": {
     "message": "Objects",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategorySymbols": {
     "message": "Symbols",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryFlags": {
     "message": "Flags",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryCustom": {
     "message": "Custom",
@@ -287,27 +451,27 @@
   },
   "emojiMartSkintone1": {
     "message": "Default Skin Tone",
-    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone2": {
     "message": "Light Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone3": {
     "message": "Medium-Light Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone4": {
     "message": "Medium Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone5": {
     "message": "Medium-Dark Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone6": {
     "message": "Dark Skin Tone",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
 
   // ARIA labels/descriptions

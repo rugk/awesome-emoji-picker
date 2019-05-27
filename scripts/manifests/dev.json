@@ -2,14 +2,14 @@
   "manifest_version": 2,
   "name": "AwesomeEmojiPicker DEV VERSION",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.7",
+  "version": "1.0",
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
-    "browser_style": false,
+    "browser_style": true,
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
@@ -34,9 +34,17 @@
   "background": {
     "page": "background/background.html"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period"
+      },
+      "description": "__MSG_commandOpenPopup__"
+    }
+  },
 
   // testing version allows loading unit test libraries from CDNs
-  "content_security_policy": "default-src 'self'; img-src data: https://unpkg.com",
+  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",
@@ -45,7 +53,12 @@
   "default_locale": "en",
 
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
   ],
 
   "applications": {

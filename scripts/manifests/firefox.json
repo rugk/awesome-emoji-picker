@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.7",
+  "version": "1.0",
   "author": "rugk",
 
   "description": "__MSG_extensionDescription__",
@@ -34,6 +34,14 @@
   "background": {
     "page": "background/background.html"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period"
+      },
+      "description": "__MSG_commandOpenPopup__"
+    }
+  },
 
   "content_security_policy": "default-src 'self'",
   "icons": {
@@ -44,7 +52,12 @@
   "default_locale": "en",
 
   "permissions": [
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
   ],
 
   "applications": {

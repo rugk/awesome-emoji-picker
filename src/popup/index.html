@@ -13,14 +13,32 @@
 		<script defer src="/common/lib/emoji-mart-embed/dist/emoji-mart.js"></script>
 	</head>
 	<body>
-		<head>
-
-		</head>
-		<main>
-
-		</main>
-		<footer>
-
-		</footer>
+		<aside class="message-container">
+			<div id="messageError" aria-label="error message" data-i18n data-i18n-aria-label="__MSG_ariaMessageError__" class="message-box error invisible fade-hide">
+				<span class="message-text">An error happened.</span>
+				<a href="#">
+					<button type="button" class="message-action-button micro-button error invisible"></button>
+				</a>
+				<img class="icon-dismiss invisible" src="/common/img/close-white.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+			</div>
+			<div id="messageTips" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+				<span class="message-text"></span>
+				<a href="#">
+					<button type="button" class="message-action-button micro-button info invisible"></button>
+				</a>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+			</div>
+		</aside>
+		<template id="popupTemplate">
+			<div id="confirmation-hint" class="popup invisible">
+				<div id="confirmation-hint-checkmark-animation-container">
+					<img id="confirmation-hint-checkmark-image" src="./img/check-animation.svg" alt="tick">
+				</div>
+				<div id="confirmation-hint-message-container">
+					<span id="confirmation-hint-message"></span>
+					<span id="confirmation-hint-description"></span>
+				</div>
+			</div>
+		</template>
 	</body>
 </html>
