@@ -1,72 +1,119 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 
-const POPUP_ICON_OPTION = "popupIconColored";
+import * as PageHandler from "./PageHandler.js";
+
+const CLIPBOARD_WRITE_PERMISSION = {
+    permissions: ["clipboardWrite"]
+};
+
+let optionPickerResult = {};
+let addonHasClipboardWritePermission = false;
 
 /**
- * Sets a popup icon variant.
+ * Errors in QR code generation
+ *
+ * @module QrLib/QrError
+ */
+
+export class PermissionError extends Error {
+    constructor(message, ...params) {
+        super(
+            message || "No permission for this action.",
+            ...params
+        );
+    }
+}
+
+/**
+ * As per users settings, insert emoji into web page or copy to clipboard.
  *
  * @private
- * @param {string} icon version or "null"/"undefined" to reset to default
+ * @param {Object} emoji
  * @returns {Promise}
+ * @throws {Error}
  */
-function setPopupIcon(icon) {
-    // verify parameter
-    switch (icon) {
-    case "dark": // fall through
-    case "light":
-    case "colored":
-    case null:
-        // ok
-        break;
-    default:
-        throw new TypeError(`invalid parameter: ${icon}`);
+export async function insertOrCopy(emoji) {
+    // destructure config
+    const {
+        resultType,
+        automaticInsert,
+        emojiCopyOnlyFallback
+    } = optionPickerResult;
+    let emojiCopy = optionPickerResult.emojiCopy;
+
+    console.log("Action triggered for emoji:", emoji);
+
+    // get type to use
+    const emojiText = emoji[resultType];
+
+    // insert emoji
+    let emojiInsertResult = Promise.resolve(); // successful by default
+    if (automaticInsert) {
+        emojiInsertResult = PageHandler.insertIntoPage(emojiText).then(console.log);
     }
 
-    // ignore request if API is not available
-    if (browser.browserAction.setIcon === undefined) {
-        return Promise.resolve();
+    // wait for successful execution, if wanted
+    if (emojiCopyOnlyFallback) {
+        await (emojiInsertResult.then(() => {
+            // if successful, do not copy emoji
+            emojiCopy = false;
+        }).catch(() => {
+            console.error("Insertion into page failed. Use emoji copy fallback.");
+
+            if (addonHasClipboardWritePermission) {
+                emojiCopy = true;
+            } else {
+                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission");
+                // Note: We cannot request the permission now, because of the same reason why we cannot actually
+                // copy without clipboardWrite permission (this is no user action anymore)
+
+                throw new PermissionError("Permisson missing for clipboardWrite.");
+            }
+
+            // resolve promise, so await continues
+        }));
     }
 
-    if (icon === null || icon === undefined) {
-        return browser.browserAction.setIcon({path: null});
+    // copy to clipboard
+    let emojiCopyResult = Promise.resolve(); // successful by default
+    if (emojiCopy) {
+        // WARNING: If there is an asyncronous waiting (await) before, we need to
+        // request the clipboardWrite permission to be able to do this, as the
+        // function call is then not anymore assigned to a click handler
+        // TODO: rejection with undefined error -> MOZILA BUG
+        emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
-    // set colored icon
-    if (icon === "colored") {
-        // WTF: For whatever reason, these paths need to be absolute...
-        return browser.browserAction.setIcon({path: {
-            "16": "/icons/icon_32.png",
-            "32": "/icons/icon_32.png",
-            "64": "/icons/icon_64.png",
-            "128": "/icons/icon_128.png"
-        }});
-    }
+    // find out results of operations
+    let isEmojiCopied = emojiCopy, isEmojiInserted = automaticInsert;
 
-    return browser.browserAction.setIcon({path: `/icons/fa-grin-${icon}.svg`});
+    // wait for both to succeed or fail (and set status)
+    await emojiInsertResult.catch(() => {
+        isEmojiInserted = false;
+    });
+    await emojiCopyResult.catch(() => {
+        isEmojiCopied = false;
+    });
+
+    return {
+        isEmojiInserted,
+        isEmojiCopied
+    };
 }
 
 /**
- * Set icon depending on whether it should be colored, or not.
+ * Init module.
  *
  * @public
- * @param {boolean} popupIconColored if popupIconColored is colored or not
  * @returns {Promise}
  */
-export function changeIconIfColored(popupIconColored) {
-    if (popupIconColored === true) {
-        return setPopupIcon("colored");
-    } else {
-        // reset icon
-        return setPopupIcon(null);
-    }
+export async function init() {
+    // request it/preload it here, so we need no async request to access it
+    // later
+    optionPickerResult = await AddonSettings.get("pickerResult");
+    // query permission values, so they can be accessed syncronously
+    addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
 }
 
-/**
- * Init icon module.
- *
- * @public
- * @returns {void}
- */
-export function init() {
-    return AddonSettings.get(POPUP_ICON_OPTION).then((popupIconColored) => changeIconIfColored(popupIconColored));
-}
+// automatically init module.
+init();

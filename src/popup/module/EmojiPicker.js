@@ -4,32 +4,11 @@
  * @public
  */
 
-import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
-import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
-import * as PageHandler from "./PageHandler.js";
-import * as ConfirmationHint from "./ConfirmationHint.js";
-import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
+import * as EmojiSelect from "./EmojiSelect.js";
 
 let emojiPicker = null;
-let optionPickerResult = {};
 
 const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
-const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: ["clipboardWrite"]
-};
-
-let addonHasClipboardWritePermission = false;
-
-/**
- * Saves the last click that selected an emoji.
- *
- * @private
- * @property {int} posX
- * @property {int} posY
- * @property {Object} forEmoji
- * @type {Object}
- */
-const lastClick = {};
 
 /**
  * Hardcoded settings for emoji-mart picker
@@ -41,8 +20,8 @@ export const hardcodedSettings = Object.freeze({
     color: "#ffb03b", // or #d42ecc ?
     i18n: getEmojiMartLocalised(),
     autoFocus: true,
-    onSelect: copyEmoji,
-    onClick: saveClickPosition,
+    onSelect: EmojiSelect.triggerOnSelect,
+    onClick: EmojiSelect.saveClickPosition,
     style: { "border": "none" },
     backgroundImageFn: getEmojiSheet
 });
@@ -86,145 +65,6 @@ function getEmojiMartLocalised() {
 }
 
 /**
- * Copy the Emoji to clipboard, once it has been selected.
- *
- * @private
- * @param {Object} emoji
- * @param {Object} event
- * @returns {void}
- */
-function saveClickPosition(emoji, event) {
-    // in case of an invalid event, ignore it
-    // see https://github.com/missive/emoji-mart/issues/342
-    if (event.pageX === 0 && event.pageY === 0) {
-        return;
-    }
-
-    lastClick.posX = event.pageX;
-    lastClick.posY = event.pageY;
-    lastClick.forEmoji = emoji;
-}
-
-/**
- * Copy the Emoji to clipboard, once it has been selected.
- *
- * @private
- * @param {Object} emoji
- * @returns {void}
- */
-async function copyEmoji(emoji) {
-    // get HTML element that was clicked
-    let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
-    let errorShown = false;
-
-    // if we clicked on the exact same emoji
-    // (object reference comparison deliberately!)
-    if (lastClick.forEmoji === emoji) {
-        clickedEmoji = {
-            left: lastClick.posX,
-            top: lastClick.posY,
-        };
-    }
-
-    // destructure config
-    const {
-        resultType,
-        automaticInsert,
-        emojiCopyOnlyFallback,
-        closePopup,
-        showConfirmationMessage
-    } = optionPickerResult;
-    let emojiCopy = optionPickerResult.emojiCopy;
-
-    console.log("Action triggered for emoji:", emoji);
-
-    // get type to use
-    const emojiText = emoji[resultType];
-
-    // insert emoji
-    let emojiInsertResult = Promise.resolve(); // successful by default
-    if (automaticInsert) {
-        emojiInsertResult = PageHandler.insertIntoPage(emojiText).then(console.log);
-    }
-
-    // wait for successful execution, if wanted
-    if (emojiCopyOnlyFallback) {
-        await (emojiInsertResult.then(() => {
-            // if successful, do not copy emoji
-            emojiCopy = false;
-        }).catch(() => {
-            console.error("Insertion into page failed. Use emoji copy fallback.");
-
-            if (addonHasClipboardWritePermission) {
-                emojiCopy = true;
-            } else {
-                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission");
-                // Note: We cannot request the permission now, because of the same reason why we cannot actually
-                // copy without clipboardWrite permission (this is no user action anymore)
-
-                CommonMessages.showError("errorPermissionMissing", true, {
-                    text: "messageOpenOptionsButton",
-                    action: () => browser.runtime.openOptionsPage()
-                });
-                errorShown = true;
-            }
-
-            // resolve promise, so await continues
-        }));
-    }
-
-    // copy to clipboard
-    let emojiCopyResult = Promise.resolve(); // successful by default
-    if (emojiCopy) {
-        // WARNING: If there is an asyncronous waiting (await) before, we need to
-        // request the clipboardWrite permission to be able to do this, as the
-        // function call is then not anymore assigned to a click handler
-        // TODO: rejection with undefined error -> MOZILA BUG
-        emojiCopyResult = navigator.clipboard.writeText(emojiText);
-    }
-
-    // find out results of operations
-    let isEmojiCopied = emojiCopy, isEmojiInserted = automaticInsert;
-
-    // wait for both to succeed or fail (and set status)
-    await emojiInsertResult.catch(() => {
-        isEmojiInserted = false;
-    });
-    await emojiCopyResult.catch(() => {
-        isEmojiCopied = false;
-    });
-
-    let messageToBeShown;
-    if (isEmojiInserted && isEmojiCopied) {
-        messageToBeShown = "EmojiCopiedAndInserted";
-    } else if (isEmojiInserted) {
-        messageToBeShown = "EmojiInserted";
-    } else if (isEmojiCopied) {
-        messageToBeShown = "EmojiCopied";
-    } else {
-        // some other error happened
-        messageToBeShown = "";
-
-        if (!errorShown) {
-            CommonMessages.showError("couldNotDoAction", true);
-        }
-    }
-
-    // if no error happened, show confirmation message
-    if (messageToBeShown) {
-        if (showConfirmationMessage) {
-            await ConfirmationHint.show(clickedEmoji, messageToBeShown);
-        }
-
-        if (closePopup) {
-            window.close();
-        }
-    }
-
-    return Promise.all([emojiInsertResult, emojiInsertResult]);
-}
-
-/**
  * Return the emoji sheet to use.
  *
  * @private
@@ -253,35 +93,14 @@ export function setAttribute(properties) {
 }
 
 /**
- * Return the HtmlElement that contains the emoji.
- *
- * Attention: As the frequently used emoji list duplicates the emoji, this just
- * always returns the first emoji it can find.
- *
- * @public
- * @param {Object|string} emoji
- * @returns {HTMLElement}
- */
-export function getEmojiHtml(emoji) {
-    const emojiQuestion = emoji.native || emoji;
-    return document.querySelector(`.emoji-mart-scroll [aria-label^="${emojiQuestion}"]`);
-}
-
-/**
  * Creates the emoji picker.
  *
  * @public
  * @param {Object} settings
  * @returns {Promise}
  */
-export async function init(settings) {
+export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
-
-    // request it/preload it here, so we need no async request to access it
-    // later
-    optionPickerResult = await AddonSettings.get("pickerResult");
-    // query permission values, so they can be accessed syncronously
-    addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
 
     console.debug("Using these emoji-mart settings:", initProperties);
 
