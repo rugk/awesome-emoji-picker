@@ -107,7 +107,7 @@ export async function triggerOnSelect(emoji) {
         const {
             isEmojiInserted,
             isEmojiCopied
-        } = EmojiInteraction.insertOrCopy(emoji);
+        } = await EmojiInteraction.insertOrCopy(emoji);
 
         messageToBeShown = getUserMessageForResult(isEmojiInserted, isEmojiCopied);
     } catch (e) {

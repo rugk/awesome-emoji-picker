@@ -53,7 +53,7 @@ export async function insertOrCopy(emoji) {
     }
 
     // wait for successful execution, if wanted
-    if (emojiCopyOnlyFallback) {
+    if (automaticInsert && emojiCopyOnlyFallback) {
         await (emojiInsertResult.then(() => {
             // if successful, do not copy emoji
             emojiCopy = false;
