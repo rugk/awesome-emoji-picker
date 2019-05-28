@@ -97,7 +97,7 @@
     "description": "Button for the tip shown to remind the user to rate the addon."
   },
   "tipPopupCodeHotkey": {
-    "message": "Die Tastenkombination für dieses Add-on ist Strg+Umschalt+E.",
+    "message": "Die Tastenkombination für dieses Add-on ist Strg+Umschalt+Punkt.",
     "description": "A tip shown to get the user to notice that there is a hot key."
   },
   "tipTranslateAddon": {
