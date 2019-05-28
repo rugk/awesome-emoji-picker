@@ -80,7 +80,7 @@ export async function insertOrCopy(emoji) {
         // WARNING: If there is an asyncronous waiting (await) before, we need to
         // request the clipboardWrite permission to be able to do this, as the
         // function call is then not anymore assigned to a click handler
-        // TODO: rejection with undefined error -> MOZILA BUG
+        // Reported at: https://bugzilla.mozilla.org/show_bug.cgi?id=1554855
         emojiCopyResult = navigator.clipboard.writeText(emojiText);
     }
 
