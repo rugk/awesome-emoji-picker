@@ -25,7 +25,14 @@ function loadEmojiMart() {
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
 export function triggerOmnixboxSuggestion(text, suggest) {
-    const suggestions = window.emojiMart.emojiIndex.search(text).map((emoji) => {
+    const searchResult = window.emojiMart.emojiIndex.search(text);
+
+    // if none are found, return…
+    if (!searchResult) {
+        return;
+    }
+
+    const suggestions = searchResult.map((emoji) => {
         return {
             description: browser.i18n.getMessage("searchResultDescription", [
                 emoji.native,
@@ -54,9 +61,11 @@ export function triggerOmnixboxSearch(text) {
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     try {
-        searchResult.push(
-            window.emojiMart.getEmojiDataFromNative(text)
-        );
+        const foundEmoji = window.emojiMart.getEmojiDataFromNative(text);
+
+        if (foundEmoji) {
+            searchResult.push(foundEmoji);
+        }
     } catch (e) {
         // ignore errors, as we usually expect text strings there and these are
         // totally fine, too; search may find something here
@@ -65,7 +74,7 @@ export function triggerOmnixboxSearch(text) {
     // emoji itself copied or found
     if (searchResult.length === 1) {
         // if result is only one emoji, also instantly copy it
-        EmojiInteraction.copyEmoji(searchResult[0]);
+        EmojiInteraction.insertOrCopy(searchResult[0]);
     } else {
         // otherwise open popup to show all emoji choices
         browser.browserAction.openPopup();
