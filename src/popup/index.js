@@ -32,7 +32,12 @@ async function createPicker() {
 }
 
 initEmojiMartStorage();
-createPicker();
+createPicker().then(() => {
+    // to be sure, trigger focus manually afterwards
+    // auto-focus does not always work properly, see
+    // https://github.com/rugk/awesome-emoji-picker/issues/28
+    document.querySelector(".emoji-mart-search > input").focus();
+});
 
 RandomTips.init(tips).then(() => {
     RandomTips.setContext("popup");
