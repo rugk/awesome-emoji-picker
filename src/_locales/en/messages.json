@@ -369,15 +369,15 @@
     "placeholders": {
       "native": {
         "content": "$1",
-        "example": "The Unicode symbol for the Emoji."
+        "example": "🐵 (The Unicode symbol for the Emoji)"
       },
       "name": {
         "content": "$2",
-        "example": "The name of the Emoji."
+        "example": "Monkey Face (The name of the Emoji)"
       },
       "colon_syntax": {
         "content": "$3",
-        "example": "The :colon: syntax of the selected Emoji."
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
       }
     }
   },
