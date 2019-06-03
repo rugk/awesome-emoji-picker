@@ -1,3 +1,4 @@
+import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 
 /**
@@ -55,8 +56,10 @@ export function triggerOmnixboxSuggestion(text, suggest) {
  * @returns {void}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
-export function triggerOmnixboxSearch(text) {
+export async function triggerOmnixboxSearch(text) {
     const searchResult = window.emojiMart.emojiIndex.search(text);
+
+    const emojiSearch = await AddonSettings.get("emojiSearch");
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
@@ -73,11 +76,18 @@ export function triggerOmnixboxSearch(text) {
 
     // emoji itself copied or found
     if (searchResult.length === 1) {
-        // if result is only one emoji, also instantly copy it
-        EmojiInteraction.insertOrCopy(searchResult[0]);
+        if (emojiSearch.resultType) {
+            // if result is only one emoji, also instantly copy it
+            EmojiInteraction.insertOrCopy(searchResult[0][emojiSearch.resultType], {
+                insertIntoPage: false,
+                copyOnlyOnFallback: false,
+                copyToClipboard: true
+            });
+        }
     } else {
         // otherwise open popup to show all emoji choices
-        browser.browserAction.openPopup();
+        // browser.browserAction.openPopup(); // TODO: does not work, because we have no permission
+
     }
 
 }
@@ -86,9 +96,15 @@ export function triggerOmnixboxSearch(text) {
  * Init omnibox search.
  *
  * @public
- * @returns {void}
+ * @returns {Promise}
  */
-export function init() {
+export async function init() {
+    // only load if enabled
+    const emojiSearch = await AddonSettings.get("emojiSearch");
+    if (!emojiSearch.enabled) {
+        return;
+    }
+
     // lazy-load emoji-mart
     loadEmojiMart();
 

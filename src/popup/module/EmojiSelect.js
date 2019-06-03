@@ -87,7 +87,8 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
 export async function triggerOnSelect(emoji) {
     const {
         closePopup,
-        showConfirmationMessage
+        showConfirmationMessage,
+        resultType
     } = optionPickerResult;
 
     // get HTML element that was clicked
@@ -105,11 +106,15 @@ export async function triggerOnSelect(emoji) {
     let messageToBeShown;
     try {
         const {
-            isEmojiInserted,
-            isEmojiCopied
-        } = await EmojiInteraction.insertOrCopy(emoji);
+            isInserted,
+            isCopied
+        } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
+            insertIntoPage: optionPickerResult.automaticInsert,
+            copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
+            copyToClipboard: optionPickerResult.copyEmoji
+        });
 
-        messageToBeShown = getUserMessageForResult(isEmojiInserted, isEmojiCopied);
+        messageToBeShown = getUserMessageForResult(isInserted, isCopied);
     } catch (e) {
         if (e instanceof EmojiInteraction.PermissionError) {
             CommonMessages.showError("errorPermissionMissing", true, {

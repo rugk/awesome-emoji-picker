@@ -1,12 +1,9 @@
-import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
-
 import * as PageHandler from "./PageHandler.js";
 
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: ["clipboardWrite"]
 };
 
-let optionPickerResult = {};
 let addonHasClipboardWritePermission = false;
 
 /**
@@ -28,42 +25,42 @@ export class PermissionError extends Error {
  * As per users settings, insert emoji into web page or copy to clipboard.
  *
  * @private
- * @param {Object} emoji
+ * @param {Object} text
+ * @param {Object} options
+ * @param {boolean} options.insertIntoPage whether to try to insert it into the active page
+ * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (alos requires copyToClipboard=true)
+ * @param {boolean} options.copyToClipboard whether the text should be copied into the page
  * @returns {Promise}
  * @throws {Error}
  */
-export async function insertOrCopy(emoji) {
+export async function insertOrCopy(text, options) {
     // destructure config
     const {
-        resultType,
-        automaticInsert,
-        emojiCopyOnlyFallback
-    } = optionPickerResult;
-    let emojiCopy = optionPickerResult.emojiCopy;
+        insertIntoPage,
+        copyOnlyOnFallback,
+    } = options;
+    let copyToClipboard = options.copyToClipboard;
 
-    console.log("Action triggered for emoji:", emoji);
-
-    // get type to use
-    const emojiText = emoji[resultType];
+    console.log("Action triggered for emoji:", text);
 
     // insert emoji
     let emojiInsertResult = Promise.resolve(); // successful by default
-    if (automaticInsert) {
-        emojiInsertResult = PageHandler.insertIntoPage(emojiText).then(console.log);
+    if (insertIntoPage) {
+        emojiInsertResult = PageHandler.insertIntoPage(text).then(console.log);
     }
 
     // wait for successful execution, if wanted
-    if (automaticInsert && emojiCopyOnlyFallback) {
+    if (insertIntoPage && copyOnlyOnFallback) {
         await (emojiInsertResult.then(() => {
             // if successful, do not copy emoji
-            emojiCopy = false;
+            copyToClipboard = false;
         }).catch(() => {
             console.error("Insertion into page failed. Use emoji copy fallback.");
 
             if (addonHasClipboardWritePermission) {
-                emojiCopy = true;
+                copyToClipboard = true;
             } else {
-                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission");
+                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission.");
                 // Note: We cannot request the permission now, because of the same reason why we cannot actually
                 // copy without clipboardWrite permission (this is no user action anymore)
 
@@ -75,29 +72,29 @@ export async function insertOrCopy(emoji) {
     }
 
     // copy to clipboard
-    let emojiCopyResult = Promise.resolve(); // successful by default
-    if (emojiCopy) {
+    let copyResult = Promise.resolve(); // successful by default
+    if (copyToClipboard) {
         // WARNING: If there is an asyncronous waiting (await) before, we need to
         // request the clipboardWrite permission to be able to do this, as the
         // function call is then not anymore assigned to a click handler
         // Reported at: https://bugzilla.mozilla.org/show_bug.cgi?id=1554855
-        emojiCopyResult = navigator.clipboard.writeText(emojiText);
+        copyResult = navigator.clipboard.writeText(text);
     }
 
     // find out results of operations
-    let isEmojiCopied = emojiCopy, isEmojiInserted = automaticInsert;
+    let isCopied = copyToClipboard, isInserted = insertIntoPage;
 
     // wait for both to succeed or fail (and set status)
     await emojiInsertResult.catch(() => {
-        isEmojiInserted = false;
+        isInserted = false;
     });
-    await emojiCopyResult.catch(() => {
-        isEmojiCopied = false;
+    await copyResult.catch(() => {
+        isCopied = false;
     });
 
     return {
-        isEmojiInserted,
-        isEmojiCopied
+        isInserted,
+        isCopied
     };
 }
 
@@ -108,9 +105,6 @@ export async function insertOrCopy(emoji) {
  * @returns {Promise}
  */
 export async function init() {
-    // request it/preload it here, so we need no async request to access it
-    // later
-    optionPickerResult = await AddonSettings.get("pickerResult");
     // query permission values, so they can be accessed syncronously
     addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
 }
