@@ -1,1 +1,1 @@
-emoji, emoji-picker, emoji-cheat-sheet, smiley, smileys, unicode, emoticon, emoticons, emoji-keyboard, emoji-search, emoji-searcher, emoji-unicode
+emoji, emoji-cheat-sheet, emoji-cheatsheet, emoji-keyboard, emoji-picker, emoji-search, emoji-searcher, emoji-unicode, emoticon, emoticons, smiley, smileys, unicode
