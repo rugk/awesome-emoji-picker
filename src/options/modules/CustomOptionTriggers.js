@@ -318,6 +318,28 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
 }
 
 /**
+ * Adjust options page when emojiSearch is changed.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @returns {Promise}
+ */
+function applyEmojiSearch(optionValue) {
+    // switch status of dependent settings
+    if (optionValue.enabled) {
+        document.getElementById("searchAction").disabled = false;
+        document.getElementById("emojipediaAction").disabled = false;
+        document.getElementById("searchBarDemo").removeAttribute("disabled");
+    } else {
+        document.getElementById("searchAction").disabled = true;
+        document.getElementById("emojipediaAction").disabled = true;
+        document.getElementById("searchBarDemo").setAttribute("disabled", "");
+    }
+}
+
+
+/**
  * Binds the triggers.
  *
  * This is basically the "init" method.
@@ -344,6 +366,7 @@ export function registerTrigger() {
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
+    AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
 
     // handle loading of options correctly
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
