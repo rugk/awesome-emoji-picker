@@ -354,8 +354,18 @@
 
   // emoji-search
   "searchTipDescription": {
-    "message": "Search for emojis via Awesome Emoji Picker…",
+    "message": "Search for emojis via $ADDON$…",
     "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchTipDescriptionDisabled": {
+    "message": "Searching for emojis with $ADDON$ is disabled… You can enable it in the options.",
+    "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
     "placeholders": {
       "addon": {
         "content": "$1",

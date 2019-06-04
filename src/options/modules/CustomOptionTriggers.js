@@ -8,6 +8,8 @@ import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticS
 import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
 import * as CustomMessages from "/common/modules/MessageHandler/CustomMessages.js";
 
+import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
+
 // used to apply options
 import * as IconHandler from "/common/modules/IconHandler.js";
 
@@ -336,6 +338,12 @@ function applyEmojiSearch(optionValue) {
         document.getElementById("emojipediaAction").disabled = true;
         document.getElementById("searchBarDemo").setAttribute("disabled", "");
     }
+
+    // triger update for current session
+    browser.runtime.sendMessage({
+        type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
+        toEnable: optionValue.enabled
+    });
 }
 
 

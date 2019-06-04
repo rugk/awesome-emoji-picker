@@ -1,19 +1,61 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
+import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
+
+import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
+
+let emojiMartIsLoaded = false;
 
 /**
  * Lazy-load the emoji-mart library, .
  *
  * This consumes some memory (RAM), up-to 10MB, as remount and other things are loaded.
  *
- * @public
+ * @private
  * @returns {void}
  */
 function loadEmojiMart() {
+    // prevent that it is loaded twice
+    if (emojiMartIsLoaded) {
+        return;
+    }
+
     const emojiMartLoader = document.createElement("script");
     emojiMartLoader.setAttribute("async", true);
     emojiMartLoader.setAttribute("src", "/common/lib/emoji-mart-embed/dist/emoji-mart.js");
     document.querySelector("head").appendChild(emojiMartLoader);
+
+    emojiMartIsLoaded = true;
+}
+
+/**
+ * Navigates to the URL in this tab or a new tab.
+ *
+ * @private
+ * @param {string} url the URL that should be opened
+ * @param {string} disposition as per {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
+ * @returns {void}
+ */
+function openTabUrl(url, disposition) {
+    switch (disposition) {
+    case "currentTab":
+        browser.tabs.update({
+            url
+        });
+        break;
+    case "newForegroundTab":
+        browser.tabs.create({
+            active: true,
+            url: url
+        });
+        break;
+    case "newBackgroundTab":
+        browser.tabs.create({
+            active: false,
+            url: url
+        });
+        break;
+    }
 }
 
 /**
@@ -56,7 +98,7 @@ export function triggerOmnixboxSuggestion(text, suggest) {
  * @returns {void}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
-export async function triggerOmnixboxSearch(text) {
+export async function triggerOmnixboxSearch(text, disposition) {
     const searchResult = window.emojiMart.emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
@@ -76,21 +118,70 @@ export async function triggerOmnixboxSearch(text) {
 
     // emoji itself copied or found
     if (searchResult.length === 1) {
-        if (emojiSearch.resultType) {
+        const emojiText = searchResult[0][emojiSearch.resultType];
+
+        if (emojiSearch.action === "copy") {
             // if result is only one emoji, also instantly copy it
-            EmojiInteraction.insertOrCopy(searchResult[0][emojiSearch.resultType], {
+            EmojiInteraction.insertOrCopy(emojiText, {
                 insertIntoPage: false,
                 copyOnlyOnFallback: false,
                 copyToClipboard: true
             });
+        } else if (emojiSearch.action === "emojipedia") {
+            const resultUrl = `https://emojipedia.org/search/?q=${emojiText}`;
+
+            // navigate to URL in current or new tab
+            openTabUrl(resultUrl, disposition);
+        } else {
+            throw new Error(`invalid emojiSearch.resultType setting: ${emojiSearch.resultType}`);
         }
     } else {
         // otherwise open popup to show all emoji choices
         // browser.browserAction.openPopup(); // TODO: does not work, because we have no permission
 
+        // search for result in emojipedia
+        const resultUrl = `https://emojipedia.org/search/?q=${text}`;
+        openTabUrl(resultUrl, disposition);
     }
-
 }
+
+/**
+ * Enables or disables the search in the omnibar.
+ *
+ * @private
+ * @param {boolean} toEnable
+ * @returns {void}
+ * @throws TypeError
+ */
+function toggleEnabledStatus(toEnable) {
+    // enable it
+    if (toEnable) {
+        // lazy-load emoji-mart
+        loadEmojiMart();
+
+        browser.omnibox.onInputChanged.addListener(triggerOmnixboxSuggestion);
+        browser.omnibox.onInputEntered.addListener(triggerOmnixboxSearch);
+
+        browser.omnibox.setDefaultSuggestion({
+            description: browser.i18n.getMessage("searchTipDescription", [
+                browser.i18n.getMessage("extensionName")
+            ])
+        });
+    } else if (!toEnable) {
+        // disable it
+        browser.omnibox.onInputChanged.removeListener(triggerOmnixboxSuggestion);
+        browser.omnibox.onInputEntered.removeListener(triggerOmnixboxSearch);
+
+        browser.omnibox.setDefaultSuggestion({
+            description: browser.i18n.getMessage("searchTipDescriptionDisabled", [
+                browser.i18n.getMessage("extensionName")
+            ])
+        });
+    } else {
+        throw new TypeError("isEnabled must be boolean!");
+    }
+}
+
 
 /**
  * Init omnibox search.
@@ -105,15 +196,12 @@ export async function init() {
         return;
     }
 
-    // lazy-load emoji-mart
-    loadEmojiMart();
-
-    browser.omnibox.onInputChanged.addListener(triggerOmnixboxSuggestion);
-    browser.omnibox.onInputEntered.addListener(triggerOmnixboxSearch);
-
-    browser.omnibox.setDefaultSuggestion({
-        description: browser.i18n.getMessage("searchTipDescription", [
-            browser.i18n.getMessage("extensionName")
-        ])
-    });
+    toggleEnabledStatus(true);
 }
+
+BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE, (request) => {
+    toggleEnabledStatus(request.toEnable);
+
+    // clear cache by reloading all options
+    return AddonSettings.loadOptions();
+});
