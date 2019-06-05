@@ -271,7 +271,7 @@ export function requestPermission(permissions, event, messageId, options = {}) {
         return Promise.resolve();
     }
 
-    const permissionRequestResult = browser.permissions.request(permissions).catch((error) => {
+    return browser.permissions.request(permissions).catch((error) => {
         console.error(error);
         // convert error to negative return value
         return null;
@@ -291,22 +291,18 @@ export function requestPermission(permissions, event, messageId, options = {}) {
         }
 
         throw new Error("permission request error");
-    });
-
-    // decide whether to hide the error message
-    permissionRequestResult.catch((error) => {
+    }).catch((error) => {
+        // decide whether to hide the error message
         if (options.hideMessageOnError) {
-            return; // convert to resolved Promise
-        } else {
-            // re-throw
-            throw error;
+            hideMessageBox(messageBox);
         }
+
+        // re-throw
+        throw error;
     }).then(() => {
         // hide all message boxs for this permission
         thisPermission.messageBoxes.forEach(hideMessageBox);
     });
-
-    return permissionRequestResult;
 }
 
 /**
