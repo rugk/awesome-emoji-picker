@@ -292,6 +292,24 @@ function applyEmojiSearch(optionValue) {
         type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
         toEnable: optionValue.enabled
     });
+
+    // request permission from user
+    if (optionValue.enabled && // only if actually enabled
+        optionValue.action === "copy" && // if we require a permission for copying
+        !PermissionRequest.isPermissionGranted(CLIPBOARD_WRITE_PERMISSION) // and not already granted
+    ) {
+        return PermissionRequest.requestPermission(
+            CLIPBOARD_WRITE_PERMISSION,
+            event,
+            MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
+        ).catch(() => {
+            // if permission is rejected (user declined), force disabling the setting
+            optionValue.emojiCopyOnlyFallback = false;
+            document.getElementById("emojiCopyOnlyFallback").checked = false;
+        });
+    }
+
+    return Promise.resolve();
 }
 
 
