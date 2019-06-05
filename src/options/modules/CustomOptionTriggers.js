@@ -5,8 +5,8 @@
  */
 
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
-import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
-import * as CustomMessages from "/common/modules/MessageHandler/CustomMessages.js";
+
+import * as PermissionRequest from "./PermissionRequest.js";
 
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
@@ -16,10 +16,8 @@ import * as IconHandler from "/common/modules/IconHandler.js";
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: ["clipboardWrite"]
 };
-const MESSAGE_EMOJI_COPY_PERMISSION = "emojiCopyOnlyFallbackPermissionInfo";
-
-let addonHasClipboardWritePermission = false;
-let clipboardWriteRequestMessageIsShown = false;
+const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
+const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 
 /**
  * Adjust UI if QR code size option is changed.
@@ -66,7 +64,6 @@ function saveEmojiSet(param) {
  */
 function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
-    const isUserInteractionHandler = event.type === "input" || event.type === "click" || event.type === "change";
 
     // switch status of sub-child
     if (optionValue.emojiCopy) {
@@ -77,66 +74,17 @@ function applyPickerResultPermissions(optionValue, option, event) {
 
     if (optionValue.emojiCopy && // only if actually enabled
         optionValue.emojiCopyOnlyFallback && // if we require a permission
-        !addonHasClipboardWritePermission // and not already granted
+        !PermissionRequest.isPermissionGranted(CLIPBOARD_WRITE_PERMISSION) // and not already granted
     ) {
-        // no action button by default
-        let actionButton = {};
-        // if we cannot actually request the permission, let's show a useful
-        // message, at least
-        if (!isUserInteractionHandler) {
-            clipboardWriteRequestMessageIsShown = true;
-
-            actionButton = {
-                text: "buttonRequestPermission",
-                action: (param) => {
-                    return applyPickerResultPermissions(optionValue, option, param.event);
-                }
-            };
-        }
-
-        CustomMessages.showMessage(MESSAGE_EMOJI_COPY_PERMISSION,
-            "emojiCopyOnlyFallbackPermissionInfo",
-            false,
-            actionButton);
-
-        // if we were called from an input handler, we can request the permission
-        // otherwise, we return now
-        if (!isUserInteractionHandler) {
-            return Promise.resolve();
-        }
-
-        retPromise = browser.permissions.request(CLIPBOARD_WRITE_PERMISSION).catch((error) => {
-            console.error(error);
-            // convert error to negative return value
-            return null;
-        }).then((permissionSuccessful) => {
-            switch (permissionSuccessful) {
-            case true:
-                // permission has been granted
-                addonHasClipboardWritePermission = true;
-                return;
-            case null:
-                CommonMessages.showError("Requesting clipboard permission failed.", true);
-                break;
-            case false:
-                // CommonMessages.showError("This feature cannot be used without the clipboard permission.", true);
-                break;
-            default:
-                console.error("Unknown value for permissionSuccessful:", permissionSuccessful);
-            }
-
+        retPromise = PermissionRequest.requestPermission(
+            CLIPBOARD_WRITE_PERMISSION,
+            event,
+            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK
+        ).catch(() => {
+            // if permission is rejected (user declined), force disabling the setting
             optionValue.emojiCopyOnlyFallback = false;
             document.getElementById("emojiCopyOnlyFallback").checked = false;
-
-            throw new Error("permission request error");
-        }).finally(() => {
-            CustomMessages.hideMessage(MESSAGE_EMOJI_COPY_PERMISSION, {animate: true});
         });
-    } else if (clipboardWriteRequestMessageIsShown) {
-        CustomMessages.hideMessage(MESSAGE_EMOJI_COPY_PERMISSION, {animate: true});
-        // only needs to be reset here, as it is only about the message with an
-        // action button
-        clipboardWriteRequestMessageIsShown = false;
     }
 
     return retPromise;
@@ -353,14 +301,9 @@ function applyEmojiSearch(optionValue) {
  * This is basically the "init" method.
  *
  * @function
- * @returns {void}
+ * @returns {Promise}
  */
-export function registerTrigger() {
-    // query permission values, so they can be accessed syncronously
-    browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION).then((hasPermission) => {
-        addonHasClipboardWritePermission = hasPermission;
-    });
-
+export async function registerTrigger() {
     // override load/safe behaviour for custom fields
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", saveEmojiSet);
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", adjustEmojiSize);
@@ -379,6 +322,17 @@ export function registerTrigger() {
     // handle loading of options correctly
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
 
-    // register custom messages
-    CustomMessages.registerMessageType(MESSAGE_EMOJI_COPY_PERMISSION, document.getElementById("emojiCopyOnlyFallbackPermissionInfo"));
+    // permission request init
+    await PermissionRequest.registerPermissionMessageBox(
+        CLIPBOARD_WRITE_PERMISSION,
+        MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK,
+        document.getElementById("emojiCopyOnlyFallbackPermissionInfo"),
+        "permissionRequiredClipboardWrite"
+    );
+    await PermissionRequest.registerPermissionMessageBox(
+        CLIPBOARD_WRITE_PERMISSION,
+        MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
+        document.getElementById("searchActionCopyPermissionInfo"),
+        "permissionRequiredClipboardWrite"
+    );
 }

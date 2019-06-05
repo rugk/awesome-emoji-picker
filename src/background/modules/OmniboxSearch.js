@@ -4,6 +4,10 @@ import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
+const CLIPBOARD_WRITE_PERMISSION = {
+    permissions: ["clipboardWrite"]
+};
+
 let emojiMartIsLoaded = false;
 
 /**
@@ -196,7 +200,16 @@ export async function triggerOmnixboxSearch(text, disposition) {
  * @returns {void}
  * @throws TypeError
  */
-function toggleEnabledStatus(toEnable) {
+async function toggleEnabledStatus(toEnable) {
+    // if we do not have the permission for clipboard, and need it for settings, force-disable feature
+    if (!(await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION))) {
+        const emojiSearch = await AddonSettings.get("emojiSearch");
+
+        if (emojiSearch.action === "copy") {
+            toEnable = false;
+        }
+    }
+
     // enable it
     if (toEnable) {
         // lazy-load emoji-mart
@@ -243,9 +256,9 @@ export async function init() {
     toggleEnabledStatus(emojiSearch.enabled);
 }
 
-BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE, (request) => {
-    toggleEnabledStatus(request.toEnable);
-
+BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE, async (request) => {
     // clear cache by reloading all options
-    return AddonSettings.loadOptions();
+    await AddonSettings.loadOptions();
+
+    return toggleEnabledStatus(request.toEnable);
 });

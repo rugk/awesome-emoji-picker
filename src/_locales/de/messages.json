@@ -64,7 +64,7 @@
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
 
-  "emojiCopyOnlyFallbackPermissionInfo": {
+  "permissionRequiredClipboardWrite": {
     "message": "Für dieses Feature wird die Berechtigung, Daten in die Zwischenablage zu kopieren, benötigt.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
