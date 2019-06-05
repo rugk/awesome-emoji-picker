@@ -59,8 +59,9 @@
 
   "optional_permissions": [
     "clipboardWrite",
-    "search" // currently not requested though
+    "search"
   ],
+  // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
 
   "applications": {
     "gecko": {
