@@ -303,9 +303,7 @@ function applyEmojiSearch(optionValue) {
             event,
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
         ).catch(() => {
-            // if permission is rejected (user declined), force disabling the setting
-            optionValue.emojiCopyOnlyFallback = false;
-            document.getElementById("emojiCopyOnlyFallback").checked = false;
+            // TODO: revert setting to previous state
         });
     }
 

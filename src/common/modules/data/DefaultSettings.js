@@ -37,7 +37,7 @@ const defaultSettings = {
         closePopup: true,
     },
     emojiSearch: {
-        enabled: true,
+        enabled: false,
         resultType: "native",
         action: "copy"
     },
