@@ -175,8 +175,12 @@ export async function triggerOmnixboxSearch(text, disposition) {
             throw new Error(`invalid emojiSearch.resultType setting: ${emojiSearch.resultType}`);
         }
     } else {
+        // fallback when we have either too many or too few emoji results
+
         // otherwise open popup to show all emoji choices
-        // browser.browserAction.openPopup(); // TODO: does not work, because we have no permission
+        // does not work, because we have no permission
+        // see https://bugzilla.mozilla.org/show_bug.cgi?id=1542358
+        // browser.browserAction.openPopup();
 
         // search for result in emojipedia
         const resultUrl = `https://emojipedia.org/search/?q=${text}`;
