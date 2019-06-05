@@ -58,7 +58,8 @@
   ],
 
   "optional_permissions": [
-    "clipboardWrite"
+    "clipboardWrite",
+    "search" // currently not requested though
   ],
 
   "applications": {

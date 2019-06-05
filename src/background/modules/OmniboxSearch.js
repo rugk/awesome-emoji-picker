@@ -90,7 +90,46 @@ export function triggerOmnixboxSuggestion(text, suggest) {
 }
 
 /**
- * Triggered when the search is actually executed,.
+ * Triggered when the search is actually executed, but the omnibox feature is disabled.
+ *
+ * @public
+ * @param {string} text the string the user entered or selected
+ * @param {string} disposition how the result should be possible
+ * @returns {Promise}
+ * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
+ */
+export async function triggerOmnixboxDisabledSearch(text, disposition) {
+    // if search API is allowed, we just fall-back to default search
+    if (browser.search) {
+        let tabId = undefined;
+
+        switch (disposition) {
+        case "currentTab": {
+            const currentTab = await browser.tabs.query({
+                active: true,
+                currentWindow: true
+            });
+
+            if (currentTab.length >= 1) {
+                tabId = currentTab[0].id;
+            }
+
+            // deliberately fall-through
+        }
+        default: // eslint-disable-line no-fallthrough
+            return browser.search.search({
+                query: text,
+                tabId: tabId
+            });
+        }
+    }
+
+    // otherwise we just open the options page
+    return browser.runtime.openOptionsPage();
+}
+
+/**
+ * Triggered when the search is actually executed.
  *
  * @public
  * @param {string} text the string the user entered or selected
@@ -162,6 +201,8 @@ function toggleEnabledStatus(toEnable) {
         browser.omnibox.onInputChanged.addListener(triggerOmnixboxSuggestion);
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxSearch);
 
+        browser.omnibox.onInputEntered.removeListener(triggerOmnixboxDisabledSearch);
+
         browser.omnibox.setDefaultSuggestion({
             description: browser.i18n.getMessage("searchTipDescription", [
                 browser.i18n.getMessage("extensionName")
@@ -171,6 +212,8 @@ function toggleEnabledStatus(toEnable) {
         // disable it
         browser.omnibox.onInputChanged.removeListener(triggerOmnixboxSuggestion);
         browser.omnibox.onInputEntered.removeListener(triggerOmnixboxSearch);
+
+        browser.omnibox.onInputEntered.addListener(triggerOmnixboxDisabledSearch);
 
         browser.omnibox.setDefaultSuggestion({
             description: browser.i18n.getMessage("searchTipDescriptionDisabled", [
@@ -190,13 +233,10 @@ function toggleEnabledStatus(toEnable) {
  * @returns {Promise}
  */
 export async function init() {
-    // only load if enabled
+    // load whether it is enabled
     const emojiSearch = await AddonSettings.get("emojiSearch");
-    if (!emojiSearch.enabled) {
-        return;
-    }
 
-    toggleEnabledStatus(true);
+    toggleEnabledStatus(emojiSearch.enabled);
 }
 
 BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE, (request) => {
