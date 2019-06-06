@@ -229,7 +229,8 @@ export async function registerPermissionMessageBox(permissions, messageId, elMes
  * You need to register the permission & message box via registerPermissionMessageBox.
  *
  * IMPORTANT: Do not use asyncronous actions (async/await) before calling this,
- * as we then cannot request the permission in any case.
+ * as we then cannot request the permission in that case. It should be triggered
+ * from a user-event.
  *
  * It rejects, when the permission has been rejected or cannot be requested.
  *

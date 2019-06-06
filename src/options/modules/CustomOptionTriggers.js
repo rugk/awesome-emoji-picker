@@ -19,6 +19,8 @@ const CLIPBOARD_WRITE_PERMISSION = {
 const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 
+let lastEmojiSearchSettings = null;
+
 /**
  * Adjust UI if QR code size option is changed.
  *
@@ -256,7 +258,7 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
     if (oldEmojisPerLineValue > newMaxValue) {
         elEmojisPerLine.value = newMaxValue;
 
-        // manualyl update value/trigger trigger
+        // manually update value/trigger trigger
         updatePerLineStatus({
             perLine: newMaxValue
         }, "emojiPicker");
@@ -272,17 +274,17 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} [option]
+ * @param  {string} option
  * @returns {Promise}
  */
-function applyEmojiSearch(optionValue) {
+function applyEmojiSearch(optionValue, option) {
     // switch status of dependent settings
     if (optionValue.enabled) {
-        document.getElementById("searchAction").disabled = false;
+        document.getElementById("searchCopyAction").disabled = false;
         document.getElementById("emojipediaAction").disabled = false;
         document.getElementById("searchBarDemo").removeAttribute("disabled");
     } else {
-        document.getElementById("searchAction").disabled = true;
+        document.getElementById("searchCopyAction").disabled = true;
         document.getElementById("emojipediaAction").disabled = true;
         document.getElementById("searchBarDemo").setAttribute("disabled", "");
     }
@@ -303,9 +305,34 @@ function applyEmojiSearch(optionValue) {
             event,
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
         ).catch(() => {
-            // TODO: revert setting to previous state
+            // revert settings to last state
+            debugger;
+            AutomaticSettings.setOption("enabled", lastEmojiSearchSettings, option);
+
+            //
+            // if (!lastEmojiSearchSettings.enabled) {
+            //     document.getElementById("omnibarIntegration").checked = false;
+            // }
+            //
+            // switch (lastEmojiSearchSettings.action) {
+            // case "copy":
+            //     document.getElementById("searchCopyAction").checked = true;
+            //     break;
+            // case "emojipedia":
+            //     document.getElementById("emojipediaAction").checked = true;
+            //     break;
+            // default:
+            //     throw new TypeError(`lastEmojiSearchSettings.action has invalid value: ${lastEmojiSearchSettings.action}`);
+            // }
+
+            // re-apply own stuff (e.g. to get disabled status)
+            // NOTE: This won't end in an endless loop, because our reversion above
+            // _must not_ set it to a state where a permission is requested.
+            return applyEmojiSearch(lastEmojiSearchSettings);
         });
     }
+
+    lastEmojiSearchSettings = optionValue;
 
     return Promise.resolve();
 }
