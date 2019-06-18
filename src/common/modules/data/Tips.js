@@ -100,7 +100,7 @@ const tipArray = [
         text: "tipYouLikeAddon",
         actionButton: {
             text: "tipYouLikeAddonButton",
-            action: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker//reviews/"
+            action: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/"
         }
     },
     {
