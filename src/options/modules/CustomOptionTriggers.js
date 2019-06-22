@@ -293,7 +293,7 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
 
     // x = (width - 2*outer border - tolerance) / (emoji + 2*emoji border)
     const newMaxValue = Math.floor((800 - 2 * 13 - 5) / (emojiSizeValue + 2 * 6));
-    // width = (emoji + 2*emoji border) * x + 2*outer border (+ tolerance)
+    // width = (emoji + 2*emoji border) * x + 2*outer border [+ tolerance]
     const estimatedWidth = (emojiSizeValue + 2 * 6) * newMaxValue + 2 * 13;
     console.log("Caluclated a maximum number of emojis per line of", newMaxValue,
         "for emojis of size", `${emojiSizeValue}px,`, "resulting in an estimated with of", `${estimatedWidth}px.`);
@@ -306,7 +306,7 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
     if (oldEmojisPerLineValue > newMaxValue) {
         elEmojisPerLine.value = newMaxValue;
 
-        // manualyl update value/trigger trigger
+        // manually update value/trigger trigger
         updatePerLineStatus({
             perLine: newMaxValue
         }, "emojiPicker");
