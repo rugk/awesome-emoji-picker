@@ -43,7 +43,9 @@ export const hardcodedSettings = Object.freeze({
     onSelect: copyEmoji,
     onClick: saveClickPosition,
     style: { "border": "none" },
-    backgroundImageFn: getEmojiSheet
+    backgroundImageFn: getEmojiSheet,
+    title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
+    emoji: "star-struck" // default emoji
 });
 
 /**
