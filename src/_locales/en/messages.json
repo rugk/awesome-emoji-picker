@@ -267,8 +267,8 @@
   },
 
   "optionCopyEmojiColons": {
-    "message": "Use the $COLON$ instead of the Emoji unicode.",
-    "description": "This is an option shown in the add-on settings.",
+    "message": "Use the $COLON$ code instead of the Emoji unicode.",
+    "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
     "placeholders": {
       "colon": {
         "content": "$1",
