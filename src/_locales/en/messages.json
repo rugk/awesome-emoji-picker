@@ -105,7 +105,7 @@
     "description": "A tip shown to users that potentially speak another language to translate this add-on."
   },
   "tipTranslateAddonLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
     "description": "The link to a description of the translation service/way you can use."
   },
   "tipDonate": {
