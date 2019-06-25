@@ -22,6 +22,8 @@ It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). 
 
 This extension only works with Firefox v63 or higher.
 
+The development of this add-on was also triggered, because the development of another add-on called [“Emoji Helper” or “Emoji Cheatsheet” stalled](https://github.com/johannhof/emoji-helper/issues/127).
+
 ## Download
 
 **[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-download)**
