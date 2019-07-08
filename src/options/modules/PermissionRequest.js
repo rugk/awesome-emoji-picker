@@ -107,32 +107,34 @@ function hideMessageBox(messageBox) {
  * can obviously you can omit it when you do not want to show that button (i.e. if showButton = false)
  * see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/Permissions
  * @see {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/onAdded}
- * @returns {void}
+ * @returns {Promise}
  */
 function showPermissionMessageBox(messageBox, showButton, permissions) {
-    let actionButton = null;
-    if (showButton && permissions) {
-        actionButton = (param) => {
-            return requestPermission(permissions,
-                param.event,
-                messageBox.messageId, {
-                    hideMessageOnError: false
-                }
-            ).catch(() => {
-                // show own message wuth button again
-                return showPermissionMessageBox(messageBox, showButton, permissions);
-            });
-        };
-    }
-
-    CustomMessages.showMessage(messageBox.messageId,
-        messageBox.messageText,
-        false,
-        {
-            text: "buttonRequestPermission",
-            action: actionButton
+    return new Promise((resolve, reject) => {
+        let actionButton = null;
+        if (showButton && permissions) {
+            actionButton = (param) => {
+                return requestPermission(permissions,
+                    messageBox.messageId,
+                    param.event, {
+                        hideMessageOnError: false
+                    }
+                ).catch(() => {
+                    // show own message with button again
+                    return showPermissionMessageBox(messageBox, showButton, permissions);
+                }).then(resolve).catch(reject);
+            };
         }
-    );
+
+        CustomMessages.showMessage(messageBox.messageId,
+            messageBox.messageText,
+            false,
+            {
+                text: "buttonRequestPermission",
+                action: actionButton
+            }
+        );
+    });
 }
 
 /**
@@ -222,31 +224,61 @@ export async function registerPermissionMessageBox(permissions, messageId, elMes
 }
 
 /**
- * Request the permission if possible.
+ * Request the permission from the user, if possible.
  *
- * If we cannot request it now, we show a message to the user noticing them about
- * the missing permission, using CustomMessages.
- * You need to register the permission & message box via registerPermissionMessageBox.
+ * You need to register the permission & message box via {@link registerPermissionMessageBox()}.
  *
- * IMPORTANT: Do not use asyncronous actions (async/await) before calling this,
- * as we then cannot request the permission in any case.
+ * Note, however, that due to security constraints of the browser WebExtension API,
+ * we can only request the permission if this call is a "click handler", see
+ * {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/Request_the_right_permissions#Request_permissions_at_runtime}.
+ * That is why we urge you to pass an "event" parameter, if you have it.
  *
- * It rejects, when the permission has been rejected or cannot be requested.
+ * Thus, it may happen that you call this function when we cannot actually request
+ * the permission right now from the user.
+ * If that happens, we show a message to the user noticing them about the missing
+ * permission, using the CustomMessages module. If the user accepts the permission
+ * prompt (at any time), the returned Promise will be resolved.
+ * This basically implies the nagUserEndless option. (see details below)
+ *
+ * IMPORTANT: There are two cases, where we certainly cannot request any permission
+ * right now, from the user:
+ * * when you do not pass the event parameter.
+ *   However, this is a valid way to use this function and supported.
+ * * when you use an asyncronous actions (async/await) before calling this.
+ *   This is a thing that should never happen, as it breaks our logic, as we
+ *   cannot use the event parameter to check, whether this call is a click
+ *   handler.
+ *
+ * It rejects, if the permission cannot be requested or when the user declines the
+ * permission when it is initially shown we reject this permission.
+ * When you set `options.nagUserEndless` to `true` and the user declines
+ * the permission, we nag them again with a message box that asks them whether we can
+ * get their permission. As such, you should, in this particular case, *not*
+ * assume the returned Promise will ever reject. It will only reject in case
+ * of an error. Usually, it will just be pending unless the user approves the
+ * permission.
  *
  * @public
  * @param {browser.permissions.Permissions} permissions the permission to request,
  * see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/Permissions
- * @param  {Object} event the original event that triggered this
  * @param  {string} messageId the message that should be shown as a fallback if
  *                              requesting the permission is not possible
+ * @param  {Object} [event] the original event that triggered this, pass it if
+ *                  you have it, so we can trigger the permission immediately.
  * @param {Object} [options] additonal options
- * @param {Object} [options.hideMessageOnError=true]
- * @returns {Promise}
+ * @param {Object} [options.hideMessageOnError=true] hide the message box, when
+ *                  the user declines the permission or another error happens
+ * @param {Object} [options.nagUserEndless=false] on permission rejection always
+ *                  ask user again for permission
+ * @returns {Promise} resolves, if the permission has been granted
  * @throws {TypeError}
  */
-export function requestPermission(permissions, event, messageId, options = {}) {
+export function requestPermission(permissions, messageId, event, options = {}) {
     if (options.hideMessageOnError === undefined || options.hideMessageOnError === null) {
         options.hideMessageOnError = true;
+    }
+    if (options.nagUserEndless === undefined || options.nagUserEndless === null) {
+        options.nagUserEndless = false;
     }
 
     // find out whether this has been triggered by a click/user action, so we can request a permission
@@ -263,15 +295,15 @@ export function requestPermission(permissions, event, messageId, options = {}) {
     // message, at least
     // if we can, show it anyway, so we have some background information on
     // what/why it is requested.
-    showPermissionMessageBox(messageBox, !isUserInteractionHandler, permissions);
+    const resultOfDeferredRequest = showPermissionMessageBox(messageBox, !isUserInteractionHandler, permissions);
 
     // if we were called from an input handler, we can request the permission
     // otherwise, we return now
     if (!isUserInteractionHandler) {
-        return Promise.resolve();
+        return resultOfDeferredRequest;
     }
 
-    return browser.permissions.request(permissions).catch((error) => {
+    const requestPermission = browser.permissions.request(permissions).catch((error) => {
         console.error(error);
         // convert error to negative return value
         return null;
@@ -284,14 +316,19 @@ export function requestPermission(permissions, event, messageId, options = {}) {
             CommonMessages.showError("Requesting permission failed.", true); // TODO: localize
             break;
         case false:
-            // CommonMessages.showError("This feature cannot be used without the permission.", true);
+            if (options.nagUserEndless) {
+                return showPermissionMessageBox(messageBox, true, permissions);
+            }
             break;
         default:
             console.error("Unknown value for permissionSuccessful:", permissionSuccessful);
         }
 
         throw new Error("permission request error");
-    }).catch((error) => {
+    });
+
+    // message box hiding decoupled from returned Promise value
+    requestPermission.catch((error) => {
         // decide whether to hide the error message
         if (options.hideMessageOnError) {
             hideMessageBox(messageBox);
@@ -300,9 +337,11 @@ export function requestPermission(permissions, event, messageId, options = {}) {
         // re-throw
         throw error;
     }).then(() => {
-        // hide all message boxs for this permission
+        // hide all message boxes for this permission
         thisPermission.messageBoxes.forEach(hideMessageBox);
     });
+
+    return requestPermission;
 }
 
 /**

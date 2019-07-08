@@ -78,8 +78,8 @@ function applyPickerResultPermissions(optionValue, option, event) {
     ) {
         retPromise = PermissionRequest.requestPermission(
             CLIPBOARD_WRITE_PERMISSION,
-            event,
-            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK
+            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK,
+            event
         ).catch(() => {
             // if permission is rejected (user declined), force disabling the setting
             optionValue.emojiCopyOnlyFallback = false;
@@ -287,7 +287,7 @@ function applyEmojiSearch(optionValue) {
         document.getElementById("searchBarDemo").setAttribute("disabled", "");
     }
 
-    // triger update for current session
+    // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
         toEnable: optionValue.enabled
@@ -300,11 +300,22 @@ function applyEmojiSearch(optionValue) {
     ) {
         return PermissionRequest.requestPermission(
             CLIPBOARD_WRITE_PERMISSION,
+            MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
             event,
-            MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
-        ).catch(() => {
+            {nagUserEndless: true}
+        ).then(() => {
+            // also trigger update when permission is granted
+            browser.runtime.sendMessage({
+                type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
+                toEnable: optionValue.enabled
+            });
+        }).catch(() => {
+            // only rejects in case of fatal error
+            debugger;
             // TODO: revert setting to previous state
         });
+    } else {
+        debugger; // TODO. cancel permission prompt already shown
     }
 
     return Promise.resolve();
