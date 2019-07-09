@@ -9,6 +9,15 @@ import * as CustomMessages from "/common/modules/MessageHandler/CustomMessages.j
 
 const optionalPermissions = {};
 
+export class PermissionError extends Error {
+    constructor(message, ...params) {
+        super(
+            message || "No permission for this action.",
+            ...params
+        );
+    }
+}
+
 /**
  * Compares, whether the permissions equal.
  *
@@ -100,29 +109,23 @@ function hideMessageBox(messageBox) {
  *
  * @private
  * @param {Object} messageBox the message
- * @param {Symbol} [messageBox.messageId]
- * @param {string} [messageBox.messageText]
  * @param {boolean} showButton shows an action button if
  * @param {browser.permissions.Permissions} [permissions] the permission to request, if button is clicked
  * can obviously you can omit it when you do not want to show that button (i.e. if showButton = false)
  * see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/Permissions
+ * @param {Object} [options] additonal options, see {@link requestPermission()}
  * @see {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/onAdded}
  * @returns {Promise}
  */
-function showPermissionMessageBox(messageBox, showButton, permissions) {
+function showPermissionMessageBox(messageBox, showButton, permissions, options) {
     return new Promise((resolve, reject) => {
         let actionButton = null;
         if (showButton && permissions) {
             actionButton = (param) => {
                 return requestPermission(permissions,
                     messageBox.messageId,
-                    param.event, {
-                        hideMessageOnError: false
-                    }
-                ).catch(() => {
-                    // show own message with button again
-                    return showPermissionMessageBox(messageBox, showButton, permissions);
-                }).then(resolve).catch(reject);
+                    param.event, options
+                ).then(resolve).catch(reject);
             };
         }
 
@@ -268,8 +271,8 @@ export async function registerPermissionMessageBox(permissions, messageId, elMes
  * @param {Object} [options] additonal options
  * @param {Object} [options.hideMessageOnError=true] hide the message box, when
  *                  the user declines the permission or another error happens
- * @param {Object} [options.nagUserEndless=false] on permission rejection always
- *                  ask user again for permission
+ * @param {Object} [options.retry=false] true to retry indefinitively, or a number
+ *                  to limit retries, false basically means it does not retry (same as =1)
  * @returns {Promise} resolves, if the permission has been granted
  * @throws {TypeError}
  */
@@ -277,8 +280,8 @@ export function requestPermission(permissions, messageId, event, options = {}) {
     if (options.hideMessageOnError === undefined || options.hideMessageOnError === null) {
         options.hideMessageOnError = true;
     }
-    if (options.nagUserEndless === undefined || options.nagUserEndless === null) {
-        options.nagUserEndless = false;
+    if (options.retry === undefined || options.retry === null) {
+        options.retry = false;
     }
 
     // find out whether this has been triggered by a click/user action, so we can request a permission
@@ -295,13 +298,16 @@ export function requestPermission(permissions, messageId, event, options = {}) {
     // message, at least
     // if we can, show it anyway, so we have some background information on
     // what/why it is requested.
-    const resultOfDeferredRequest = showPermissionMessageBox(messageBox, !isUserInteractionHandler, permissions);
+    const resultOfDeferredRequest = showPermissionMessageBox(messageBox, !isUserInteractionHandler, permissions, options);
 
     // if we were called from an input handler, we can request the permission
     // otherwise, we return now
     if (!isUserInteractionHandler) {
         return resultOfDeferredRequest;
     }
+
+    options.retryCount = options.retryCount || 0;
+    options.retryCount++;
 
     const requestPermission = browser.permissions.request(permissions).catch((error) => {
         console.error(error);
@@ -316,21 +322,37 @@ export function requestPermission(permissions, messageId, event, options = {}) {
             CommonMessages.showError("Requesting permission failed.", true); // TODO: localize
             break;
         case false:
-            if (options.nagUserEndless) {
-                return showPermissionMessageBox(messageBox, true, permissions);
-            }
-            break;
+
+            throw new PermissionError("permission request declined");
         default:
             console.error("Unknown value for permissionSuccessful:", permissionSuccessful);
         }
 
-        throw new Error("permission request error");
+        throw new Error("permission request failed due to internal problems");
+    });
+
+    const retryAllowed = options.retry === true || (options.retryCount < options.retry);
+
+    // handle case when permission is declined, optionally retry
+    // also decoupled, so the message box hiding is not affected by it
+    const returnPermission = requestPermission.catch((error) => {
+        if ((error instanceof PermissionError) && retryAllowed) {
+            return showPermissionMessageBox(messageBox, true, permissions, options);
+        }
+
+        // re-throw
+        throw error;
     });
 
     // message box hiding decoupled from returned Promise value
     requestPermission.catch((error) => {
         // decide whether to hide the error message
-        if (options.hideMessageOnError) {
+        if (( // if we defer a retry, never hide message
+            !(error instanceof PermissionError) ||
+            !retryAllowed
+        ) && // and only hide if option is set
+            options.hideMessageOnError
+        ) {
             hideMessageBox(messageBox);
         }
 
@@ -341,7 +363,7 @@ export function requestPermission(permissions, messageId, event, options = {}) {
         thisPermission.messageBoxes.forEach(hideMessageBox);
     });
 
-    return requestPermission;
+    return returnPermission;
 }
 
 /**
