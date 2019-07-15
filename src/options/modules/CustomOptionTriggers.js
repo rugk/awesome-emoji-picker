@@ -302,7 +302,7 @@ function applyEmojiSearch(optionValue) {
             CLIPBOARD_WRITE_PERMISSION,
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
             event,
-            {retry: 3}
+            {retry: true}
         ).then(() => {
             // also trigger update when permission is granted
             browser.runtime.sendMessage({

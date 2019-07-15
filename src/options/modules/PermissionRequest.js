@@ -284,6 +284,11 @@ export function requestPermission(permissions, messageId, event, options = {}) {
         options.retry = false;
     }
 
+    // validate parameters
+    if (options.retry < 1) {
+        throw new TypeError(`invalid options.retry value of ${options.retry} passed.`);
+    }
+
     // find out whether this has been triggered by a click/user action, so we can request a permission
     const isUserInteractionHandler = event && (event.type === "input" || event.type === "click" || event.type === "change");
 
