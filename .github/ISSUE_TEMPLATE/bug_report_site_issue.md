@@ -19,7 +19,7 @@ assignees: ''
 2. 
 3. 
 
-## Screencast
+### Screencast
 <!-- If you can record your steps that lead to the problem, please include a screencast (video of the steps) or, at least, a screenshot. -->
 
 ### Actual behavior
