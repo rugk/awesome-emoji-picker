@@ -1,0 +1,472 @@
+{
+  // manifest.json
+  "extensionName": {
+    "message": "Awesome Emoji Picker",
+    "description": "Name of the extension. I suggest not to translate it."
+  },
+  "extensionNameShort": {
+    "message": "Awesome Emoji",
+    "description": "Short name of the extension. I suggest not to translate it."
+  },
+  "extensionDescription": {
+    "message": "Este complemento te otorga un moderno selector para que encuentres emojis. Puedes copiarlo al portapapeles o insertar el emoji en la página que tengas activa.",
+    "description": "Description of the extension."
+  },
+  "browserActionButtonTitle": {
+    "message": "Awesome Emoji Picker",
+    "description": "The title for the button, which opens the popup. I suggest not to translate it."
+  },
+  "commandOpenPopup": {
+    "message": "Abrir selector de emojis",
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
+  },
+
+  // errors or other messages (mostly for settings)
+  "errorShowingMessage": {
+    "message": "No se puede mostrar este mensaje.",
+    "description": "When there is an error when showing the error/info/…."
+  },
+  "couldNotLoadOptions": {
+    "message": "No se puede cargar la configuración.",
+    "description": "When one or all settings could not be loaded."
+  },
+  "couldNotSaveOption": {
+    "message": "No se puede guardar la configuración.",
+    "description": "When a setting could not be saved."
+  },
+  "messageUndoButton": {
+    "message": "Deshacer",
+    "description": "The text of a button that undoes the last action."
+  },
+  "couldNotUndoAction": {
+    "message": "No se pudo deshacer la acción.",
+    "description": "Shown when an action cannot be undone."
+  },
+  "resettingOptionsWorked": {
+    "message": "La configuración ha sido reestablecida!",
+    "description": "The message shown, when the options of the settings were reset."
+  },
+  "resettingOptionsFailed": {
+    "message": "No se pudo restaurar la configuración!",
+    "description": "The message shown, when the options of the settings could not have been reset."
+  },
+
+  "errorPermissionMissing": {
+    "message": "Falta un permiso para esta acción.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
+  },
+  "messageOpenOptionsButton": {
+    "message": "Abrir opciones",
+    "description": "The text of a button that opens the options page."
+  },
+  "couldNotDoAction": {
+    "message": "La acción que has querido hacer falló.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown."
+  },
+
+  "emojiCopyOnlyFallbackPermissionInfo": {
+    "message": "Para usar esta característica falta el permiso para copiar datos en el portapapeles.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
+  },
+  "buttonRequestPermission": {
+    "message": "Dar permiso",
+    "description": "The button label, used for requesting a permission that is missing."
+  },
+
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copiado",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji insertado",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copiado e insertado",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
+  },
+
+  // tips
+  "tipYouLikeAddon": {
+    "message": "Te agrada este complemento?",
+    "description": "A tip shown to remind the user to rate the addon."
+  },
+  "tipYouLikeAddonButton": {
+    "message": "Califícalo",
+    "description": "Button for the tip shown to remind the user to rate the addon."
+  },
+  "tipPopupCodeHotkey": {
+    "message": "Recuerda que el atajo de teclado para este complemento es Ctrl+Shift+Punto",
+    "description": "A tip shown to get the user to notice that there is a hot key."
+  },
+  "tipTranslateAddon": {
+    "message": "Si hablas otro idioma, puedes ayudar traduciendo este complemento",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on."
+  },
+  "tipTranslateAddonLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "description": "The link to a description of the translation service/way you can use."
+  },
+  "tipDonate": {
+    "message": "Disfrutas usar este complemento gratuito?",
+    "description": "A tip shown to get the remind them of a donation."
+  },
+  "tipDonateButton": {
+    "message": "Soporta su desarrollo donando",
+    "description": "The button of the donation tip taking the user to the donation site."
+  },
+  "tipLearnMore": {
+    "message": "Más información",
+    "description": "The common button for tips, where you can get more information on click."
+  },
+
+  // options
+  "someSettingsAreManaged": {
+    "message": "Algunas opciones son controladas por el administrador de su equipo y no han podido ser cambiadas.",
+    "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators."
+  },
+  "optionIsDisabledBecauseManaged": {
+    "message": "Esta opción está desactivada porque así lo ha configurado un administrador de su equipo.",
+    "description": "The title (tooltip) shown, when hovering over a disabled, managed option."
+  },
+  "optionLearnMore": {
+    "message": "Más información",
+    "description": "When a link to an explainer needs to be added, this is the link text."
+  },
+  "optionsResetButton": {
+    "message": "Reestablecer a valores por defecto",
+    "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
+  },
+
+  "titleAppearance": {
+    "message": "Apariencia",
+    "description": "The title for a settings group."
+  },
+  "titleBehaviour": {
+    "message": "Comportamiento",
+    "description": "The title for a settings group."
+  },
+
+  "optionPopupIconColored": {
+    "message": "Ícono con colores",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionPopupIconColoredDescr": {
+    "message": "Muestra un ícono con colores en vez de un ícono en blanco y negro en la barra del navegador.",
+    "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
+  },
+  "optionEmojiPickerSet": {
+    "message": "Set de emojis:",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiSetNative": {
+    "message": "Predeterminado del sistema",
+    "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on."
+  },
+  "optionEmojiSetApple": {
+    "message": "Apple",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetGoogle": {
+    "message": "Google",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetTwitter": {
+    "message": "Twitter",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetEmojiOne": {
+    "message": "EmojiOne",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiSetMessenger": {
+    "message": "Facebook Messenger",
+    "description": "Option of the emoji set. This is a product name and should thus, usually, not translated. Only translate if it's the official product translation."
+  },
+  "optionEmojiSetFacebook": {
+    "message": "Facebook",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
+  },
+  "optionEmojiPickerSetDescr": {
+    "message": "Qué estilo de emojis usar.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting."
+  },
+  "optionEmojiPickerEmojiSize": {
+    "message": "Tamaño de los emojis:",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiSize16px": {
+    "message": "Pequeño (16px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize24px": {
+    "message": "Mediano (24px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize32px": {
+    "message": "Grande (32px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize40px": {
+    "message": "Muy Grande (40px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiSize48px": {
+    "message": "Extra Grande (48px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+  },
+  "optionEmojiPickerPerLine": {
+    "message": "Ancho del selector",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojisPerLineStatusSingular": {
+    "message": "($INTEGER$ emoji por línea)",
+    "description": "This is the number of emojis per line in its singular form.",
+    "placeholders": {
+      "integer": {
+        "content": "$1",
+        "example": "1"
+      }
+    }
+  },
+  "optionEmojisPerLineStatusPlural": {
+    "message": "($INTEGER$ emojis por línea)",
+    "description": "This is the number of emojis per line in its plural form.",
+    "placeholders": {
+      "integer": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "optionEmojiPickerPerLineDescr": {
+    "message": "Cuántos emojis mostrar por línea en el selector. Afecta el ancho de la ventana emergente.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting."
+  },
+  "optionEmojiPickerShowTooltip": {
+    "message": "Mostrar sugerencias",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionEmojiPickerShowTooltipDescr": {
+    "message": "Muestra una sugerencia con el nombre del emoji al pasarle por encima.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
+  },
+
+  "optionAutomaticInsert": {
+    "message": "Insertar emoji automáticamente en la página activa.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboard": {
+    "message": "Copiar emoji al portapapeles.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionCopyClipboardFallback": {
+    "message": "Sólo usar como alternativa si falla insertar.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionCopyEmojiColons": {
+    "message": "Usar el código $COLON$ en vez del caracter Unicode.",
+    "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionCopyEmojiColonsCode": {
+    "message": ":dos_puntos:",
+    "description": "This is included in code-style in optionCopyEmojiColons."
+  },
+  "optionCopyEmojiColonsDescr": {
+    "message": "Es útil para algunos sitios que soportan este tipo de texto.",
+    "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
+  },
+
+  "optionShowConfirmationMessage": {
+    "message": "Muestra un mensaje de confirmación cuando la acción es exitosa.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionClosePopup": {
+    "message": "Cierra la ventana emergente tras seleccionar/insertar el emoji.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
+  "optionsLicenseDisclaimer": {
+    "message": "Todas las imágenes pueden estar sujetas a licencias. Para más información, vea $LINK$",
+    "description": "This is a text shown in the add-on settings explaining the license terms.",
+    "placeholders": {
+      "link": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md\">the whole license file</a>"
+      }
+    }
+  },
+  "optionsLicenseDisclaimerLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md",
+    "description": "This is the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer. Usually, you do not need to translate this as we have only an English version."
+  },
+  "optionsLicenseDisclaimerLinkText": {
+    "message": "la licencia completa",
+    "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
+  },
+
+  "translatorCredit": {
+    "message": "Esta extensión ha sido traducida al español por $TRANSLATORS$.",
+    "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
+    "placeholders": {
+      "translators": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/\">@rugk</a>"
+      }
+    }
+  },
+  "translatorLink": {
+    "message": "https://github.com/elamperti",
+    "description": "The link to the translator's GitHub profile."
+  },
+  "translatorUsername": {
+    "message": "elamperti",
+    "description": "The username that the translator wants to be referred to."
+  },
+
+  "contributorsThanks": {
+    "message": "También gracias a $CONTRIBUTORS$.",
+    "description": "Text thanking all contributors and linking to the contributors file.",
+    "placeholders": {
+      "contributors": {
+        "content": "$1",
+        "example": "<a href=\"https://github.com/rugk/…/CONTRIBUTORS\">all other contributors</a>"
+      }
+    }
+  },
+  "contributorsThanksLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS",
+    "description": "The link to the CONTRIBUTORS file."
+  },
+  "contributorsThanksLinkText": {
+    "message": "todos los demás colaboradores",
+    "description": "The link text linking to the contributors file. See contributorsThanks."
+  },
+
+  // emoji-mart
+  // see https://github.com/missive/emoji-mart#i18n
+  // for help also see https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
+  "emojiMartSearch": {
+    "message": "Buscar",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartClear": {
+    "message": "Limpiar",
+    "description": "Localisation of emoji-mart, the emoji-picker. Accessible label on \"clear\" button. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartNoEmojiFound": {
+    "message": "No se encontraron emojis",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkinText": {
+    "message": "Elige un tono de piel por defecto",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategorySearch": {
+    "message": "Resultados de búsqueda",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryRecent": {
+    "message": "Usados recientemente",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoryPeople": {
+    "message": "Caras y personas",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryNature": {
+    "message": "Animales y naturaleza",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryFoods": {
+    "message": "Comidas y bebidas",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryActivity": {
+    "message": "Actividades",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryPlaces": {
+    "message": "Viajes y lugares",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryObjects": {
+    "message": "Objetos",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategorySymbols": {
+    "message": "Símbolos",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryFlags": {
+    "message": "Banderas",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartCategoryCustom": {
+    "message": "Personalizado",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartCategoriesLabel": {
+    "message": "Categorías de emojis",
+    "description": "Localisation of emoji-mart, the emoji-picker. Accessible title for the list of categories. See: https://github.com/missive/emoji-mart#i18n"
+  },
+  "emojiMartSkintone1": {
+    "message": "Tono de piel por defecto",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartSkintone2": {
+    "message": "Tono de piel claro",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartSkintone3": {
+    "message": "Tono de piel claro medio",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartSkintone4": {
+    "message": "Tono de piel medio",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartSkintone5": {
+    "message": "Tono de piel oscuro medio",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+  "emojiMartSkintone6": {
+    "message": "Tono de piel oscuro",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
+  },
+
+  // ARIA labels/descriptions
+  "dismissIconDescription": {
+    "message": "Cerrar este mensaje",
+    "description": "the aria label for the close button of the message box"
+  },
+  "ariaMessageLoading": {
+    "message": "Cargando mensaje",
+    "description": "the aria label to label the message box as an info message box"
+  },
+  "ariaMessageInfo": {
+    "message": "Mensaje informativo",
+    "description": "the aria label to label the message box as an info message box"
+  },
+  "ariaMessageSuccess": {
+    "message": "Mensaje de éxito",
+    "description": "the aria label to label the message box as an success message box"
+  },
+  "ariaMessageError": {
+    "message": "Mensaje de error",
+    "description": "the aria label to label the message box as an error message box"
+  },
+  "ariaMessageWarning": {
+    "message": "Mensaje de advertencia",
+    "description": "the aria label to label the message box as an warning message box"
+  }
+}
