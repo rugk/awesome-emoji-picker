@@ -274,10 +274,9 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} option
  * @returns {Promise}
  */
-function applyEmojiSearch(optionValue, option) {
+function applyEmojiSearch(optionValue) {
     // switch status of dependent settings
     if (optionValue.enabled) {
         document.getElementById("searchCopyAction").disabled = false;
@@ -304,31 +303,39 @@ function applyEmojiSearch(optionValue, option) {
             CLIPBOARD_WRITE_PERMISSION,
             event,
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
-        ).catch(() => {
-            // revert settings to last state
-            debugger;
-            AutomaticSettings.setOption("enabled", lastEmojiSearchSettings, option);
+        ).catch(async () => {
+            // AutomaticSettings.setOption("enabled", lastEmojiSearchSettings, option);
 
-            //
-            // if (!lastEmojiSearchSettings.enabled) {
-            //     document.getElementById("omnibarIntegration").checked = false;
-            // }
-            //
-            // switch (lastEmojiSearchSettings.action) {
-            // case "copy":
-            //     document.getElementById("searchCopyAction").checked = true;
-            //     break;
-            // case "emojipedia":
-            //     document.getElementById("emojipediaAction").checked = true;
-            //     break;
-            // default:
-            //     throw new TypeError(`lastEmojiSearchSettings.action has invalid value: ${lastEmojiSearchSettings.action}`);
-            // }
+            // special handling, if it has been enabled for the first time
+            if (!lastEmojiSearchSettings.enabled &&
+                lastEmojiSearchSettings.action === "copy") {
+                document.getElementById("emojipediaAction").checked = true;
+
+                lastEmojiSearchSettings.enabled = true;
+                lastEmojiSearchSettings.action = "emojipedia";
+            }
+
+            if (!lastEmojiSearchSettings.enabled) {
+                document.getElementById("omnibarIntegration").checked = false;
+            }
+
+            // revert settings to last state
+            switch (lastEmojiSearchSettings.action) {
+            case "copy":
+                document.getElementById("searchCopyAction").checked = true;
+                break;
+            case "emojipedia":
+                document.getElementById("emojipediaAction").checked = true;
+                break;
+            default:
+                throw new TypeError(`lastEmojiSearchSettings.action has invalid value: ${lastEmojiSearchSettings.action}`);
+            }
+            debugger;
 
             // re-apply own stuff (e.g. to get disabled status)
             // NOTE: This won't end in an endless loop, because our reversion above
             // _must not_ set it to a state where a permission is requested.
-            return applyEmojiSearch(lastEmojiSearchSettings);
+            await applyEmojiSearch(lastEmojiSearchSettings);
         });
     }
 
