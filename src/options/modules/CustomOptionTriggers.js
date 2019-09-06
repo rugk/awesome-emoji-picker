@@ -80,8 +80,8 @@ function applyPickerResultPermissions(optionValue, option, event) {
     ) {
         retPromise = PermissionRequest.requestPermission(
             CLIPBOARD_WRITE_PERMISSION,
-            event,
-            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK
+            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK,
+            event
         ).catch(() => {
             // if permission is rejected (user declined), force disabling the setting
             optionValue.emojiCopyOnlyFallback = false;
@@ -288,7 +288,7 @@ function applyEmojiSearch(optionValue) {
         document.getElementById("searchBarDemo").setAttribute("disabled", "");
     }
 
-    // triger update for current session
+    // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
         toEnable: optionValue.enabled
@@ -301,9 +301,16 @@ function applyEmojiSearch(optionValue) {
     ) {
         return PermissionRequest.requestPermission(
             CLIPBOARD_WRITE_PERMISSION,
-            event,
-            MESSAGE_EMOJI_COPY_PERMISSION_SEARCH
-        ).catch(async () => {
+            MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
+            event
+        ).then(() => {
+            // also trigger update when permission is granted
+            browser.runtime.sendMessage({
+                type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
+                toEnable: optionValue.enabled
+            });
+        }).catch(async () => {
+            // only rejects in case of fatal error
             // AutomaticSettings.setOption("enabled", lastEmojiSearchSettings, option);
 
             // special handling, if it has been enabled for the first time
@@ -336,7 +343,12 @@ function applyEmojiSearch(optionValue) {
             // NOTE: This won't end in an endless loop, because our reversion above
             // _must not_ set it to a state where a permission is requested.
             await applyEmojiSearch(lastEmojiSearchSettings);
+
+            debugger;
+            // TODO: revert setting to previous state
         });
+    } else {
+        debugger; // TODO. cancel permission prompt already shown
     }
 
     lastEmojiSearchSettings = optionValue;
