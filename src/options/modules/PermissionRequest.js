@@ -285,7 +285,7 @@ export function requestPermission(permissions, messageId, event, options = {}) {
     }
 
     // validate parameters
-    if (options.retry < 1) {
+    if (options.retry !== false && options.retry < 1) {
         throw new TypeError(`invalid options.retry value of ${options.retry} passed.`);
     }
 
