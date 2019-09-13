@@ -273,9 +273,10 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  * @private
  * @param  {Object} optionValue
  * @param  {string} [option]
+ * @param  {Object} [event]
  * @returns {Promise}
  */
-function applyEmojiSearch(optionValue) {
+function applyEmojiSearch(optionValue, option, event = {}) {
     // switch status of dependent settings
     if (optionValue.enabled) {
         document.getElementById("searchAction").disabled = false;
@@ -293,6 +294,25 @@ function applyEmojiSearch(optionValue) {
         toEnable: optionValue.enabled
     });
 
+    const reloadEmojiSearchStatus = () => {
+        // get new settings, because they could have been changed
+        // TODO: generalize in AutomaticSettings
+        const isEnabled = document.getElementById("omnibarIntegration").checked;
+
+        const newOptionValue = {
+            enabled: isEnabled
+        };
+
+        if (document.getElementById("searchAction").checked) {
+            newOptionValue.action = document.getElementById("searchAction").value;
+        } else if (document.getElementById("emojipediaAction").checked) {
+            newOptionValue.action = document.getElementById("emojipediaAction").value;
+        }
+
+        // we can only all hope, this won't end in an inifnitive loop
+        applyEmojiSearch(newOptionValue);
+    }
+
     // request permission from user
     if (optionValue.enabled && // only if actually enabled
         optionValue.action === "copy" && // if we require a permission for copying
@@ -303,19 +323,14 @@ function applyEmojiSearch(optionValue) {
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
             event,
             {retry: true}
-        ).then(() => {
-            // also trigger update when permission is granted
-            browser.runtime.sendMessage({
-                type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
-                toEnable: optionValue.enabled
-            });
-        }).catch(() => {
-            // only rejects in case of fatal error
-            debugger;
-            // TODO: revert setting to previous state
+        ).finally(() => {
+            // Note: Error (rejection) will never happen, because we have infinite retries enabled
+            // So this is equivalent to a "then".
+            reloadEmojiSearchStatus();
         });
     } else {
-        debugger; // TODO. cancel permission prompt already shown
+        // debugger;
+        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION);
     }
 
     return Promise.resolve();
