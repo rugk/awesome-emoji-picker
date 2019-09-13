@@ -384,6 +384,9 @@ export function requestPermission(permissions, messageId, event, options = {}) {
  * @returns {void}
  */
 export function cancelPermissionPrompt(permissions) {
+    // we cannot actually really close the permission prompt, see:
+    // https://discourse.mozilla.org/t/can-browser-extension-permission-requests-be-cancelled/44734?u=rugkx
+
     const thisPermission = getInternalPermissionData(permissions);
 
     thisPermission.messageBoxes.forEach(hideMessageBox);
