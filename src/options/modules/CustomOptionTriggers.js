@@ -274,9 +274,11 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  *
  * @private
  * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
  * @returns {Promise}
  */
-function applyEmojiSearch(optionValue) {
+function applyEmojiSearch(optionValue, option, event = {}) {
     // switch status of dependent settings
     if (optionValue.enabled) {
         document.getElementById("searchCopyAction").disabled = false;
@@ -294,6 +296,25 @@ function applyEmojiSearch(optionValue) {
         toEnable: optionValue.enabled
     });
 
+    const reloadEmojiSearchStatus = () => {
+        // get new settings, because they could have been changed
+        // TODO: generalize in AutomaticSettings
+        const isEnabled = document.getElementById("omnibarIntegration").checked;
+
+        const newOptionValue = {
+            enabled: isEnabled
+        };
+
+        if (document.getElementById("searchAction").checked) {
+            newOptionValue.action = document.getElementById("searchAction").value;
+        } else if (document.getElementById("emojipediaAction").checked) {
+            newOptionValue.action = document.getElementById("emojipediaAction").value;
+        }
+
+        // we can only all hope, this won't end in an inifnitive loop
+        applyEmojiSearch(newOptionValue);
+    }
+
     // request permission from user
     if (optionValue.enabled && // only if actually enabled
         optionValue.action === "copy" && // if we require a permission for copying
@@ -302,53 +323,16 @@ function applyEmojiSearch(optionValue) {
         return PermissionRequest.requestPermission(
             CLIPBOARD_WRITE_PERMISSION,
             MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
-            event
-        ).then(() => {
-            // also trigger update when permission is granted
-            browser.runtime.sendMessage({
-                type: COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE,
-                toEnable: optionValue.enabled
-            });
-        }).catch(async () => {
-            // only rejects in case of fatal error
-            // AutomaticSettings.setOption("enabled", lastEmojiSearchSettings, option);
-
-            // special handling, if it has been enabled for the first time
-            if (!lastEmojiSearchSettings.enabled &&
-                lastEmojiSearchSettings.action === "copy") {
-                document.getElementById("emojipediaAction").checked = true;
-
-                lastEmojiSearchSettings.enabled = true;
-                lastEmojiSearchSettings.action = "emojipedia";
-            }
-
-            if (!lastEmojiSearchSettings.enabled) {
-                document.getElementById("omnibarIntegration").checked = false;
-            }
-
-            // revert settings to last state
-            switch (lastEmojiSearchSettings.action) {
-            case "copy":
-                document.getElementById("searchCopyAction").checked = true;
-                break;
-            case "emojipedia":
-                document.getElementById("emojipediaAction").checked = true;
-                break;
-            default:
-                throw new TypeError(`lastEmojiSearchSettings.action has invalid value: ${lastEmojiSearchSettings.action}`);
-            }
-            debugger;
-
-            // re-apply own stuff (e.g. to get disabled status)
-            // NOTE: This won't end in an endless loop, because our reversion above
-            // _must not_ set it to a state where a permission is requested.
-            await applyEmojiSearch(lastEmojiSearchSettings);
-
-            debugger;
-            // TODO: revert setting to previous state
+            event,
+            {retry: true}
+        ).finally(() => {
+            // Note: Error (rejection) will never happen, because we have infinite retries enabled
+            // So this is equivalent to a "then".
+            reloadEmojiSearchStatus();
         });
     } else {
-        debugger; // TODO. cancel permission prompt already shown
+        // debugger;
+        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION);
     }
 
     lastEmojiSearchSettings = optionValue;

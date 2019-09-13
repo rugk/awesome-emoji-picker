@@ -285,7 +285,7 @@ export function requestPermission(permissions, messageId, event, options = {}) {
     }
 
     // validate parameters
-    if (options.retry !== false && options.retry < 1) {
+    if (options.retry !== true && options.retry !== false && options.retry < 1) {
         throw new TypeError(`invalid options.retry value of ${options.retry} passed.`);
     }
 
@@ -369,6 +369,27 @@ export function requestPermission(permissions, messageId, event, options = {}) {
     });
 
     return returnPermission;
+}
+
+/**
+ * Cancels the permission prompt.
+ *
+ * Due to technical limitations, it cannot actually close the permission prompt. It can just hide the own
+ * Thus, if a permission is currently being requested, this may lead to strange side-effects if the permission
+ * is granted anyway, because the old Promise will still be fullfilled then.
+ *
+ * @public
+ * @param {browser.permissions.Permissions} permissions the permission request to close,
+ * see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/permissions/Permissions
+ * @returns {void}
+ */
+export function cancelPermissionPrompt(permissions) {
+    // we cannot actually really close the permission prompt, see:
+    // https://discourse.mozilla.org/t/can-browser-extension-permission-requests-be-cancelled/44734?u=rugkx
+
+    const thisPermission = getInternalPermissionData(permissions);
+
+    thisPermission.messageBoxes.forEach(hideMessageBox);
 }
 
 /**
