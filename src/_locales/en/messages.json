@@ -64,7 +64,7 @@
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
 
-  "emojiCopyOnlyFallbackPermissionInfo": {
+  "permissionRequiredClipboardWrite": {
     "message": "The permission to copy data into the clipboard is required for this feature.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
@@ -350,6 +350,46 @@
   "contributorsThanksLinkText": {
     "message": "all other contributors",
     "description": "The link text linking to the contributors file. See contributorsThanks."
+  },
+
+  // emoji-search
+  "searchTipDescription": {
+    "message": "Search for emojis via $ADDON$…",
+    "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchTipDescriptionDisabled": {
+    "message": "Searching for emojis with $ADDON$ is disabled… You can enable it in the options.",
+    "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchResultDescription": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "🐵 (The Unicode symbol for the Emoji)"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Monkey Face (The name of the Emoji)"
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
+      }
+    }
   },
 
   // emoji-mart

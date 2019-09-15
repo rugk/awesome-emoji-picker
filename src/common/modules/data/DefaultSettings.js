@@ -36,6 +36,11 @@ const defaultSettings = {
         showConfirmationMessage: true,
         closePopup: true,
     },
+    emojiSearch: {
+        enabled: false,
+        resultType: "native",
+        action: "copy"
+    },
     emojiMart: {}
 };
 

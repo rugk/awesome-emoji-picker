@@ -28,3 +28,6 @@
 [submodule "src/popup/lib/awesome-emoji-emoji-mart-embed"]
 	path = src/popup/lib/emoji-mart-embed
 	url = https://github.com/rugk/emoji-mart-embed
+[submodule "src/common/lib/emoji-mart-embed"]
+	path = src/common/lib/emoji-mart-embed
+	url = https://github.com/rugk/emoji-mart-embed
