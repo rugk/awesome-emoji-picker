@@ -6,7 +6,7 @@
 
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
 
-import * as PermissionRequest from "./PermissionRequest.js";
+import * as PermissionRequest from "/common/modules/PermissionRequest/PermissionRequest.js";
 
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
@@ -160,47 +160,6 @@ function adjustPickerResultTypeOption(param) {
 }
 
 /**
- * Adjusts the pickerResult->emojiCopy/automaticInsert setting for saving.
- *
- * @private
- * @param {Object} param
- * @param {Object} param.optionValue the value of the changed option
- * @param {string} param.option the name of the option that has been changed
- * @param {Array} param.saveTriggerValues all values returned by potentially
- *                                          previously run safe triggers
- * @param {Object} param.event
- * @returns {Promise}
- */
-function adjustEmojiCopyOrInsertOption(param) {
-    // assures that not both options cannot be disabled at the same time
-    if (!param.optionValue.emojiCopy && !param.optionValue.automaticInsert) {
-        const selectedItem = param.event.target;
-        const changedOption = selectedItem.name;
-
-        // get other option that has not been changed
-        let unchangedOption = null;
-        if (changedOption === "emojiCopy") {
-            unchangedOption = "automaticInsert";
-        } else if (changedOption === "automaticInsert") {
-            unchangedOption = "emojiCopy";
-        }
-
-        // change data
-        param.optionValue[unchangedOption] = true;
-        param.optionValue[changedOption] = false;
-
-        // change visible value
-        document.querySelector(`[name=${unchangedOption}]`).checked = true;
-        document.querySelector(`[name=${changedOption}]`).checked = false;
-
-        // manually trigger save handler
-        applyPickerResultPermissions(param.optionValue, param.option, param.event);
-    }
-
-    return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
-}
-
-/**
  * Gets the plural form of the quiet zone translation, depending on the option value.
  *
  * @private
@@ -284,9 +243,9 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
 
     // x = (width - 2*outer border - tolerance) / (emoji + 2*emoji border)
     const newMaxValue = Math.floor((800 - 2 * 13 - 5) / (emojiSizeValue + 2 * 6));
-    // width = (emoji + 2*emoji border) * x + 2*outer border [+ tolerance]
+    // width = (emoji + 2*emoji border) * x + 2*outer border (+ tolerance)
     const estimatedWidth = (emojiSizeValue + 2 * 6) * newMaxValue + 2 * 13;
-    console.log("Calculated a maximum number of emojis per line of", newMaxValue,
+    console.log("Caluclated a maximum number of emojis per line of", newMaxValue,
         "for emojis of size", `${emojiSizeValue}px,`, "resulting in an estimated with of", `${estimatedWidth}px.`);
 
     // apply new max value
@@ -392,7 +351,6 @@ export async function registerTrigger() {
 
     AutomaticSettings.Trigger.addCustomLoadOverride("resultType", preparePickerResultTypeOptionForInput);
     AutomaticSettings.Trigger.addCustomSaveOverride("pickerResult", adjustPickerResultTypeOption);
-    AutomaticSettings.Trigger.addCustomSaveOverride("pickerResult", adjustEmojiCopyOrInsertOption);
     // loading does not need to be overwritten, as we are fine with an extra string saved
 
     // update slider status
