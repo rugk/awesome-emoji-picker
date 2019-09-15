@@ -19,8 +19,6 @@ const CLIPBOARD_WRITE_PERMISSION = {
 const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 
-let lastEmojiSearchSettings = null;
-
 /**
  * Adjust UI if QR code size option is changed.
  *
@@ -305,15 +303,15 @@ function applyEmojiSearch(optionValue, option, event = {}) {
             enabled: isEnabled
         };
 
-        if (document.getElementById("searchAction").checked) {
-            newOptionValue.action = document.getElementById("searchAction").value;
+        if (document.getElementById("searchCopyAction").checked) {
+            newOptionValue.action = document.getElementById("searchCopyAction").value;
         } else if (document.getElementById("emojipediaAction").checked) {
             newOptionValue.action = document.getElementById("emojipediaAction").value;
         }
 
         // we can only all hope, this won't end in an inifnitive loop
         applyEmojiSearch(newOptionValue);
-    }
+    };
 
     // request permission from user
     if (optionValue.enabled && // only if actually enabled
@@ -331,11 +329,8 @@ function applyEmojiSearch(optionValue, option, event = {}) {
             reloadEmojiSearchStatus();
         });
     } else {
-        // debugger;
         PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION);
     }
-
-    lastEmojiSearchSettings = optionValue;
 
     return Promise.resolve();
 }
