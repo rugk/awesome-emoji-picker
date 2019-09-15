@@ -11,7 +11,7 @@ const CLIPBOARD_WRITE_PERMISSION = {
 let emojiMartIsLoaded = false;
 
 /**
- * Lazy-load the emoji-mart library, .
+ * Lazy-load the emoji-mart library.
  *
  * This consumes some memory (RAM), up-to 10MB, as remount and other things are loaded.
  *

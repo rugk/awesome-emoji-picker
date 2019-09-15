@@ -11,7 +11,6 @@ let addonHasClipboardWritePermission = false;
  *
  * @module QrLib/QrError
  */
-
 export class PermissionError extends Error {
     constructor(message, ...params) {
         super(
