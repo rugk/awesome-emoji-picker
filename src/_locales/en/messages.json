@@ -72,6 +72,10 @@
     "message": "Grant permission",
     "description": "The button label, used for requesting a permission that is missing."
   },
+  "couldNotRequestPermission": {
+    "message": "Requesting permission failed.",
+    "description": "When the permission request fails."
+  },
 
   // confirmation hints
   "confirmationHintEmojiCopied": {
