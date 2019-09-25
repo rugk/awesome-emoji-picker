@@ -36,4 +36,4 @@ Browser and version: Firefox
 Add-on version: 
 
 ## Possible solution
-<!-- Add references to other issues/docs/websites here or look into the code to find the potential causes of the problem or how to fix it. Omit this, if you don't know what to write here. -->
+<!-- Add references to other issues/docs/websites here or look into the code to find the potential causes of the problem or how to fix it. Potential exceptions or screenshots of some debugging breakpoints can also be useful. Just omit this, if you don't know what to write here. If you already know a complete solution, obviously do write it here. -->
