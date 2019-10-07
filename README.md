@@ -12,6 +12,7 @@ You can then use the emojis on almost any web page, including your favorite mess
 It will remember your recently used emojis across sites, and may often be faster than the emoji picker on the site itself.
 
 It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
+
 * Apple emojis
 * Google emojis
 * Twitter emojis ([Twemoji](https://twemoji.twitter.com/))
@@ -42,10 +43,12 @@ In any case, spread the word and recommend it to others! 🤗😍
 ![Writing toot on Mastodon with text "Let's search for an emoji…", click on smiley icon, emoji picker opens, search for "banan" and a banana 🍌 and monkey 🐒 emoji are shown as results. After clicking on banana emoji it inserts it into the message.](assets/screencasts/searchBanana.gif)
 
 See:
+
 * [More screencasts](assets/screencasts)
 * [More screenshots](assets/screenshots)
 
 ## Features
+
 * Display the emojis in the design of Apple, Google, Twitter, EmojiOne or just the native style your browser uses.
 * Quickly search for any emoji with many keywords.
 * Copy emoji to your clipboard.
@@ -64,3 +67,13 @@ See:
 * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
 * Compatible with Firefox for Android
 * Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))
+
+## Contribute
+
+You can easily get involved in this FLOSS project and any help is certainly appreciated. Here are some ideas:
+
+* 📃 [Translate this add-on into multiple languages!](./CONTRIBUTING.md#translations)
+* 🐛 [Fix some easy issues and get started in add-on development](CONTRIBUTING.md#coding) (or try out a development version)
+* 💡 [Or check out some other add-on issues](CONTRIBUTING.md#need-ideas) (or translate them).
+
+Or, in any case, [support us by spreading the word!](./CONTRIBUTING.md#support-us) ❤️
