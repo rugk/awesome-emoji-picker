@@ -12,7 +12,7 @@ You like this add-on, but have no idea how to support us?
 Here are some easy things you can always do:
 
 * Spread the word and recommend it to others! 🤗😍
-* Leave a rating [at addons.mozilla.org](https://addons.mozilla.org/firefox/addon/mastodon-simplified-federation/reviews/) if you like it!
+* Leave a rating [at addons.mozilla.org](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/) if you like it!
   Also consider writing some text and not only leaving stars there. It's always nice to hear some warm words. ☺️
 * Star this project [on GitHub](https://github.com/rugk/awesome-emoji-picker) by clicking the "star" icon!
 * Leave a [review at alternativeto.net](https://alternativeto.net/software/-awesome-emoji-picker-/reviews/) and click the like button there, if you want. (Also, you can obviously recommend this add-on as an alternative to other emoji pickers.)
@@ -61,6 +61,11 @@ See the **common guide** on how to [start coding](https://github.com/TinyWebEx/c
 
 **Attention:** For this add-on, you need to execute [`scripts/downloadEmojiImages.sh`](scripts/downloadEmojiImages.sh) to download the bundled emoji sheets if you use anything else than the "native emojis" ("emojis from your OS") in the settings of this add-on. The reason is just, that these big files are not bundled/distributed in this repo.
 
+### Tests
+
+* Test dir: [`src/tests/`](src/tests/)
+* EsLint config for tests: [`src/tests/.eslintrc`](src/tests/.eslintrc)
+
 ## Need ideas?
 
 Don't have any idea what to take up? [Here you can find a list of good issues for starters](../../contribute), e.g. if you want to start with this project or a (programming) language in general.
@@ -71,11 +76,6 @@ Also, there are other add-on's, which are very similar and may also need work:
 * [Offline QR Code Generator](https://github.com/rugk/offline-qr-code/contribute)
 * [Mastodon Simplified Federation](https://github.com/rugk/mastodon-simplified-federation/contribute)
 * [How did I get here?](https://github.com/rugk/how-did-i-get-here/contribute)
-* [Dark Website Forcer](https://github.com/rugk/website-dark-mode-switcher/contribute)
+* [Dark Mode Website Switcher](https://github.com/rugk/website-dark-mode-switcher/contribute)
 
 There is also [an overview over all good first issues in other add-on repos](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+archived%3Afalse+user%3Arugk+user%3ATinyWebEx+label%3A%22good+first+issue%22). Also [check out the libraries used by this project](https://github.com/TinyWebEx).
-
-### Tests
-
-* Test dir: [`src/tests/`](src/tests/)
-* EsLint config for tests: [`src/tests/.eslintrc`](src/tests/.eslintrc)
