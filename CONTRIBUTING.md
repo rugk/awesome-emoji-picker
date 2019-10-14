@@ -79,5 +79,3 @@ There is also [an overview over all good first issues in other add-on repos](htt
 
 * Test dir: [`src/tests/`](src/tests/)
 * EsLint config for tests: [`src/tests/.eslintrc`](src/tests/.eslintrc)
-
-
