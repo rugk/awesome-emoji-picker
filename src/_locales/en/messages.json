@@ -299,6 +299,31 @@
     "description": "This is an option shown in the add-on settings."
   },
 
+  "titleSearchBar": {
+    "message": "Search bar",
+    "description": "The title for a settings group."
+  },
+  "optionSearchBoxIntegration": {
+    "message": "Integrate into address bar.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchBoxIntegrationDescr": {
+    "message": "Allows you to search for emojis in the address bar by starting your search with “emoji ”.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchCopyAction": {
+    "message": "Copy to clipboard",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionEmojipediaAction": {
+    "message": "Search on Emojipedia",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionImageAltTextSearchBarDemo": {
+    "message": "Example showing a search in the address bar with the term emoji “dog”, for which several emojis are suggested.",
+    "description": "This is the alt description for an image shown in the add-on settings."
+  },
+
   "optionsLicenseDisclaimer": {
     "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
