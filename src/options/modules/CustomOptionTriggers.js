@@ -85,6 +85,8 @@ function applyPickerResultPermissions(optionValue, option, event) {
             optionValue.emojiCopyOnlyFallback = false;
             document.getElementById("emojiCopyOnlyFallback").checked = false;
         });
+    } else {
+        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK);
     }
 
     return retPromise;
@@ -329,7 +331,7 @@ function applyEmojiSearch(optionValue, option, event = {}) {
             reloadEmojiSearchStatus();
         });
     } else {
-        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION);
+        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_SEARCH);
     }
 
     return Promise.resolve();

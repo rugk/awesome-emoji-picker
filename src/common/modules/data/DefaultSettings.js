@@ -26,11 +26,6 @@ const defaultSettings = {
     pickerResult: {
         automaticInsert: true,
         emojiCopy: true,
-        // emojiCopyOnlyFallback MUST NOT be true, as optional clipboardWrite
-        // permission is required for this
-        // (As it leads to an error, that may happen in reality with sync, however,
-        // it is anyway, handled in the options, but not really nice to see it
-        // directly after installing the add-on)
         emojiCopyOnlyFallback: false,
         resultType: "native",
         showConfirmationMessage: true,
