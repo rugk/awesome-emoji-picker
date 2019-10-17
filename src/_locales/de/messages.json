@@ -299,6 +299,31 @@
     "description": "This is an option shown in the add-on settings."
   },
 
+  "titleSearchBar": {
+    "message": "Suchleiste",
+    "description": "The title for a settings group."
+  },
+  "optionSearchBoxIntegration": {
+    "message": "Integriere in Addressleiste.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchBoxIntegrationDescr": {
+    "message": "Erlaubt dir, nach Emojis in der Addressleiste zu suchen, indem die Suche mit dem Wort “emoji ” gestartet wird.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchCopyAction": {
+    "message": "In die Zwischenablage kopieren",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionEmojipediaAction": {
+    "message": "Auf Emojipedia suchen",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionImageAltTextSearchBarDemo": {
+    "message": "Ein Beispiel, dasseine Suche in der Addressleiste mit dem Suchbegriff „Hund” zeigt, zu dem einige Emojis vorgeschlagen werden.",
+    "description": "This is the alt description for an image shown in the add-on settings."
+  },
+
   "optionsLicenseDisclaimer": {
     "message": "Alle Emoji-Bilder können unter verschiedene Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",

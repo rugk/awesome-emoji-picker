@@ -190,7 +190,7 @@
 						<ul data-type="radiogroup" class="setting save-on-input" data-optiongroup="emojiSearch">
 							<li class="line">
 								<input id="searchCopyAction" type="radio" name="action" value="copy">
-								<label for="searchCopyAction">Copy to clipboard</label>
+								<label data-i18n="__MSG_optionSearchCopyAction__" for="searchCopyAction">Copy to clipboard</label>
 							</li>
 
 							<div class="message-container line">
@@ -205,13 +205,15 @@
 
 							<li class="line">
 								<input id="emojipediaAction" type="radio" name="action" value="emojipedia">
-								<label for="emojipediaAction">Search on Emojipedia</label>
+								<label data-i18n="__MSG_optionEmojipediaAction__" for="emojipediaAction">Search on Emojipedia</label>
 							</li>
 						</ul>
 					</li>
 
 					<div class="indent line">
-						<img id="searchBarDemo" class="float-image" width="455" src="./img/emojiSearchDog.png" alt="Example showing a search in the address bar with the term emoji dog, which sugget several emojis.">
+						<img id="searchBarDemo" class="float-image" width="455" src="./img/emojiSearchDog.png"
+						alt="Example showing a search in the address bar with the term emoji “dog”, for which several emojis are suggested."
+						data-i18n data-i18n-alt="__MSG_optionImageAltTextSearchBarDemo__">
 					</div>
 				</ul>
 			</section>
