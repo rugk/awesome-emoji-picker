@@ -338,7 +338,7 @@
   },
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
-  // for help also see https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
+  // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
   "emojiMartSearch": {
     "message": "Rechercher",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
