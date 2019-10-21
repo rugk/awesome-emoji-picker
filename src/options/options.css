@@ -3,3 +3,11 @@
 .float-image {
   margin: 10px;
 }
+
+@media (prefers-color-scheme: dark) {
+  
+}
+
+@media (prefers-color-scheme: light) {
+  
+}
