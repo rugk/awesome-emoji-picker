@@ -23,9 +23,13 @@ RandomTips.init(tips).then(() => {
 
 let dark= window.matchMedia('@media (prefers-color-scheme: dark)');
 let light= window.matchMedia('@media (prefers-color-scheme: light)');
-if(dark){
+function changeScreenshotTheme(e){
+if(e.matches){
     document.getElementById('searchBarDemo').src="./img/emojiSearchDog_dark.png";
 }
-else if(light){
+else if(e.matches){
     document.getElementById('searchBarDemo').src="./img/emojiSearchDog_light.png";
 }
+}
+dark.addEventListener(changeScreenshotTheme);
+light.addEventListener(changeScreenshotTheme);
