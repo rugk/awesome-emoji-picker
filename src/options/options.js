@@ -21,14 +21,14 @@ RandomTips.init(tips).then(() => {
     RandomTips.showRandomTipIfWanted();
 });
 
-const dark= window.matchMedia("@media (prefers-color-scheme: dark)");
-const light= window.matchMedia("@media (prefers-color-scheme: light)");
-function changeScreenshotTheme(e){
-    if(e.matches){
-        document.getElementById("searchBarDemo").src="./img/emojiSearchDog_dark.png";
-    } else if(e.matches){
-        document.getElementById("searchBarDemo").src="./img/emojiSearchDog_light.png";
+const dark = window.matchMedia("(prefers-color-scheme: dark)");
+function changeScreenshotTheme(darkQuery){
+    if (darkQuery.matches) {
+        document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_dark.png";
+    } else {
+        document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_light.png";
     }
 }
-dark.addEventListener(changeScreenshotTheme);
-light.addEventListener(changeScreenshotTheme);
+
+dark.addListener(changeScreenshotTheme);
+changeScreenshotTheme(dark);
