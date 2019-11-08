@@ -21,14 +21,3 @@ RandomTips.init(tips).then(() => {
     RandomTips.showRandomTipIfWanted();
 });
 
-const dark = window.matchMedia("(prefers-color-scheme: dark)");
-function changeScreenshotTheme(darkQuery){
-    if (darkQuery.matches) {
-        document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_dark.png";
-    } else {
-        document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_light.png";
-    }
-}
-
-dark.addListener(changeScreenshotTheme);
-changeScreenshotTheme(dark);
