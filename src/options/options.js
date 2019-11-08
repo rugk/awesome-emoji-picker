@@ -21,15 +21,14 @@ RandomTips.init(tips).then(() => {
     RandomTips.showRandomTipIfWanted();
 });
 
-let dark= window.matchMedia('@media (prefers-color-scheme: dark)');
-let light= window.matchMedia('@media (prefers-color-scheme: light)');
+const dark= window.matchMedia("@media (prefers-color-scheme: dark)");
+const light= window.matchMedia("@media (prefers-color-scheme: light)");
 function changeScreenshotTheme(e){
-if(e.matches){
-    document.getElementById('searchBarDemo').src="./img/emojiSearchDog_dark.png";
-}
-else if(e.matches){
-    document.getElementById('searchBarDemo').src="./img/emojiSearchDog_light.png";
-}
+    if(e.matches){
+        document.getElementById("searchBarDemo").src="./img/emojiSearchDog_dark.png";
+    } else if(e.matches){
+        document.getElementById("searchBarDemo").src="./img/emojiSearchDog_light.png";
+    }
 }
 dark.addEventListener(changeScreenshotTheme);
 light.addEventListener(changeScreenshotTheme);
