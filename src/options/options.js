@@ -15,7 +15,7 @@ import * as ColorSchemeModeHelper from "./modules/ColorSchemeModeHelper.js";
 CustomOptionTriggers.registerTrigger();
 AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
 AutomaticSettings.init();
-ColorSchemeModeHelper.changeScreenshotTheme();
+ColorSchemeModeHelper.init();
 
 RandomTips.init(tips).then(() => {
     RandomTips.setContext("options");
