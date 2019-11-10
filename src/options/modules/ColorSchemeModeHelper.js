@@ -1,13 +1,14 @@
 /**
- * this function changes screenshot in the options menu as per user's OS theme preference. By default the
- * user would see a light-themed screenshot but if the user has selected a dark themed OS, the screenshot
- * would also appear dark.
- * 
+ * This function changes the screenshot in the options menu as per user's OS theme preference. By default the
+ * user sees a light-themed screenshot,* * * * * *  but if the user has selected a dark themed OS, the screenshot
+ * will also appear dark.
+ *
  * @private
- * does not work in Firefox currently due to https://bugzilla.mozilla.org/show_bug.cgi?id=1595037
+ * @note does not work in Firefox currently due to https://bugzilla.mozilla.org/show_bug.cgi?id=1595037
  * @param  {Object} darkQuery
+ * @returns {void}
  */
-function changeScreenshotTheme(darkQuery){
+function changeScreenshotTheme(darkQuery) {
     if (darkQuery.matches) {
         document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_dark.png";
     } else {
@@ -16,11 +17,12 @@ function changeScreenshotTheme(darkQuery){
 }
 
 /**
- * Returns the function which changes screenshot according to theme
+ * Initiates the module.
  *
  * @public
+ * @returns {void}
  */
-export function init(){
+export function init() {
     const dark = window.matchMedia("(prefers-color-scheme: dark)");
 
     dark.addListener(changeScreenshotTheme);

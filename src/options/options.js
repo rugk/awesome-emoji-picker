@@ -11,6 +11,7 @@ import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
 import * as CustomOptionTriggers from "./modules/CustomOptionTriggers.js";
 import * as ColorSchemeModeHelper from "./modules/ColorSchemeModeHelper.js";
+
 // init modules
 CustomOptionTriggers.registerTrigger();
 AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
@@ -21,4 +22,3 @@ RandomTips.init(tips).then(() => {
     RandomTips.setContext("options");
     RandomTips.showRandomTipIfWanted();
 });
-
