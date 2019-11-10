@@ -7,7 +7,6 @@
  * does not work in Firefox currently due to https://bugzilla.mozilla.org/show_bug.cgi?id=1595037
  * @param  {Object} darkQuery
  */
-const dark = window.matchMedia("(prefers-color-scheme: dark)");
 function changeScreenshotTheme(darkQuery){
     if (darkQuery.matches) {
         document.getElementById("searchBarDemo").src = "./img/emojiSearchDog_dark.png";
@@ -16,12 +15,15 @@ function changeScreenshotTheme(darkQuery){
     }
 }
 
-dark.addListener(changeScreenshotTheme);
 /**
  * Returns the function which changes screenshot according to theme
  *
  * @public
  */
 export function init(){
+    const dark = window.matchMedia("(prefers-color-scheme: dark)");
+
+    dark.addListener(changeScreenshotTheme);
+
     return changeScreenshotTheme(dark);
 }
