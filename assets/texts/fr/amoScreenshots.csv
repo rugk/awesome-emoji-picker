@@ -2,6 +2,7 @@ popupOpenRecent.png; "Sélectionnez directement n'importe quel émoji depuis vot
 popupSearchLikeApple.png; "Vous pouvez changer l'apparence des émojis et leur largeur.";
 popupSelectFemaleDetective.png; "Les émoticônes peuvent être copiés ...";
 popupAppleInsertDogOnMastodon.png; "... ou insérés directement dans la page courante.";
+emojiSearchAddressBarDog.png; "Search for emojis directly in your address bar (needs to be enabled manually).";
 popupBigEmojisApple.png; "Adjust the size for all emoji!";
 popupMediumSkinSearchDoctor.png; "Ajuste le teint et recherche des émojis.";
 options.png; "Voici la page complète des paramètres, avec toutes les options ajustables.";
