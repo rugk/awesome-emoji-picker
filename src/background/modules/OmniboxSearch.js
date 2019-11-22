@@ -210,6 +210,12 @@ async function toggleEnabledStatus(toEnable) {
         }
     }
 
+    // disable previously registered triggers
+    browser.omnibox.onInputChanged.removeListener(triggerOmnixboxSuggestion);
+    browser.omnibox.onInputEntered.removeListener(triggerOmnixboxSearch);
+
+    browser.omnibox.onInputEntered.removeListener(triggerOmnixboxDisabledSearch);
+
     // enable it
     if (toEnable) {
         // lazy-load emoji-mart
@@ -218,18 +224,12 @@ async function toggleEnabledStatus(toEnable) {
         browser.omnibox.onInputChanged.addListener(triggerOmnixboxSuggestion);
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxSearch);
 
-        browser.omnibox.onInputEntered.removeListener(triggerOmnixboxDisabledSearch);
-
         browser.omnibox.setDefaultSuggestion({
             description: browser.i18n.getMessage("searchTipDescription", [
                 browser.i18n.getMessage("extensionName")
             ])
         });
     } else if (!toEnable) {
-        // disable it
-        browser.omnibox.onInputChanged.removeListener(triggerOmnixboxSuggestion);
-        browser.omnibox.onInputEntered.removeListener(triggerOmnixboxSearch);
-
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxDisabledSearch);
 
         browser.omnibox.setDefaultSuggestion({

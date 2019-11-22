@@ -1,3 +1,4 @@
 * **Highlight:** You can now enable the search for emojis in your address bar. ([#33](https://github.com/rugk/awesome-emoji-picker/issues/33))
 * **New:** The translation for Spanish has been added, thanks to [@elamperti](https://github.com/elamperti).
+* **New:** Dark style is supported, also thanks to [@elamperti](https://github.com/elamperti). ([#59](https://github.com/rugk/awesome-emoji-picker/issues/59), …) TODO
 * **Internal:** Dependencies updated to ensure the security and reliability of this add-on.
