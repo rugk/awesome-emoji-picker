@@ -5,6 +5,7 @@
 
 import { tips } from "/common/modules/data/Tips.js";
 import * as RandomTips from "/common/modules/RandomTips/RandomTips.js";
+import * as EnvironmentDetector from "/common/modules/EnvironmentDetector/EnvironmentDetector.js";
 import * as EmojiSettings from "./module/EmojiSettings.js";
 import * as EmojiPicker from "./module/EmojiPicker.js";
 
@@ -33,6 +34,12 @@ async function createPicker() {
 
 initEmojiMartStorage();
 createPicker().then(() => {
+    const isOverflowMenu = EnvironmentDetector.getPopupType() === EnvironmentDetector.POPUP_TYPE.OVERFLOW;
+
+    if (isOverflowMenu) {
+        document.querySelector(".emoji-mart").style.width = `${window.innerWidth}px`;
+    }
+
     // to be sure, trigger focus manually afterwards
     // auto-focus does not always work properly, see
     // https://github.com/rugk/awesome-emoji-picker/issues/28
