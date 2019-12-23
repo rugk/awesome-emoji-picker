@@ -1,5 +1,27 @@
 @import "confirmationHint.css";
 
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  /* sourrounding parts */
+  body {
+    background-color: var(--grey-60);
+  }
+
+  /* overwrite emoji-marts style to use colors more similar to Firefox Photons */
+  .emoji-mart-dark,
+  .emoji-mart-dark .emoji-mart-category-label span {
+    background-color: var(--grey-60) !important;
+  }
+
+  /* increase contrast for text */
+  .emoji-mart-anchor {
+    color: var(--grey-20) !important;
+  }
+  .emoji-mart-preview-shortname {
+    color: var(--grey-10) !important;
+  }
+}
+
 body * {
   /* unset text-align style set by browserStyle from Firefox that causes an issue, see https://github.com/missive/emoji-mart/issues/318 */
   text-align: unset;
