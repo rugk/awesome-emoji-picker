@@ -111,7 +111,7 @@ export async function triggerOnSelect(emoji) {
         } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
             insertIntoPage: optionPickerResult.automaticInsert,
             copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
-            copyToClipboard: optionPickerResult.copyEmoji
+            copyToClipboard: optionPickerResult.emojiCopy
         });
 
         messageToBeShown = getUserMessageForResult(isInserted, isCopied);
