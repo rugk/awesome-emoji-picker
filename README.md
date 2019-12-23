@@ -52,6 +52,7 @@ See:
 * Display the emojis in the design of Apple, Google, Twitter, EmojiOne or just the native style your browser uses.
 * Quickly search for any emoji with many keywords.
 * Search for emojis [directly in the address bar](https://github.com/rugk/awesome-emoji-picker/wiki/FAQ#how-to-use-the-address-bar-to-search-for-emojis).
+* Supports the dark/black mode of your system automatically.
 * Copy emoji to your clipboard.
 * …or directly insert it into the page.
 * Remembers frequently used emojis.
