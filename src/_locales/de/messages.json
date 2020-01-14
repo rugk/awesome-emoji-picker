@@ -308,7 +308,7 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchBoxIntegrationDescr": {
-    "message": "Erlaubt dir, nach Emojis in der Addressleiste zu suchen, indem die Suche mit dem Wort “emoji”, gefolgt von einem Leerzeichen, gestartet wird.",
+    "message": "Erlaubt es, nach Emojis in der Addressleiste zu suchen, indem die Suche mit dem Wort “emoji”, gefolgt von einem Leerzeichen, gestartet wird.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchCopyAction": {
