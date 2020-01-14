@@ -308,7 +308,7 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchBoxIntegrationDescr": {
-    "message": "Allows you to search for emojis in the address bar by starting your search with “emoji ”.",
+    "message": "Allows you to search for emojis in the address bar by starting your search with “emoji”, followed by a space.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchCopyAction": {
