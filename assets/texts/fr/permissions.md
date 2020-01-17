@@ -18,7 +18,7 @@ Ces autorisations sont requises pour effectuer certaines actions, si elles sont 
 ## Autorisations cachées
 De plus, l'extension requiert ces autorisations, qui ne sont pas requises dans Firefox quand l'extension est installée, car elles sont superficielles.
 
-| Id Interne  | Autorisations                                | Explication                                                                           |
-|:------------|:---------------------------------------------|:--------------------------------------------------------------------------------------|
-| `activeTab` | Accéder à l'onglet/site actif                | Requis pour insérer l'émoji dans le site courant, le cas échéant.                     |
-| `storage`   | Accéder au stockage local                    | Requis pour sauvegarder les paramètres.                                               |
+| Id Interne  | Autorisations                 | Explication                                                       |
+|:------------|:------------------------------|:------------------------------------------------------------------|
+| `activeTab` | Accéder à l'onglet/site actif | Requis pour insérer l'émoji dans le site courant, le cas échéant. |
+| `storage`   | Accéder au stockage local     | Requis pour sauvegarder les paramètres.                           |
