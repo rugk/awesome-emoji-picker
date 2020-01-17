@@ -11,15 +11,14 @@ Actuellement, aucune autorisation n'est requise à l'installation ou lors des mi
 
 Ces autorisations sont requises pour effectuer certaines actions, si elles sont nécessaires.
 
-|  ID Interne | Autorisations                                                                           | Demandé au …                              | Explication  |
-|:------------|:----------------------------------------------------------------------------------------|:------------------------------------------|:-------------|
-| `downloads` | Télécharge les fichiers, et lit et modifie l'historique de téléchargement du navigateur | Téléchargement de QR code en tant que SVG | Needed for … |
+|    ID Interne    | Autorisations                           | Demandé au/à …                                                                    | Explication                                                                                                                                                                 |
+|:-----------------|:----------------------------------------|:----------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `clipboardWrite` | Écrit des données vers le presse-papier | L'activation de l'option de ne copier les émojis uniquement si l'insertion échoue | Utilisée pour copier les émojis de manière asynchrone, _seulement_ si l'insertion échoue (si vous voulez tout le temps les copier, il n'y a pas besoin de cette permission).|
 
 ## Autorisations cachées
 De plus, l'extension requiert ces autorisations, qui ne sont pas requises dans Firefox quand l'extension est installée, car elles sont superficielles.
 
 | Id Interne  | Autorisations                                | Explication                                                                           |
 |:------------|:---------------------------------------------|:--------------------------------------------------------------------------------------|
-| `activeTab` | Accéder à l'onglet actif                     | Requis pour récupérer l'URL du site courant pour le QR-Code                           |
-| `storage`   | Accéder au stockage local                    | Requis pour sauvegarder les paramètres                                                |
-| `menus`     | Modifier les menus contextuels du navigateur | Requis pour ajouter les menus contextuels "QR-Code à partir de la sélection" (etc.)   |
+| `activeTab` | Accéder à l'onglet/site actif                | Requis pour insérer l'émoji dans le site courant, le cas échéant.                     |
+| `storage`   | Accéder au stockage local                    | Requis pour sauvegarder les paramètres.                                               |
