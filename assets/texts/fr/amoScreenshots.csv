@@ -1,9 +1,9 @@
 popupOpenRecent.png; "Sélectionnez directement n'importe quel émoji depuis votre navigateur avec ce sélecteur.";
-popupDarkMode.png; "It supports your system's dark mode automatically.";
+popupDarkMode.png; "Prend en charge le mode sombre de votre système automatiquement.";
 popupSearchLikeApple.png; "Vous pouvez changer l'apparence des émojis et leur largeur.";
 popupSelectFemaleDetective.png; "Les émoticônes peuvent être copiés ...";
 popupAppleInsertDogOnMastodon.png; "... ou insérés directement dans la page courante.";
-emojiSearchAddressBarDog.png; "Search for emojis directly in your address bar (needs to be enabled manually).";
-popupBigEmojisApple.png; "Adjust the size for all emojis!";
-popupMediumSkinSearchDoctor.png; "Ajuste le teint et recherche des émojis.";
+emojiSearchAddressBarDog.png; "Cherchez des émojis directement dans votre barre d'addresse (soit être activé manuellement).";
+popupBigEmojisApple.png; "Adjustez la taille de tous les emojis!";
+popupMediumSkinSearchDoctor.png; "Ajustez le teint et recherchez des émojis.";
 options.png; "Voici la page complète des paramètres, avec toutes les options ajustables.";
