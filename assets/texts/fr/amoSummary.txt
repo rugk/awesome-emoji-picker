@@ -1,3 +1,3 @@
-Ce module complémentaire vous donne un sélecteur d'émoji moderne pour en trouver 🔎 et les utiliser. 😀 Il sera ajouté à votre presse-papier 📋 ("Copier-coller"), ou inséré directement, quand vous cliquez 🖱️ dessus.
+Sélecteur d'émoji moderne et joli pour trouver 🔎 et sélectionner les émojis. 😀 Il sera ajouté à votre presse-papier 📋 ("Copier-coller"), ou inséré directement, quand vous cliquez 🖱️ dessus.
 
-Vous allez l'adorer. 😎
+Vous allez certainement l'aimer. 😎

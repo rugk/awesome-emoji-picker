@@ -1,4 +1,4 @@
-Ce module complémentaire n'envoit aucune information à qui que ce soit (y compris l'auteur de l'extension).
+Cette extension n'envoit aucune information à qui que ce soit (y compris l'auteur de l'extension).
 
 Une explication de toutes les autorisations dont cette extension a besoin peut être trouvée ici :
 https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/fr/permissions.md.
