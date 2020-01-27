@@ -4,7 +4,7 @@ For a general explanation of add-on permission see [this support article](https:
 
 ## Installation permissions
 
-Currently no permissions are requested at the installation or when updating.
+Currently, no permissions are requested at the installation or when updating.
 
 ## Feature-specific (optional) permissions
 
@@ -16,7 +16,7 @@ These permissions are requested when doing some specific actions, if they are ne
 
 ## Hidden permissions
 
-Additionally it requests these permission, which are not requested in Firefox when the add-on is installed, as they are not a profound permission.
+Additionally, it requests these permissions, which are not requested in Firefox when the add-on is installed, as they are not a profound permission.
 
 | Internal Id | Permission                 | Explanation                                                       |
 |:------------|:---------------------------|:------------------------------------------------------------------|
