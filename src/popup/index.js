@@ -33,17 +33,32 @@ async function createPicker() {
 }
 
 initEmojiMartStorage();
-createPicker().then(() => {
-    const isOverflowMenu = EnvironmentDetector.getPopupType() === EnvironmentDetector.POPUP_TYPE.OVERFLOW;
-
-    if (isOverflowMenu) {
-        document.querySelector(".emoji-mart").style.width = `${window.innerWidth}px`;
-    }
-
+createPicker().then(async () => {
     // to be sure, trigger focus manually afterwards
     // auto-focus does not always work properly, see
     // https://github.com/rugk/awesome-emoji-picker/issues/28
     document.querySelector(".emoji-mart-search > input").focus();
+
+    // adjust with of picker, if it overflows
+    await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
+    const isOverflowMenu = EnvironmentDetector.getPopupType() === EnvironmentDetector.POPUP_TYPE.OVERFLOW;
+
+    if (isOverflowMenu) {
+        // prevent overflow and stretch GUI (even if it is a upt o 20% underflow)
+        if (EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH) > -20) {
+            // make popup smaller, so it fits and scrollbar disappears
+            document.querySelector(".emoji-mart").style.width = `${window.innerWidth-20}px`;
+
+            // re-enlarge it at next redraw, so no scrollbars are shown
+            setTimeout(() => {
+                document.querySelector(".emoji-mart").style.width = "100vw";
+            });
+        } else {
+            // center popup
+            document.body.style.alignSelf = "center"; // flex center
+        }
+
+    }
 });
 
 RandomTips.init(tips).then(() => {
