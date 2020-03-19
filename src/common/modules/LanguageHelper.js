@@ -21,10 +21,12 @@
 const ADDON_TRANSLATED_INTO = [
     // German
     "de", "de-DE",
+    // Hebrew
+    // "he", // many untranslated strings
     // English
     "en", "en-US",
     // French
-    "fr", "fr-FR",
+    // "fr", "fr-FR", // many untranslated strings
 ].map((lang) => lang.toLowerCase());
 
 /**

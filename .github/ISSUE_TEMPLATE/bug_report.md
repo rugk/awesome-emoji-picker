@@ -32,3 +32,7 @@ Add-on version:
 
 ## Possible solution
 <!-- Add references to other issues/docs/websites here or look into the code to find the potential causes of the problem or how to fix it. Omit this, if you don't know what to write here. -->
+
+## Miscellaneous
+
+* [ ] This issue is reproducible on https://missive.github.io/emoji-mart/

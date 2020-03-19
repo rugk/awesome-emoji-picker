@@ -180,14 +180,6 @@
     "message": "Twitter",
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
   },
-  "optionEmojiSetEmojiOne": {
-    "message": "EmojiOne",
-    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
-  },
-  "optionEmojiSetMessenger": {
-    "message": "Facebook Messenger",
-    "description": "Option of the emoji set. This is a product name and should thus, usually, not translated. Only translate if it's the official product translation."
-  },
   "optionEmojiSetFacebook": {
     "message": "Facebook",
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
@@ -308,7 +300,7 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchBoxIntegrationDescr": {
-    "message": "Erlaubt dir, nach Emojis in der Addressleiste zu suchen, indem die Suche mit dem Wort “emoji ” gestartet wird.",
+    "message": "Erlaubt es, nach Emojis in der Addressleiste zu suchen, indem die Suche mit dem Wort “emoji”, gefolgt von einem Leerzeichen, gestartet wird.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionSearchCopyAction": {
