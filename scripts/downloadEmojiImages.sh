@@ -9,11 +9,11 @@
 # hardcoded
 USER_AGENT="awesome-emoji-picker browser add-on build script (https://github.com/rugk/awesome-emoji-picker)"
 SHEET_SIZE="64" # px emojis
-EMOJI_SETS="apple google twitter emojione messenger facebook"
+EMOJI_SETS="apple google twitter facebook"
 STORAGE_DIRECTORY="./src/popup/img/emoji-images"
 
 # default
-emojiDataSourceVersion="4.0.4"
+emojiDataSourceVersion="5.0.1"
 test -n "$1" && emojiDataSourceVersion="$1" && echo "Using version $emojiDataSourceVersion for emoji-datasource."
 
 for set in $EMOJI_SETS; do
