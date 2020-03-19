@@ -23,6 +23,7 @@ export const hardcodedSettings = Object.freeze({
     onSelect: EmojiSelect.triggerOnSelect,
     onClick: EmojiSelect.saveClickPosition,
     style: { "border": "none" },
+    theme: "auto",
     backgroundImageFn: getEmojiSheet,
     title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
     emoji: "star-struck" // default emoji
