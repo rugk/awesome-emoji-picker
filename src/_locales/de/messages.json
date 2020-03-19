@@ -180,14 +180,6 @@
     "message": "Twitter",
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
   },
-  "optionEmojiSetEmojiOne": {
-    "message": "EmojiOne",
-    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
-  },
-  "optionEmojiSetMessenger": {
-    "message": "Facebook Messenger",
-    "description": "Option of the emoji set. This is a product name and should thus, usually, not translated. Only translate if it's the official product translation."
-  },
   "optionEmojiSetFacebook": {
     "message": "Facebook",
     "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation."
