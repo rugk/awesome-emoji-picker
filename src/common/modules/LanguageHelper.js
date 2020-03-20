@@ -26,7 +26,7 @@ const ADDON_TRANSLATED_INTO = [
     // English
     "en", "en-US",
     // French
-    // "fr", "fr-FR", // many untranslated strings
+    "fr", "fr-FR",
 ].map((lang) => lang.toLowerCase());
 
 /**
