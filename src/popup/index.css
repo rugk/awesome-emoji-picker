@@ -1,5 +1,22 @@
 @import "confirmationHint.css";
 
+/* on (small) mobile displays */
+@media (max-width: 700px) {
+  body {
+    /* for some reason there is a margin in Firefox for Android
+       see https://bugzilla.mozilla.org/show_bug.cgi?id=1457696 */
+    margin: 0px;
+  }
+}
+
+html.center-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
 /* dark mode */
 @media (prefers-color-scheme: dark) {
   /* sourrounding parts */

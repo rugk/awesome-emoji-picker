@@ -72,15 +72,16 @@ initEmojiMartStorage();
 createPicker().then(async () => {
     // to be sure, trigger focus manually afterwards
     // auto-focus does not always work properly, see
-    // https://github.com/rugk/awesome-emoji-picker/issues/28
+    // https://github.com/rugk/awesome-emoji-picker/issues/28 (now fixed)
     // https://github.com/rugk/awesome-emoji-picker/issues/86 / https://bugzilla.mozilla.org/show_bug.cgi?id=1623875
     focusElement(document.querySelector(".emoji-mart-search > input"));
 
     // adjust with of picker, if it overflows
     await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
-    const isOverflowMenu = EnvironmentDetector.getPopupType() === EnvironmentDetector.POPUP_TYPE.OVERFLOW;
+    const popupType = EnvironmentDetector.getPopupType();
 
-    if (isOverflowMenu) {
+    if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
+        popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE ) {
         // prevent overflow and stretch GUI (even if it is a up to 20% underflow)
         if (EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH) > -20) {
             // make popup smaller, so it fits
@@ -95,10 +96,17 @@ createPicker().then(async () => {
             setTimeout(() => {
                 document.querySelector(".emoji-mart").style.width = `${window.innerWidth}px`;
                 document.querySelector(".emoji-mart").style.removeProperty("height");
+
+                // also vertically center on Android
+                if (popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
+                    document.querySelector(".emoji-mart").style.removeProperty("border");
+                    document.documentElement.classList.add("center-picker");
+                }
             }, 60);
         } else {
             // center popup
-            document.body.style.alignSelf = "center"; // flex center
+            document.querySelector(".emoji-mart").style.removeProperty("border");
+            document.documentElement.classList.add("center-picker");
         }
 
     }
