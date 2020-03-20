@@ -161,7 +161,7 @@
     "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
   },
   "optionEmojiPickerSet": {
-    "message": "Emoji-Set:",
+    "message": "Emoji-Design:",
       "description": "This is an option shown in the add-on settings."
   },
   "optionEmojiSetNative": {
