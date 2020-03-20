@@ -35,4 +35,4 @@ Add-on version:
 
 ## Miscellaneous
 
-* [ ] This issue is reproducible on https://missive.github.io/emoji-mart/
+This issue is reproducible on https://missive.github.io/emoji-mart/: Yes/No
