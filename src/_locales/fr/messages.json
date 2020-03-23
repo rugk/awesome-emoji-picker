@@ -9,7 +9,7 @@
     "description": "Short name of the extension. I suggest not to translate it."
   },
   "extensionDescription": {
-    "message": "Vous permet de trouver et de sélectionner des émoticônes. Vous pouvez ensuite les copier ou les insèrer directement dans la page Web",
+    "message": "Vous permet de trouver et de sélectionner des émoticônes. Vous pouvez ensuite les copier ou les insérer directement dans la page Web",
     "description": "Description of the extension."
   },
   "browserActionButtonTitle": {
@@ -20,6 +20,7 @@
     "message": "Ouvrir la pop-up à émoticône",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period)."
   },
+
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
     "message": "Impossible d'afficher ce message.",
@@ -49,6 +50,7 @@
     "message": "Impossible de réinitialiser les paramètres !",
     "description": "The message shown, when the options of the settings could not have been reset."
   },
+
   "errorPermissionMissing": {
     "message": "Une autorisation est manquante pour cette action.",
     "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
@@ -61,14 +63,20 @@
     "message": "L'action, que vous vouliez faire, a échouée.",
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
+
   "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "L'autorisation de copier des données dans le presse-papier est nécéssaire pour cette fonctionnalité.",
+    "message": "L'autorisation de copier des données dans le presse-papier est nécessaire pour cette fonctionnalité.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
   },
   "buttonRequestPermission": {
     "message": "Donner l'autorisation",
     "description": "The button label, used for requesting a permission that is missing."
   },
+  "couldNotRequestPermission": {
+    "message": "La requête pour l'autorisation a échouée.",
+    "description": "When the permission request fails."
+  },
+
   // confirmation hints
   "confirmationHintEmojiCopied": {
     "message": "Emoji copié",
@@ -82,6 +90,7 @@
     "message": "Emoji copié & inséré",
     "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message."
   },
+
   // tips
   "tipYouLikeAddon": {
     "message": "Est-ce que vous aimez cette application ?",
@@ -108,13 +117,14 @@
     "description": "A tip shown to get the remind them of a donation."
   },
   "tipDonateButton": {
-    "message": "Soutenez le developpement en faisant un don !",
+    "message": "Soutenez le développement en faisant un don !",
     "description": "The button of the donation tip taking the user to the donation site."
   },
   "tipLearnMore": {
     "message": "En savoir plus",
     "description": "The common button for tips, where you can get more information on click."
   },
+
   // options
   "someSettingsAreManaged": {
     "message": "Certains paramètres sont contrôlés par votre administrateur système et ne peuvent être changés.",
@@ -132,6 +142,7 @@
     "message": "Réinitialiser les paramètres.",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings."
   },
+
   "titleAppearance": {
     "message": "Apparence",
     "description": "The title for a settings group."
@@ -140,6 +151,7 @@
     "message": "Comportement de l'extension",
     "description": "The title for a settings group."
   },
+
   "optionPopupIconColored": {
     "message": "Icône colorée",
     "description": "This is an option shown in the add-on settings."
@@ -236,8 +248,9 @@
     "message": "Afficher une infos-bulle avec le nom de l'émoticône en le survolant.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
   },
+
   "optionAutomaticInsert": {
-    "message": "Insèrer automatiquement les émoticônes dans la page Web.",
+    "message": "Insérer automatiquement les émoticônes dans la page Web.",
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyClipboard": {
@@ -248,9 +261,10 @@
     "message": "À n'utiliser que si l'insertion automatique ne fonctionne pas.",
     "description": "This is an option shown in the add-on settings."
   },
+
   "optionCopyEmojiColons": {
     "message": "Utiliser le $COLON$ à la place de l'émoticône en unicode.",
-    "description": "This is an option shown in the add-on settings.",
+    "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
     "placeholders": {
       "colon": {
         "content": "$1",
@@ -266,16 +280,44 @@
     "message": "Seulement utile pour les sites compatibles.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting."
   },
+
   "optionShowConfirmationMessage": {
     "message": "Affiche un message de confirmation quand l'action a réussi.",
     "description": "This is an option shown in the add-on settings."
   },
+
   "optionClosePopup": {
     "message": "Fermer la fenêtre après qu'un émoticône ait été sélectionné.",
     "description": "This is an option shown in the add-on settings."
   },
+
+  "titleSearchBar": {
+    "message": "Barre de recherche",
+    "description": "The title for a settings group."
+  },
+  "optionSearchBoxIntegration": {
+    "message": "Intégration dans la barre d'addresse.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchBoxIntegrationDescr": {
+    "message": "Permet de rechercher des émojis dans la barre d'addresse, en commençant la recherche par « emoji », puis un espace.",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionSearchCopyAction": {
+    "message": "Copier dans le presse-papier",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionEmojipediaAction": {
+    "message": "Chercher sur Emojipedia",
+    "description": "This is an radio option shown in the add-on settings."
+  },
+  "optionImageAltTextSearchBarDemo": {
+    "message": "Exemple montrant une recherche dans la barre d'adresse avec le terme « dog » (chien), pour lequel plusieurs émojis sont suggérés.",
+    "description": "This is the alt description for an image shown in the add-on settings."
+  },
+
   "optionsLicenseDisclaimer": {
-    "message": "Tous les images des émoticônes peuvent être sujectes à différentes licences. Pour plus d'information, cf. $LINK$.",
+    "message": "Toutes les images des émoticônes peuvent être sujettes à différentes licences. Pour plus d'information, cf. $LINK$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
       "link": {
@@ -292,6 +334,7 @@
     "message": "l'ensemble du fichier licence",
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer."
   },
+
   "translatorCredit": {
     "message": "Cet app a été traduite en français par $TRANSLATORS$.",
     "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
@@ -310,6 +353,7 @@
     "message": "Prometheos2",
     "description": "The username that the translator wants to be referred to."
   },
+
   "contributorsThanks": {
     "message": "Merci également aux $CONTRIBUTORS$.",
     "description": "Text thanking all contributors and linking to the contributors file.",
@@ -328,6 +372,47 @@
     "message": "tous les autres contributeurs",
     "description": "The link text linking to the contributors file. See contributorsThanks."
   },
+
+  // emoji-search
+  "searchTipDescription": {
+    "message": "Chercher des émojis via $ADDON$…",
+    "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchTipDescriptionDisabled": {
+    "message": "La recherche des émojis via $ADDON$ est désactivée … Vous pouvez l'activer dans les options.",
+    "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchResultDescription": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "🐵 (The Unicode symbol for the Emoji)"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Monkey Face (The name of the Emoji)"
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
+      }
+    }
+  },
+
   // emoji-mart
   // see https://github.com/missive/emoji-mart#i18n
   // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
@@ -340,11 +425,11 @@
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible label on \"clear\" button. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartNoEmojiFound": {
-    "message": "Aucun émoticône n'a été trouvé",
+    "message": "Aucune émoticône n'a été trouvé",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkinText": {
-    "message": "Choisissez votre teint par défault",
+    "message": "Choisissez votre teint par défaut",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategorySearch": {
@@ -388,7 +473,7 @@
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartCategoryCustom": {
-    "message": "Personalisés",
+    "message": "Personnalisés",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartCategoriesLabel": {
@@ -396,7 +481,7 @@
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible title for the list of categories. See: https://github.com/missive/emoji-mart#i18n"
   },
   "emojiMartSkintone1": {
-    "message": "Teint par défault",
+    "message": "Teint par défaut",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
   "emojiMartSkintone2": {
@@ -419,6 +504,7 @@
     "message": "Teint très foncé",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc"
   },
+
   // ARIA labels/descriptions
   "dismissIconDescription": {
     "message": "Fermer ce message",
