@@ -11,9 +11,9 @@ Actuellement, aucune autorisation n'est requise à l'installation ou lors des mi
 
 Ces autorisations sont requises pour effectuer certaines actions, si elles sont nécessaires.
 
-|    ID Interne    | Autorisations                           | Demandé …                                                                             | Explication                                                                                                                                                                 |
-|:-----------------|:----------------------------------------|:--------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `clipboardWrite` | Écrit des données vers le presse-papier | À l'activation de l'option pour ne copier les émojis qu'en cas d'échec de l'insertion | Utilisée pour copier les émojis de manière asynchrone, _seulement_ si l'insertion échoue (si vous voulez tout le temps les copier, il n'y a pas besoin de cette permission).|
+|    ID Interne    | Autorisations                           | Demandé …                                                                         | Explication                                                                                                                                                                                                                                |
+|:-----------------|:----------------------------------------|:----------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `clipboardWrite` | Écrit des données vers le presse-papier | À l'activation d'une option nécessitant de copier les émojis de façon asynchrone. | Utilisée pour copier les émojis, _seulement_ si l'insertion dans la page échoue (si vous voulez tout le temps les copier, il n'y a pas besoin de cette permission). _ou_ si vous voulez copier l'émoji via la barre d'adresse (recherche). |
 
 ## Autorisations cachées
 De plus, l'extension requiert ces autorisations, qui ne sont pas requises dans Firefox quand l'extension est installée, car elles sont superficielles.
