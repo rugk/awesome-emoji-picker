@@ -1,4 +1,4 @@
- # Contributors
+# Contributors
  
  * Michael Corwin ([@mcorwin22](https://github.com/mcorwin22))
  * Metta Ong ([@ongspxm](https://github.com/ongspxm))
