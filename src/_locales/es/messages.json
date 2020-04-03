@@ -51,10 +51,6 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
-  "errorPermissionMissing": {
-    "message": "Falta un permiso para esta acción.",
-    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
-  },
   "messageOpenOptionsButton": {
     "message": "Abrir opciones",
     "description": "The text of a button that opens the options page."
@@ -64,10 +60,6 @@
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
 
-  "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "Para usar esta característica falta el permiso para copiar datos en el portapapeles.",
-    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
-  },
   "buttonRequestPermission": {
     "message": "Dar permiso",
     "description": "The button label, used for requesting a permission that is missing."

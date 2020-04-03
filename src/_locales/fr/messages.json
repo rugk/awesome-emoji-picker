@@ -51,10 +51,6 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
-  "errorPermissionMissing": {
-    "message": "Une autorisation est manquante pour cette action.",
-    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
-  },
   "messageOpenOptionsButton": {
     "message": "Ouvrir les paramètres",
     "description": "The text of a button that opens the options page."
@@ -64,10 +60,6 @@
     "description": "A generic error message shown, if nothing else/more specific can be shown."
   },
 
-  "emojiCopyOnlyFallbackPermissionInfo": {
-    "message": "L'autorisation de copier des données dans le presse-papier est nécessaire pour cette fonctionnalité.",
-    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work."
-  },
   "buttonRequestPermission": {
     "message": "Donner l'autorisation",
     "description": "The button label, used for requesting a permission that is missing."
