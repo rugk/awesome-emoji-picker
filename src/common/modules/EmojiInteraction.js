@@ -6,6 +6,12 @@ const CLIPBOARD_WRITE_PERMISSION = {
 
 let addonHasClipboardWritePermission = false;
 
+// cache Firefox version
+let currentBrowserData = "";
+browser.runtime.getBrowserInfo().then((data) => {
+    currentBrowserData = data;
+});
+
 /**
  * Errors in QR code generation
  *
@@ -55,6 +61,13 @@ export async function insertOrCopy(text, options) {
             copyToClipboard = false;
         }).catch(() => {
             console.error("Insertion into page failed. Use emoji copy fallback.");
+
+            // do not require clipboardCopy permission for Firefox >= 74
+            // ref https://github.com/rugk/awesome-emoji-picker/issues/90
+            if (currentBrowserData.name === "Firefox" &&
+                currentBrowserData.version.startsWith("74.")) {
+                return; // resolve promise, so await continues
+            }
 
             if (addonHasClipboardWritePermission) {
                 copyToClipboard = true;

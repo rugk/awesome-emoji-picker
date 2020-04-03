@@ -19,6 +19,12 @@ const CLIPBOARD_WRITE_PERMISSION = {
 const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 
+// cache Firefox version
+let currentBrowserData = "";
+browser.runtime.getBrowserInfo().then((data) => {
+    currentBrowserData = data;
+});
+
 /**
  * Adjust UI if QR code size option is changed.
  *
@@ -70,6 +76,13 @@ function applyPickerResultPermissions(optionValue, option, event) {
         document.getElementById("emojiCopyOnlyFallback").disabled = false;
     } else {
         document.getElementById("emojiCopyOnlyFallback").disabled = true;
+    }
+
+    // do not require clipboardCopy permission for Firefox >= 74
+    // ref https://github.com/rugk/awesome-emoji-picker/issues/90
+    if (currentBrowserData.name === "Firefox" &&
+        currentBrowserData.version.startsWith("74.")) {
+        return retPromise;
     }
 
     if (optionValue.emojiCopy && // only if actually enabled
