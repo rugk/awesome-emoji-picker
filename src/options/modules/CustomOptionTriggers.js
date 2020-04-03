@@ -16,7 +16,6 @@ import * as IconHandler from "/common/modules/IconHandler.js";
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: ["clipboardWrite"]
 };
-const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 
 /**
@@ -62,7 +61,7 @@ function saveEmojiSet(param) {
  * @param  {Object} [event]
  * @returns {Promise}
  */
-function applyPickerResultPermissions(optionValue, option, event) {
+function applyPickerResultPermissions(optionValue) {
     let retPromise;
 
     // switch status of sub-child
@@ -70,23 +69,6 @@ function applyPickerResultPermissions(optionValue, option, event) {
         document.getElementById("emojiCopyOnlyFallback").disabled = false;
     } else {
         document.getElementById("emojiCopyOnlyFallback").disabled = true;
-    }
-
-    if (optionValue.emojiCopy && // only if actually enabled
-        optionValue.emojiCopyOnlyFallback && // if we require a permission
-        !PermissionRequest.isPermissionGranted(CLIPBOARD_WRITE_PERMISSION) // and not already granted
-    ) {
-        retPromise = PermissionRequest.requestPermission(
-            CLIPBOARD_WRITE_PERMISSION,
-            MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK,
-            event
-        ).catch(() => {
-            // if permission is rejected (user declined), force disabling the setting
-            optionValue.emojiCopyOnlyFallback = false;
-            document.getElementById("emojiCopyOnlyFallback").checked = false;
-        });
-    } else {
-        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK);
     }
 
     return retPromise;
@@ -366,12 +348,6 @@ export async function registerTrigger() {
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
 
     // permission request init
-    await PermissionRequest.registerPermissionMessageBox(
-        CLIPBOARD_WRITE_PERMISSION,
-        MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK,
-        document.getElementById("emojiCopyOnlyFallbackPermissionInfo"),
-        "permissionRequiredClipboardWrite"
-    );
     await PermissionRequest.registerPermissionMessageBox(
         CLIPBOARD_WRITE_PERMISSION,
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,

@@ -1,25 +1,5 @@
 import * as PageHandler from "./PageHandler.js";
 
-const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: ["clipboardWrite"]
-};
-
-let addonHasClipboardWritePermission = false;
-
-/**
- * Errors in QR code generation
- *
- * @module QrLib/QrError
- */
-export class PermissionError extends Error {
-    constructor(message, ...params) {
-        super(
-            message || "No permission for this action.",
-            ...params
-        );
-    }
-}
-
 /**
  * As per users settings, insert emoji into web page or copy to clipboard.
  *
@@ -53,30 +33,16 @@ export async function insertOrCopy(text, options) {
         await (emojiInsertResult.then(() => {
             // if successful, do not copy emoji
             copyToClipboard = false;
-        }).catch(() => {
-            console.error("Insertion into page failed. Use emoji copy fallback.");
-
-            if (addonHasClipboardWritePermission) {
-                copyToClipboard = true;
-            } else {
-                console.error("Well, actually…, we cannot fallback, as we miss the clipboardWrite permission.");
-                // Note: We cannot request the permission now, because of the same reason why we cannot actually
-                // copy without clipboardWrite permission (this is no user action anymore)
-
-                throw new PermissionError("Permisson missing for clipboardWrite.");
-            }
-
-            // resolve promise, so await continues
-        }));
+        })).catch((e) => {
+            // log error just as a warning, as we expect copying can fail
+            console.warn(e);
+            // but resolve promise, so await/fallback continues
+        });
     }
 
     // copy to clipboard
     let copyResult = Promise.resolve(); // successful by default
     if (copyToClipboard) {
-        // WARNING: If there is an asyncronous waiting (await) before, we need to
-        // request the clipboardWrite permission to be able to do this, as the
-        // function call is then not anymore assigned to a click handler
-        // Reported at: https://bugzilla.mozilla.org/show_bug.cgi?id=1554855
         copyResult = navigator.clipboard.writeText(text);
     }
 
@@ -104,8 +70,7 @@ export async function insertOrCopy(text, options) {
  * @returns {Promise}
  */
 export async function init() {
-    // query permission values, so they can be accessed syncronously
-    addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
+    // nothing for now
 }
 
 // automatically init module.
