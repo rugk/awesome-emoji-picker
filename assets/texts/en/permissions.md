@@ -12,7 +12,7 @@ These permissions are requested when doing some specific actions, if they are ne
 
 | Internal Id      | Permission                  | Requested at/when…                                                                            | Explanation                                                                                                                                                                                      |
 |:-----------------|:----------------------------|:----------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `clipboardWrite` | Input data to the clipboard | If you enable an option that requires copying the emoji asynchronously to the clipboard. | Needed to copy the emoji to clipboard, _only_ if inserting into the page fails (if you always want to copy the emoji, this permission is _not_ requested/needed.) _or_ if you want to copy the emoji via the address bar search. |
+| `clipboardWrite` | Input data to the clipboard | If you enable an option that requires copying the emoji in a special way to the clipboard. | Needed to copy the emoji to clipboard, _only_ if you want to copy the emoji via the address bar search. |
 
 ## Hidden permissions
 
