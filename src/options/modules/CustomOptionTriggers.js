@@ -70,6 +70,12 @@ function saveEmojiSet(param) {
  */
 function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
+	
+	// trigger update for current session
+    browser.runtime.sendMessage({
+        "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
+        "optionValue": optionValue
+    });
 
     // switch status of sub-child
     if (optionValue.emojiCopy) {

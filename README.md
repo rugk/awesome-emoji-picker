@@ -11,7 +11,7 @@ You can then use the emojis on almost any web page, including your favorite mess
 
 It will remember your recently used emojis across sites, and may often be faster than the emoji picker on the site itself.
 
-It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
+It uses up-to-date Emojis and lets you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
 
 * Apple emojis
 * Google emojis
@@ -69,7 +69,6 @@ See:
 * It does not violate your privacy and does send data anywhere.
 * Compatible with Firefox for Android
 * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
-* Compatible with Firefox for Android
 * Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))
 
 ## Contribute
