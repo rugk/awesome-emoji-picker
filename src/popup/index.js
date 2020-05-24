@@ -52,14 +52,14 @@ export async function focusElement(element, retries = 20, delay = 50) {
 
     await wait();
 
-    // if element is focussed, we are lucky
+    // if element is focused, we are lucky
     if (document.activeElement === element) {
-        console.log(element, "focussed with", retries, "retries left, at delay", delay);
+        console.log(element, "focused with", retries, "retries left, at delay", delay);
         return Promise.resolve();
     }
 
     if (retries <= 0) {
-        throw new TypeError("no re-tries left for focussing"); // will be converted into rejected promise
+        throw new TypeError("no re-tries left for focusing"); // will be converted into rejected promise
     }
 
     await wait(delay);

@@ -1,5 +1,5 @@
 /**
- * Handling fetures for current page.
+ * Handling features for current page.
  *
  */
 

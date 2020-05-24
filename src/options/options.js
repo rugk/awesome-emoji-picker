@@ -1,5 +1,5 @@
 /**
- * Starter module for addon settings site.
+ * Starter module for add-on settings site.
  *
  * @requires modules/OptionHandler
  */

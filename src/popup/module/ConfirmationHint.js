@@ -23,7 +23,7 @@ const elPanelTemplate = elTemplate.content.getElementById("confirmation-hint");
  * @param  {number} position.top manual position
  * @param  {number} height the height of the popup
  * @param  {number} width the width of the popup
- * @returns {Object} the ficed position
+ * @returns {Object} the fixed position
  */
 function keepMessageInsideOfPopup(position, height, width) {
     const TOLERANCE = 3; // px

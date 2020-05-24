@@ -1,7 +1,7 @@
 /**
  * Upgrades user data on installation of new updates.
  *
- * Attention: Currently you must not include this script asyncronously. See
+ * Attention: Currently you must not include this script asynchronously. See
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1506464 for details.
  *
  * @module InstallUpgrade

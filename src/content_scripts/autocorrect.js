@@ -8,6 +8,9 @@ const constants = Object.freeze(["π", "e"]);
 
 const constantValues = Object.freeze([Math.PI, Math.E]);
 
+// communication type
+const AUTOCORRECT_CONTENT = "autocorrectContent";
+
 let insertedText; // Last insert text
 let deletedText; // Last deleted text
 let lastTarget; // Last target
@@ -318,7 +321,7 @@ function undoAutocorrect(event) {
  * @returns {void}
  */
 function handleResponse(message, sender, sendResponse) {
-	if (message.type == "autocorrectContent") {
+	if (message.type == AUTOCORRECT_CONTENT) {
 		autocomplete = message.autocomplete;
 		quotes = message.quotes;
 		fracts = message.fracts;
@@ -341,7 +344,7 @@ function handleError(error) {
 	console.error(`Error: ${error}`);
 }
 
-browser.runtime.sendMessage({ "type": "autocorrectContent" }).then(handleResponse, handleError);
+browser.runtime.sendMessage({ "type": AUTOCORRECT_CONTENT }).then(handleResponse, handleError);
 browser.runtime.onMessage.addListener(handleResponse);
 window.addEventListener('keydown', undoAutocorrect, true);
 window.addEventListener('keyup', autocorrect, true);

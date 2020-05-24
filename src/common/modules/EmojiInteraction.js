@@ -33,7 +33,7 @@ export class PermissionError extends Error {
  * @param {Object} text
  * @param {Object} options
  * @param {boolean} options.insertIntoPage whether to try to insert it into the active page
- * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (alos requires copyToClipboard=true)
+ * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (also requires copyToClipboard=true)
  * @param {boolean} options.copyToClipboard whether the text should be copied into the page
  * @returns {Promise}
  * @throws {Error}
@@ -76,7 +76,7 @@ export async function insertOrCopy(text, options) {
                 // Note: We cannot request the permission now, because of the same reason why we cannot actually
                 // copy without clipboardWrite permission (this is no user action anymore)
 
-                throw new PermissionError("Permisson missing for clipboardWrite.");
+                throw new PermissionError("Permission missing for clipboardWrite.");
             }
 
             // resolve promise, so await continues
@@ -86,7 +86,7 @@ export async function insertOrCopy(text, options) {
     // copy to clipboard
     let copyResult = Promise.resolve(); // successful by default
     if (copyToClipboard) {
-        // WARNING: If there is an asyncronous waiting (await) before, we need to
+        // WARNING: If there is an asynchronous waiting (await) before, we need to
         // request the clipboardWrite permission to be able to do this, as the
         // function call is then not anymore assigned to a click handler
         // Reported at: https://bugzilla.mozilla.org/show_bug.cgi?id=1554855
@@ -117,7 +117,7 @@ export async function insertOrCopy(text, options) {
  * @returns {Promise}
  */
 export async function init() {
-    // query permission values, so they can be accessed syncronously
+    // query permission values, so they can be accessed synchronously
     addonHasClipboardWritePermission = await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION);
 }
 
