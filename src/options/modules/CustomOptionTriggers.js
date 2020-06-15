@@ -16,8 +16,12 @@ import * as IconHandler from "/common/modules/IconHandler.js";
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: ["clipboardWrite"]
 };
+const TABS_PERMISSION = {
+    permissions: ["tabs"]
+};
 const MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK = "emojiCopyOnlyFallbackPermissionInfo";
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
+const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
 
 // cache Firefox version
 let currentBrowserData = "";
@@ -70,6 +74,17 @@ function saveEmojiSet(param) {
  */
 function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
+	
+	if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
+    ) {
+        retPromise = PermissionRequest.requestPermission(
+            TABS_PERMISSION,
+            MESSAGE_TABS_PERMISSION,
+            event
+        );
+    } else {
+        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
+    }
 	
 	// trigger update for current session
     browser.runtime.sendMessage({
@@ -396,5 +411,12 @@ export async function registerTrigger() {
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
         document.getElementById("searchActionCopyPermissionInfo"),
         "permissionRequiredClipboardWrite"
+    );
+    await PermissionRequest.registerPermissionMessageBox(
+        TABS_PERMISSION,
+        MESSAGE_TABS_PERMISSION,
+        document.getElementById("tabsPermissionInfo"),
+        // "permissionRequiredTabs" // This will need to be localized
+        "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
     );
 }

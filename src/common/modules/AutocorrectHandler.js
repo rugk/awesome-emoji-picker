@@ -56,7 +56,7 @@ function settings() {
 	const re = /[.*+?^${}()|[\]\\]/g;
 
 	for (const symbol in autocorrections) {
-		symbolpatterns.push('(' + symbol.replace(re, "\\$&") + ')');
+		symbolpatterns.push(symbol.replace(re, "\\$&"));
 	}
 
 	apatterns = [];
@@ -83,11 +83,11 @@ function settings() {
 				apatterns.push(x.slice(0, -(length - 1)));
 		}
 	}
-	apatterns = apatterns.filter(function (item, pos) { return apatterns.indexOf(item) === pos; });
+	apatterns = apatterns.filter((item, pos) => apatterns.indexOf(item) === pos);
 	console.log(apatterns);
 
 	apatterns.forEach(function (symbol, index) {
-		apatterns[index] = '(' + symbol.replace(re, "\\$&") + ')';
+		apatterns[index] = symbol.replace(re, "\\$&");
 	});
 
 	symbolpatterns = new RegExp('(' + symbolpatterns.join('|') + ')$');
@@ -171,7 +171,7 @@ export async function init() {
 
 	browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		// console.log(message);
-		if (message.type == COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
+		if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
 			const response = {
 				"type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
 				"autocomplete": autocomplete,

@@ -240,7 +240,7 @@ function autocorrect(event) {
 					const text = value.slice(caretposition < (longest - 1) ? 0 : caretposition - (longest - 1), caretposition);
 					let array = re.exec(text);
 					if (array) {
-						const aarray = Object.keys(emojiShortcodes).filter(function (item) { return item.indexOf(array[0]) === 0; });
+						const aarray = Object.keys(emojiShortcodes).filter((item) => item.indexOf(array[0]) === 0);
 						if (aarray.length === 1 && (array[0].length > 2 || aarray[0].length === 3)) {
 							insert = aarray[0].slice(array[0].length);
 							output = true;
@@ -321,7 +321,7 @@ function undoAutocorrect(event) {
  * @returns {void}
  */
 function handleResponse(message, sender, sendResponse) {
-	if (message.type == AUTOCORRECT_CONTENT) {
+	if (message.type === AUTOCORRECT_CONTENT) {
 		autocomplete = message.autocomplete;
 		quotes = message.quotes;
 		fracts = message.fracts;

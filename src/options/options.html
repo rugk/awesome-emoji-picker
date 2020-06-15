@@ -49,6 +49,15 @@
 				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
 		</div>
+		<div class="message-container line">
+			<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+				<span class="message-text">Permission requested.</span>
+				<a href="#">
+					<button type="button" class="message-action-button micro-button info invisible"></button>
+				</a>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+			</div>
+		</div>
 		<form>
 			<section>
 				<h1 data-i18n="__MSG_titleAppearance__">Appearance</h1>
@@ -150,7 +159,7 @@
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="resultType" data-optiongroup="pickerResult" name="resultType">
-							<label data-i18n="__MSG_optionCopyEmojiColons__" data-opt-i18n-keep-children for="resultType">Use the <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> shortcode instead of the Emoji Unicode.</label>
+							<label data-i18n="__MSG_optionCopyEmojiColons__" data-opt-i18n-keep-children for="resultType">Use the <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> shortcode instead of the Unicode Emoji.</label>
 						</div>
 						<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="line indent helper-text">Only useful to enable on specific sites that support this kind of text.</span>
 					</li>

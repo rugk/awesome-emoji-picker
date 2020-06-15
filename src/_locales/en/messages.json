@@ -263,7 +263,7 @@
   },
 
   "optionCopyEmojiColons": {
-    "message": "Use the $COLON$ shortcode instead of the Emoji Unicode.",
+    "message": "Use the $COLON$ shortcode instead of the Unicode Emoji.",
     "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
     "placeholders": {
       "colon": {
