@@ -1,0 +1,9 @@
+Ez a kiegészítő nem küld semmilyen információt harmadik feleknek vagy a kiegészítő szerzőjének.
+
+A kiegészítő által kért összes engedély magyarázata itt található: https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/hu/permissions.md.
+
+== HARMADIK FÉLTŐL SZÁRMAZÓ SZOLGÁLTATÁSOK ==
+
+Ez a KIEGÉSZÍTŐ a böngésző „szinkronizálási tárhelyét” használja a beállítások tárolásához. Ha a FELHASZNÁLÓ engedélyezi a böngésző „Sync” funkcióját, akkor a beállítások feltöltésre kerülnek, és szinkronizálva lesznek a fiókjához kapcsolt eszközök között. Ha ezt nem teszi meg, akkor az adatok helyben lesznek tárolva az eszközön.
+A Mozilla Firefoxban az adatok végpontok között titkosítottak a feltöltés és a Mozilla kiszolgálóira mentés előtt.
+A Mozilla vonatkozó adatvédelmi irányelveiért lásd a https://accounts.firefox.com/legal/privacy és https://www.mozilla.org/privacy/firefox/#c-privacy-topic-8 oldalakat.
