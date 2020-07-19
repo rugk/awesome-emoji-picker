@@ -74,8 +74,8 @@ function saveEmojiSet(param) {
  */
 function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
-	
-	if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
+
+    if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
     ) {
         retPromise = PermissionRequest.requestPermission(
             TABS_PERMISSION,
@@ -85,8 +85,8 @@ function applyPickerResultPermissions(optionValue, option, event) {
     } else {
         PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
     }
-	
-	// trigger update for current session
+
+    // trigger update for current session
     browser.runtime.sendMessage({
         "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
         "optionValue": optionValue
