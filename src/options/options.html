@@ -49,15 +49,6 @@
 				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
 			</div>
 		</div>
-		<div class="message-container line">
-			<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
-				<span class="message-text">Permission requested.</span>
-				<a href="#">
-					<button type="button" class="message-action-button micro-button info invisible"></button>
-				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
-			</div>
-		</div>
 		<form>
 			<section>
 				<h1 data-i18n="__MSG_titleAppearance__">Appearance</h1>
@@ -163,7 +154,25 @@
 						</div>
 						<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="line indent helper-text">Only useful to enable on specific sites that support this kind of text.</span>
 					</li>
-					
+
+					<div class="message-container line">
+						<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+							<span class="message-text">Permission requested.</span>
+							<a href="#">
+								<button type="button" class="message-action-button micro-button info invisible"></button>
+							</a>
+							<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+						</div>
+					</div>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="pickerResult" name="autocorrectEmojiShortcodes">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> Emoji Shortcodes</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">e.g. <code>:smiley:</code>→ 😃,  <code>:apple:</code>→ 🍎</span>
+					</li>
+
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojis" data-optiongroup="pickerResult" name="autocorrectEmojis">
@@ -179,15 +188,7 @@
 							</li>
 						</ul>
 					</li>
-					
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="pickerResult" name="autocorrectEmojiShortcodes">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> Emoji Shortcodes</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>:smiley:</code>→ 😃,  <code>:apple:</code>→ 🍎</span>
-					</li>
-					
+
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocorrectSymbols" data-optiongroup="pickerResult" name="autocorrectSymbols">
@@ -195,7 +196,7 @@
 						</div>
 						<span data-i18n="" class="line indent helper-text">e.g. <code>--</code>→ –,  <code>--></code>→ ⟶,  <code>1/4</code>→ ¼</span>
 					</li>
-					
+
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocompleteEmojiShortcodes" data-optiongroup="pickerResult" name="autocompleteEmojiShortcodes">
@@ -203,7 +204,7 @@
 						</div>
 						<span data-i18n="" class="line indent helper-text">e.g. <code>:ap</code>→ <code>:apple:</code></span>
 					</li>
-					
+
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeQuotes" data-optiongroup="pickerResult" name="autocorrectUnicodeQuotes">
@@ -211,7 +212,7 @@
 						</div>
 						<span data-i18n="" class="line indent helper-text">e.g. <code>'</code>→ ‘ or ’ and <code>"</code>→ “ or ”</span>
 					</li>
-					
+
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeFracts" data-optiongroup="pickerResult" name="autocorrectUnicodeFracts">

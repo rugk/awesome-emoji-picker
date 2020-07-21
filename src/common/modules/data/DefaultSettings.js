@@ -33,7 +33,7 @@ const defaultSettings = {
         autocorrectEmojiShortcodes: true,
         autocorrectSymbols: true,
         autocompleteEmojiShortcodes: true,
-        autocorrectUnicodeQuotes: true,
+        autocorrectUnicodeQuotes: false,
         autocorrectUnicodeFracts: true,
         showConfirmationMessage: true,
         closePopup: true,
