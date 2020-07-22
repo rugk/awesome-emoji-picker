@@ -9,6 +9,7 @@ const constants = Object.freeze(["π", "e"]);
 const constantValues = Object.freeze([Math.PI, Math.E]);
 
 // communication type
+// directly include magic constant as a workaround as we cannot import modules in content scripts due to https://bugzilla.mozilla.org/show_bug.cgi?id=1451545
 const AUTOCORRECT_CONTENT = "autocorrectContent";
 
 let insertedText; // Last insert text
@@ -207,7 +208,7 @@ function autocorrect(event) {
 		let target = event.target;
 		const caretposition = getCaretPosition(target);
 		if (caretposition) {
-			const value = target.value ? target.value : target.innerText;
+			const value = target.value || target.innerText;
 			let deletecount = 0;
 			let insert = value.slice(caretposition - 1, caretposition); // event.key;
 			let output = false;
@@ -271,7 +272,7 @@ function autocorrect(event) {
 				const text = value.slice(caretposition - deletecount, caretposition);
 				deleteCaret(target, text);
 				insertCaret(target, insert);
-				console.log("Autocorrect: “%s” was replaced with “%s”.", text, insert);
+				console.debug("Autocorrect: “%s” was replaced with “%s”.", text, insert);
 
 				insertedText = insert;
 				deletedText = text;
@@ -303,12 +304,12 @@ function undoAutocorrect(event) {
 						deleteCaret(target, insertedText);
 					if (deletedText)
 						insertCaret(target, deletedText);
-					console.log("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
+					console.debug("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
 				}
 			}
 		}
 
-		lastTarget = undefined;
+		lastTarget = null;
 	}
 }
 
@@ -348,4 +349,4 @@ browser.runtime.sendMessage({ "type": AUTOCORRECT_CONTENT }).then(handleResponse
 browser.runtime.onMessage.addListener(handleResponse);
 window.addEventListener('keydown', undoAutocorrect, true);
 window.addEventListener('keyup', autocorrect, true);
-// console.log("Autocorrect");
+console.log("AwesomeEmoji autocorrect module loaded");
