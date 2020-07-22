@@ -28,6 +28,10 @@ const defaultSettings = {
         emojiCopy: true,
         emojiCopyOnlyFallback: false,
         resultType: "native",
+        showConfirmationMessage: true,
+        closePopup: true,
+    },
+    autocorrect: {
         autocorrectEmojis: true,
         autocorrectCharEmojis: false,
         autocorrectEmojiShortcodes: true,
@@ -35,8 +39,6 @@ const defaultSettings = {
         autocompleteEmojiShortcodes: true,
         autocorrectUnicodeQuotes: false,
         autocorrectUnicodeFracts: true,
-        showConfirmationMessage: true,
-        closePopup: true,
     },
     emojiSearch: {
         enabled: false,

@@ -1,12 +1,30 @@
 "use strict";
 
-const fractions = Object.freeze(["¼", "½", "¾", "⅐", "⅑", "⅒", "⅓", "⅔", "⅕", "⅖", "⅗", "⅘", "⅙", "⅚", "⅛", "⅜", "⅝", "⅞"]);
+const fractions = Object.freeze({
+	"¼": 1.0 / 4.0,
+	"½": 1.0 / 2.0,
+	"¾": 3.0 / 4.0,
+	"⅐": 1.0 / 7.0,
+	"⅑": 1.0 / 9.0,
+	"⅒": 1.0 / 10.0,
+	"⅓": 1.0 / 3.0,
+	"⅔": 2.0 / 3.0,
+	"⅕": 1.0 / 5.0,
+	"⅖": 2.0 / 5.0,
+	"⅗": 3.0 / 5.0,
+	"⅘": 4.0 / 5.0,
+	"⅙": 1.0 / 6.0,
+	"⅚": 5.0 / 6.0,
+	"⅛": 1.0 / 8.0,
+	"⅜": 3.0 / 8.0,
+	"⅝": 5.0 / 8.0,
+	"⅞": 7.0 / 8.0
+});
 
-const fractionValues = Object.freeze([1.0 / 4.0, 1.0 / 2.0, 3.0 / 4.0, 1.0 / 7.0, 1.0 / 9.0, 1.0 / 10.0, 1.0 / 3.0, 2.0 / 3.0, 1.0 / 5.0, 2.0 / 5.0, 3.0 / 5.0, 4.0 / 5.0, 1.0 / 6.0, 5.0 / 6.0, 1.0 / 8.0, 3.0 / 8.0, 5.0 / 8.0, 7.0 / 8.0]);
-
-const constants = Object.freeze(["π", "e"]);
-
-const constantValues = Object.freeze([Math.PI, Math.E]);
+const constants = Object.freeze({
+	"π": Math.PI,
+	"e": Math.E
+});
 
 // communication type
 // directly include magic constant as a workaround as we cannot import modules in content scripts due to https://bugzilla.mozilla.org/show_bug.cgi?id=1451545
@@ -49,8 +67,9 @@ function getCaretPosition(target) {
 		temp.parentNode.removeChild(temp);
 		return caretposition;
 	}
-	else
+	else {
 		return target.selectionStart;
+	}
 }
 
 /**
@@ -72,10 +91,20 @@ function insertCaret(target, atext) {
 		target.selectionStart = target.selectionEnd = start + atext.length;
 
 		// Notify any possible listeners of the change
-		const e = document.createEvent("UIEvent");
-		e.initEvent("input", true, false);
-		target.dispatchEvent(e);
+		const event = document.createEvent("UIEvent");
+		event.initEvent("input", true, false);
+		target.dispatchEvent(event);
 	}
+}
+
+/**
+ * Insert into page.
+ *
+ * @param {string} atext
+ * @returns {void}
+ */
+function insertIntoPage(atext) {
+	return insertCaret(document.activeElement, atext);
 }
 
 /**
@@ -109,10 +138,11 @@ function deleteCaret(target, atext) {
 	const count = countChars(atext);
 	if (count > 0) {
 		const isSuccess = document.execCommand("delete", false);
-		if (isSuccess)
+		if (isSuccess) {
 			for (let i = 0; i < count - 1; ++i) {
 				document.execCommand("delete", false);
 			}
+		}
 		// Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
 		else if (typeof target.setRangeText === "function") {
 			const start = target.selectionStart;
@@ -146,36 +176,42 @@ function outputLabel(anumber, afraction) {
 
 	let strm = '';
 
-	for (let i = 0; i < fractions.length && !output; ++i) {
-		if (Math.abs(fractionpart - fractionValues[i]) < Number.EPSILON) {
-			if (intpart !== 0)
+	for (const fraction in fractions) {
+		if (Math.abs(fractionpart - fractions[fraction]) < Number.EPSILON) {
+			if (intpart !== 0) {
 				strm += intpart;
+			}
 
-			strm += fractions[i];
+			strm += fraction;
 
 			output = true;
+			break;
 		}
 	}
 
-	if (Math.abs(number) >= Number.EPSILON) {
-		for (let i = 0; i < constants.length && !output; ++i) {
-			if (!output && number % constantValues[i] === 0) {
-				intpart = number / constantValues[i];
+	if (Math.abs(number) >= Number.EPSILON && !output) {
+		for (const constant in constants) {
+			if (!output && number % constants[constant] === 0) {
+				intpart = number / constants[constant];
 
-				if (intpart === -1)
+				if (intpart === -1) {
 					strm += "-";
-				else if (intpart !== 1)
+				}
+				else if (intpart !== 1) {
 					strm += intpart;
+				}
 
-				strm += constants[i];
+				strm += constant;
 
 				output = true;
+				break;
 			}
 		}
 	}
 
-	if (!output)
+	if (!output) {
 		strm += anumber;
+	}
 
 	return strm;
 }
@@ -188,8 +224,9 @@ function outputLabel(anumber, afraction) {
  * @returns {number}
  */
 function firstDifferenceIndex(a, b) {
-	if (a === b)
+	if (a === b) {
 		return -1;
+	}
 	let i = 0;
 	while (a[i] === b[i])
 		++i;
@@ -204,82 +241,89 @@ function firstDifferenceIndex(a, b) {
  */
 function autocorrect(event) {
 	// console.log('keydown', event.key, event.key.length, event.keyCode);
-	if ((event.key.length === 0 || event.key.length === 1 || event.keyCode === 13 || event.key === 'Unidentified') && !event.ctrlKey && !event.metaKey && !event.altKey) {
-		let target = event.target;
-		const caretposition = getCaretPosition(target);
-		if (caretposition) {
-			const value = target.value || target.innerText;
-			let deletecount = 0;
-			let insert = value.slice(caretposition - 1, caretposition); // event.key;
-			let output = false;
-			if (quotes && (insert === "'" || insert === '"')) {
-				const prevouschar = value.slice(caretposition < 2 ? 0 : caretposition - 2, caretposition - 1);
-				// White space
-				const re = /^\s*$/;
-				if (insert === "'")
-					insert = re.test(prevouschar) ? '‘' : '’';
-				else if (insert === '"')
-					insert = re.test(prevouschar) ? '“' : '”';
-				deletecount = 1;
+	if (!((event.key.length === 0 || event.key.length === 1 || event.keyCode === 13 || event.key === 'Unidentified') && !event.ctrlKey && !event.metaKey && !event.altKey)) {
+		return;
+	}
+	const target = event.target;
+	const caretposition = getCaretPosition(target);
+	if (caretposition) {
+		const value = target.value || target.innerText;
+		let deletecount = 0;
+		let insert = value.slice(caretposition - 1, caretposition); // event.key;
+		let output = false;
+		// Use Unicode smart quotes
+		if (quotes && (insert === "'" || insert === '"')) {
+			const prevouschar = value.slice(caretposition < 2 ? 0 : caretposition - 2, caretposition - 1);
+			// White space
+			const re = /^\s*$/;
+			if (insert === "'") {
+				insert = re.test(prevouschar) ? '‘' : '’';
+			}
+			else if (insert === '"') {
+				insert = re.test(prevouschar) ? '“' : '”';
+			}
+			deletecount = 1;
+			output = true;
+		}
+		const prevoustext = value.slice(caretposition < (longest + 1) ? 0 : caretposition - (longest + 1), caretposition - 1);
+		let regexResult = symbolpatterns.exec(prevoustext);
+		// Autocorrect :colon: Emoji Shortcodes and/or Emoticon Emojis and/or Unicode Symbols
+		if (regexResult) {
+			const text = value.slice(caretposition < longest ? 0 : caretposition - longest, caretposition);
+			let aregexResult = symbolpatterns.exec(text);
+			let aaregexResult = apatterns.exec(text);
+			if (!aaregexResult && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
+				insert = autocorrections[regexResult[0]] + (event.keyCode === 13 ? '\n' : insert);
+				deletecount = regexResult[0].length + 1;
 				output = true;
 			}
-			const prevoustext = value.slice(caretposition < (longest + 1) ? 0 : caretposition - (longest + 1), caretposition - 1);
-			let array = symbolpatterns.exec(prevoustext);
-			if (array) {
-				const text = value.slice(caretposition < longest ? 0 : caretposition - longest, caretposition);
-				let aarray = symbolpatterns.exec(text);
-				let aaarray = apatterns.exec(text);
-				if (!aaarray && (!aarray || (caretposition <= longest ? array.index < aarray.index : array.index <= aarray.index))) {
-					insert = autocorrections[array[0]] + (event.keyCode === 13 ? '\n' : insert);
-					deletecount = array[0].length + 1;
-					output = true;
+		} else {
+			// Autocomplete :colon: Emoji Shortcodes
+			if (autocomplete) {
+				// Emoji Shortcode
+				const re = /:[a-z0-9-+_]+$/;
+				const text = value.slice(caretposition < (longest - 1) ? 0 : caretposition - (longest - 1), caretposition);
+				let regexResult = re.exec(text);
+				if (regexResult) {
+					const aregexResult = Object.keys(emojiShortcodes).filter((item) => item.indexOf(regexResult[0]) === 0);
+					if (aregexResult.length === 1 && (regexResult[0].length > 2 || aregexResult[0].length === 3)) {
+						insert = aregexResult[0].slice(regexResult[0].length);
+						output = true;
+					}
 				}
-			} else {
-				if (autocomplete) {
-					// Emoji Shortcode
-					const re = /:[a-z0-9-+_]+$/;
-					const text = value.slice(caretposition < (longest - 1) ? 0 : caretposition - (longest - 1), caretposition);
-					let array = re.exec(text);
-					if (array) {
-						const aarray = Object.keys(emojiShortcodes).filter((item) => item.indexOf(array[0]) === 0);
-						if (aarray.length === 1 && (array[0].length > 2 || aarray[0].length === 3)) {
-							insert = aarray[0].slice(array[0].length);
+			}
+			// Convert fractions and mathematical constants to Unicode characters
+			if (!output && fracts) {
+				// Numbers: https://regex101.com/r/7jUaSP/2
+				const re = /[0-9]+(\.[0-9]+)?$/;
+				const prevoustext = value.slice(0, caretposition - 1);
+				let regexResult = re.exec(prevoustext);
+				if (regexResult) {
+					const text = value.slice(0, caretposition);
+					let aregexResult = re.exec(text);
+					if (!aregexResult) {
+						const label = outputLabel(regexResult[0], regexResult[1]);
+						const index = firstDifferenceIndex(label, regexResult[0]);
+						if (index >= 0) {
+							insert = label.slice(index) + (event.keyCode === 13 ? '\n' : insert);
+							deletecount = regexResult[0].length - index + 1;
 							output = true;
 						}
 					}
 				}
-				if (!output && fracts) {
-					// Numbers
-					const re = /[0-9]+([.][0-9]*)?$/;
-					const prevoustext = value.slice(0, caretposition - 1);
-					let array = re.exec(prevoustext);
-					if (array) {
-						const text = value.slice(0, caretposition);
-						let aarray = re.exec(text);
-						if (!aarray) {
-							const label = outputLabel(array[0], array[1]);
-							const index = firstDifferenceIndex(label, array[0]);
-							if (index >= 0) {
-								insert = label.slice(index) + (event.keyCode === 13 ? '\n' : insert);
-								deletecount = array[0].length - index + 1;
-								output = true;
-							}
-						}
-					}
-				}
 			}
-			if (output) {
-				const text = value.slice(caretposition - deletecount, caretposition);
-				deleteCaret(target, text);
-				insertCaret(target, insert);
-				console.debug("Autocorrect: “%s” was replaced with “%s”.", text, insert);
+		}
+		if (output) {
+			const text = value.slice(caretposition - deletecount, caretposition);
+			deleteCaret(target, text);
+			insertCaret(target, insert);
+			console.debug("Autocorrect: “%s” was replaced with “%s”.", text, insert);
 
-				insertedText = insert;
-				deletedText = text;
+			insertedText = insert;
+			deletedText = text;
 
-				lastTarget = target;
-				lastCaretPosition = caretposition - deletecount + insert.length;
-			}
+			lastTarget = target;
+			lastCaretPosition = caretposition - deletecount + insert.length;
 		}
 	}
 }
@@ -292,51 +336,55 @@ function autocorrect(event) {
  */
 function undoAutocorrect(event) {
 	// console.log('keyup', event.key, event.key.length, event.keyCode);
-	if (!event.ctrlKey && !event.metaKey && !event.altKey) {
-		if (event.keyCode === 8) {
-			let target = event.target;
-			const caretposition = getCaretPosition(target);
-			if (caretposition) {
-				if (target === lastTarget && caretposition === lastCaretPosition) {
-					event.preventDefault();
+	if (!(!event.ctrlKey && !event.metaKey && !event.altKey)) {
+		return;
+	}
+	// Backspace
+	if (event.keyCode === 8) {
+		const target = event.target;
+		const caretposition = getCaretPosition(target);
+		if (caretposition) {
+			if (target === lastTarget && caretposition === lastCaretPosition) {
+				event.preventDefault();
 
-					if (insertedText)
-						deleteCaret(target, insertedText);
-					if (deletedText)
-						insertCaret(target, deletedText);
-					console.debug("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
+				if (insertedText) {
+					deleteCaret(target, insertedText);
 				}
+				if (deletedText) {
+					insertCaret(target, deletedText);
+				}
+				console.debug("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
 			}
 		}
-
-		lastTarget = null;
 	}
+
+	lastTarget = null;
 }
 
 /**
- * Handle response.
+ * Handle response from the autocorrect module.
  *
  * @param {Object} message
  * @param {Object} sender
- * @param {function} sendResponse
  * @returns {void}
  */
-function handleResponse(message, sender, sendResponse) {
-	if (message.type === AUTOCORRECT_CONTENT) {
-		autocomplete = message.autocomplete;
-		quotes = message.quotes;
-		fracts = message.fracts;
-		autocorrections = message.autocorrections;
-		longest = message.longest;
-		symbolpatterns = message.symbolpatterns;
-		apatterns = message.apatterns;
-		emojiShortcodes = message.emojiShortcodes;
-		// console.log(message);
+function handleResponse(message, sender) {
+	if (message.type !== AUTOCORRECT_CONTENT) {
+		return;
 	}
+	autocomplete = message.autocomplete;
+	quotes = message.quotes;
+	fracts = message.fracts;
+	autocorrections = message.autocorrections;
+	longest = message.longest;
+	symbolpatterns = message.symbolpatterns;
+	apatterns = message.apatterns;
+	emojiShortcodes = message.emojiShortcodes;
+	// console.log(message);
 }
 
 /**
- * Handle error.
+ * Handle errors from messages and responses.
  *
  * @param {string} error
  * @returns {void}

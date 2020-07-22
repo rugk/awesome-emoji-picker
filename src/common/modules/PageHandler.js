@@ -19,7 +19,7 @@ export async function insertIntoPage(text) {
     });
 
     const promises = tabs.map(async (tab) => {
-        // make sure content script is inserted
+        /* // make sure content script is inserted
         await browser.tabs.executeScript(tab.id, {
             code: "insertIntoPage;",
             allFrames: true,
@@ -32,7 +32,7 @@ export async function insertIntoPage(text) {
                 allFrames: true,
                 runAt: "document_end"
             });
-        });
+        }); */
 
         // send request to insert emoji
         return browser.tabs.executeScript(tab.id, {

@@ -7,16 +7,19 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as symbols from "/common/modules/data/symbols.js";
 import * as emojimart from "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 
-let autocorrectSymbols = true;
-let autocorrectEmojis = true;
-let autocorrectCharEmojis = false;
-let autocorrectEmojiShortcodes = true;
-let autocomplete = true;
-let quotes = true;
-let fracts = true;
+let settings = {
+    autocorrectSymbols: null,
+    autocorrectEmojis:  null,
+    autocorrectCharEmojis:  null,
+    autocorrectEmojiShortcodes:  null,
+    autocomplete:  null,
+    quotes:  null,
+    fracts:  null,
+};
 
 let autocorrections = {};
 
+// Longest autocorrection
 let longest = 0;
 
 let symbolpatterns = [];
@@ -26,26 +29,28 @@ let apatterns = [];
 const emojiShortcodes = {};
 
 /**
- * Apply autocorrect settings.
+ * Apply new autocorrect settings and create regular expressions.
  *
  * @returns {void}
  */
-function settings() {
+function applySettings() {
     autocorrections = {};
 
-    if (autocorrectSymbols) {
+    // Add all symbols to our autocorrections map, we want to replace
+    if (settings.autocorrectSymbols) {
         Object.assign(autocorrections, symbols.symbols);
     }
-    if (autocorrectEmojis) {
+    if (settings.autocorrectEmojis) {
         Object.assign(autocorrections, symbols.emojis);
-        if (autocorrectCharEmojis) {
+        if (settings.autocorrectCharEmojis) {
             Object.assign(autocorrections, symbols.charEmojis);
         }
     }
-    if (autocorrectEmojiShortcodes) {
+    if (settings.autocorrectEmojiShortcodes) {
         Object.assign(autocorrections, emojiShortcodes);
     }
 
+    // Longest autocorrection
     longest = 0;
 
     for (const symbol in autocorrections) {
@@ -53,7 +58,7 @@ function settings() {
             longest = symbol.length;
         }
     }
-    console.log(longest);
+    console.log("Longest autocorrection", longest);
 
     symbolpatterns = [];
     // Escape special characters
@@ -63,21 +68,23 @@ function settings() {
         symbolpatterns.push(symbol.replace(re, "\\$&"));
     }
 
+    // Do not autocorrect for these patterns
     apatterns = [];
     for (const x in autocorrections) {
         let length = 0;
         let index = x.length;
 
         for (const y in autocorrections) {
-            if (x !== y) {
-                const aindex = x.indexOf(y);
-                if (aindex >= 0) {
-                    if (aindex < index) {
-                        index = aindex;
-                        length = y.length;
-                    } else if (aindex === index && y.length > length) {
-                        length = y.length;
-                    }
+            if (x === y) {
+                continue;
+            }
+            const aindex = x.indexOf(y);
+            if (aindex >= 0) {
+                if (aindex < index) {
+                    index = aindex;
+                    length = y.length;
+                } else if (aindex === index && y.length > length) {
+                    length = y.length;
                 }
             }
         }
@@ -90,7 +97,7 @@ function settings() {
         }
     }
     apatterns = apatterns.filter((item, pos) => apatterns.indexOf(item) === pos);
-    console.log(apatterns);
+    console.log("Do not autocorrect for these patterns", apatterns);
 
     apatterns.forEach((symbol, index) => {
         apatterns[index] = symbol.replace(re, "\\$&");
@@ -113,29 +120,29 @@ function onError(error) {
 /**
  * Set autocorrect settings.
  *
- * @param {Object} pickerResult
+ * @param {Object} autocorrect
  * @returns {void}
  */
-function set(pickerResult) {
-    autocorrectEmojis = pickerResult.autocorrectEmojis;
-    autocorrectCharEmojis = pickerResult.autocorrectCharEmojis;
-    autocorrectEmojiShortcodes = pickerResult.autocorrectEmojiShortcodes;
-    autocorrectSymbols = pickerResult.autocorrectSymbols;
-    autocomplete = pickerResult.autocompleteEmojiShortcodes;
-    quotes = pickerResult.autocorrectUnicodeQuotes;
-    fracts = pickerResult.autocorrectUnicodeFracts;
+function setSettings(autocorrect) {
+    settings.autocorrectEmojis = autocorrect.autocorrectEmojis;
+    settings.autocorrectCharEmojis = autocorrect.autocorrectCharEmojis;
+    settings.autocorrectEmojiShortcodes = autocorrect.autocorrectEmojiShortcodes;
+    settings.autocorrectSymbols = autocorrect.autocorrectSymbols;
+    settings.autocomplete = autocorrect.autocompleteEmojiShortcodes;
+    settings.quotes = autocorrect.autocorrectUnicodeQuotes;
+    settings.fracts = autocorrect.autocorrectUnicodeFracts;
 
-    settings();
+    applySettings();
 }
 
 /**
  * Send autocorrect settings to content scripts.
  *
- * @param {Object} pickerResult
+ * @param {Object} autocorrect
  * @returns {void}
  */
-function apply(pickerResult) {
-    set(pickerResult);
+function sendSettings(autocorrect) {
+    setSettings(autocorrect);
 
     browser.tabs.query({}).then((tabs) => {
         for (const tab of tabs) {
@@ -143,9 +150,9 @@ function apply(pickerResult) {
                 tab.id,
                 {
                     "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-                    "autocomplete": autocomplete,
-                    "quotes": quotes,
-                    "fracts": fracts,
+                    "autocomplete": settings.autocomplete,
+                    "quotes": settings.quotes,
+                    "fracts": settings.fracts,
                     "autocorrections": autocorrections,
                     "longest": longest,
                     "symbolpatterns": symbolpatterns,
@@ -164,7 +171,7 @@ function apply(pickerResult) {
  * @returns {void}
  */
 export async function init() {
-    const pickerResult = await AddonSettings.get("pickerResult");
+    const autocorrect = await AddonSettings.get("autocorrect");
 
     for (const key in emojiMart.emojiIndex.emojis) {
         const emoji = emojiMart.emojiIndex.emojis[key];
@@ -173,16 +180,16 @@ export async function init() {
 
     Object.freeze(emojiShortcodes);
 
-    set(pickerResult);
+    setSettings(autocorrect);
 
     browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
         // console.log(message);
         if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
             const response = {
                 "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-                "autocomplete": autocomplete,
-                "quotes": quotes,
-                "fracts": fracts,
+                "autocomplete": settings.autocomplete,
+                "quotes": settings.quotes,
+                "fracts": settings.fracts,
                 "autocorrections": autocorrections,
                 "longest": longest,
                 "symbolpatterns": symbolpatterns,
@@ -195,15 +202,15 @@ export async function init() {
     });
 
     /* browser.tabs.query({}).then((tabs) => {
-		for (let tab of tabs) {
-			browser.tabs.executeScript(tab.id, {file: "content_scripts/autocorrect.js"});
-		}
-	}).catch(onError); */
+        for (let tab of tabs) {
+            browser.tabs.executeScript(tab.id, {file: "content_scripts/autocorrect.js"});
+        }
+    }).catch(onError); */
 }
 
 BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, (request) => {
     // clear cache by reloading all options
     // await AddonSettings.loadOptions();
 
-    return apply(request.optionValue);
+    return sendSettings(request.optionValue);
 });

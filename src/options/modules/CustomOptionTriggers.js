@@ -75,23 +75,6 @@ function saveEmojiSet(param) {
 function applyPickerResultPermissions(optionValue, option, event) {
     let retPromise;
 
-    if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
-    ) {
-        retPromise = PermissionRequest.requestPermission(
-            TABS_PERMISSION,
-            MESSAGE_TABS_PERMISSION,
-            event
-        );
-    } else {
-        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
-    }
-
-    // trigger update for current session
-    browser.runtime.sendMessage({
-        "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
-        "optionValue": optionValue
-    });
-
     // switch status of sub-child
     if (optionValue.emojiCopy) {
         document.getElementById("emojiCopyOnlyFallback").disabled = false;
@@ -122,6 +105,38 @@ function applyPickerResultPermissions(optionValue, option, event) {
     } else {
         PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_FALLBACK);
     }
+
+    return retPromise;
+}
+
+/**
+ * Requests the permission for autocorrect settings.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
+ * @returns {Promise}
+ */
+function applyAutocorrectPermissions(optionValue, option, event) {
+    let retPromise;
+
+    if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
+    ) {
+        retPromise = PermissionRequest.requestPermission(
+            TABS_PERMISSION,
+            MESSAGE_TABS_PERMISSION,
+            event
+        );
+    } else {
+        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
+    }
+
+    // trigger update for current session
+    browser.runtime.sendMessage({
+        "type": COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
+        "optionValue": optionValue
+    });
 
     return retPromise;
 }
@@ -391,6 +406,7 @@ export async function registerTrigger() {
 
     // update slider status
     AutomaticSettings.Trigger.registerSave("pickerResult", applyPickerResultPermissions);
+    AutomaticSettings.Trigger.registerSave("autocorrect", applyAutocorrectPermissions);
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);

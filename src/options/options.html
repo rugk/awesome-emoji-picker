@@ -155,72 +155,6 @@
 						<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="line indent helper-text">Only useful to enable on specific sites that support this kind of text.</span>
 					</li>
 
-					<div class="message-container line">
-						<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
-							<span class="message-text">Permission requested.</span>
-							<a href="#">
-								<button type="button" class="message-action-button micro-button info invisible"></button>
-							</a>
-							<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
-						</div>
-					</div>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="pickerResult" name="autocorrectEmojiShortcodes">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> Emoji Shortcodes</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>:smiley:</code>→ 😃,  <code>:apple:</code>→ 🍎</span>
-					</li>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojis" data-optiongroup="pickerResult" name="autocorrectEmojis">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojis">Autocorrect Emoticon Emojis</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>:)</code>→ ☺️,  <code>:D</code>→ 😃,  <code>:(</code>→ ☹️</span>
-						<ul>
-							<li>
-								<div class="line">
-									<input class="setting save-on-change" type="checkbox" id="autocorrectCharEmojis" data-optiongroup="pickerResult" name="autocorrectCharEmojis">
-									<label data-i18n="" for="autocorrectCharEmojis">Autocorrect Single Character Emojis (not recommended)</label>
-								</div>
-							</li>
-						</ul>
-					</li>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectSymbols" data-optiongroup="pickerResult" name="autocorrectSymbols">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectSymbols">Autocorrect Unicode Symbols</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>--</code>→ –,  <code>--></code>→ ⟶,  <code>1/4</code>→ ¼</span>
-					</li>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocompleteEmojiShortcodes" data-optiongroup="pickerResult" name="autocompleteEmojiShortcodes">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocompleteEmojiShortcodes">Autocomplete <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> Emoji Shortcodes</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>:ap</code>→ <code>:apple:</code></span>
-					</li>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeQuotes" data-optiongroup="pickerResult" name="autocorrectUnicodeQuotes">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectUnicodeQuotes">Use Unicode smart quotes</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>'</code>→ ‘ or ’ and <code>"</code>→ “ or ”</span>
-					</li>
-
-					<li>
-						<div class="line">
-							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeFracts" data-optiongroup="pickerResult" name="autocorrectUnicodeFracts">
-							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectUnicodeFracts">Convert fractions and mathematical constants to Unicode characters</label>
-						</div>
-						<span data-i18n="" class="line indent helper-text">e.g. <code>1234.25</code>→ 1234¼</span>
-					</li>
-
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="showConfirmationMessage" data-optiongroup="pickerResult" name="showConfirmationMessage">
@@ -233,6 +167,79 @@
 							<input class="setting save-on-change" type="checkbox" id="closePopup" data-optiongroup="pickerResult" name="closePopup">
 							<label data-i18n="__MSG_optionClosePopup__" for="closePopup">Close the popup after an emoji has been selected/inserted.</label>
 						</div>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<ul>
+					<h1 data-i18n="">Emoji autocorrection</h1>
+					<span class="helper-text">With the exception of the smart quotes, all the autocorrections are done after typing the first nonmatching character following the character sequence, such as a space (␣). Press Backspace (⌫) to undo an autocorrection.</span>
+
+					<div class="message-container line">
+						<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+							<span class="message-text">Permission requested.</span>
+							<a href="#">
+								<button type="button" class="message-action-button micro-button info invisible"></button>
+							</a>
+							<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+						</div>
+					</div>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="autocorrect" name="autocorrectEmojiShortcodes">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:smiley:</code>with 😃 and <code>:apple:</code>with 🍎.</span>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectEmojis" data-optiongroup="autocorrect" name="autocorrectEmojis">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojis">Autocorrect Emoticon Emojis</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:)</code>with ☺️, <code>:D</code>with 😃 and <code>:(</code>with ☹️.</span>
+						<ul>
+							<li>
+								<div class="line">
+									<input class="setting save-on-change" type="checkbox" id="autocorrectCharEmojis" data-optiongroup="autocorrect" name="autocorrectCharEmojis">
+									<label data-i18n="" for="autocorrectCharEmojis">Autocorrect Single Character Emojis (not recommended)</label>
+								</div>
+								<span data-i18n="" class="line indent helper-text">This feature is not recommended, because it may erroneously replace characters that are not intended to be an emoji.</span>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectSymbols" data-optiongroup="autocorrect" name="autocorrectSymbols">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectSymbols">Autocorrect Unicode Symbols</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>--</code>with –, <code>--></code>with ⟶ and <code>1/4</code>with ¼.</span>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocompleteEmojiShortcodes" data-optiongroup="autocorrect" name="autocompleteEmojiShortcodes">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocompleteEmojiShortcodes">Autocomplete <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:ap</code>with <code>:apple:.</code></span>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeQuotes" data-optiongroup="autocorrect" name="autocorrectUnicodeQuotes">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectUnicodeQuotes">Use Unicode smart quotes</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>'</code>with ‘ or ’ and <code>"</code>with “ or ”.</span>
+					</li>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrectUnicodeFracts" data-optiongroup="autocorrect" name="autocorrectUnicodeFracts">
+							<label data-i18n="" data-opt-i18n-keep-children for="autocorrectUnicodeFracts">Convert fractions and mathematical constants to Unicode characters</label>
+						</div>
+						<span data-i18n="" class="line indent helper-text">For example, this will replace <code>1234.25</code>with 1234¼.</span>
 					</li>
 				</ul>
 			</section>
