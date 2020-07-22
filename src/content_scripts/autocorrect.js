@@ -83,18 +83,30 @@ function getCaretPosition(target) {
 function insertCaret(target, atext) {
 	const isSuccess = document.execCommand("insertText", false, atext);
 
-	// Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
-	if (!isSuccess && typeof target.setRangeText === "function") {
-		const start = target.selectionStart;
-		target.setRangeText(atext);
-
-		target.selectionStart = target.selectionEnd = start + atext.length;
-
-		// Notify any possible listeners of the change
-		const event = document.createEvent("UIEvent");
-		event.initEvent("input", true, false);
-		target.dispatchEvent(event);
+	if(isSuccess) {
+		return;
 	}
+
+	// Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
+	if (typeof target.setRangeText === "function") {
+		const start = target.selectionStart;
+		const end = target.selectionEnd;
+
+		if (start !== undefined && end !== undefined) {
+			target.setRangeText(atext);
+
+			target.selectionStart = target.selectionEnd = start + atext.length;
+
+			// Notify any possible listeners of the change
+			const event = document.createEvent("UIEvent");
+			event.initEvent("input", true, false);
+			target.dispatchEvent(event);
+
+			return;
+		}
+	}
+
+	throw new Error("nothing selected");
 }
 
 /**
