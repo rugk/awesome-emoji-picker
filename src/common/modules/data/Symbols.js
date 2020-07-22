@@ -270,16 +270,3 @@ export const emojis = Object.freeze({
     // ":Z": "😒",
     ":-Z": "😒"
 });
-
-/**
- * Single character emojis
- * Disabled by default
- *
- * @public
- * @const
- * @type {Object.<string, string>}
- */
-export const charEmojis = Object.freeze({
-    "?": "❓",
-    "!": "❗"
-});

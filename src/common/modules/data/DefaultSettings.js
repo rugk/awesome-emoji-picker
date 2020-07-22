@@ -33,7 +33,6 @@ const defaultSettings = {
     },
     autocorrect: {
         autocorrectEmojis: true,
-        autocorrectCharEmojis: false,
         autocorrectEmojiShortcodes: true,
         autocorrectSymbols: true,
         autocompleteEmojiShortcodes: true,

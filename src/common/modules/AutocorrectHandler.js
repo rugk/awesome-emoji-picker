@@ -10,7 +10,6 @@ import * as emojimart from "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 let settings = {
     autocorrectSymbols: null,
     autocorrectEmojis:  null,
-    autocorrectCharEmojis:  null,
     autocorrectEmojiShortcodes:  null,
     autocomplete:  null,
     quotes:  null,
@@ -42,9 +41,6 @@ function applySettings() {
     }
     if (settings.autocorrectEmojis) {
         Object.assign(autocorrections, symbols.emojis);
-        if (settings.autocorrectCharEmojis) {
-            Object.assign(autocorrections, symbols.charEmojis);
-        }
     }
     if (settings.autocorrectEmojiShortcodes) {
         Object.assign(autocorrections, emojiShortcodes);
@@ -125,7 +121,6 @@ function onError(error) {
  */
 function setSettings(autocorrect) {
     settings.autocorrectEmojis = autocorrect.autocorrectEmojis;
-    settings.autocorrectCharEmojis = autocorrect.autocorrectCharEmojis;
     settings.autocorrectEmojiShortcodes = autocorrect.autocorrectEmojiShortcodes;
     settings.autocorrectSymbols = autocorrect.autocorrectSymbols;
     settings.autocomplete = autocorrect.autocompleteEmojiShortcodes;
