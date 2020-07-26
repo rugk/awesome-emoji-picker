@@ -386,7 +386,7 @@
         "hash": "3471458865aafdd0f3335877239d5d91"
     },
     "translatorCredit": {
-        "message": "הרחבה זו תורגמה לעברית ע\"י $TRANSLATOR$.",
+        "message": "הרחבה זו תורגמה לעברית ע\"י $TRANSLATORS$.",
         "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
         "placeholders": {
             "translators": { "content": "$1", "example": "<a href=\"https://github.com/rugk/\">@rugk</a>" }
@@ -424,7 +424,7 @@
 
     // emoji-search
     "searchTipDescription": {
-        "message": "חפש אמוג'י בעזרת $ADDON§...",
+        "message": "חפש אמוג'י בעזרת $ADDON$...",
         "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
         "placeholders": {
             "addon": { "content": "$1", "example": "The name of the extension. See extensionName." }
