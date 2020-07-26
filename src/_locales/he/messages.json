@@ -310,7 +310,7 @@
         "hash": "e8353da70f0d16d742c92fac598b5d01"
     },
     "optionCopyEmojiColons": {
-        "message": "השתמש ב- $COLON$ Code במקום ב- Unicode.",
+        "message": "השתמש בקוד $COLON$ במקום ב-Unicode.",
         "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
         "placeholders": {
             "colon": { "content": "$1", "example": "<code>:colon:</code>" }
