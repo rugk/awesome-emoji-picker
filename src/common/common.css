@@ -255,3 +255,33 @@ a:active {
   box-shadow: 0 0 0 1px var(--blue-50) inset, 0 0 0 1px var(--blue-50), 0 0 0 4px var(--blue-50-a30);
   border-radius: 2px;
 }
+
+/* Emoji Mart BiDi support */
+emoji-picker .emoji-mart-preview-emoji {
+  inset-inline-start: 12px;
+  inset-inline-end: initial;
+}
+
+emoji-picker .emoji-mart-preview-data {
+  inset-inline-start: 68px;
+  inset-inline-end: 12px;
+}
+
+emoji-picker .emoji-mart-preview-skins {
+  inset-inline-start: initial;
+  inset-inline-end: 30px;
+}
+emoji-picker .emoji-mart-preview-skins.custom {
+  inset-inline-start: initial;
+  inset-inline-end: 10px;
+}
+
+emoji-picker .emoji-mart-search-icon {
+  inset-inline-start: initial;
+  inset-inline-end: 11px;
+}
+
+emoji-picker .emoji-mart-search input {
+  padding-inline-start: 10px;
+  padding-inline-end: 25px;
+}
