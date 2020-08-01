@@ -257,10 +257,6 @@ a:active {
 }
 
 /* Emoji Mart BiDi support */
-body emoji-picker {
-  text-align: __MSG_@@bidi_start_edge__;
-}
-
 emoji-picker .emoji-mart-preview-emoji {
   __MSG_@@bidi_start_edge__: 12px;
   __MSG_@@bidi_end_edge__: initial;
