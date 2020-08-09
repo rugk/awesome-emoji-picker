@@ -3,6 +3,7 @@
  * Michael Corwin ([@mcorwin22](https://github.com/mcorwin22))
  * Metta Ong ([@ongspxm](https://github.com/ongspxm))
  * Shamima ([@silvererudite](https://github.com/silvererudite))
+ * Daniel Rozenberg ([@danielrozenberg](https://github.com/danielrozenberg))
 
 ## Translators
 
