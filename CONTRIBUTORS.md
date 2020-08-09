@@ -12,6 +12,10 @@
 - Nicolas Trouin ([@nicolas-trouin](https://github.com/nicolas-trouin))
 - Prometheos II ([@Prometheos2](https://github.com/Prometheos2))
 
+### Hungarian
+
+-  Balázs Meskó ([@meskobalazs](https://github.com/meskobalazs))
+
 ### German
 
 - [@rugk](https://github.com/rugk)
