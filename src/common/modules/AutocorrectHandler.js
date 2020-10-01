@@ -7,7 +7,7 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as symbols from "/common/modules/data/symbols.js";
 import * as emojimart from "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 
-let settings = {
+const settings = {
     autocorrectSymbols: null,
     autocorrectEmojis:  null,
     autocorrectEmojiShortcodes:  null,
@@ -168,8 +168,8 @@ function sendSettings(autocorrect) {
 export async function init() {
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    for (const key in emojiMart.emojiIndex.emojis) {
-        const emoji = emojiMart.emojiIndex.emojis[key];
+    for (const key in emojimart.emojiIndex.emojis) {
+        const emoji = emojimart.emojiIndex.emojis[key];
         emojiShortcodes[emoji.colons] = emoji.native;
     }
 
