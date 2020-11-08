@@ -12,13 +12,17 @@
 - Nicolas Trouin ([@nicolas-trouin](https://github.com/nicolas-trouin))
 - Prometheos II ([@Prometheos2](https://github.com/Prometheos2))
 
+### German
+
+- [@rugk](https://github.com/rugk)
+
 ### Hungarian
 
 -  Balázs Meskó ([@meskobalazs](https://github.com/meskobalazs))
 
-### German
+### Portuguese
 
-- [@rugk](https://github.com/rugk)
+- [@marceloaof](https://github.com/marceloaof)
 
 ### Spanish
 
