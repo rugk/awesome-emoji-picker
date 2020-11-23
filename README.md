@@ -2,7 +2,7 @@
 
 [![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)  
 [![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)
-[![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/statistics/)
+[![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/)
 [![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/)
 
 This (Firefox) add-on (WebExtension) gives you a modern emoji picker that you can use to find and select emojis (i.e. the emoticons/smileys you know from messengers such as 😃, 😎 or 🤪). It will be directly copied to your clipboard and/or inserted into the active input on the page, when you choose it.
