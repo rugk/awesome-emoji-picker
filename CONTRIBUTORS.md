@@ -24,6 +24,10 @@
 
 - [@marceloaof](https://github.com/marceloaof)
 
+### Portuguese, Brazil
+
+- [@joaooliva](https://github.com/joaooliva)
+
 ### Spanish
 
 - Enrico Lamperti ([@elamperti](https://github.com/elamperti))
