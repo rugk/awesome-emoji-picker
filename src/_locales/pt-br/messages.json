@@ -1,0 +1,169 @@
+{
+  // manifest.json
+
+  // errors or other messages (mostly for settings)
+
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "Emoji copiado",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message.",
+    "hash": "ad28e8c01480141e7500921f3b140db3"
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "Emoji inserido",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message.",
+    "hash": "b8cb77259ecb40aeaf09a58937369648"
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "Emoji copiado e inserido",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message.",
+    "hash": "925b14d15d6bb013a09973f2913fac35"
+  },
+
+  // tips
+  "tipYouLikeAddon": {
+    "message": "Você gostou dessa extensão",
+    "description": "A tip shown to remind the user to rate the addon.",
+    "hash": "0f5680a5a42bcebf793a44b9dfcf79a1"
+  },
+  "tipYouLikeAddonButton": {
+    "message": "Avalie",
+    "description": "Button for the tip shown to remind the user to rate the addon.",
+    "hash": "821d7f942b02e2b56cd0424d3ab65de8"
+  },
+  "tipPopupCodeHotkey": {
+    "message": "Lembre-se o atalho para essa extensão é Ctrl+Shift+Ponto.",
+    "description": "A tip shown to get the user to notice that there is a hot key.",
+    "hash": "d214cd7e3ea8612b0b83ce308687aed4"
+  },
+  "tipTranslateAddon": {
+    "message": "Se você fala outra língua você pode ajudar traduzindo essa extensão.",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on.",
+    "hash": "f22661cb0e9cdc8144d0c3cf59f854e3"
+  },
+  "tipDonateButton": {
+    "message": "Ajude o desenvolvedor doando",
+    "description": "The button of the donation tip taking the user to the donation site.",
+    "hash": "8ec498495b752c6d9358208a5564d42c"
+  },
+  "tipLearnMore": {
+    "message": "Saiba mais",
+    "description": "The common button for tips, where you can get more information on click.",
+    "hash": "9085b09f4748be12ab0c241d2e643b31"
+  },
+
+  // options
+  "optionIsDisabledBecauseManaged": {
+    "message": "Esta opção está desativada pois foi configurada pelo administrador do sistema.",
+    "description": "The title (tooltip) shown, when hovering over a disabled, managed option.",
+    "hash": "50fb70682c64e1a1fb4d8884b33cca64"
+  },
+  "optionLearnMore": {
+    "message": "Saiba mais",
+    "description": "When a link to an explainer needs to be added, this is the link text.",
+    "hash": "9085b09f4748be12ab0c241d2e643b31"
+  },
+  "optionsResetButton": {
+    "message": "Retornar configurações para o padrão",
+    "description": "The button to delete all current settings and load the defaults, shown in the add-on settings.",
+    "hash": "4bb60c6c7e7b9e2ff987c244e76ee044"
+  },
+  "titleAppearance": {
+    "message": "Aparência",
+    "description": "The title for a settings group.",
+    "hash": "4e916e83dfa642d4d35d88b3910ef1ab"
+  },
+  "titleBehaviour": {
+    "message": "Comportamento",
+    "description": "The title for a settings group.",
+    "hash": "0c8a5f028c6c5785feafccd39f1239f3"
+  },
+  "optionPopupIconColored": {
+    "message": "Ícone colorido",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "d1a73cea0718b619bd2adcfe97bd66a8"
+  },
+  "optionPopupIconColoredDescr": {
+    "message": "Mostrar um ícone colorido ao invés do preto/branco na barra de tarefas",
+    "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details.",
+    "hash": "5d8459d16f7e1ed774fc85f40ce8963e"
+  },
+  "optionEmojiSetNative": {
+    "message": "Padrão do seu sistema",
+    "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on.",
+    "hash": "8870cf3ed2dd2a119fee2d43be9a1e62"
+  },
+  "optionEmojiSetApple": {
+    "message": "Apple",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "4d0a37fd8f053c6ca8654de2db3a1254"
+  },
+  "optionEmojiSetGoogle": {
+    "message": "Google",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "db426fbce7c158af2dcbcd6fcb305137"
+  },
+  "optionEmojiSetTwitter": {
+    "message": "Twitter",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "3bae8ce17ed128fd3ccc45099b57e13c"
+  },
+  "optionEmojiSetFacebook": {
+    "message": "Fecebook",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "ebe9928c05d67c31313efa37fbda9c94"
+  },
+  "optionEmojiPickerSetDescr": {
+    "message": "Que estilo usar para os Emojis.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting.",
+    "hash": "8ab696ff2c252f4a51bc77af8f6f6776"
+  },
+  "optionEmojiPickerEmojiSize": {
+    "message": "Tamanho do Emoji",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "73f1c488865c17ab2ecbbeac865f85b2"
+  },
+  "optionEmojiSize16px": {
+    "message": "Pequeno (16px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
+    "hash": "1a0e72fdec9138f9adaf01d1123adff8"
+  },
+  "optionEmojiSize24px": {
+    "message": "Médio (24px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
+    "hash": "6ddc2c24416122b6eb5a1dabed4c400b"
+  },
+  "optionEmojiSize32px": {
+    "message": "Grande (32px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
+    "hash": "60226233320471d72f35dbcbe065721a"
+  },
+  "optionEmojiSize40px": {
+    "message": "Muito grande (40px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
+    "hash": "a300dae53a5d6003b04fb85fc62e43ef"
+  },
+  "optionEmojiSize48px": {
+    "message": "Enorme (48px)",
+    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
+    "hash": "2f5902c374a502230d47347cb9e8ba39"
+  },
+  "optionEmojiPickerPerLine": {
+    "message": "Largura do selecionador:",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "40cf9fd1296c35150e262679e7c64a1d"
+  },
+
+  // emoji-search
+
+  // emoji-mart
+
+  // see https://github.com/missive/emoji-mart#i18n
+
+  // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
+
+  // ARIA labels/descriptions
+
+  "__WET_LOCALE__": { "message": "pt-BR" }
+}
+
