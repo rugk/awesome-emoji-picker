@@ -11,7 +11,7 @@
     "hash": "0862f0659c82660cb8a73d5cff518976"
   },
   "extensionDescription": {
-    "message": "Este complemento te otorga un moderno selector para que encuentres emojis. Puedes copiarlo al portapapeles o insertar el emoji en la página que tengas activa.",
+    "message": "Esta extensão te fornece um selecionador de emojis moderno que pode ser usado para encontrar emojis. Você pode então copiá-los para a área de transferência ou inseri-los à página do navegador.",
     "description": "Description of the extension.",
     "hash": "8053d30320c4c825f593e96c54f8c36d"
   },
@@ -21,70 +21,74 @@
     "hash": "c5f266279feb065e53e69a1fddfff0f2"
   },
   "commandOpenPopup": {
-    "message": "Abrir selector de emojis",
+    "message": "Abrir selecionador de emojis",
     "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period).",
     "hash": "4aeed4cf10e929762d43ba14d42fef6b"
   },
 
   // errors or other messages (mostly for settings)
   "errorShowingMessage": {
-    "message": "No se puede mostrar este mensaje.",
+    "message": "Não pôde exibir esta mensagem.",
     "description": "When there is an error when showing the error/info/….",
     "hash": "a9440e4f824a372841d4de2b7e2643ee"
   },
   "couldNotLoadOptions": {
-    "message": "No se puede cargar la configuración.",
+    "message": "Não pôde abrir os ajustes.",
     "description": "When one or all settings could not be loaded.",
     "hash": "9497a5d2c9473aeb2ed9601f46c456be"
   },
   "couldNotSaveOption": {
-    "message": "No se puede guardar la configuración.",
+    "message": "Não pôde salvar esse ajuste.",
     "description": "When a setting could not be saved.",
     "hash": "6bcb9e36d2c33172b948515a9c50aa8e"
   },
   "messageUndoButton": {
-    "message": "Deshacer",
+    "message": "Desfazer",
     "description": "The text of a button that undoes the last action.",
     "hash": "a85e775d7404b86c8060a20efd31241c"
   },
   "couldNotUndoAction": {
-    "message": "No se pudo deshacer la acción.",
+    "message": "Não pôde desfazer essa ação.",
     "description": "Shown when an action cannot be undone.",
     "hash": "d2883c6ca0164afc4f360f3e02e3166a"
   },
   "resettingOptionsWorked": {
-    "message": "La configuración ha sido reestablecida!",
+    "message": "Todas as configurações foram resetadas!",
     "description": "The message shown, when the options of the settings were reset.",
     "hash": "257b99ed2a074fccbfc658d770b50107"
   },
   "resettingOptionsFailed": {
-    "message": "No se pudo restaurar la configuración!",
+    "message": "Não pôde resetar as opções!",
     "description": "The message shown, when the options of the settings could not have been reset.",
     "hash": "76e950d2db72a824482411ca6564fb1f"
   },
-
+  "errorPermissionMissing": {
+    "message": "Uma permissão está faltando para essa ação.",
+    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing.",
+    "hash": "4fd643fe1cc78041711623903d3437a1"
+  },
   "messageOpenOptionsButton": {
-    "message": "Abrir opciones",
+    "message": "Abrir ajustes",
     "description": "The text of a button that opens the options page.",
     "hash": "b9cfa2cbfe4d77715a12f0ca99c53963"
   },
   "couldNotDoAction": {
-    "message": "La acción que has querido hacer falló.",
+    "message": "A ação que você quis efetuar falhou.",
     "description": "A generic error message shown, if nothing else/more specific can be shown.",
     "hash": "6edea27add637cb37d254080c4a6cfb5"
   },
   "permissionRequiredClipboardWrite": {
-    "message": "Se requiere el permiso para copiar datos en el portapapeles para esta función.",
+    "message": "Uma permissão para copiar dados à área de transferência é necessária para essa ação.",
     "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work.",
     "hash": "1a9cb2af1d8cc2d42365821676b66acd"
   },
   "buttonRequestPermission": {
-    "message": "Dar permiso",
+    "message": "Dar permissão",
     "description": "The button label, used for requesting a permission that is missing.",
     "hash": "4689dc838288903e92432d87c1b8fea2"
   },
   "couldNotRequestPermission": {
-    "message": "La solicitud de permiso falló",
+    "message": "O pedido de permissão falhou.",
     "description": "When the permission request fails.",
     "hash": "53e3617a82c33e20fb22eed64dced8de"
   },
@@ -96,34 +100,34 @@
     "hash": "ad28e8c01480141e7500921f3b140db3"
   },
   "confirmationHintEmojiInserted": {
-    "message": "Emoji insertado",
+    "message": "Emoji inserido",
     "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message.",
     "hash": "b8cb77259ecb40aeaf09a58937369648"
   },
   "confirmationHintEmojiCopiedAndInserted": {
-    "message": "Emoji copiado e insertado",
+    "message": "Emoji copiado e inserido",
     "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message.",
     "hash": "925b14d15d6bb013a09973f2913fac35"
   },
 
   // tips
   "tipYouLikeAddon": {
-    "message": "Te agrada este complemento?",
+    "message": "Você está gostando dessa extensão?",
     "description": "A tip shown to remind the user to rate the addon.",
     "hash": "0f5680a5a42bcebf793a44b9dfcf79a1"
   },
   "tipYouLikeAddonButton": {
-    "message": "Califícalo",
+    "message": "Faça uma avaliação",
     "description": "Button for the tip shown to remind the user to rate the addon.",
     "hash": "821d7f942b02e2b56cd0424d3ab65de8"
   },
   "tipPopupCodeHotkey": {
-    "message": "Recuerda que el atajo de teclado para este complemento es Ctrl+Shift+Punto",
+    "message": "Lembre-se que o atalho para esta extensão é Ctrl+Shift+Ponto.",
     "description": "A tip shown to get the user to notice that there is a hot key.",
     "hash": "d214cd7e3ea8612b0b83ce308687aed4"
   },
   "tipTranslateAddon": {
-    "message": "Si hablas otro idioma, puedes ayudar traduciendo este complemento",
+    "message": "Se você fala outro idioma, pode ajudar a traduzir esta extensão.",
     "description": "A tip shown to users that potentially speak another language to translate this add-on.",
     "hash": "f22661cb0e9cdc8144d0c3cf59f854e3"
   },
@@ -133,69 +137,69 @@
     "hash": "c6c442079d7cbebd14843df77883648c"
   },
   "tipDonate": {
-    "message": "Disfrutas usar este complemento gratuito?",
+    "message": "Curte usar esta extensão gratuitamente?",
     "description": "A tip shown to get the remind them of a donation.",
     "hash": "1ca77d6621635ae0bec563e15fbc3791"
   },
   "tipDonateButton": {
-    "message": "Soporta su desarrollo donando",
+    "message": "Apoie o desenvolvimento fazendo uma doação",
     "description": "The button of the donation tip taking the user to the donation site.",
     "hash": "8ec498495b752c6d9358208a5564d42c"
   },
   "tipLearnMore": {
-    "message": "Más información",
+    "message": "Saiba mais",
     "description": "The common button for tips, where you can get more information on click.",
     "hash": "9085b09f4748be12ab0c241d2e643b31"
   },
 
   // options
   "someSettingsAreManaged": {
-    "message": "Algunas opciones son controladas por el administrador de su equipo y no han podido ser cambiadas.",
+    "message": "Alguns ajustes são feitos apenas pelo administrador do seu sistema operacional e não podem ser mudados.",
     "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators.",
     "hash": "148604ebbeb7df28974d8233f1418d1f"
   },
   "optionIsDisabledBecauseManaged": {
-    "message": "Esta opción está desactivada porque así lo ha configurado un administrador de su equipo.",
+    "message": "Esta opção está desativada porque foi configurada pelo administrador do seu sistema operacional.",
     "description": "The title (tooltip) shown, when hovering over a disabled, managed option.",
     "hash": "50fb70682c64e1a1fb4d8884b33cca64"
   },
   "optionLearnMore": {
-    "message": "Más información",
+    "message": "Saiba mais",
     "description": "When a link to an explainer needs to be added, this is the link text.",
     "hash": "9085b09f4748be12ab0c241d2e643b31"
   },
   "optionsResetButton": {
-    "message": "Reestablecer a valores por defecto",
+    "message": "Resetar todas os ajustes para o padrão de fábrica",
     "description": "The button to delete all current settings and load the defaults, shown in the add-on settings.",
     "hash": "4bb60c6c7e7b9e2ff987c244e76ee044"
   },
   "titleAppearance": {
-    "message": "Apariencia",
+    "message": "Aparência",
     "description": "The title for a settings group.",
     "hash": "4e916e83dfa642d4d35d88b3910ef1ab"
   },
   "titleBehaviour": {
-    "message": "Comportamiento",
+    "message": "Comportamento",
     "description": "The title for a settings group.",
     "hash": "0c8a5f028c6c5785feafccd39f1239f3"
   },
   "optionPopupIconColored": {
-    "message": "Ícono con colores",
+    "message": "Ícone colorido",
     "description": "This is an option shown in the add-on settings.",
     "hash": "d1a73cea0718b619bd2adcfe97bd66a8"
   },
   "optionPopupIconColoredDescr": {
-    "message": "Muestra un ícono con colores en vez de un ícono en blanco y negro en la barra del navegador.",
+    "message": "Mostra um ícone colorido ao invés do preto e branco na barra de ferramentas.",
     "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details.",
     "hash": "5d8459d16f7e1ed774fc85f40ce8963e"
   },
   "optionEmojiPickerSet": {
-    "message": "Set de emojis:",
+    "message": "Design do emoji",
     "description": "This is an option shown in the add-on settings.",
     "hash": "d4bf1667bdacd694bb73d30901243735"
   },
   "optionEmojiSetNative": {
-    "message": "Predeterminado del sistema",
+    "message": "Padrão do sistema operacional",
     "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on.",
     "hash": "8870cf3ed2dd2a119fee2d43be9a1e62"
   },
@@ -220,22 +224,22 @@
     "hash": "ebe9928c05d67c31313efa37fbda9c94"
   },
   "optionEmojiPickerSetDescr": {
-    "message": "Qué estilo de emojis usar.",
+    "message": "Que estilo usar para os emojis.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting.",
     "hash": "8ab696ff2c252f4a51bc77af8f6f6776"
   },
   "optionEmojiPickerEmojiSize": {
-    "message": "Tamaño de los emojis:",
+    "message": "Tamanho do emoji",
     "description": "This is an option shown in the add-on settings.",
     "hash": "73f1c488865c17ab2ecbbeac865f85b2"
   },
   "optionEmojiSize16px": {
-    "message": "Pequeño (16px)",
+    "message": "Pequeno (16px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
     "hash": "1a0e72fdec9138f9adaf01d1123adff8"
   },
   "optionEmojiSize24px": {
-    "message": "Mediano (24px)",
+    "message": "Médio (24px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
     "hash": "6ddc2c24416122b6eb5a1dabed4c400b"
   },
@@ -245,22 +249,22 @@
     "hash": "60226233320471d72f35dbcbe065721a"
   },
   "optionEmojiSize40px": {
-    "message": "Muy Grande (40px)",
+    "message": "Muito grande (40px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
     "hash": "a300dae53a5d6003b04fb85fc62e43ef"
   },
   "optionEmojiSize48px": {
-    "message": "Extra Grande (48px)",
+    "message": "Enorme (48px)",
     "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size.",
     "hash": "2f5902c374a502230d47347cb9e8ba39"
   },
   "optionEmojiPickerPerLine": {
-    "message": "Ancho del selector",
+    "message": "Tamanho do selecionador",
     "description": "This is an option shown in the add-on settings.",
     "hash": "40cf9fd1296c35150e262679e7c64a1d"
   },
   "optionEmojisPerLineStatusSingular": {
-    "message": "($INTEGER$ emoji por línea)",
+    "message": "($INTEGER$ emoji por linha)",
     "description": "This is the number of emojis per line in its singular form.",
     "placeholders": {
       "integer": { "content": "$1", "example": "1" }
@@ -268,7 +272,7 @@
     "hash": "fd52c00faf4f1b2c4433cfb3fcdc4809"
   },
   "optionEmojisPerLineStatusPlural": {
-    "message": "($INTEGER$ emojis por línea)",
+    "message": "($INTEGER$ emojis por linha)",
     "description": "This is the number of emojis per line in its plural form.",
     "placeholders": {
       "integer": { "content": "$1", "example": "3" }
@@ -276,37 +280,37 @@
     "hash": "3b51648488d77c9042e9d484ca2c1d2e"
   },
   "optionEmojiPickerPerLineDescr": {
-    "message": "Cuántos emojis mostrar por línea en el selector. Afecta el ancho de la ventana emergente.",
+    "message": "Quantos emojis devem ser mostrados por linha no selecionador de emoji. Isso afeta o tamanho do pop-up.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting.",
     "hash": "8ac00cf34b9d5e20ebfcc309df3291ae"
   },
   "optionEmojiPickerShowTooltip": {
-    "message": "Mostrar sugerencias",
+    "message": "Mostrar nome",
     "description": "This is an option shown in the add-on settings.",
     "hash": "46833952a772ff61c2f4424a8e352967"
   },
   "optionEmojiPickerShowTooltipDescr": {
-    "message": "Muestra una sugerencia con el nombre del emoji al pasarle por encima.",
+    "message": "Mostra o nome do emoji quando o ponteiro está sobre ele.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting.",
     "hash": "a72f049744032789d76be901612b0191"
   },
   "optionAutomaticInsert": {
-    "message": "Insertar emoji automáticamente en la página activa.",
+    "message": "Automaticamente insere emojis na página do navegador.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "c798d0ce95af6f30ab30f8228f330b6e"
   },
   "optionCopyClipboard": {
-    "message": "Copiar emoji al portapapeles.",
+    "message": "Copiar emoji à área de transferência.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "2d1fe2b04a246a6d6bc98dec0cef4dde"
   },
   "optionCopyClipboardFallback": {
-    "message": "Sólo usar como alternativa si falla insertar.",
+    "message": "Use apenas se a inserção direta do emoji falhar.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "e8353da70f0d16d742c92fac598b5d01"
   },
   "optionCopyEmojiColons": {
-    "message": "Usar el código $COLON$ en vez del caracter Unicode.",
+    "message": "Usar o comando $COLON$ ao invés do código Unicode do emoji.",
     "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
     "placeholders": {
       "colon": { "content": "$1", "example": "<code>:colon:</code>" }
@@ -314,57 +318,57 @@
     "hash": "75fda1d2fada35015662728f74ca6da1"
   },
   "optionCopyEmojiColonsCode": {
-    "message": ":dos_puntos:",
+    "message": ":dois-pontos:",
     "description": "This is included in code-style in optionCopyEmojiColons.",
     "hash": "819569cbed023888af57dd20c147264e"
   },
   "optionCopyEmojiColonsDescr": {
-    "message": "Es útil para algunos sitios que soportan este tipo de texto.",
+    "message": "Útil apenas para sites que permitem esse tipo de código.",
     "description": "This is an option shown in the add-on settings. It describes the optionCopyEmojiColons setting.",
     "hash": "aa8a0f91cf79aafac95b4b6dc8c41db3"
   },
   "optionShowConfirmationMessage": {
-    "message": "Muestra un mensaje de confirmación cuando la acción es exitosa.",
+    "message": "Mostra uma mensagem de confirmação quando a ação tem êxito.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "4d19a37aacc63e964efd4e26659b1f4c"
   },
   "optionClosePopup": {
-    "message": "Cierra la ventana emergente tras seleccionar/insertar el emoji.",
+    "message": "Fecha o pop-up depois de um emoji ser selecionado/inserido.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "6d8f1d538887bacd84a7934959364fa8"
   },
   "titleSearchBar": {
-    "message": "Barra de búsqueda",
+    "message": "Barra de pesquisa",
     "description": "The title for a settings group.",
     "hash": "9f674b27c3d5b79c4229c718f54af938"
   },
   "optionSearchBoxIntegration": {
-    "message": "Integrar en la barra de direcciones.",
+    "message": "Integrar à barra de endereço.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "dc7b4f89870082035cb68f323a31f29d"
   },
   "optionSearchBoxIntegrationDescr": {
-    "message": "Permite buscar emoji en la barra de direcciones al comenzar una búsqueda con un \"emoji\", seguido de un espacio.",
+    "message": "Permite pesquisar emojis na barra de endereço ao começar a pesquisa com \"emoji\", seguido por um espaço.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "7c572ec9de6937cf1c57d9c8d71384d8"
   },
   "optionSearchCopyAction": {
-    "message": "Copiar al portapapeles",
+    "message": "Copiar à área de transferência",
     "description": "This is an radio option shown in the add-on settings.",
     "hash": "17b6a865f4e197dcff670c9ac12517a1"
   },
   "optionEmojipediaAction": {
-    "message": "Buscar en Emojipedia",
+    "message": "Pesquisar no Emojipedia",
     "description": "This is an radio option shown in the add-on settings.",
     "hash": "29ee502aa06150b1345b1a80bbcd0df2"
   },
   "optionImageAltTextSearchBarDemo": {
-    "message": "Ejemplo que muestra una búsqueda en la barra de direcciones con el término emoji \"perro\", para el cual se sugieren varios emojis.",
+    "message": "Exemplo mostrando uma pesquisa na barra de endereço com o termo emoji \"cachorro\", ao qual vários emojis foram sugeridos.",
     "description": "This is the alt description for an image shown in the add-on settings.",
     "hash": "4cb29d49481d62a696ee8698d490ec58"
   },
   "optionsLicenseDisclaimer": {
-    "message": "Todas las imágenes pueden estar sujetas a licencias. Para más información, vea $LINK$",
+    "message": "Todas as imagens de emojis são sujeitas a licenças diferentes. Para mais informações, confira $LINK$ (em inglês).",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
       "link": { "content": "$1", "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md\">the whole license file</a>" }
@@ -377,12 +381,12 @@
     "hash": "a941d363fa723fc089f7d9600e292c1f"
   },
   "optionsLicenseDisclaimerLinkText": {
-    "message": "la licencia completa",
+    "message": "o arquivo completo com a licença",
     "description": "This is text of the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer.",
     "hash": "3471458865aafdd0f3335877239d5d91"
   },
   "translatorCredit": {
-    "message": "Esta extensión ha sido traducida al español por $TRANSLATORS$.",
+    "message": "Esta extensão foi traduzida em inglês por $TRANSLATORS$.",
     "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
     "placeholders": {
       "translators": { "content": "$1", "example": "<a href=\"https://github.com/rugk/\">@rugk</a>" }
@@ -390,17 +394,17 @@
     "hash": "a6f5deecd624d5f8cd58350c72dd8fdf"
   },
   "translatorLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS.md#spanish",
+    "message": "https://github.com/rugk",
     "description": "The link to the translator's GitHub profile.",
     "hash": "4775fb2f88fd33d02b871e5021dec3e9"
   },
   "translatorUsername": {
-    "message": "elamperti y Aaron",
+    "message": "rugk",
     "description": "The username that the translator wants to be referred to.",
     "hash": "ce96c18a8a1b4b528b294e981ee4d651"
   },
   "contributorsThanks": {
-    "message": "También gracias a $CONTRIBUTORS$.",
+    "message": "Agradecimentos a $CONTRIBUTORS$.",
     "description": "Text thanking all contributors and linking to the contributors file.",
     "placeholders": {
       "contributors": { "content": "$1", "example": "<a href=\"https://github.com/rugk/…/CONTRIBUTORS.md\">all other contributors</a>" }
@@ -413,14 +417,14 @@
     "hash": "30b2457355af889c726c252b04f561b2"
   },
   "contributorsThanksLinkText": {
-    "message": "todos los demás colaboradores",
+    "message": "todos os outros contribuintes",
     "description": "The link text linking to the contributors file. See contributorsThanks.",
     "hash": "ce03e1f3b15df3bba66048b30c4f8de4"
   },
 
   // emoji-search
   "searchTipDescription": {
-    "message": "Busque emojis a través de $ADDON$…",
+    "message": "Pesquise emojis via $ADDON$…",
     "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
     "placeholders": {
       "addon": { "content": "$1", "example": "The name of the extension. See extensionName." }
@@ -428,7 +432,7 @@
     "hash": "74d702e55f493421c7f5dd5f81690cfc"
   },
   "searchTipDescriptionDisabled": {
-    "message": "La búsqueda de emojis con $ADDON$ está deshabilitada… Puede habilitarla en las opciones.",
+    "message": "A função de pesquisa de emojis com $ADDON$ está desativada… você pode ativá-la nos ajustes.",
     "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
     "placeholders": {
       "addon": { "content": "$1", "example": "The name of the extension. See extensionName." }
@@ -452,57 +456,57 @@
 
   // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
   "emojiMartSearch": {
-    "message": "Buscar",
+    "message": "Pesquisar",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "e73d3e35cb33b8227b0888b3b416e33a"
   },
   "emojiMartClear": {
-    "message": "Limpiar",
+    "message": "Limpar",
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible label on \"clear\" button. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "bcf7e7587a412ea36d869d51026dfd6d"
   },
   "emojiMartNoEmojiFound": {
-    "message": "No se encontraron emojis",
+    "message": "Nenhum emoji encontrado",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "913bff5520a21c320969e89aaed9e3fc"
   },
   "emojiMartSkinText": {
-    "message": "Elige un tono de piel por defecto",
+    "message": "Escolha seu tom de pele padrão",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "5e1054a2b203fd79de190616b706706b"
   },
   "emojiMartCategorySearch": {
-    "message": "Resultados de búsqueda",
+    "message": "Resultados da pesquisa",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "344ff1ba9b578a6b7cc08756266ebec5"
   },
   "emojiMartCategoryRecent": {
-    "message": "Usados recientemente",
+    "message": "Frequentemente Usados",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "7870efae2654c0c26d1a5d67d2b555bf"
   },
   "emojiMartCategoryPeople": {
-    "message": "Caras y personas",
+    "message": "Carinhas e Pessoas",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "8619678ea5acf19b5b5d8534d1a3ca37"
   },
   "emojiMartCategoryNature": {
-    "message": "Animales y naturaleza",
+    "message": "Animais e Natureza",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "768e2edb2aabe23a1743d7a1ad0c84f0"
   },
   "emojiMartCategoryFoods": {
-    "message": "Comidas y bebidas",
+    "message": "Comidas e Bebidas",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "ee96ea07804521621b7e319e3a430b28"
   },
   "emojiMartCategoryActivity": {
-    "message": "Actividades",
+    "message": "Atividades",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "8e2c99c85d8a35826ac629bd3805f0c6"
   },
   "emojiMartCategoryPlaces": {
-    "message": "Viajes y lugares",
+    "message": "Viagem",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "f9faa7133b4157529e438458e8d084dd"
   },
@@ -517,82 +521,82 @@
     "hash": "a9ad94e3700cbfb8972bd68e28c68fe2"
   },
   "emojiMartCategoryFlags": {
-    "message": "Banderas",
+    "message": "Bandeiras",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "31a86798742bc224e67e9ebaebdd648f"
   },
   "emojiMartCategoryCustom": {
-    "message": "Personalizado",
+    "message": "Customizado",
     "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "1685452bc68395b620b0ce1fb9b76da5"
   },
   "emojiMartCategoriesLabel": {
-    "message": "Categorías de emojis",
+    "message": "Categorias de emoji",
     "description": "Localisation of emoji-mart, the emoji-picker. Accessible title for the list of categories. See: https://github.com/missive/emoji-mart#i18n",
     "hash": "571d7c9b1ad1355dee621abd3ceb1642"
   },
   "emojiMartSkintone1": {
-    "message": "Tono de piel por defecto",
+    "message": "Tom de pele padrão",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "facd192c7c7e7f85beb6c53c7936a2f4"
   },
   "emojiMartSkintone2": {
-    "message": "Tono de piel claro",
+    "message": "Pele clara",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "22f4ccc8fc3915555cfb800a5e07aa99"
   },
   "emojiMartSkintone3": {
-    "message": "Tono de piel claro medio",
+    "message": "Pele morena clara",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "cae479e6b0b94c3ce477b61304fdf41b"
   },
   "emojiMartSkintone4": {
-    "message": "Tono de piel medio",
+    "message": "Pele morena",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "94ef1f400240418ba61280573fd00aa4"
   },
   "emojiMartSkintone5": {
-    "message": "Tono de piel oscuro medio",
+    "message": "Pele morena escura",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "08a71e5cdc6fd226ac18bb9db553e1ed"
   },
   "emojiMartSkintone6": {
-    "message": "Tono de piel oscuro",
+    "message": "Pele escura",
     "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "32d4661a5870de1c571a3987578f68ee"
   },
 
   // ARIA labels/descriptions
   "dismissIconDescription": {
-    "message": "Cerrar este mensaje",
+    "message": "Fechar esta mensagem",
     "description": "the aria label for the close button of the message box",
     "hash": "632720ab193dcacba4286cb364124856"
   },
   "ariaMessageLoading": {
-    "message": "Cargando mensaje",
+    "message": "carregando mensagem",
     "description": "the aria label to label the message box as an info message box",
     "hash": "570016a957498a1fa1b3e818eb282adb"
   },
   "ariaMessageInfo": {
-    "message": "Mensaje informativo",
+    "message": "mensagem de informação",
     "description": "the aria label to label the message box as an info message box",
     "hash": "5f54e42067e19895a2641b17a5233418"
   },
   "ariaMessageSuccess": {
-    "message": "Mensaje de éxito",
+    "message": "mensagem de êxito",
     "description": "the aria label to label the message box as an success message box",
     "hash": "334387b4ae53483d17f11519a70dd3af"
   },
   "ariaMessageError": {
-    "message": "Mensaje de error",
+    "message": "mensagem de erro",
     "description": "the aria label to label the message box as an error message box",
     "hash": "fcda6eedc61727fe8aae7392a0a541a5"
   },
   "ariaMessageWarning": {
-    "message": "Mensaje de advertencia",
+    "message": "mensagem de aviso",
     "description": "the aria label to label the message box as an warning message box",
     "hash": "8a5dd7528bead1ccd27cb7430d797bd2"
   },
 
-  "__WET_LOCALE__": { "message": "es" }
+  "__WET_LOCALE__": { "message": "pt-BR" }
 }

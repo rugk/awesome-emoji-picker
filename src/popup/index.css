@@ -59,3 +59,38 @@ body {
 body, .message-container, .message-box {
   box-sizing: border-box;
 }
+
+/* Emoji Mart BiDi support */
+emoji-picker .emoji-mart-preview-emoji {
+  __MSG_@@bidi_start_edge__: 12px;
+  __MSG_@@bidi_end_edge__: initial;
+}
+
+emoji-picker .emoji-mart-preview-data {
+  __MSG_@@bidi_start_edge__: 68px;
+  __MSG_@@bidi_end_edge__: 12px;
+}
+
+emoji-picker .emoji-mart-title-label {
+  margin-__MSG_@@bidi_end_edge__: 56px;
+}
+
+emoji-picker .emoji-mart-preview-skins {
+  __MSG_@@bidi_start_edge__: initial;
+  __MSG_@@bidi_end_edge__: 30px;
+}
+
+emoji-picker .emoji-mart-preview-skins.custom {
+  __MSG_@@bidi_start_edge__: initial;
+  __MSG_@@bidi_end_edge__: 10px;
+}
+
+emoji-picker .emoji-mart-search-icon {
+  __MSG_@@bidi_start_edge__: initial;
+  __MSG_@@bidi_end_edge__: 11px;
+}
+
+emoji-picker .emoji-mart-search input {
+  padding-__MSG_@@bidi_start_edge__: 10px;
+  padding-__MSG_@@bidi_end_edge__: 25px;
+}

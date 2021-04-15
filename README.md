@@ -1,9 +1,9 @@
 # Awesome Emoji Picker <img align="right" height="425" width="365" src="assets/screenshots/popupSelectFemaleDetective.png">
 
-[![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)  
-[![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-shield-downloads)
-[![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/statistics/)
-[![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/)
+[![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-version&campaign=github)  
+[![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-downloads&campaign=github)
+[![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-users&campaign=github)
+[![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=github.com&utm_medium=git&utm_content=badge-stars&campaign=github)
 
 This (Firefox) add-on (WebExtension) gives you a modern emoji picker that you can use to find and select emojis (i.e. the emoticons/smileys you know from messengers such as 😃, 😎 or 🤪). It will be directly copied to your clipboard and/or inserted into the active input on the page, when you choose it.
 
@@ -27,7 +27,7 @@ The development of this add-on was also triggered, because the development of an
 
 ## Download
 
-**[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?src=external-github-download)**
+**[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=download-button&campaign=github)**
 
 > **BTW:** If you want to generate QR codes privately, do check out our **[Offline QR Code Generator](https://github.com/rugk/offline-qr-code)** too!
 
