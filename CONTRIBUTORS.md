@@ -31,3 +31,4 @@
 ### Spanish
 
 - Enrico Lamperti ([@elamperti](https://github.com/elamperti))
+- Aaron ([GamerZPlay268](https://github.com/GamerZPlay268))
