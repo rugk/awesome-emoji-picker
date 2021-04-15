@@ -348,7 +348,7 @@
     "hash": "dc7b4f89870082035cb68f323a31f29d"
   },
   "optionSearchBoxIntegrationDescr": {
-    "message": "Le permite buscar emojis en la barra de direcciones al comenzar su búsqueda con un \"emoji\", seguido de un espacio.",
+    "message": "Permite buscar emoji en la barra de direcciones al comenzar una búsqueda con un \"emoji\", seguido de un espacio.",
     "description": "This is an option shown in the add-on settings.",
     "hash": "7c572ec9de6937cf1c57d9c8d71384d8"
   },
