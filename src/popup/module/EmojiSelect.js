@@ -103,29 +103,16 @@ export async function triggerOnSelect(emoji) {
         };
     }
 
-    let messageToBeShown;
-    try {
-        const {
-            isInserted,
-            isCopied
-        } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
-            insertIntoPage: optionPickerResult.automaticInsert,
-            copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
-            copyToClipboard: optionPickerResult.emojiCopy
-        });
+    const {
+        isInserted,
+        isCopied
+    } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
+        insertIntoPage: optionPickerResult.automaticInsert,
+        copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
+        copyToClipboard: optionPickerResult.emojiCopy
+    });
 
-        messageToBeShown = getUserMessageForResult(isInserted, isCopied);
-    } catch (e) {
-        if (e instanceof EmojiInteraction.PermissionError) {
-            CommonMessages.showError("errorPermissionMissing", true, {
-                text: "messageOpenOptionsButton",
-                action: () => browser.runtime.openOptionsPage()
-            });
-
-            // re-throw, as one error is enough
-            throw e;
-        }
-    }
+    const messageToBeShown = getUserMessageForResult(isInserted, isCopied);
 
     if (!messageToBeShown) {
         CommonMessages.showError("couldNotDoAction", true);

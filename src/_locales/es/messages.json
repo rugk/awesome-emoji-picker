@@ -62,11 +62,7 @@
     "description": "The message shown, when the options of the settings could not have been reset.",
     "hash": "76e950d2db72a824482411ca6564fb1f"
   },
-  "errorPermissionMissing": {
-    "message": "Falta un permiso para esta acción.",
-    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing.",
-    "hash": "4fd643fe1cc78041711623903d3437a1"
-  },
+
   "messageOpenOptionsButton": {
     "message": "Abrir opciones",
     "description": "The text of a button that opens the options page.",

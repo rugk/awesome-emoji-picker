@@ -62,11 +62,6 @@
         "description": "The message shown, when the options of the settings could not have been reset.",
         "hash": "76e950d2db72a824482411ca6564fb1f"
     },
-    "errorPermissionMissing": {
-        "message": "הרשאה חסרה לביצוע פעולה זו.",
-        "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing.",
-        "hash": "4fd643fe1cc78041711623903d3437a1"
-    },
     "messageOpenOptionsButton": {
         "message": "הצג אפשרויות",
         "description": "The text of a button that opens the options page.",

@@ -51,10 +51,6 @@
     "description": "The message shown, when the options of the settings could not have been reset."
   },
 
-  "errorPermissionMissing": {
-    "message": "A permission is missing for this action.",
-    "description": "The message shown, when a required permission is missing. (If) It is not important to mention, which one is missing."
-  },
   "messageOpenOptionsButton": {
     "message": "Open options",
     "description": "The text of a button that opens the options page."
