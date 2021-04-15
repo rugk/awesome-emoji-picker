@@ -363,7 +363,7 @@
     "hash": "29ee502aa06150b1345b1a80bbcd0df2"
   },
   "optionImageAltTextSearchBarDemo": {
-    "message": "Ejemplo que muestra una búsqueda en la barra de direcciones con el término emoji \"perro\", para lo cual se sugieren varios emojis.",
+    "message": "Ejemplo que muestra una búsqueda en la barra de direcciones con el término emoji \"perro\", para el cual se sugieren varios emojis.",
     "description": "This is the alt description for an image shown in the add-on settings.",
     "hash": "4cb29d49481d62a696ee8698d490ec58"
   },
