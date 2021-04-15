@@ -1,0 +1,9 @@
+Essa extensão não envia nenhuma informação a terceiros ou ao autor da extensão.
+
+Uma explicação de todas as permissões solicitadas por essa extensão podem ser encontradas em https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/en/permissions.md.
+
+== SERVIÇOS DE TERCEIROS ==
+
+Essa EXTENSÃO usa o “armazenamento sincronizado” do seu navegador para armazenar as configurações. Se o USUÁRIO ativar “Sincronizar” no navegador, as configurações serão carregadas e sincronizadas nos seus aparelhos conectados à sua conta. Se você não fizer uso dessa possibilidade, os dados serão armazenados apenas localmente no seu aparelho.
+No Mozilla Firefox, os dados são criptografados de ponta a ponta antes de serem carregados e armazenados em servidores da Mozzila.
+Acesse https://accounts.firefox.com/legal/privacy e https://www.mozilla.org/privacy/firefox/#c-privacy-topic-8 para consultar as políticas de privacidade da Mozilla sobre este tópico.
