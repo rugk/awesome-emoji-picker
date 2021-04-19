@@ -1,4 +1,4 @@
 The submitted source code is just for embedding of emoji-mart, see https://github.com/rugk/emoji-mart-embed/ for the whole source online.
-You can build that separately and include the whole resulting git repo in the add-on. All other parts of tha add-on are unbminified/untranspiled (JavaScript) files.
+You can build that separately and include the whole resulting git repo in the add-on. All other parts of the add-on are unminified/untranspiled (JavaScript) files.
 
 The whole add-on source is also available at https://github.com/rugk/awesome-emoji-picker.
