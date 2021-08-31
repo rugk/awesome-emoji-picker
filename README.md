@@ -67,7 +67,6 @@ See:
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
 * Follows the [Firefox Photon Design](https://design.firefox.com/photon).
 * It does not violate your privacy and does send data anywhere.
-* Compatible with Firefox for Android
 * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
 * Compatible with Firefox for Android
 * Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))
