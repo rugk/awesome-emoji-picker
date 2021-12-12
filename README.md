@@ -21,7 +21,7 @@ It uses up-to-date Emojis and let's you access your Emojis in different styles y
 
 It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). You can test many features there already, before installing it.
 
-This extension only works with Firefox v63 or higher.
+This extension only works with Firefox v74 or higher.
 
 The development of this add-on was also triggered, because the development of another add-on called [“Emoji Helper” or “Emoji Cheatsheet” stalled](https://github.com/johannhof/emoji-helper/issues/127).
 
