@@ -5,6 +5,8 @@
  */
 
 import * as EmojiSelect from "./EmojiSelect.js";
+import data from "/node_modules/@emoji-mart/data";
+import * as EmojiMart from "/node_modules/emoji-mart/dist/index.js";
 
 let emojiPicker = null;
 
@@ -107,10 +109,6 @@ export function init(settings) {
 
     console.debug("Using these emoji-mart settings:", initProperties);
 
-    const promiseCreateElement = window.emojiMart.definePicker("emoji-picker", initProperties);
-
-    return promiseCreateElement.then(() => {
-        emojiPicker = document.createElement("emoji-picker");
-        document.body.appendChild(emojiPicker);
-    });
+    const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: data });
+    document.body.appendChild(emojiPicker);
 }
