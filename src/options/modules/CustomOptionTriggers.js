@@ -265,11 +265,11 @@ function applyEmojiSearch(optionValue, option, event = {}) {
     if (optionValue.enabled) {
         document.getElementById("searchCopyAction").disabled = false;
         document.getElementById("emojipediaAction").disabled = false;
-        document.getElementById("searchBarDemo").removeAttribute("disabled");
+        document.getElementById("searchBarDemo").disabled = false;
     } else {
         document.getElementById("searchCopyAction").disabled = true;
         document.getElementById("emojipediaAction").disabled = true;
-        document.getElementById("searchBarDemo").setAttribute("disabled", "");
+        document.getElementById("searchBarDemo").disabled = true;
     }
 
     // trigger update for current session
@@ -342,7 +342,16 @@ export async function registerTrigger() {
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
-    AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
+    // Thunderbird
+    if (typeof messenger !== "undefined") {
+        // document.getElementById("browser").style.display = "none";
+        document.getElementById("browser").disabled = true;
+        document.getElementById("omnibarIntegration").disabled = true;
+        document.getElementById("searchCopyAction").disabled = true;
+        document.getElementById("emojipediaAction").disabled = true;
+    } else {
+        AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
+    }
 
     // handle loading of options correctly
     AutomaticSettings.Trigger.registerAfterLoad(AutomaticSettings.Trigger.RUN_ALL_SAVE_TRIGGER);
