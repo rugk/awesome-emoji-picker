@@ -109,9 +109,9 @@ const tipArray = [
         },
         showTip: async (tipSpec, thisTipConfig) => {
             tipSpec.actionButton.action = await getBrowserValue({
-                firefox: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=unicodify-addon&utm_medium=addon&utm_content=unicodify-addon-tips-tipYouLikeAddon&utm_campaign=unicodify-addon-tips",
-                thunderbird: "https://addons.thunderbird.net/thunderbird/addon/awesome-emoji-picker/reviews/?utm_source=unicodify-addon&utm_medium=addon&utm_content=unicodify-addon-tips-awesomeIcons&utm_campaign=unicodify-addon-tips",
-                chrome: "https://chrome.google.com/webstore/detail/awesome-emoji-picker/#...",
+                firefox: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+                thunderbird: "https://addons.thunderbird.net/thunderbird/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+                chrome: "https://chrome.google.com/webstore/detail/awesome-emoji-picker/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
             });
             return null;
         }
@@ -131,8 +131,8 @@ const tipArray = [
 
             // find command
             const allCommands = await browser.commands.getAll();
-            const acommand = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
-            const popupOpenCommand = allCommands.find((command) => command.name === acommand);
+            const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
+            const popupOpenCommand = allCommands.find((command) => command.name === commandToFind);
 
             // if shortcut is modified, do not show tip
             if (popupOpenCommand.shortcut !== DEFAULT_POPUP_HOT_KEY) {
