@@ -344,11 +344,7 @@ export async function registerTrigger() {
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
     // Thunderbird
     if (typeof messenger !== "undefined") {
-        // document.getElementById("browser").style.display = "none";
-        document.getElementById("browser").disabled = true;
-        document.getElementById("omnibarIntegration").disabled = true;
-        document.getElementById("searchCopyAction").disabled = true;
-        document.getElementById("emojipediaAction").disabled = true;
+        document.getElementById("browser").style.display = "none";
     } else {
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
     }
