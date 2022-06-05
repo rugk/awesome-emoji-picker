@@ -201,6 +201,11 @@ export async function triggerOmnixboxSearch(text, disposition) {
  * @throws TypeError
  */
 async function toggleEnabledStatus(toEnable) {
+    // Thunderbird
+    if (typeof messenger !== "undefined") {
+        return;
+    }
+
     // if we do not have the permission for clipboard, and need it for settings, force-disable feature
     if (!(await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION))) {
         const emojiSearch = await AddonSettings.get("emojiSearch");

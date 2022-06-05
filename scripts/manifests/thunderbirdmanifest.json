@@ -1,0 +1,69 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "short_name": "__MSG_extensionNameShort__",
+  "version": "0.9.1",
+  "author": "rugk, Teal Dulcet",
+
+  "description": "__MSG_extensionDescription__",
+  "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
+
+
+  "compose_action": {
+    "browser_style": true,
+    "default_area": "formattoolbar",
+    "default_icon": "icons/fa-grin-dark.svg",
+    "default_title": "__MSG_browserActionButtonTitle__",
+    "default_popup": "popup/index.html",
+    "theme_icons": [
+      {
+        "dark": "icons/fa-grin-dark.svg",
+        "light": "icons/fa-grin-light.svg",
+        "size": 32
+      }
+    ]
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
+
+  "background": {
+    "page": "background/background.html"
+  },
+  "commands": {
+    "_execute_compose_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period"
+      },
+      "description": "__MSG_commandOpenPopup__"
+    }
+  },
+
+  "content_security_policy": "default-src 'self'",
+  "icons": {
+    "32": "icons/icon_32.png",
+    "64": "icons/icon_64.png",
+    "128": "icons/icon_128.png"
+  },
+  "default_locale": "en",
+
+  "permissions": [
+    "storage",
+    "tabs",
+    "compose",
+    "menus"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
+  ],
+
+  "applications": {
+    "gecko": {
+      "id": "awesome-emoji-picker@rugk.github.io",
+      "strict_min_version": "87.0"
+    }
+  }
+}

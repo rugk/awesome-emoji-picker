@@ -22,19 +22,22 @@ function setPopupIcon(icon) {
         throw new TypeError(`invalid parameter: ${icon}`);
     }
 
+    // Thunderbird
+    const browserAction = typeof messenger !== "undefined" ? browser.composeAction : browser.browserAction;
+
     // ignore request if API is not available
-    if (browser.browserAction.setIcon === undefined) {
+    if (browserAction.setIcon === undefined) {
         return Promise.resolve();
     }
 
     if (icon === null || icon === undefined) {
-        return browser.browserAction.setIcon({path: null});
+        return browserAction.setIcon({path: null});
     }
 
     // set colored icon
     if (icon === "colored") {
         // WTF: For whatever reason, these paths need to be absolute...
-        return browser.browserAction.setIcon({path: {
+        return browserAction.setIcon({path: {
             "16": "/icons/icon_32.png",
             "32": "/icons/icon_32.png",
             "64": "/icons/icon_64.png",
@@ -42,7 +45,7 @@ function setPopupIcon(icon) {
         }});
     }
 
-    return browser.browserAction.setIcon({path: `/icons/fa-grin-${icon}.svg`});
+    return browserAction.setIcon({path: `/icons/fa-grin-${icon}.svg`});
 }
 
 /**
