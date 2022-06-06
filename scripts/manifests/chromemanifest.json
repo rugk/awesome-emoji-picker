@@ -1,0 +1,68 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_extensionName__",
+  "short_name": "__MSG_extensionNameShort__",
+  "version": "2.0",
+  "author": "rugk, Teal Dulcet",
+
+  "description": "__MSG_extensionDescription__",
+  "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
+
+  "browser_action": {
+    "browser_style": true,
+    "chrome_style": true,
+    "default_icon": "icons/fa-grin-dark.svg",
+    "default_title": "__MSG_browserActionButtonTitle__",
+    "default_popup": "popup/index.html",
+    "theme_icons": [
+      {
+        "dark": "icons/fa-grin-dark.svg",
+        "light": "icons/fa-grin-light.svg",
+        "size": 32
+      }
+    ]
+  },
+
+  "omnibox": {
+    "keyword": "emoji"
+  },
+
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true,
+    "chrome_style": true
+  },
+
+  "background": {
+    "page": "background/background.html"
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Period"
+      },
+      "description": "__MSG_commandOpenPopup__"
+    }
+  },
+
+  // testing version allows loading unit test libraries from CDNs
+  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
+  "icons": {
+    "32": "icons/icon_32.png",
+    "64": "icons/icon_64.png",
+    "128": "icons/icon_128.png"
+  },
+  "default_locale": "en",
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "tabs",
+    "contextMenus"
+  ],
+
+  "optional_permissions": [
+    "clipboardWrite"
+  ]
+  // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
+}
