@@ -61,7 +61,7 @@ See:
 * Emoji skin tone is adjustable and is remembered.
 * You can also insert the emoji's `:colon:` syntax instead of the Unicode emoji that is used by default.
 * Use the hot key (by default <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Period</kbd>) to quickly access the emoji picker.
-* Emojis/settings automatically synced between all browser instances and devices (Firefox and Chrome only).
+* Emojis/settings automatically synced between all browser instances and devices (browsers only).
 * Adjust the style and many other options to your liking.
 * The size of the whole emoji picker and the emojis itself is also adjustable.
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
