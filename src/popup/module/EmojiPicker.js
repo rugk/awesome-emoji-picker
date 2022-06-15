@@ -5,7 +5,7 @@
  */
 
 import * as EmojiSelect from "./EmojiSelect.js";
-import data from "/node_modules/@emoji-mart/data";
+import data from "./lib/combined-data.js";
 import * as EmojiMart from "/node_modules/emoji-mart/dist/index.js";
 
 let emojiPicker = null;
@@ -112,3 +112,5 @@ export function init(settings) {
     const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: data });
     document.body.appendChild(emojiPicker);
 }
+
+console.log(data);

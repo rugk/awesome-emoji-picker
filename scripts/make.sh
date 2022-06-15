@@ -26,7 +26,7 @@ zip -r -FS "../build/$EXTENSION_NAME.xpi" ./* -x "tests/*" -x "**/tests/*" \
     -x "**/.git" -x "**/.gitignore" -x "**/.gitmodules"  -x "**/.gitkeep" \
     -x "**/.eslintrc" \
     -x "**/package.json" -x "**/package-lock.json" -x "**/webpack.config.js" \
-    -x "popup/lib/emoji-mart-embed/src.js" \
+    -x "node_modules/@emoji-mart/data" \
     -x "**/.editorconfig" \
     -x "**/.github/*"
 
