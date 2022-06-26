@@ -1,9 +1,10 @@
 ---
-name: "Bug report (Thunderbird-only)"
-about: Create a report to help us improve. Please use this if your bug is _only_ about Thunderbird.
+name: Problem with a specific website
+about: Create a bug report for a problem on a specific website
 title: ''
 labels: bug, Thunderbird
-assignees: @tdulcet
+assignees: tdulcet
+
 ---
 
 ## Bug description
