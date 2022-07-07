@@ -27,7 +27,7 @@ The development of this add-on was also triggered, because the development of an
 
 ## Download
 
-**[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=download-button&campaign=github)**
+**[![Get it for Firefox!](https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=download-button&campaign=github)**
 
 > **BTW:** If you want to generate QR codes privately, do check out our **[Offline QR Code Generator](https://github.com/rugk/offline-qr-code)** too!
 
