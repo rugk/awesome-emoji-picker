@@ -11,13 +11,13 @@
   "browser_action": {
     "browser_style": true,
     "chrome_style": true,
-    "default_icon": "icons/fa-grin-dark.svg",
+    "default_icon": "icons/fa-grin-dark.png",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
     "theme_icons": [
       {
-        "dark": "icons/fa-grin-dark.svg",
-        "light": "icons/fa-grin-light.svg",
+        "dark": "icons/fa-grin-dark.png",
+        "light": "icons/fa-grin-light.png",
         "size": 32
       }
     ]
