@@ -5,7 +5,7 @@
 [![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-users&campaign=github)
 [![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=github.com&utm_medium=git&utm_content=badge-stars&campaign=github)
 
-This (Firefox) add-on (WebExtension) gives you a modern emoji picker that you can use to find and select emojis (i.e. the emoticons/smileys you know from messengers such as 😃, 😎 or 🤪). It will be directly copied to your clipboard and/or inserted into the active input on the page, when you choose it.
+This (Firefox, Chromium/Chrome and Thunderbird) add-on (WebExtension) gives you a modern emoji picker that you can use to find and select emojis (i.e. the emoticons/smileys you know from messengers such as 😃, 😎 or 🤪). It will be directly copied to your clipboard and/or inserted into the active input on the page, when you choose it.
 
 You can then use the emojis on almost any web page, including your favorite messenger (such as WhatsApp, Telegram, Threema, Signal, Wire etc.), social media (Facebook, Instagram, Twitter, Mastodon etc.) and even e-mails.
 
@@ -21,13 +21,13 @@ It uses up-to-date Emojis and let's you access your Emojis in different styles y
 
 It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). You can test many features there already, before installing it.
 
-This extension only works with Firefox v74 or higher.
+This extension works with Firefox v74 or higher, Chromium/Chrome and Thunderbird v87 or higher.
 
 The development of this add-on was also triggered, because the development of another add-on called [“Emoji Helper” or “Emoji Cheatsheet” stalled](https://github.com/johannhof/emoji-helper/issues/127).
 
 ## Download
 
-**[![Get it for Firefox!](https://addons.cdn.mozilla.net/static/img/addons-buttons/AMO-button_1.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=download-button&campaign=github)**
+**[![Get it for Firefox!](https://extensionworkshop.com/assets/img/documentation/publish/get-the-addon-178x60px.dad84b42.png)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=download-button&campaign=github)**
 
 > **BTW:** If you want to generate QR codes privately, do check out our **[Offline QR Code Generator](https://github.com/rugk/offline-qr-code)** too!
 
@@ -61,12 +61,12 @@ See:
 * Emoji skin tone is adjustable and is remembered.
 * You can also insert the emoji's `:colon:` syntax instead of the Unicode emoji that is used by default.
 * Use the hot key (by default <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Period</kbd>) to quickly access the emoji picker.
-* Integrates into Firefox Sync, so you have all your emojis/settings on all devices.
+* Emojis/settings automatically synced between all browser instances and devices (browsers only).
 * Adjust the style and many other options to your liking.
 * The size of the whole emoji picker and the emojis itself is also adjustable.
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
-* Follows the [Firefox Photon Design](https://design.firefox.com/photon).
 * It does not violate your privacy and does send data anywhere.
+* Follows the [Firefox](https://design.firefox.com/photon) and [Thunderbird](https://style.thunderbird.net/) Photon Design.
 * Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
 * Compatible with Firefox for Android
 * Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))

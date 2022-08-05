@@ -76,6 +76,11 @@
 
 import {isMobile} from "../MobileHelper.js";
 import {userSpeaksLocaleNotYetTranslated} from "../LanguageHelper.js";
+import { getBrowserValue } from "../BrowserCompat.js";
+
+// Thunderbird
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
+const IS_THUNDERBIRD = typeof messenger !== "undefined";
 
 const DEFAULT_POPUP_HOT_KEY = "Ctrl+Shift+Period";
 
@@ -100,7 +105,15 @@ const tipArray = [
         text: "tipYouLikeAddon",
         actionButton: {
             text: "tipYouLikeAddonButton",
-            action: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/"
+            action: ""
+        },
+        showTip: async (tipSpec, thisTipConfig) => {
+            tipSpec.actionButton.action = await getBrowserValue({
+                firefox: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+                thunderbird: "https://addons.thunderbird.net/thunderbird/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+                chrome: "https://chrome.google.com/webstore/detail/awesome-emoji-picker/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+            });
+            return null;
         }
     },
     {
@@ -118,7 +131,8 @@ const tipArray = [
 
             // find command
             const allCommands = await browser.commands.getAll();
-            const popupOpenCommand = allCommands.find((command) => command.name === "_execute_browser_action");
+            const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
+            const popupOpenCommand = allCommands.find((command) => command.name === commandToFind);
 
             // if shortcut is modified, do not show tip
             if (popupOpenCommand.shortcut !== DEFAULT_POPUP_HOT_KEY) {
