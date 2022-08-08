@@ -30,6 +30,9 @@ const defaultSettings = {
         resultType: "native",
         showConfirmationMessage: true,
         closePopup: true,
+    contextMenu: {
+        insertEmoji: true
+    },
     },
     emojiSearch: {
         enabled: false,
