@@ -29,10 +29,10 @@ const defaultSettings = {
         emojiCopyOnlyFallback: false,
         resultType: "native",
         showConfirmationMessage: true,
-        closePopup: true,
+        closePopup: true
+    },
     contextMenu: {
         insertEmoji: true
-    },
     },
     emojiSearch: {
         enabled: false,
