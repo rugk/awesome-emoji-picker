@@ -13,10 +13,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: web-ext lint
-        uses: freaktechnik/web-ext-lint@v1
+      
+      - name: "web-ext lint"
+        uses: kewisch/action-web-ext@v1
         with:
-          extension-root: "src"
-          verbose: true
-
+          cmd: lint
+          source: src
+          channel: listed
