@@ -18,4 +18,5 @@ jobs:
         uses: freaktechnik/web-ext-lint@v1
         with:
           extension-root: "src"
+          verbose: true
 
