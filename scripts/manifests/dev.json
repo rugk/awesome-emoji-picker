@@ -54,7 +54,9 @@
 
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "tabs",
+    "contextMenus"
   ],
 
   "optional_permissions": [

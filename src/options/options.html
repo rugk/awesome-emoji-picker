@@ -19,35 +19,35 @@
 				<a href="#">
 					<button type="button" class="message-action-button micro-button info invisible"></button>
 				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__">
 			</div>
 			<div id="messageInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
 				<span class="message-text">Some settings are managed by your administrator and cannot be changed.</span>
 				<a href="#">
 					<button type="button" class="message-action-button micro-button info invisible"></button>
 				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__">
 			</div>
 			<div id="messageSuccess" aria-label="success message" data-i18n data-i18n-aria-label="__MSG_ariaMessageSuccess__" class="message-box success invisible fade-hide">
 				<span class="message-text">That worked!</span>
 				<a href="#">
 					<button type="button" class="message-action-button micro-button success invisible"></button>
 				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__">
 			</div>
 			<div id="messageError" aria-label="error message" data-i18n data-i18n-aria-label="__MSG_ariaMessageError__" class="message-box error invisible fade-hide">
 				<span class="message-text">An error happened.</span>
 				<a href="#">
 					<button type="button" class="message-action-button micro-button error invisible"></button>
 				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close-white.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+				<img class="icon-dismiss invisible" src="/common/img/close-white.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__">
 			</div>
 			<div id="messageWarning" aria-label="warning message" data-i18n data-i18n-aria-label="__MSG_ariaMessageWarning__" class="message-box warning invisible fade-hide">
 				<span class="message-text">There were some difficulties.</span>
 				<a href="#">
 					<button type="button" class="message-action-button micro-button warning invisible"></button>
 				</a>
-				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+				<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__">
 			</div>
 		</div>
 		<form>
@@ -115,8 +115,8 @@
 			</section>
 
 			<section>
+				<h1 data-i18n="__MSG_titleBehaviour__">Behavior</h1>
 				<ul>
-					<h1 data-i18n="__MSG_titleBehaviour__">Behaviour</h1>
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="automaticInsert" data-optiongroup="pickerResult" name="automaticInsert">
@@ -158,6 +158,20 @@
 							<input class="setting save-on-change" type="checkbox" id="closePopup" data-optiongroup="pickerResult" name="closePopup">
 							<label data-i18n="__MSG_optionClosePopup__" for="closePopup">Close the popup after an emoji has been selected/inserted.</label>
 						</div>
+					</li>
+				</ul>
+			</section>
+
+			<!-- Remove "mobile-incompatible" once https://bugzilla.mozilla.org/show_bug.cgi?id=1595822 is fixed -->
+			<section class="mobile-incompatible">
+				<h1 data-i18n="__MSG_titleContextMenu__">Context menu</h1>
+				<ul>
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="insertEmoji" data-optiongroup="contextMenu" name="insertEmoji">
+							<label data-i18n="__MSG_optionContextMenuInsertEmoji__" for="insertEmoji">Insert Emoji</label>
+						</div>
+						<span data-i18n="__MSG_optionContextMenuInsertEmojiDescr__" class="line indent helper-text">Show context menu item to insert emoji.</span>
 					</li>
 				</ul>
 			</section>

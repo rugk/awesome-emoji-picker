@@ -75,6 +75,23 @@ function applyPickerResultPermissions(optionValue) {
 }
 
 /**
+ * Apply the new context menu settings.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
+ * @returns {void}
+ */
+function applyContextMenuSettings(optionValue, option, event) {
+    // trigger update for current session
+    browser.runtime.sendMessage({
+        type: COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU,
+        optionValue: optionValue
+    });
+}
+
+/**
  * Adjusts the emoji size setting for saving.
  *
  * @private
@@ -339,6 +356,7 @@ export async function registerTrigger() {
 
     // update slider status
     AutomaticSettings.Trigger.registerSave("pickerResult", applyPickerResultPermissions);
+    AutomaticSettings.Trigger.registerSave("contextMenu", applyContextMenuSettings);
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);

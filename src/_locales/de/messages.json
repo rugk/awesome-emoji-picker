@@ -287,6 +287,19 @@
     "description": "This is an option shown in the add-on settings."
   },
 
+  "titleContextMenu": {
+    "message": "Kontextmenü",
+    "description": "The title for a context menu group."
+  },
+  "optionContextMenuInsertEmoji": {
+    "message": "Emoji einfügen",
+    "description": "This is an option shown in the add-on settings."
+  },
+  "optionContextMenuInsertEmojiDescr": {
+    "message": "Zeige den Kontextmenu-Eintrag zum Einfügen von Emojis.",
+    "description": "This is an option shown in the add-on settings."
+  },
+
   "titleSearchBar": {
     "message": "Suchleiste",
     "description": "The title for a settings group."
