@@ -11,7 +11,7 @@ You can then use the emojis on almost any web page, including your favorite mess
 
 It will remember your recently used emojis across sites, and may often be faster than the emoji picker on the site itself.
 
-It uses up-to-date Emojis and let's you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
+It uses up-to-date Emojis and lets you access your Emojis in different styles you know from different devices and applications. Here is a list of styles, it supports:
 
 * Apple emojis
 * Google emojis
@@ -21,7 +21,7 @@ It uses up-to-date Emojis and let's you access your Emojis in different styles y
 
 It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). You can test many features there already, before installing it.
 
-This extension works with Firefox v74 or higher, Chromium/Chrome and Thunderbird v87 or higher.
+This extension works with Firefox v74 or higher, Chromium/Chrome and Thunderbird v91 or higher.
 
 The development of this add-on was also triggered, because the development of another add-on called [“Emoji Helper” or “Emoji Cheatsheet” stalled](https://github.com/johannhof/emoji-helper/issues/127).
 
@@ -54,21 +54,21 @@ See:
 * Display the emojis in the design of Apple, Google, Twitter, Facebook or just the native style your browser uses.
 * Quickly search for any emoji with many keywords.
 * Search for emojis [directly in the address bar](https://github.com/rugk/awesome-emoji-picker/wiki/FAQ#how-to-use-the-address-bar-to-search-for-emojis).
-* Supports the dark/black mode of your system automatically.
-* Copy emoji to your clipboard.
-* …or directly insert it into the page.
+* Supports the light/dark mode of your system automatically.
+* Copy the emoji to your clipboard.
+* …or directly insert it into the current page.
 * Remembers frequently used emojis.
 * Emoji skin tone is adjustable and is remembered.
-* You can also insert the emoji's `:colon:` syntax instead of the Unicode emoji that is used by default.
+* You can also insert the emoji's `:colon:` shortcode syntax instead of the Unicode emoji that is used by default.
 * Use the hot key (by default <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Period</kbd>) to quickly access the emoji picker.
 * Emojis/settings automatically synced between all browser instances and devices (browsers only).
 * Adjust the style and many other options to your liking.
-* The size of the whole emoji picker and the emojis itself is also adjustable.
+* The size of the whole emoji picker and the emojis themselves is also adjustable.
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
-* It does not violate your privacy and does send data anywhere.
 * Follows the [Firefox](https://design.firefox.com/photon) and [Thunderbird](https://style.thunderbird.net/) Photon Design.
-* Translated in English and German already. [Contribute your own language!](CONTRIBUTING.md#Translations)
+* Puts your privacy first and does not send data anywhere.
 * Compatible with Firefox for Android
+* Translated into several languages already. [Contribute your own language!](CONTRIBUTING.md#Translations)
 * Settings can be managed by your administrator. (see [issue #4](https://github.com/rugk/awesome-emoji-picker/issues/4))
 
 ## Contribute
