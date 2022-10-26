@@ -4,6 +4,3 @@ node_modules/
 
 # do not commit emoji images
 src/popup/img/emoji-images/*.png
-
-# private AMO stuff
-assets/texts/en/amo-review.txt
