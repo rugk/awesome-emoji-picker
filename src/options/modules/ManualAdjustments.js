@@ -5,7 +5,7 @@ import { getBrowserValue } from "/common/modules/BrowserCompat.js";
  *
  * Applies the adjustments.
  *
- * @returns {Promise}
+ * @returns {void}
  */
 export function init() {
     getBrowserValue({

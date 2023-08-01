@@ -125,7 +125,7 @@ function hidePopup(elPanel) {
  * @param  {HTMLElement} options An object with the following optional properties:
  * @param  {event} [options.event] The event that triggered the feedback.
  * @param  {boolean} [options.showDescription] show description text (confirmationHint.<messageId>.description)
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 export function show(position, messageId, options = {}) {
     return new Promise((resolve) => {

@@ -34,7 +34,7 @@ const ADDON_TRANSLATED_INTO = new Set([
  * translated into.
  *
  * @public
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
 export async function userSpeaksLocaleNotYetTranslated() {
     const addonLanguage = browser.i18n.getMessage("@@ui_locale");

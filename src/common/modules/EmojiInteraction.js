@@ -4,7 +4,7 @@ import * as PageHandler from "./PageHandler.js";
  * As per users settings, insert emoji into web page or copy to clipboard.
  *
  * @private
- * @param {Object} text
+ * @param {string} text
  * @param {Object} options
  * @param {boolean} options.insertIntoPage whether to try to insert it into the active page
  * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (alos requires copyToClipboard=true)

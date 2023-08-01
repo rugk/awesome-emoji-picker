@@ -138,7 +138,7 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  * @public
  * @param {string} text the string the user entered or selected
  * @param {string} disposition how the result should be possible
- * @returns {void}
+ * @returns {Promise<void>}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
 export async function triggerOmnixboxSearch(text, disposition) {
@@ -197,7 +197,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
  *
  * @private
  * @param {boolean} toEnable
- * @returns {void}
+ * @returns {Promise<void>}
  * @throws TypeError
  */
 async function toggleEnabledStatus(toEnable) {
@@ -207,7 +207,7 @@ async function toggleEnabledStatus(toEnable) {
     }
 
     // if we do not have the permission for clipboard, and need it for settings, force-disable feature
-    if (!(await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION))) {
+    if (!await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION)) {
         const emojiSearch = await AddonSettings.get("emojiSearch");
 
         if (emojiSearch.action === "copy") {

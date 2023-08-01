@@ -157,7 +157,7 @@ function adjustPickerResultTypeOption(param) {
  *
  * @private
  * @param {string} language
- * @param {integer} optionValue
+ * @param {number} optionValue
  * @returns {string} messageName
  */
 function getPluralForm(language, optionValue) {
@@ -177,7 +177,7 @@ function getPluralForm(language, optionValue) {
  * after the options have been loaded and when the option value is updated by the user.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -206,7 +206,7 @@ function updatePerLineStatus(optionValue, option, event) {
  * Adjust maximum value of emojis per line when the emoji size is adjusted.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)

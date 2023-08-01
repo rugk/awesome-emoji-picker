@@ -23,7 +23,7 @@ let optionPickerResult;
  *
  * @public
  * @param {Object} emoji
- * @param {Object} event
+ * @param {MouseEvent} event
  * @returns {void}
  */
 export function saveClickPosition(emoji, event) {
@@ -59,7 +59,7 @@ export function getEmojiHtml(emoji) {
  * @private
  * @param {boolean} isEmojiInserted
  * @param {boolean} isEmojiCopied
- * @returns {Promise}
+ * @returns {string}
  */
 function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
     let messageToBeShown;

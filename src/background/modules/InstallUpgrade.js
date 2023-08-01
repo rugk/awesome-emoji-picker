@@ -12,7 +12,7 @@
  *
  * @private
  * @param {Object} emojiPickerSettings
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function upgradeEmojiSet(emojiPickerSettings) {
     // change removed emoji sets to best existing one
@@ -46,7 +46,7 @@ async function upgradeEmojiSet(emojiPickerSettings) {
  * @see {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onInstalled}
  * @private
  * @param {Object} details
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function handleInstalled(details) {
     // only trigger for usual addon updates

@@ -6,7 +6,7 @@ const POPUP_ICON_OPTION = "popupIconColored";
  * Sets a popup icon variant.
  *
  * @private
- * @param {string} icon version or "null"/"undefined" to reset to default
+ * @param {string|null} icon version or "null"/"undefined" to reset to default
  * @returns {Promise}
  */
 function setPopupIcon(icon) {

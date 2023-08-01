@@ -8,7 +8,7 @@
  * Specifies the message level to use,
  *
  * @readonly
- * @enum {int}
+ * @enum {number}
  * @default
  */
 export const MESSAGE_LEVEL = Object.freeze({
