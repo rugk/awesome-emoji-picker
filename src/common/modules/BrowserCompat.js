@@ -18,10 +18,8 @@ export async function getBrowserValue(switchBrowser) {
 
         if (browserInfo.name === "Thunderbird") {
             return switchBrowser.thunderbird;
-        } else {
-            return switchBrowser.firefox;
         }
-    } else {
-        return switchBrowser.chrome;
+        return switchBrowser.firefox;
     }
+    return switchBrowser.chrome;
 }

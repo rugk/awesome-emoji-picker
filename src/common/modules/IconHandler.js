@@ -26,11 +26,11 @@ function setPopupIcon(icon) {
     const browserAction = typeof messenger !== "undefined" ? browser.composeAction : browser.browserAction;
 
     // ignore request if API is not available
-    if (browserAction.setIcon === undefined) {
+    if (!browserAction.setIcon) {
         return Promise.resolve();
     }
 
-    if (icon === null || icon === undefined) {
+    if (icon == null) {
         return browserAction.setIcon({path: null});
     }
 
@@ -38,10 +38,10 @@ function setPopupIcon(icon) {
     if (icon === "colored") {
         // WTF: For whatever reason, these paths need to be absolute...
         return browserAction.setIcon({path: {
-            "16": "/icons/icon_32.png",
-            "32": "/icons/icon_32.png",
-            "64": "/icons/icon_64.png",
-            "128": "/icons/icon_128.png"
+            16: "/icons/icon_32.png",
+            32: "/icons/icon_32.png",
+            64: "/icons/icon_64.png",
+            128: "/icons/icon_128.png"
         }});
     }
 
@@ -58,10 +58,9 @@ function setPopupIcon(icon) {
 export function changeIconIfColored(popupIconColored) {
     if (popupIconColored === true) {
         return setPopupIcon("colored");
-    } else {
-        // reset icon
-        return setPopupIcon(null);
     }
+    // reset icon
+    return setPopupIcon(null);
 }
 
 /**

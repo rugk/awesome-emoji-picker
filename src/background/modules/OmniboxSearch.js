@@ -27,7 +27,7 @@ function loadEmojiMart() {
     const emojiMartLoader = document.createElement("script");
     emojiMartLoader.setAttribute("async", true);
     emojiMartLoader.setAttribute("src", "/common/lib/emoji-mart-embed/dist/emoji-mart.js");
-    document.querySelector("head").appendChild(emojiMartLoader);
+    document.querySelector("head").append(emojiMartLoader);
 
     emojiMartIsLoaded = true;
 }
@@ -105,7 +105,7 @@ export function triggerOmnixboxSuggestion(text, suggest) {
 export async function triggerOmnixboxDisabledSearch(text, disposition) {
     // if search API is allowed, we just fall-back to default search
     if (browser.search) {
-        let tabId = undefined;
+        let tabId;
 
         switch (disposition) {
         case "currentTab": {
@@ -154,7 +154,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         if (foundEmoji) {
             searchResult.push(foundEmoji);
         }
-    } catch (e) {
+    } catch {
         // ignore errors, as we usually expect text strings there and these are
         // totally fine, too; search may find something here
     }
@@ -171,7 +171,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
                 copyToClipboard: true
             });
         } else if (emojiSearch.action === "emojipedia") {
-            const resultUrl = `https://emojipedia.org/search/?q=${emojiText}`;
+            const resultUrl = `https://emojipedia.org/search/?q=${encodeURIComponent(emojiText)}`;
 
             // navigate to URL in current or new tab
             openTabUrl(resultUrl, disposition);
@@ -187,7 +187,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         // browser.browserAction.openPopup();
 
         // search for result in emojipedia
-        const resultUrl = `https://emojipedia.org/search/?q=${text}`;
+        const resultUrl = `https://emojipedia.org/search/?q=${encodeURIComponent(text)}`;
         openTabUrl(resultUrl, disposition);
     }
 }

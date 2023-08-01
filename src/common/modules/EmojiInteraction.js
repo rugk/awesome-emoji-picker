@@ -16,7 +16,7 @@ export async function insertOrCopy(text, options) {
     // destructure config
     const {
         insertIntoPage,
-        copyOnlyOnFallback,
+        copyOnlyOnFallback
     } = options;
     let copyToClipboard = options.copyToClipboard;
 
@@ -30,12 +30,12 @@ export async function insertOrCopy(text, options) {
 
     // wait for successful execution, if wanted
     if (insertIntoPage && copyOnlyOnFallback) {
-        await (emojiInsertResult.then(() => {
+        await emojiInsertResult.then(() => {
             // if successful, do not copy emoji
             copyToClipboard = false;
-        })).catch((e) => {
+        }).catch((error) => {
             // log error just as a warning, as we expect copying can fail
-            console.warn(e);
+            console.warn(error);
             // but resolve promise, so await/fallback continues
         });
     }

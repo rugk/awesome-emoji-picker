@@ -22,7 +22,7 @@ export const hardcodedSettings = Object.freeze({
     autoFocus: true,
     onSelect: EmojiSelect.triggerOnSelect,
     onClick: EmojiSelect.saveClickPosition,
-    style: { "border": "none" },
+    style: { border: "none" },
     theme: "auto",
     backgroundImageFn: getEmojiSheet,
     title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
@@ -53,7 +53,7 @@ function getEmojiMartLocalised() {
             objects: browser.i18n.getMessage("emojiMartCategoryObjects"),
             symbols: browser.i18n.getMessage("emojiMartCategorySymbols"),
             flags: browser.i18n.getMessage("emojiMartCategoryFlags"),
-            custom: browser.i18n.getMessage("emojiMartCategoryCustom"),
+            custom: browser.i18n.getMessage("emojiMartCategoryCustom")
         },
         categorieslabel: browser.i18n.getMessage("emojiMartCategoriesLabel"), // Accessible title for the list of categories
         skintones: {
@@ -62,7 +62,7 @@ function getEmojiMartLocalised() {
             3: browser.i18n.getMessage("emojiMartSkintone3"),
             4: browser.i18n.getMessage("emojiMartSkintone4"),
             5: browser.i18n.getMessage("emojiMartSkintone5"),
-            6: browser.i18n.getMessage("emojiMartSkintone6"),
+            6: browser.i18n.getMessage("emojiMartSkintone6")
         }
     };
 }
@@ -111,6 +111,6 @@ export function init(settings) {
 
     return promiseCreateElement.then(() => {
         emojiPicker = document.createElement("emoji-picker");
-        document.body.appendChild(emojiPicker);
+        document.body.append(emojiPicker);
     });
 }

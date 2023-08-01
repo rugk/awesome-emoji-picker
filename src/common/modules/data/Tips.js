@@ -99,7 +99,7 @@ const tipArray = [
         maximumDismiss: 2,
         requiredTriggers: 10,
         showInContext: {
-            "popup": 1
+            popup: 1
         },
         randomizeDisplay: false,
         text: "tipYouLikeAddon",
@@ -156,13 +156,13 @@ const tipArray = [
         showTip: async (tipSpec) => {
             // do not show tip if add-on is already translated into a locale the
             // user speaks
-            if (!(await userSpeaksLocaleNotYetTranslated())) {
+            if (!await userSpeaksLocaleNotYetTranslated()) {
                 // Instead of returning false, we "just" make it unlikely that
                 // the tip is shown.
                 // This means we can be sure the tip is shown anyway to some
                 // users, who may speak a language we already have the add-on
                 // translated into it, as they can still improve translations etc.
-                tipSpec.randomizeDisplay = 0.10; // 10%
+                tipSpec.randomizeDisplay = 0.1; // 10%
 
                 return null;
             }
@@ -173,7 +173,9 @@ const tipArray = [
 ];
 
 // freeze it all, this is strongly recommend
-tipArray.forEach((object) => Object.freeze(object));
+for (const object of tipArray) {
+    Object.freeze(object);
+}
 
 /**
  * The list of all tips. (now exported)

@@ -157,7 +157,7 @@ export function show(position, messageId, options = {}) {
         // (needs to be done before showing the popup, as we need to get the browser
         // to calculate the size of it)
         elPanel = document.importNode(elTemplate.content, true).getElementById("confirmation-hint");
-        document.body.appendChild(elPanel);
+        document.body.append(elPanel);
         const elAnimationBox = elPanel.querySelector("#confirmation-hint-checkmark-animation-container");
 
         // show popup

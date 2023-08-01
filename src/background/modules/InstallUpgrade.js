@@ -29,7 +29,7 @@ async function upgradeEmojiSet(emojiPickerSettings) {
         // eslint-disable-next-line no-case-declarations
         const text = "No emoji set upgrade needed.";
         console.log(text);
-        return Promise.reject(new Error(text));
+        throw new Error(text);
     }
 
     console.log("Doing emoji set upgrade.");
@@ -38,7 +38,6 @@ async function upgradeEmojiSet(emojiPickerSettings) {
     });
 
     console.info("Emoji set upgrade successful.", await browser.storage.sync.get());
-    return Promise.resolve();
 }
 
 /**
@@ -62,14 +61,4 @@ async function handleInstalled(details) {
     upgradeEmojiSet(oldData.emojiPicker).catch(() => {});
 }
 
-/**
- * Inits module.
- *
- * @private
- * @returns {void}
- */
-function init() {
-    browser.runtime.onInstalled.addListener(handleInstalled);
-}
-
-init();
+browser.runtime.onInstalled.addListener(handleInstalled);

@@ -99,7 +99,7 @@ export async function triggerOnSelect(emoji) {
     if (lastClick.forEmoji === emoji) {
         clickedEmoji = {
             left: lastClick.posX,
-            top: lastClick.posY,
+            top: lastClick.posY
         };
     }
 
