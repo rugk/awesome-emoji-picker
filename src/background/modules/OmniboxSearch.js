@@ -142,6 +142,7 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
 export async function triggerOmnixboxSearch(text, disposition) {
+    text = text.trim();
     const searchResult = window.emojiMart.emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
@@ -171,7 +172,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
                 copyToClipboard: true
             });
         } else if (emojiSearch.action === "emojipedia") {
-            const resultUrl = `https://emojipedia.org/search/?q=${encodeURIComponent(emojiText)}`;
+            const resultUrl = `https://emojipedia.org/search/?${new URLSearchParams({ q: emojiText })}`;
 
             // navigate to URL in current or new tab
             openTabUrl(resultUrl, disposition);
@@ -187,7 +188,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         // browser.browserAction.openPopup();
 
         // search for result in emojipedia
-        const resultUrl = `https://emojipedia.org/search/?q=${encodeURIComponent(text)}`;
+        const resultUrl = `https://emojipedia.org/search/?${new URLSearchParams({ q: text })}`;
         openTabUrl(resultUrl, disposition);
     }
 }
