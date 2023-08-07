@@ -18,7 +18,7 @@
  * @private
  * @type {string[]}
  */
-const ADDON_TRANSLATED_INTO = [
+const ADDON_TRANSLATED_INTO = new Set([
     // German
     "de", "de-DE",
     // Hebrew
@@ -26,27 +26,27 @@ const ADDON_TRANSLATED_INTO = [
     // English
     "en", "en-US",
     // French
-    "fr", "fr-FR",
-].map((lang) => lang.toLowerCase());
+    "fr", "fr-FR"
+].map((lang) => lang.toLowerCase()));
 
 /**
  * Returns whether the user also speaks a language that the add-on is not
  * translated into.
  *
  * @public
- * @returns {boolean}
+ * @returns {Promise<boolean>}
  */
 export async function userSpeaksLocaleNotYetTranslated() {
     const addonLanguage = browser.i18n.getMessage("@@ui_locale");
     const uiLanguage = browser.i18n.getUILanguage();
     const acceptedLanguages = await browser.i18n.getAcceptLanguages();
 
-    console.log("Addon is translated into", addonLanguage, ", browser into ", uiLanguage, "and user accepts the languages", acceptedLanguages, ".");
+    console.log("Addon is translated into", addonLanguage, ", browser into", uiLanguage, "and user accepts the languages", acceptedLanguages, ".");
     // Note: actually addonLanguage and uiLanguage should be the same, see https://discourse.mozilla.org/t/not-clear-that-there-are-three-locales/27533
 
     // for evaluation, we can assume the user also speaks the language their browser is translated into
     acceptedLanguages.push(uiLanguage);
 
     // if the language the user speaks is not already translated, they probably know another locale we do not know yet
-    return acceptedLanguages.some((userLang) => ! ADDON_TRANSLATED_INTO.includes(userLang.toLowerCase()));
+    return acceptedLanguages.some((userLang) => !ADDON_TRANSLATED_INTO.has(userLang.toLowerCase()));
 }

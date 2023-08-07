@@ -27,7 +27,7 @@ function loadEmojiMart() {
     const emojiMartLoader = document.createElement("script");
     emojiMartLoader.setAttribute("async", true);
     emojiMartLoader.setAttribute("src", "/common/lib/emoji-mart-embed/dist/emoji-mart.js");
-    document.querySelector("head").appendChild(emojiMartLoader);
+    document.querySelector("head").append(emojiMartLoader);
 
     emojiMartIsLoaded = true;
 }
@@ -105,7 +105,7 @@ export function triggerOmnixboxSuggestion(text, suggest) {
 export async function triggerOmnixboxDisabledSearch(text, disposition) {
     // if search API is allowed, we just fall-back to default search
     if (browser.search) {
-        let tabId = undefined;
+        let tabId;
 
         switch (disposition) {
         case "currentTab": {
@@ -138,10 +138,11 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  * @public
  * @param {string} text the string the user entered or selected
  * @param {string} disposition how the result should be possible
- * @returns {void}
+ * @returns {Promise<void>}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
 export async function triggerOmnixboxSearch(text, disposition) {
+    text = text.trim();
     const searchResult = window.emojiMart.emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
@@ -154,7 +155,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         if (foundEmoji) {
             searchResult.push(foundEmoji);
         }
-    } catch (e) {
+    } catch {
         // ignore errors, as we usually expect text strings there and these are
         // totally fine, too; search may find something here
     }
@@ -171,7 +172,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
                 copyToClipboard: true
             });
         } else if (emojiSearch.action === "emojipedia") {
-            const resultUrl = `https://emojipedia.org/search/?q=${emojiText}`;
+            const resultUrl = `https://emojipedia.org/search/?${new URLSearchParams({ q: emojiText })}`;
 
             // navigate to URL in current or new tab
             openTabUrl(resultUrl, disposition);
@@ -187,7 +188,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         // browser.browserAction.openPopup();
 
         // search for result in emojipedia
-        const resultUrl = `https://emojipedia.org/search/?q=${text}`;
+        const resultUrl = `https://emojipedia.org/search/?${new URLSearchParams({ q: text })}`;
         openTabUrl(resultUrl, disposition);
     }
 }
@@ -197,7 +198,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
  *
  * @private
  * @param {boolean} toEnable
- * @returns {void}
+ * @returns {Promise<void>}
  * @throws TypeError
  */
 async function toggleEnabledStatus(toEnable) {
@@ -207,7 +208,7 @@ async function toggleEnabledStatus(toEnable) {
     }
 
     // if we do not have the permission for clipboard, and need it for settings, force-disable feature
-    if (!(await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION))) {
+    if (!await browser.permissions.contains(CLIPBOARD_WRITE_PERMISSION)) {
         const emojiSearch = await AddonSettings.get("emojiSearch");
 
         if (emojiSearch.action === "copy") {

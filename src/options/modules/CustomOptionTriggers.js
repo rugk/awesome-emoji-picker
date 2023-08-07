@@ -43,11 +43,7 @@ function applyPopupIconColor(optionValue) {
  * @returns {Promise}
  */
 function saveEmojiSet(param) {
-    if (param.optionValue.set === "native") {
-        param.optionValue.native = true;
-    } else {
-        param.optionValue.native = false;
-    }
+    param.optionValue.native = param.optionValue.set === "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
 }
@@ -151,11 +147,7 @@ function preparePickerResultTypeOptionForInput(param) {
  * @returns {Promise}
  */
 function adjustPickerResultTypeOption(param) {
-    if (param.optionValue.resultType) {
-        param.optionValue.resultType = "colons";
-    } else {
-        param.optionValue.resultType = "native";
-    }
+    param.optionValue.resultType = param.optionValue.resultType ? "colons" : "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
 }
@@ -165,15 +157,13 @@ function adjustPickerResultTypeOption(param) {
  *
  * @private
  * @param {string} language
- * @param {integer} optionValue
+ * @param {number} optionValue
  * @returns {string} messageName
  */
 function getPluralForm(language, optionValue) {
-    if (!language) {
-        language = "en";
-    }
+    language ||= "en";
 
-    switch(language) {
+    switch (language) {
     case "tr":
         return optionValue > 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
         // en, de
@@ -187,7 +177,7 @@ function getPluralForm(language, optionValue) {
  * after the options have been loaded and when the option value is updated by the user.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -216,7 +206,7 @@ function updatePerLineStatus(optionValue, option, event) {
  * Adjust maximum value of emojis per line when the emoji size is adjusted.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -329,9 +319,8 @@ function applyEmojiSearch(optionValue, option, event = {}) {
             // So this is equivalent to a "then".
             reloadEmojiSearchStatus();
         });
-    } else {
-        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_SEARCH);
     }
+    PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_SEARCH);
 
     return Promise.resolve();
 }

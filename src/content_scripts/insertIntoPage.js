@@ -19,7 +19,7 @@ function insertIntoPage(newText) { // eslint-disable-line no-unused-vars
     const start = elFocused.selectionStart;
     const end = elFocused.selectionEnd;
 
-    if (start !== undefined && end !== undefined) {
+    if (start != null && end != null) {
         elFocused.setRangeText(newText, start, end, "end");
         return elFocused.value;
     }

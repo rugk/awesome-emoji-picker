@@ -9,7 +9,7 @@
  * Returns whether the current runtime is a mobile one (true) or not (false).
  *
  * @public
- * @returns {Promise} with Boolean
+ * @returns {Promise<boolean>} with Boolean
  */
 export async function isMobile() {
     const platformInfo = await browser.runtime.getPlatformInfo();
