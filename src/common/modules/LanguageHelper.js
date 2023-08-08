@@ -8,7 +8,7 @@
 /**
  * The list of languages the add-on is already translated into.
  *
- * If the add-on is only partially translated into one of these langauges and
+ * If the add-on is only partially translated into one of these languages and
  * there may be a lot of strings that are missing it's localized version, it may
  * be removed from that list here.
  *

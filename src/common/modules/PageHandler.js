@@ -1,5 +1,5 @@
 /**
- * Handling fetures for current page.
+ * Handling features for current page.
  *
  */
 
@@ -18,8 +18,8 @@ export async function insertIntoPage(text) {
         active: true
     });
 
-    const promises = tabs.map(async (tab) => {
-        // make sure content script is inserted
+    const promises = tabs.map(/* async */ (tab) => {
+        /* // make sure content script is inserted
         await browser.tabs.executeScript(tab.id, {
             code: "insertIntoPage;",
             allFrames: true,
@@ -32,7 +32,7 @@ export async function insertIntoPage(text) {
                 allFrames: true,
                 runAt: "document_end"
             });
-        });
+        }); */
 
         // send request to insert emoji
         // This will not work in Manifest V3: https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#executing-arbitrary-strings
