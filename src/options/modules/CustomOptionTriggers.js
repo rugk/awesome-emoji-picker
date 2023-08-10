@@ -421,7 +421,7 @@ export async function registerTrigger() {
         TABS_PERMISSION,
         MESSAGE_TABS_PERMISSION,
         document.getElementById("tabsPermissionInfo"),
-        // "permissionRequiredTabs" // TODO: This will need to be localized
+        // "permissionRequiredTabs" // TODO(to: 'rugk'): This will need to be localized
         "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
     );
 }

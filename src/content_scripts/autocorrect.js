@@ -187,7 +187,7 @@ function deleteCaret(target, atext) {
  */
 function autocorrect(event) {
     // console.log('beforeinput', event.inputType, event.data);
-    if (!(event.inputType === "insertText" || event.inputType === "insertCompositionText" || event.inputType === "insertParagraph" || event.inputType === "insertLineBreak")) {
+    if (!["insertText", "insertCompositionText", "insertParagraph", "insertLineBreak"].includes(event.inputType)) {
         return;
     }
     if (!symbolpatterns) {
@@ -202,7 +202,7 @@ function autocorrect(event) {
     if (caretposition) {
         const value = target.value || target.innerText;
         let deletecount = 0;
-        let insert = event.inputType === "insertLineBreak" || event.inputType === "insertParagraph" ? "\n" : event.data;
+        let insert = ["insertLineBreak", "insertParagraph"].includes(event.inputType) ? "\n" : event.data;
         const inserted = insert;
         let output = false;
         const previousText = value.slice(caretposition < longest ? 0 : caretposition - longest, caretposition);
@@ -325,7 +325,6 @@ function handleResponse(message, sender) {
     symbolpatterns = IS_CHROME ? new RegExp(message.symbolpatterns, "u") : message.symbolpatterns;
     antipatterns = IS_CHROME ? new RegExp(message.antipatterns, "u") : message.antipatterns;
     emojiShortcodes = message.emojiShortcodes;
-    // console.log(message);
 
     if (enabled) {
         addEventListener("beforeinput", undoAutocorrect, true);
