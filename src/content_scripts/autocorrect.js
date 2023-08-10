@@ -37,25 +37,25 @@ const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
  * @returns {number|null}
  */
 function getCaretPosition(target) {
-	// ContentEditable elements
-	if (target.isContentEditable || document.designMode === "on") {
-		target.focus();
-		const _range = document.getSelection().getRangeAt(0);
-		if (!_range.collapsed) {
-			return null;
-		}
-		const range = _range.cloneRange();
-		const temp = document.createTextNode("\0");
-		range.insertNode(temp);
-		const caretposition = target.innerText.indexOf("\0");
-		temp.remove();
-		return caretposition;
-	}
-	// input and textarea fields
-	if (target.selectionStart !== target.selectionEnd) {
-		return null;
-	}
-	return target.selectionStart;
+    // ContentEditable elements
+    if (target.isContentEditable || document.designMode === "on") {
+        target.focus();
+        const _range = document.getSelection().getRangeAt(0);
+        if (!_range.collapsed) {
+            return null;
+        }
+        const range = _range.cloneRange();
+        const temp = document.createTextNode("\0");
+        range.insertNode(temp);
+        const caretposition = target.innerText.indexOf("\0");
+        temp.remove();
+        return caretposition;
+    }
+    // input and textarea fields
+    if (target.selectionStart !== target.selectionEnd) {
+        return null;
+    }
+    return target.selectionStart;
 }
 
 /**
@@ -68,32 +68,32 @@ function getCaretPosition(target) {
  * @returns {void}
  */
 function insertAtCaret(target, atext) {
-	// document.execCommand is deprecated, although there is not yet an alternative: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
-	// insertReplacementText
-	if (document.execCommand("insertText", false, atext)) {
-		return;
-	}
+    // document.execCommand is deprecated, although there is not yet an alternative: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+    // insertReplacementText
+    if (document.execCommand("insertText", false, atext)) {
+        return;
+    }
 
-	// Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
-	if (typeof target.setRangeText === "function") {
-		const start = target.selectionStart;
-		const end = target.selectionEnd;
+    // Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
+    if (typeof target.setRangeText === "function") {
+        const start = target.selectionStart;
+        const end = target.selectionEnd;
 
-		if (start != null && end != null) {
-			target.setRangeText(atext);
+        if (start != null && end != null) {
+            target.setRangeText(atext);
 
-			target.selectionStart = target.selectionEnd = start + atext.length;
+            target.selectionStart = target.selectionEnd = start + atext.length;
 
-			// Notify any possible listeners of the change
-			const event = document.createEvent("UIEvent");
-			event.initEvent("input", true, false);
-			target.dispatchEvent(event);
+            // Notify any possible listeners of the change
+            const event = document.createEvent("UIEvent");
+            event.initEvent("input", true, false);
+            target.dispatchEvent(event);
 
-			return;
-		}
-	}
+            return;
+        }
+    }
 
-	throw new Error("nothing selected");
+    throw new Error("nothing selected");
 }
 
 /**
@@ -104,16 +104,16 @@ function insertAtCaret(target, atext) {
  * @returns {void}
  */
 function insertAndSelect(target, atext) {
-	insertAtCaret(target, atext);
-	// ContentEditable elements
-	if (target.isContentEditable || document.designMode === "on") {
-		const range = document.getSelection().getRangeAt(0);
-		range.setStart(range.startContainer, range.startOffset - atext.length);
-	}
-	// input and textarea fields
-	else {
-		target.selectionStart -= atext.length;
-	}
+    insertAtCaret(target, atext);
+    // ContentEditable elements
+    if (target.isContentEditable || document.designMode === "on") {
+        const range = document.getSelection().getRangeAt(0);
+        range.setStart(range.startContainer, range.startOffset - atext.length);
+    }
+    // input and textarea fields
+    else {
+        target.selectionStart -= atext.length;
+    }
 }
 
 /**
@@ -123,7 +123,7 @@ function insertAndSelect(target, atext) {
  * @returns {void}
  */
 function insertIntoPage(atext) {
-	return insertAtCaret(document.activeElement, atext);
+    return insertAtCaret(document.activeElement, atext);
 }
 
 /**
@@ -135,16 +135,16 @@ function insertIntoPage(atext) {
  * @returns {number}
  */
 function countChars(str) {
-	// removing the joiners
-	const split = str.split("\u{200D}");
-	let count = 0;
+    // removing the joiners
+    const split = str.split("\u{200D}");
+    let count = 0;
 
-	for (const s of split) {
-		// removing the variation selectors
-		count += Array.from(s.replaceAll(/[\uFE00-\uFE0F]/gu, "")).length;
-	}
+    for (const s of split) {
+        // removing the variation selectors
+        count += Array.from(s.replaceAll(/[\uFE00-\uFE0F]/gu, "")).length;
+    }
 
-	return count;
+    return count;
 }
 
 /**
@@ -155,28 +155,28 @@ function countChars(str) {
  * @returns {void}
  */
 function deleteCaret(target, atext) {
-	const count = countChars(atext);
-	if (count > 0) {
-		// document.execCommand is deprecated, although there is not yet an alternative: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
-		if (document.execCommand("delete", false)) {
-			for (let i = 0; i < count - 1; ++i) {
-				document.execCommand("delete", false);
-			}
-		}
-		// Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
-		else if (typeof target.setRangeText === "function") {
-			const start = target.selectionStart;
+    const count = countChars(atext);
+    if (count > 0) {
+        // document.execCommand is deprecated, although there is not yet an alternative: https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+        if (document.execCommand("delete", false)) {
+            for (let i = 0; i < count - 1; ++i) {
+                document.execCommand("delete", false);
+            }
+        }
+        // Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
+        else if (typeof target.setRangeText === "function") {
+            const start = target.selectionStart;
 
-			target.selectionStart = start - atext.length;
-			target.selectionEnd = start;
-			target.setRangeText("");
+            target.selectionStart = start - atext.length;
+            target.selectionEnd = start;
+            target.setRangeText("");
 
-			// Notify any possible listeners of the change
-			const e = document.createEvent("UIEvent");
-			e.initEvent("input", true, false);
-			target.dispatchEvent(e);
-		}
-	}
+            // Notify any possible listeners of the change
+            const e = document.createEvent("UIEvent");
+            e.initEvent("input", true, false);
+            target.dispatchEvent(e);
+        }
+    }
 }
 
 /**
@@ -186,87 +186,87 @@ function deleteCaret(target, atext) {
  * @returns {void}
  */
 function autocorrect(event) {
-	// console.log('beforeinput', event.inputType, event.data);
-	if (!(event.inputType === "insertText" || event.inputType === "insertCompositionText" || event.inputType === "insertParagraph" || event.inputType === "insertLineBreak")) {
-		return;
-	}
-	if (!symbolpatterns) {
-		throw new Error("Emoji autocorrect settings have not been received. Do not autocorrect.");
-	}
-	if (running) {
-		return;
-	}
-	running = true;
-	const target = event.target;
-	const caretposition = getCaretPosition(target);
-	if (caretposition) {
-		const value = target.value || target.innerText;
-		let deletecount = 0;
-		let insert = event.inputType === "insertLineBreak" || event.inputType === "insertParagraph" ? "\n" : event.data;
-		const inserted = insert;
-		let output = false;
-		const previousText = value.slice(caretposition < longest ? 0 : caretposition - longest, caretposition);
-		const regexResult = symbolpatterns.exec(previousText);
-		// Autocorrect :colon: Emoji Shortcodes and/or Emoticon Emojis and/or Unicode Symbols
-		if (regexResult) {
-			const length = longest - 1;
-			const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
-			const aregexResult = symbolpatterns.exec(text);
-			const aaregexResult = antipatterns.exec(text);
-			if (!aaregexResult && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
-				insert = autocorrections[regexResult[0]] + inserted;
-				deletecount = regexResult[0].length;
-				output = true;
-			}
-		} else {
-			// Autocomplete :colon: Emoji Shortcodes
-			if (autocomplete) {
-				// Emoji Shortcode
-				const re = /:[a-z0-9-+_]+$/u;
-				const length = longest - 2;
-				const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
-				const regexResult = re.exec(text);
-				if (regexResult) {
-					const aregexResult = Object.keys(emojiShortcodes).filter((item) => item.indexOf(regexResult[0]) === 0);
-					if (aregexResult.length >= 1 && (regexResult[0].length > 2 || aregexResult[0].length === 3)) {
-						const ainsert = aregexResult[0].slice(regexResult[0].length);
-						if (autocompleteSelect || aregexResult.length > 1) {
-							event.preventDefault();
+    // console.log('beforeinput', event.inputType, event.data);
+    if (!(event.inputType === "insertText" || event.inputType === "insertCompositionText" || event.inputType === "insertParagraph" || event.inputType === "insertLineBreak")) {
+        return;
+    }
+    if (!symbolpatterns) {
+        throw new Error("Emoji autocorrect settings have not been received. Do not autocorrect.");
+    }
+    if (running) {
+        return;
+    }
+    running = true;
+    const target = event.target;
+    const caretposition = getCaretPosition(target);
+    if (caretposition) {
+        const value = target.value || target.innerText;
+        let deletecount = 0;
+        let insert = event.inputType === "insertLineBreak" || event.inputType === "insertParagraph" ? "\n" : event.data;
+        const inserted = insert;
+        let output = false;
+        const previousText = value.slice(caretposition < longest ? 0 : caretposition - longest, caretposition);
+        const regexResult = symbolpatterns.exec(previousText);
+        // Autocorrect :colon: Emoji Shortcodes and/or Emoticon Emojis and/or Unicode Symbols
+        if (regexResult) {
+            const length = longest - 1;
+            const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
+            const aregexResult = symbolpatterns.exec(text);
+            const aaregexResult = antipatterns.exec(text);
+            if (!aaregexResult && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
+                insert = autocorrections[regexResult[0]] + inserted;
+                deletecount = regexResult[0].length;
+                output = true;
+            }
+        } else {
+            // Autocomplete :colon: Emoji Shortcodes
+            if (autocomplete) {
+                // Emoji Shortcode
+                const re = /:[a-z0-9-+_]+$/u;
+                const length = longest - 2;
+                const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
+                const regexResult = re.exec(text);
+                if (regexResult) {
+                    const aregexResult = Object.keys(emojiShortcodes).filter((item) => item.indexOf(regexResult[0]) === 0);
+                    if (aregexResult.length >= 1 && (regexResult[0].length > 2 || aregexResult[0].length === 3)) {
+                        const ainsert = aregexResult[0].slice(regexResult[0].length);
+                        if (autocompleteSelect || aregexResult.length > 1) {
+                            event.preventDefault();
 
-							insertAtCaret(target, inserted);
-							insertAndSelect(target, ainsert);
-						} else {
-							insert = inserted + ainsert;
-							output = true;
-						}
-					}
-				}
-			}
-		}
-		if (output) {
-			event.preventDefault();
+                            insertAtCaret(target, inserted);
+                            insertAndSelect(target, ainsert);
+                        } else {
+                            insert = inserted + ainsert;
+                            output = true;
+                        }
+                    }
+                }
+            }
+        }
+        if (output) {
+            event.preventDefault();
 
-			const text = deletecount ? value.slice(caretposition - deletecount, caretposition) : "";
-			if (text) {
-				lastTarget = null;
-				deleteCaret(target, text);
-			}
-			insertAtCaret(target, insert);
+            const text = deletecount ? value.slice(caretposition - deletecount, caretposition) : "";
+            if (text) {
+                lastTarget = null;
+                deleteCaret(target, text);
+            }
+            insertAtCaret(target, insert);
 
-			insertedText = insert;
-			deletedText = text + inserted;
-			console.debug("Autocorrect: “%s” was replaced with “%s”.", deletedText, insertedText);
+            insertedText = insert;
+            deletedText = text + inserted;
+            console.debug("Autocorrect: “%s” was replaced with “%s”.", deletedText, insertedText);
 
-			lastTarget = target;
-			lastCaretPosition = caretposition - deletecount + insert.length;
+            lastTarget = target;
+            lastCaretPosition = caretposition - deletecount + insert.length;
 
-			if (deletedText && insertedText.startsWith(deletedText)) {
-				insertedText = insertedText.slice(deletedText.length);
-				deletedText = "";
-			}
-		}
-	}
-	running = false;
+            if (deletedText && insertedText.startsWith(deletedText)) {
+                insertedText = insertedText.slice(deletedText.length);
+                deletedText = "";
+            }
+        }
+    }
+    running = false;
 }
 
 /**
@@ -276,34 +276,34 @@ function autocorrect(event) {
  * @returns {void}
  */
 function undoAutocorrect(event) {
-	// console.log('beforeinput', event.inputType, event.data);
-	// Backspace
-	if (event.inputType !== "deleteContentBackward") {
-		return;
-	}
-	if (running) {
-		return;
-	}
-	running = true;
-	const target = event.target;
-	const caretposition = getCaretPosition(target);
-	if (caretposition) {
-		if (target === lastTarget && caretposition === lastCaretPosition) {
-			event.preventDefault();
+    // console.log('beforeinput', event.inputType, event.data);
+    // Backspace
+    if (event.inputType !== "deleteContentBackward") {
+        return;
+    }
+    if (running) {
+        return;
+    }
+    running = true;
+    const target = event.target;
+    const caretposition = getCaretPosition(target);
+    if (caretposition) {
+        if (target === lastTarget && caretposition === lastCaretPosition) {
+            event.preventDefault();
 
-			if (insertedText) {
-				lastTarget = null;
-				deleteCaret(target, insertedText);
-			}
-			if (deletedText) {
-				insertAtCaret(target, deletedText);
-			}
-			console.debug("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
-		}
+            if (insertedText) {
+                lastTarget = null;
+                deleteCaret(target, insertedText);
+            }
+            if (deletedText) {
+                insertAtCaret(target, deletedText);
+            }
+            console.debug("Undo autocorrect: “%s” was replaced with “%s”.", insertedText, deletedText);
+        }
 
-		lastTarget = null;
-	}
-	running = false;
+        lastTarget = null;
+    }
+    running = false;
 }
 
 /**
@@ -314,26 +314,26 @@ function undoAutocorrect(event) {
  * @returns {void}
  */
 function handleResponse(message, sender) {
-	if (message.type !== AUTOCORRECT_CONTENT) {
-		return;
-	}
-	enabled = message.enabled;
-	autocomplete = message.autocomplete;
-	autocompleteSelect = message.autocompleteSelect;
-	autocorrections = message.autocorrections;
-	longest = message.longest;
-	symbolpatterns = IS_CHROME ? new RegExp(message.symbolpatterns, "u") : message.symbolpatterns;
-	antipatterns = IS_CHROME ? new RegExp(message.antipatterns, "u") : message.antipatterns;
-	emojiShortcodes = message.emojiShortcodes;
-	// console.log(message);
+    if (message.type !== AUTOCORRECT_CONTENT) {
+        return;
+    }
+    enabled = message.enabled;
+    autocomplete = message.autocomplete;
+    autocompleteSelect = message.autocompleteSelect;
+    autocorrections = message.autocorrections;
+    longest = message.longest;
+    symbolpatterns = IS_CHROME ? new RegExp(message.symbolpatterns, "u") : message.symbolpatterns;
+    antipatterns = IS_CHROME ? new RegExp(message.antipatterns, "u") : message.antipatterns;
+    emojiShortcodes = message.emojiShortcodes;
+    // console.log(message);
 
-	if (enabled) {
-		addEventListener("beforeinput", undoAutocorrect, true);
-		addEventListener("beforeinput", autocorrect, true);
-	} else {
-		removeEventListener("beforeinput", undoAutocorrect, true);
-		removeEventListener("beforeinput", autocorrect, true);
-	}
+    if (enabled) {
+        addEventListener("beforeinput", undoAutocorrect, true);
+        addEventListener("beforeinput", autocorrect, true);
+    } else {
+        removeEventListener("beforeinput", undoAutocorrect, true);
+        removeEventListener("beforeinput", autocorrect, true);
+    }
 }
 
 /**
@@ -343,7 +343,7 @@ function handleResponse(message, sender) {
  * @returns {void}
  */
 function handleError(error) {
-	console.error(`Error: ${error}`);
+    console.error(`Error: ${error}`);
 }
 
 browser.runtime.sendMessage({ type: AUTOCORRECT_CONTENT }).then(handleResponse, handleError);
