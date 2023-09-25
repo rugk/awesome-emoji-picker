@@ -214,8 +214,9 @@ function autocorrect(event) {
             const aregexResult = symbolpatterns.exec(text);
             const aaregexResult = antipatterns.exec(text);
             if (!aaregexResult && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
-                insert = autocorrections[regexResult[0]] + inserted;
-                deletecount = regexResult[0].length;
+                const [autocorrection] = regexResult;
+                insert = autocorrections[autocorrection] + inserted;
+                deletecount = autocorrection.length;
                 output = true;
             }
         } else {
@@ -227,9 +228,10 @@ function autocorrect(event) {
                 const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
                 const regexResult = re.exec(text);
                 if (regexResult) {
-                    const aregexResult = Object.keys(emojiShortcodes).filter((item) => item.indexOf(regexResult[0]) === 0);
-                    if (aregexResult.length >= 1 && (regexResult[0].length > 2 || aregexResult[0].length === 3)) {
-                        const ainsert = aregexResult[0].slice(regexResult[0].length);
+                    const [shortcode] = regexResult;
+                    const aregexResult = Object.keys(emojiShortcodes).filter((item) => item.indexOf(shortcode) === 0);
+                    if (aregexResult.length >= 1 && (shortcode.length > 2 || aregexResult[0].length === 3)) {
+                        const ainsert = aregexResult[0].slice(shortcode.length);
                         if (autocompleteSelect || aregexResult.length > 1) {
                             event.preventDefault();
 
@@ -317,14 +319,18 @@ function handleResponse(message, sender) {
     if (message.type !== AUTOCORRECT_CONTENT) {
         return;
     }
-    enabled = message.enabled;
-    autocomplete = message.autocomplete;
-    autocompleteSelect = message.autocompleteSelect;
-    autocorrections = message.autocorrections;
-    longest = message.longest;
-    symbolpatterns = IS_CHROME ? new RegExp(message.symbolpatterns, "u") : message.symbolpatterns;
-    antipatterns = IS_CHROME ? new RegExp(message.antipatterns, "u") : message.antipatterns;
-    emojiShortcodes = message.emojiShortcodes;
+    ({
+        enabled,
+        autocomplete,
+        autocompleteSelect,
+        autocorrections,
+        longest,
+        symbolpatterns,
+        antipatterns,
+        emojiShortcodes
+    } = message);
+    symbolpatterns = IS_CHROME ? new RegExp(symbolpatterns, "u") : symbolpatterns;
+    antipatterns = IS_CHROME ? new RegExp(antipatterns, "u") : antipatterns;
 
     if (enabled) {
         addEventListener("beforeinput", undoAutocorrect, true);
