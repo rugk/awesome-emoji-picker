@@ -101,7 +101,7 @@
 							</span>
 						</div>
 						<span class="line helper-text">
-							<span data-i18n="__MSG_optionEmojiPickerPerLineDescr__">How many emojis should be shown per line in the emoji picker. This affects the width of the popup.</span>
+							<span data-i18n="__MSG_optionEmojiPickerPerLineDescr__">How many emojis should be shown per line in the emoji picker? This affects the width of the popup.</span>
 						</span>
 					</li>
 					<li>
@@ -141,7 +141,7 @@
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="resultType" data-optiongroup="pickerResult" name="resultType">
-							<label data-i18n="__MSG_optionCopyEmojiColons__" data-opt-i18n-keep-children for="resultType">Use the <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> code instead of the Emoji unicode.</label>
+							<label data-i18n="__MSG_optionCopyEmojiColons__" data-opt-i18n-keep-children for="resultType">Use the <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code> shortcode instead of the Unicode Emoji.</label>
 						</div>
 						<span data-i18n="__MSG_optionCopyEmojiColonsDescr__" class="line indent helper-text">Only useful to enable on specific sites that support this kind of text.</span>
 					</li>
@@ -158,6 +158,77 @@
 							<input class="setting save-on-change" type="checkbox" id="closePopup" data-optiongroup="pickerResult" name="closePopup">
 							<label data-i18n="__MSG_optionClosePopup__" for="closePopup">Close the popup after an emoji has been selected/inserted.</label>
 						</div>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<!-- TODO(to: 'rugk'): This section will need to be localized and you may want to create a warning link specifically for the Awesome Emoji Picker -->
+				<h1 data-i18n="">Emoji autocorrection</h1>
+				<span class="helper-text">With the exception of the smart quotes, all the autocorrections are done after typing the first nonmatching character following the character sequence, such as a space (␣). Press Backspace (⌫) to undo an autocorrection.</span><br>
+
+				<span class="helper-text">For Unicode Symbol autocorrection and Unicode font conversion from the context menu, please try our <strong>υ</strong> <a id="link-unicodify">Unicodify</a> add-on.</span>
+
+				<div class="message-container">
+					<div aria-label="warning message" data-i18n data-i18n-aria-label="__MSG_ariaMessageWarning__" class="message-box warning">
+						<span class="message-text" data-i18n="__MSG_optionWarningAutocorrectFeature__">The Emoji autocorrect feature is experimental and may negatively affect some web pages.</span>
+						<a href="https://github.com/rugk/unicodify/wiki/FAQ#why-is-the-autocorrect-feature-experimental" data-i18n-href="__MSG_optionWarningAutocorrectFeatureLink__" >
+							<button data-i18n="__MSG_optionMoreInformation__" type="button" class="message-action-button micro-button warning">More information</button>
+						</a>
+					</div>
+				</div>
+
+				<ul>
+					<div class="message-container line">
+						<div id="tabsPermissionInfo" aria-label="info message" data-i18n data-i18n-aria-label="__MSG_ariaMessageInfo__" class="message-box info invisible fade-hide">
+							<span class="message-text">Permission requested.</span>
+							<a href="#">
+								<button type="button" class="message-action-button micro-button info invisible"></button>
+							</a>
+							<img class="icon-dismiss invisible" src="/common/img/close.svg" width="24" height="24" tabindex="0" data-i18n data-i18n-aria-label="__MSG_dismissIconDescription__"></span>
+						</div>
+					</div>
+
+					<li>
+						<div class="line">
+							<input class="setting save-on-change" type="checkbox" id="autocorrect" data-optiongroup="autocorrect" name="enabled">
+							<label for="autocorrect">Enable autocorrection</label>
+						</div>
+					</li>
+
+					<li>
+						<ul>
+							<li>
+								<div class="line">
+									<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="autocorrect" name="autocorrectEmojiShortcodes">
+									<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+								</div>
+								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:smiley:</code>with 😃 and <code>:apple:</code>with 🍎.</span>
+							</li>
+
+							<li>
+								<div class="line">
+									<input class="setting save-on-change" type="checkbox" id="autocorrectEmojis" data-optiongroup="autocorrect" name="autocorrectEmojis">
+									<label data-i18n="" for="autocorrectEmojis">Autocorrect Emoticon Emojis</label>
+								</div>
+								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:)</code>with ☺️, <code>:D</code>with 😃 and <code>:(</code>with ☹️.</span>
+							</li>
+
+							<li>
+								<div class="line">
+									<input class="setting save-on-change" type="checkbox" id="autocompleteEmojiShortcodes" data-optiongroup="autocorrect" name="autocompleteEmojiShortcodes">
+									<label data-i18n="" data-opt-i18n-keep-children for="autocompleteEmojiShortcodes">Autocomplete <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+								</div>
+								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:ap</code>with <code>:apple:.</code></span>
+								<ul>
+									<li>
+										<div class="line">
+											<input class="setting save-on-change" type="checkbox" id="autocompleteSelect" data-optiongroup="autocorrect" name="autocompleteSelect">
+											<label data-i18n="" for="autocompleteSelect">Always select the autocompletions for confirmation.</label>
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>

@@ -111,7 +111,7 @@ const tipArray = [
             tipSpec.actionButton.action = await getBrowserValue({
                 firefox: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
                 thunderbird: "https://addons.thunderbird.net/thunderbird/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
-                chrome: "https://chrome.google.com/webstore/detail/awesome-emoji-picker/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
+                chrome: "https://chrome.google.com/webstore/detail/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips"
             });
             return null;
         }

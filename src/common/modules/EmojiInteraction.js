@@ -7,7 +7,7 @@ import * as PageHandler from "./PageHandler.js";
  * @param {string} text
  * @param {Object} options
  * @param {boolean} options.insertIntoPage whether to try to insert it into the active page
- * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (alos requires copyToClipboard=true)
+ * @param {boolean} options.copyOnlyOnFallback whether to fallback to copying emojis (also requires copyToClipboard=true)
  * @param {boolean} options.copyToClipboard whether the text should be copied into the page
  * @returns {Promise}
  * @throws {Error}

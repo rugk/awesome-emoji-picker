@@ -31,6 +31,13 @@ const defaultSettings = {
         showConfirmationMessage: true,
         closePopup: true
     },
+    autocorrect: {
+        enabled: false,
+        autocorrectEmojis: true,
+        autocorrectEmojiShortcodes: true,
+        autocompleteEmojiShortcodes: true,
+        autocompleteSelect: false
+    },
     contextMenu: {
         insertEmoji: true
     },

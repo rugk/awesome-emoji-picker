@@ -1,5 +1,5 @@
 /**
- * Checks whether the user is running a mobvile version of the browser.
+ * Checks whether the user is running a mobile version of the browser.
  *
  * @public
  * @module MobileHelper

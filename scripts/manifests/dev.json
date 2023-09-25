@@ -34,6 +34,13 @@
   "background": {
     "page": "background/background.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "js": ["content_scripts/autocorrect.js"]
+    }
+  ],
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -65,10 +72,10 @@
   ],
   // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "74.0"
+      "strict_min_version": "87.0"
     }
   }
 }

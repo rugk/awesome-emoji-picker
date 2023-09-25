@@ -56,8 +56,7 @@ async function applySettings(contextMenu) {
                 id: EMOJI,
                 title: menuText,
                 command: commandToFind,
-                // Remove IS_THUNDERBIRD once https://bugzilla.mozilla.org/show_bug.cgi?id=1716976 is fixed
-                contexts: IS_THUNDERBIRD ? ["editable", "selection", "page"] : ["editable"]
+                contexts: ["editable"]
             });
         }
     }
