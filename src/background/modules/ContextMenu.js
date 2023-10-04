@@ -78,9 +78,7 @@ export async function init() {
 
     applySettings(contextMenu);
 
-    // IS_THUNDERBIRD should not have been needed after https://bugzilla.mozilla.org/show_bug.cgi?id=1681153
-    // Fixed in Thunderbird 99 by https://bugzilla.mozilla.org/show_bug.cgi?id=1751895
-    if (IS_THUNDERBIRD || IS_CHROME) {
+    if (IS_CHROME) {
         menus.onClicked.addListener(handle);
     }
 }

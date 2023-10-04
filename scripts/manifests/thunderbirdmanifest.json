@@ -10,7 +10,6 @@
 
 
   "compose_action": {
-    "browser_style": true,
     "default_area": "formattoolbar",
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
@@ -25,12 +24,12 @@
   },
 
   "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
+    "page": "options/options.html"
   },
 
   "background": {
-    "page": "background/background.html"
+    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
+    "type": "module"
   },
   "commands": {
     "_execute_compose_action": {
@@ -63,7 +62,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "91.0"
+      "strict_min_version": "112.0"
     }
   }
 }

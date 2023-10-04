@@ -18,7 +18,7 @@ export async function insertOrCopy(text, options) {
         insertIntoPage,
         copyOnlyOnFallback
     } = options;
-    let copyToClipboard = options.copyToClipboard;
+    let { copyToClipboard } = options;
 
     console.log("Action triggered for emoji:", text);
 
