@@ -3,6 +3,7 @@
 // communication type
 // directly include magic constant as a workaround as we cannot import modules in content scripts due to https://bugzilla.mozilla.org/show_bug.cgi?id=1451545
 const AUTOCORRECT_CONTENT = "autocorrectContent";
+const INSERT = "insert";
 
 let insertedText; // Last insert text
 let deletedText; // Last deleted text
@@ -316,28 +317,29 @@ function undoAutocorrect(event) {
  * @returns {void}
  */
 function handleResponse(message, sender) {
-    if (message.type !== AUTOCORRECT_CONTENT) {
-        return;
-    }
-    ({
-        enabled,
-        autocomplete,
-        autocompleteSelect,
-        autocorrections,
-        longest,
-        symbolpatterns,
-        antipatterns,
-        emojiShortcodes
-    } = message);
-    symbolpatterns = IS_CHROME ? new RegExp(symbolpatterns, "u") : symbolpatterns;
-    antipatterns = IS_CHROME ? new RegExp(antipatterns, "u") : antipatterns;
+    if (message.type === AUTOCORRECT_CONTENT) {
+        ({
+            enabled,
+            autocomplete,
+            autocompleteSelect,
+            autocorrections,
+            longest,
+            symbolpatterns,
+            antipatterns,
+            emojiShortcodes
+        } = message);
+        symbolpatterns = IS_CHROME ? new RegExp(symbolpatterns, "u") : symbolpatterns;
+        antipatterns = IS_CHROME ? new RegExp(antipatterns, "u") : antipatterns;
 
-    if (enabled) {
-        addEventListener("beforeinput", undoAutocorrect, true);
-        addEventListener("beforeinput", autocorrect, true);
-    } else {
-        removeEventListener("beforeinput", undoAutocorrect, true);
-        removeEventListener("beforeinput", autocorrect, true);
+        if (enabled) {
+            addEventListener("beforeinput", undoAutocorrect, true);
+            addEventListener("beforeinput", autocorrect, true);
+        } else {
+            removeEventListener("beforeinput", undoAutocorrect, true);
+            removeEventListener("beforeinput", autocorrect, true);
+        }
+    } else if (message.type === INSERT) {
+        insertIntoPage(message.text);
     }
 }
 

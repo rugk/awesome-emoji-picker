@@ -50,13 +50,13 @@ function openTabUrl(url, disposition) {
     case "newForegroundTab":
         browser.tabs.create({
             active: true,
-            url: url
+            url
         });
         break;
     case "newBackgroundTab":
         browser.tabs.create({
             active: false,
-            url: url
+            url
         });
         break;
     }
@@ -123,7 +123,7 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
         default: // eslint-disable-line no-fallthrough
             return browser.search.search({
                 query: text,
-                tabId: tabId
+                tabId
             });
         }
     }

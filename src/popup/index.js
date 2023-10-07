@@ -46,7 +46,9 @@ async function createPicker() {
  * @returns {Promise}
  */
 export async function focusElement(element, retries = 20, delay = 50) {
-    const wait = (ms) => new Promise((func) => setTimeout(func, ms));
+    const wait = (ms) => new Promise((func) => {
+        setTimeout(func, ms);
+    });
 
     element.focus();
 

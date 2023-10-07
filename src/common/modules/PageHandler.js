@@ -3,6 +3,8 @@
  *
  */
 
+import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
+
 /**
  * Insert emoji into page.
  *
@@ -10,7 +12,7 @@
  *
  * @public
  * @param {string} text
- * @returns {Promise}
+ * @returns {Promise[]}
  */
 export async function insertIntoPage(text) {
     const tabs = await browser.tabs.query({
@@ -20,11 +22,9 @@ export async function insertIntoPage(text) {
 
     const promises = tabs.map((tab) => {
         // send request to insert emoji
-        // This will not work in Manifest V3: https://developer.chrome.com/docs/extensions/mv3/intro/mv3-migration/#executing-arbitrary-strings
-        return browser.tabs.executeScript(tab.id, {
-            code: `insertIntoPage(${JSON.stringify(text)});`,
-            allFrames: true,
-            runAt: "document_end"
+        return browser.tabs.sendMessage(tab.id, {
+            type: COMMUNICATION_MESSAGE_TYPE.INSERT,
+            text
         });
     });
 

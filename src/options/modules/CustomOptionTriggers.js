@@ -115,7 +115,7 @@ function applyAutocorrectPermissions(optionValue, option, event) {
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
-        optionValue: optionValue
+        optionValue
     });
 
     return retPromise;
@@ -134,7 +134,7 @@ function applyContextMenuSettings(optionValue, option, event) {
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU,
-        optionValue: optionValue
+        optionValue
     });
 }
 

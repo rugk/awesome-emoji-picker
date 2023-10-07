@@ -9,8 +9,6 @@
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
-    "browser_style": true,
-    "chrome_style": true,
     "default_icon": "icons/fa-grin-dark.png",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
@@ -28,13 +26,12 @@
   },
 
   "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true,
-    "chrome_style": true
+    "page": "options/options.html"
   },
 
   "background": {
-    "page": "background/background.html"
+    "scripts": ["browser-polyfill.js", "background/modules/InstallUpgrade.js", "background/background.js"],
+    "type": "module"
   },
   "content_scripts": [
     {

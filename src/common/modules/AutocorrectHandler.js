@@ -5,8 +5,8 @@ import * as BrowserCommunication from "/common/modules/BrowserCommunication/Brow
 
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
-// Not actually a module
-import * as emojimart from "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
+// Not actually a module, but sets the emojiMart global
+import "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 
 const settings = {
     enabled: null,
@@ -223,11 +223,11 @@ function sendSettings(autocorrect) {
                     enabled: settings.enabled,
                     autocomplete: settings.autocomplete,
                     autocompleteSelect: settings.autocompleteSelect,
-                    autocorrections: autocorrections,
-                    longest: longest,
+                    autocorrections,
+                    longest,
                     symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
                     antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                    emojiShortcodes: emojiShortcodes
+                    emojiShortcodes
                 }
             ).catch(onError);
         }
@@ -263,11 +263,11 @@ export async function init() {
                 enabled: settings.enabled,
                 autocomplete: settings.autocomplete,
                 autocompleteSelect: settings.autocompleteSelect,
-                autocorrections: autocorrections,
-                longest: longest,
+                autocorrections,
+                longest,
                 symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
                 antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                emojiShortcodes: emojiShortcodes
+                emojiShortcodes
             };
             // console.log(response);
             return Promise.resolve(response);
