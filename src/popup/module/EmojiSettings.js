@@ -42,7 +42,7 @@ export async function initEmojiMartStorage() {
     // get saved values
     emojiMartStorage = await AddonSettings.get("emojiMart");
 
-    window.emojiMart.setDataStore({
+    globalThis.emojiMart.setDataStore({
         getter: (key) => {
             return emojiMartStorage[key];
         },

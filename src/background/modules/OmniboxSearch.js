@@ -72,7 +72,7 @@ function openTabUrl(url, disposition) {
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
 export function triggerOmnixboxSuggestion(text, suggest) {
-    const searchResult = window.emojiMart.emojiIndex.search(text);
+    const searchResult = globalThis.emojiMart.emojiIndex.search(text);
 
     // if none are found, return…
     if (!searchResult) {
@@ -143,14 +143,14 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  */
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
-    const searchResult = window.emojiMart.emojiIndex.search(text);
+    const searchResult = globalThis.emojiMart.emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     try {
-        const foundEmoji = window.emojiMart.getEmojiDataFromNative(text);
+        const foundEmoji = globalThis.emojiMart.getEmojiDataFromNative(text);
 
         if (foundEmoji) {
             searchResult.push(foundEmoji);
@@ -203,7 +203,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
  */
 async function toggleEnabledStatus(toEnable) {
     // Thunderbird
-    if (typeof messenger !== "undefined") {
+    if (!browser.omnibox) {
         return;
     }
 
@@ -235,7 +235,9 @@ async function toggleEnabledStatus(toEnable) {
                 browser.i18n.getMessage("extensionName")
             ])
         });
-    } else if (!toEnable) {
+    } else if (toEnable) {
+        throw new TypeError("isEnabled must be boolean!");
+    } else {
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxDisabledSearch);
 
         browser.omnibox.setDefaultSuggestion({
@@ -243,8 +245,6 @@ async function toggleEnabledStatus(toEnable) {
                 browser.i18n.getMessage("extensionName")
             ])
         });
-    } else {
-        throw new TypeError("isEnabled must be boolean!");
     }
 }
 

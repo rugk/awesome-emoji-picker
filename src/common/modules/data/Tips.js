@@ -80,7 +80,7 @@ import { getBrowserValue } from "../BrowserCompat.js";
 
 // Thunderbird
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
-const IS_THUNDERBIRD = typeof messenger !== "undefined";
+const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 const DEFAULT_POPUP_HOT_KEY = "Ctrl+Shift+Period";
 

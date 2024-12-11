@@ -114,9 +114,7 @@ export async function triggerOnSelect(emoji) {
 
     const messageToBeShown = getUserMessageForResult(isInserted, isCopied);
 
-    if (!messageToBeShown) {
-        CommonMessages.showError("couldNotDoAction", true);
-    } else {
+    if (messageToBeShown) {
         // if no error happened, show confirmation message
         if (showConfirmationMessage) {
             await ConfirmationHint.show(clickedEmoji, messageToBeShown);
@@ -125,6 +123,8 @@ export async function triggerOnSelect(emoji) {
         if (closePopup) {
             window.close();
         }
+    } else {
+        CommonMessages.showError("couldNotDoAction", true);
     }
 }
 

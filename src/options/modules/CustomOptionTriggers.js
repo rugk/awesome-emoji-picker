@@ -24,7 +24,7 @@ const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
 
 // Thunderbird
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
-const IS_THUNDERBIRD = typeof messenger !== "undefined";
+const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 /**
  * Adjust UI if QR code size option is changed.
@@ -101,15 +101,15 @@ function applyAutocorrectPermissions(optionValue, option, event) {
 
     let retPromise;
 
-    if (!PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
+    if (PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
     ) {
+        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
+    } else {
         retPromise = PermissionRequest.requestPermission(
             TABS_PERMISSION,
             MESSAGE_TABS_PERMISSION,
             event
         );
-    } else {
-        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
     }
 
     // trigger update for current session
@@ -219,7 +219,7 @@ function getPluralForm(language, optionValue) {
         return optionValue > 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
         // en, de
     default:
-        return optionValue !== 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
+        return optionValue === 1 ? "optionEmojisPerLineStatusSingular" : "optionEmojisPerLineStatusPlural";
     }
 }
 
