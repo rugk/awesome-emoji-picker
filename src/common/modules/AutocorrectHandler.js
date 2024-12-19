@@ -274,7 +274,6 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
 });
 
 browser.runtime.onMessage.addListener((message, sender) => {
-    // console.log(message);
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
         const response = {
             type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,

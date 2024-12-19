@@ -47,11 +47,11 @@ function getCaretPosition(target) {
         if (selection.rangeCount !== 1) {
             return null;
         }
-        const _range = selection.getRangeAt(0);
-        if (!_range.collapsed) {
+        const arange = selection.getRangeAt(0);
+        if (!arange.collapsed) {
             return null;
         }
-        const range = _range.cloneRange();
+        const range = arange.cloneRange();
         const temp = document.createTextNode("\0");
         range.insertNode(temp);
         const caretposition = target.innerText.indexOf("\0");
