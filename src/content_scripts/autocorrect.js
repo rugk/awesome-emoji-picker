@@ -141,7 +141,7 @@ function insertIntoPage(atext) {
  * @returns {number}
  */
 function countChars(str) {
-    // removing the joiners
+    // removing the Unicode joiner chars \u200D
     return Array.from(segmenter.segment(str.replaceAll("\u200D", ""))).length;
 }
 
