@@ -5,7 +5,7 @@
  */
 
 import * as EmojiSelect from "./EmojiSelect.js";
-import * as EmojiMart from "/node_modules/emoji-mart/dist/browser.js";
+import * as EmojiMart from "../../node_modules/emoji-mart/dist/module.js";
 
 let emojiPicker = null;
 
