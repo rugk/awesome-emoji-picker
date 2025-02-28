@@ -1,7 +1,7 @@
 {
     "root": true,
     "parserOptions": {
-        "ecmaVersion": 2017,
+        "ecmaVersion": 14,
         "sourceType": "module",
         "ecmaFeatures": {
             "impliedStrict": true
@@ -10,7 +10,7 @@
     "env": {
         "browser": true,
         "webextensions": true,
-        "es6": true
+        "es2023": true
     },
     "extends": "eslint:recommended",
     "rules": {

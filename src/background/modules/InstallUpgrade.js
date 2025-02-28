@@ -1,7 +1,7 @@
 /**
  * Upgrades user data on installation of new updates.
  *
- * Attention: Currently you must not include this script asyncronously. See
+ * Attention: Currently you must not include this script asynchronously. See
  * https://bugzilla.mozilla.org/show_bug.cgi?id=1506464 for details.
  *
  * @module InstallUpgrade
@@ -12,7 +12,7 @@
  *
  * @private
  * @param {Object} emojiPickerSettings
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function upgradeEmojiSet(emojiPickerSettings) {
     // change removed emoji sets to best existing one
@@ -29,7 +29,7 @@ async function upgradeEmojiSet(emojiPickerSettings) {
         // eslint-disable-next-line no-case-declarations
         const text = "No emoji set upgrade needed.";
         console.log(text);
-        return Promise.reject(new Error(text));
+        throw new Error(text);
     }
 
     console.log("Doing emoji set upgrade.");
@@ -38,7 +38,6 @@ async function upgradeEmojiSet(emojiPickerSettings) {
     });
 
     console.info("Emoji set upgrade successful.", await browser.storage.sync.get());
-    return Promise.resolve();
 }
 
 /**
@@ -47,7 +46,7 @@ async function upgradeEmojiSet(emojiPickerSettings) {
  * @see {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onInstalled}
  * @private
  * @param {Object} details
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 async function handleInstalled(details) {
     // only trigger for usual addon updates
@@ -62,14 +61,4 @@ async function handleInstalled(details) {
     upgradeEmojiSet(oldData.emojiPicker).catch(() => {});
 }
 
-/**
- * Inits module.
- *
- * @private
- * @returns {void}
- */
-function init() {
-    browser.runtime.onInstalled.addListener(handleInstalled);
-}
-
-init();
+browser.runtime.onInstalled.addListener(handleInstalled);

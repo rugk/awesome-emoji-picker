@@ -46,20 +46,22 @@ async function createPicker() {
  * @returns {Promise}
  */
 export async function focusElement(element, retries = 20, delay = 50) {
-    const wait = (ms) => new Promise((func) => setTimeout(func, ms));
+    const wait = (ms) => new Promise((func) => {
+        setTimeout(func, ms);
+    });
 
     element.focus();
 
     await wait();
 
-    // if element is focussed, we are lucky
+    // if element is focused, we are lucky
     if (document.activeElement === element) {
-        console.log(element, "focussed with", retries, "retries left, at delay", delay);
-        return Promise.resolve();
+        console.log(element, "focused with", retries, "retries left, at delay", delay);
+        return;
     }
 
     if (retries <= 0) {
-        throw new TypeError("no re-tries left for focussing"); // will be converted into rejected promise
+        throw new TypeError("no re-tries left for focusing"); // will be converted into rejected promise
     }
 
     await wait(delay);
@@ -81,12 +83,12 @@ createPicker().then(async () => {
     const popupType = EnvironmentDetector.getPopupType();
 
     if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
-        popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE ) {
+        popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
         // prevent overflow and stretch GUI (even if it is a up to 20% underflow)
         if (EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH) > -20) {
             // make popup smaller, so it fits
-            document.querySelector(".emoji-mart").style.width = `${window.innerWidth-20}px`;
-            document.querySelector(".emoji-mart").style.height = `${window.innerHeight+20}px`;
+            document.querySelector(".emoji-mart").style.width = `${window.innerWidth - 20}px`;
+            document.querySelector(".emoji-mart").style.height = `${window.innerHeight + 20}px`;
 
             setTimeout(() => {
                 document.querySelector(".emoji-mart").style.width = "100vw";

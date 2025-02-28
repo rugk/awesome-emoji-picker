@@ -29,7 +29,17 @@ const defaultSettings = {
         emojiCopyOnlyFallback: false,
         resultType: "native",
         showConfirmationMessage: true,
-        closePopup: true,
+        closePopup: true
+    },
+    autocorrect: {
+        enabled: false,
+        autocorrectEmojis: true,
+        autocorrectEmojiShortcodes: true,
+        autocompleteEmojiShortcodes: true,
+        autocompleteSelect: false
+    },
+    contextMenu: {
+        insertEmoji: true
     },
     emojiSearch: {
         enabled: false,

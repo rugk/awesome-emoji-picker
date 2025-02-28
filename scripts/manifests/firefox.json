@@ -9,7 +9,6 @@
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
   "browser_action": {
-    "browser_style": true,
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
@@ -27,13 +26,20 @@
   },
 
   "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
+    "page": "options/options.html"
   },
 
   "background": {
-    "page": "background/background.html"
+    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
+    "type": "module"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "all_frames": true,
+      "js": ["content_scripts/autocorrect.js"]
+    }
+  ],
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -53,19 +59,21 @@
 
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "contextMenus"
   ],
 
   "optional_permissions": [
     "clipboardWrite",
-    "search"
+    "search",
+    "tabs"
   ],
   // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "74.0"
+      "strict_min_version": "125.0"
     }
   }
 }

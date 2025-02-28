@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.9.1",
+  "version": "0.9.4",
   "author": "rugk, Teal Dulcet",
 
   "description": "__MSG_extensionDescription__",
@@ -10,7 +10,6 @@
 
 
   "compose_action": {
-    "browser_style": true,
     "default_area": "formattoolbar",
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
@@ -25,12 +24,12 @@
   },
 
   "options_ui": {
-    "page": "options/options.html",
-    "browser_style": true
+    "page": "options/options.html"
   },
 
   "background": {
-    "page": "background/background.html"
+    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
+    "type": "module"
   },
   "commands": {
     "_execute_compose_action": {
@@ -60,10 +59,10 @@
     "clipboardWrite"
   ],
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "87.0"
+      "strict_min_version": "125.0"
     }
   }
 }

@@ -7,7 +7,7 @@ See also https://discourse.mozilla.org/t/using-es6-modules-in-background-scripts
 	<head>
 		<meta charset="utf-8">
 		<!-- async currently disabled, because of https://bugzilla.mozilla.org/show_bug.cgi?id=1506464 -->
-		<script type="application/javascript" src="../browser-polyfill.js"></script>
+		<script src="../browser-polyfill.js" type="module"></script>
 		<script src="./modules/InstallUpgrade.js" type="module" charset="utf-8"></script>
 		<script async src="background.js" type="module" charset="utf-8"></script>
 	</head>

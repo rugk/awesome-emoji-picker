@@ -23,7 +23,7 @@ const elPanelTemplate = elTemplate.content.getElementById("confirmation-hint");
  * @param  {number} position.top manual position
  * @param  {number} height the height of the popup
  * @param  {number} width the width of the popup
- * @returns {Object} the ficed position
+ * @returns {Object} the fixed position
  */
 function keepMessageInsideOfPopup(position, height, width) {
     const TOLERANCE = 3; // px
@@ -125,7 +125,7 @@ function hidePopup(elPanel) {
  * @param  {HTMLElement} options An object with the following optional properties:
  * @param  {event} [options.event] The event that triggered the feedback.
  * @param  {boolean} [options.showDescription] show description text (confirmationHint.<messageId>.description)
- * @returns {Promise}
+ * @returns {Promise<void>}
  */
 export function show(position, messageId, options = {}) {
     return new Promise((resolve) => {
@@ -157,7 +157,7 @@ export function show(position, messageId, options = {}) {
         // (needs to be done before showing the popup, as we need to get the browser
         // to calculate the size of it)
         elPanel = document.importNode(elTemplate.content, true).getElementById("confirmation-hint");
-        document.body.appendChild(elPanel);
+        document.body.append(elPanel);
         const elAnimationBox = elPanel.querySelector("#confirmation-hint-checkmark-animation-container");
 
         // show popup

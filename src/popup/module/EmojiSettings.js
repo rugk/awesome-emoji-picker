@@ -14,7 +14,7 @@ let emojiMartStorage = {};
  * @todo create
  * @public
  * @param {string} emoji
- * @returns {string}
+ * @returns {void}
  */
 export function copyEmoji(emoji) {
     navigator.clipboard.writeText(emoji.native);
@@ -24,7 +24,7 @@ export function copyEmoji(emoji) {
  * Get all the settings for the Emoji picker.
  *
  * @public
- * @returns {Object}
+ * @returns {Promise<Object>}
  */
 export async function getAllSettings() {
     const settings = await AddonSettings.get("emojiPicker");
@@ -35,14 +35,14 @@ export async function getAllSettings() {
  * Sets the emoji-mart data storage.
  *
  * @private
- * @returns {void}
+ * @returns {Promise<void>}
  * @see https://github.com/missive/emoji-mart#storage
  */
 export async function initEmojiMartStorage() {
     // get saved values
     emojiMartStorage = await AddonSettings.get("emojiMart");
 
-    window.emojiMart.setDataStore({
+    globalThis.emojiMart.setDataStore({
         getter: (key) => {
             return emojiMartStorage[key];
         },

@@ -1,10 +1,14 @@
 # Requested permissions
 
-For a general explanation of add-on permission see [this support article](https://support.mozilla.org/kb/permission-request-messages-firefox-extensions).
+For a general explanation of add-on permission see [this support article for Firefiox](https://support.mozilla.org/kb/permission-request-messages-firefox-extensions) and [this for Thunderbird](https://support.mozilla.org/kb/permission-request-messages-thunderbird-extensions).
 
 ## Installation permissions
 
-Currently, no permissions are requested at the installation or when updating.
+The following permissions are requested at the installation or when updating:
+
+| Internal Id      | Permission                   | Explanation                                                        |
+|:-----------------|:-----------------------------|:-------------------------------------------------------------------|
+| `[context]menus` | Modify browser context menus | Needed for adding the a context menu item to open the emoji picker |
 
 ## Feature-specific (optional) permissions
 

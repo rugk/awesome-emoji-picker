@@ -1,0 +1,3 @@
+Modern, nice emoji picker that you can use to find and select emojis. It will be copied to your clipboard or even directly inserted into the e-mail, when you click on it.
+
+You will certainly like it.

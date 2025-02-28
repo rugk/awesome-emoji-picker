@@ -16,12 +16,19 @@ import * as IconHandler from "/common/modules/IconHandler.js";
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: ["clipboardWrite"]
 };
+const TABS_PERMISSION = {
+    permissions: ["tabs"]
+};
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
+const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
+
+// Thunderbird
+// https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
+const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 /**
  * Adjust UI if QR code size option is changed.
  *
- * @function
  * @private
  * @param  {boolean} optionValue
  * @param  {string} [option]
@@ -43,11 +50,7 @@ function applyPopupIconColor(optionValue) {
  * @returns {Promise}
  */
 function saveEmojiSet(param) {
-    if (param.optionValue.set === "native") {
-        param.optionValue.native = true;
-    } else {
-        param.optionValue.native = false;
-    }
+    param.optionValue.native = param.optionValue.set === "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
 }
@@ -72,6 +75,67 @@ function applyPickerResultPermissions(optionValue) {
     }
 
     return retPromise;
+}
+
+/**
+ * Requests the permission for autocorrect settings.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
+ * @returns {Promise}
+ */
+function applyAutocorrectPermissions(optionValue, option, event) {
+    if (optionValue.enabled) {
+        document.getElementById("autocorrectEmojiShortcodes").disabled = false;
+        document.getElementById("autocorrectEmojis").disabled = false;
+        document.getElementById("autocompleteEmojiShortcodes").disabled = false;
+        document.getElementById("autocompleteSelect").disabled = false;
+    } else {
+        document.getElementById("autocorrectEmojiShortcodes").disabled = true;
+        document.getElementById("autocorrectEmojis").disabled = true;
+        document.getElementById("autocompleteEmojiShortcodes").disabled = true;
+        document.getElementById("autocompleteSelect").disabled = true;
+    }
+
+    let retPromise;
+
+    if (PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
+    ) {
+        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
+    } else {
+        retPromise = PermissionRequest.requestPermission(
+            TABS_PERMISSION,
+            MESSAGE_TABS_PERMISSION,
+            event
+        );
+    }
+
+    // trigger update for current session
+    browser.runtime.sendMessage({
+        type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
+        optionValue
+    });
+
+    return retPromise;
+}
+
+/**
+ * Apply the new context menu settings.
+ *
+ * @private
+ * @param  {Object} optionValue
+ * @param  {string} [option]
+ * @param  {Object} [event]
+ * @returns {void}
+ */
+function applyContextMenuSettings(optionValue, option, event) {
+    // trigger update for current session
+    browser.runtime.sendMessage({
+        type: COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU,
+        optionValue
+    });
 }
 
 /**
@@ -134,11 +198,7 @@ function preparePickerResultTypeOptionForInput(param) {
  * @returns {Promise}
  */
 function adjustPickerResultTypeOption(param) {
-    if (param.optionValue.resultType) {
-        param.optionValue.resultType = "colons";
-    } else {
-        param.optionValue.resultType = "native";
-    }
+    param.optionValue.resultType = param.optionValue.resultType ? "colons" : "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
 }
@@ -148,20 +208,18 @@ function adjustPickerResultTypeOption(param) {
  *
  * @private
  * @param {string} language
- * @param {integer} optionValue
+ * @param {number} optionValue
  * @returns {string} messageName
  */
 function getPluralForm(language, optionValue) {
-    if (!language) {
-        language = "en";
-    }
+    language ||= "en";
 
-    switch(language) {
+    switch (language) {
     case "tr":
         return optionValue > 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
         // en, de
     default:
-        return optionValue !== 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
+        return optionValue === 1 ? "optionEmojisPerLineStatusSingular" : "optionEmojisPerLineStatusPlural";
     }
 }
 
@@ -170,7 +228,7 @@ function getPluralForm(language, optionValue) {
  * after the options have been loaded and when the option value is updated by the user.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -199,7 +257,7 @@ function updatePerLineStatus(optionValue, option, event) {
  * Adjust maximum value of emojis per line when the emoji size is adjusted.
  *
  * @private
- * @param {integer} optionValue
+ * @param {Object} optionValue
  * @param {string} option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -312,9 +370,8 @@ function applyEmojiSearch(optionValue, option, event = {}) {
             // So this is equivalent to a "then".
             reloadEmojiSearchStatus();
         });
-    } else {
-        PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_SEARCH);
     }
+    PermissionRequest.cancelPermissionPrompt(CLIPBOARD_WRITE_PERMISSION, MESSAGE_EMOJI_COPY_PERMISSION_SEARCH);
 
     return Promise.resolve();
 }
@@ -325,7 +382,6 @@ function applyEmojiSearch(optionValue, option, event = {}) {
  *
  * This is basically the "init" method.
  *
- * @function
  * @returns {Promise}
  */
 export async function registerTrigger() {
@@ -339,11 +395,13 @@ export async function registerTrigger() {
 
     // update slider status
     AutomaticSettings.Trigger.registerSave("pickerResult", applyPickerResultPermissions);
+    AutomaticSettings.Trigger.registerSave("autocorrect", applyAutocorrectPermissions);
+    AutomaticSettings.Trigger.registerSave("contextMenu", applyContextMenuSettings);
     AutomaticSettings.Trigger.registerSave("popupIconColored", applyPopupIconColor);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updatePerLineStatus);
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
     // Thunderbird
-    if (typeof messenger !== "undefined") {
+    if (IS_THUNDERBIRD) {
         document.getElementById("browser").style.display = "none";
     } else {
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
@@ -358,5 +416,12 @@ export async function registerTrigger() {
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
         document.getElementById("searchActionCopyPermissionInfo"),
         "permissionRequiredClipboardWrite"
+    );
+    await PermissionRequest.registerPermissionMessageBox(
+        TABS_PERMISSION,
+        MESSAGE_TABS_PERMISSION,
+        document.getElementById("tabsPermissionInfo"),
+        // "permissionRequiredTabs" // TODO(to: 'rugk'): This will need to be localized
+        "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
     );
 }

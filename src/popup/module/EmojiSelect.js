@@ -23,7 +23,7 @@ let optionPickerResult;
  *
  * @public
  * @param {Object} emoji
- * @param {Object} event
+ * @param {MouseEvent} event
  * @returns {void}
  */
 export function saveClickPosition(emoji, event) {
@@ -59,7 +59,7 @@ export function getEmojiHtml(emoji) {
  * @private
  * @param {boolean} isEmojiInserted
  * @param {boolean} isEmojiCopied
- * @returns {Promise}
+ * @returns {string}
  */
 function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
     let messageToBeShown;
@@ -99,7 +99,7 @@ export async function triggerOnSelect(emoji) {
     if (lastClick.forEmoji === emoji) {
         clickedEmoji = {
             left: lastClick.posX,
-            top: lastClick.posY,
+            top: lastClick.posY
         };
     }
 
@@ -114,9 +114,7 @@ export async function triggerOnSelect(emoji) {
 
     const messageToBeShown = getUserMessageForResult(isInserted, isCopied);
 
-    if (!messageToBeShown) {
-        CommonMessages.showError("couldNotDoAction", true);
-    } else {
+    if (messageToBeShown) {
         // if no error happened, show confirmation message
         if (showConfirmationMessage) {
             await ConfirmationHint.show(clickedEmoji, messageToBeShown);
@@ -125,6 +123,8 @@ export async function triggerOnSelect(emoji) {
         if (closePopup) {
             window.close();
         }
+    } else {
+        CommonMessages.showError("couldNotDoAction", true);
     }
 }
 
