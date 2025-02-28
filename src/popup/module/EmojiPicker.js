@@ -111,7 +111,7 @@ export function init(settings) {
     const set = "native";
 
     const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
-        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}..json`));
+        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}.json`));
 
         console.log(response);
         return response.json();
