@@ -5,6 +5,7 @@
  */
 
 import * as EmojiSelect from "./EmojiSelect.js";
+import * as EmojiMart from "../../node_modules/emoji-mart/dist/module.js";
 
 let emojiPicker = null;
 
@@ -100,17 +101,22 @@ export function setAttribute(properties) {
  *
  * @public
  * @param {Object} settings
- * @returns {Promise}
+ * @returns {void}
  */
 export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
 
     console.debug("Using these emoji-mart settings:", initProperties);
+    const emojiVersion = 14;
+    const set = "native";
 
-    const promiseCreateElement = globalThis.emojiMart.definePicker("emoji-picker", initProperties);
+    const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
+        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}..json`));
 
-    return promiseCreateElement.then(() => {
-        emojiPicker = document.createElement("emoji-picker");
-        document.body.append(emojiPicker);
-    });
+        console.log(response);
+        return response.json();
+    }});
+
+    // @ts-ignore
+    document.body.appendChild(emojiPicker);
 }

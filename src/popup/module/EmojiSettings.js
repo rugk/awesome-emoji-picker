@@ -42,17 +42,17 @@ export async function initEmojiMartStorage() {
     // get saved values
     emojiMartStorage = await AddonSettings.get("emojiMart");
 
-    globalThis.emojiMart.setDataStore({
-        getter: (key) => {
-            return emojiMartStorage[key];
-        },
+    // globalThis.emojiMart.setDataStore({
+    //     getter: (key) => {
+    //         return emojiMartStorage[key];
+    //     },
 
-        setter: (key, value) => {
-            emojiMartStorage[key] = value;
+    //     setter: (key, value) => {
+    //         emojiMartStorage[key] = value;
 
-            // and actually save the new value
-            // and return promise so async things are noticed
-            return AddonSettings.set("emojiMart", emojiMartStorage);
-        }
-    });
+    //         // and actually save the new value
+    //         // and return promise so async things are noticed
+    //         return AddonSettings.set("emojiMart", emojiMartStorage);
+    //     }
+    // });
 }
