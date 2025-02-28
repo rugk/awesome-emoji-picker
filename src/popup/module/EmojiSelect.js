@@ -94,7 +94,7 @@ export async function triggerOnSelect(emoji) {
     // get HTML element that was clicked
     let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
 
-    // if we clicked on the exact same emoji, use the last click psoition
+    // if we clicked on the exact same emoji, use the last click position
     // (object reference comparison deliberately!)
     if (lastClick.forEmoji === emoji) {
         clickedEmoji = {
