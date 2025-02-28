@@ -11,7 +11,8 @@
     "baseUrl": "./src",
     "paths": {
       "/*": ["./*"],
-    }
+    },
+    "types": ["firefox-webext-browser"]
   },
   "exclude": [
     "node_modules",

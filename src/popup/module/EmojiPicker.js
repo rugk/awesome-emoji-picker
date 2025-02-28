@@ -101,7 +101,7 @@ export function setAttribute(properties) {
  *
  * @public
  * @param {Object} settings
- * @returns {Promise}
+ * @returns {void}
  */
 export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
@@ -115,5 +115,5 @@ export function init(settings) {
         return response.json();
     }});
 
-    document.body.append(emojiPicker);
+    //document.body.append(emojiPicker);
 }
