@@ -29,7 +29,7 @@ function initEmojiMartStorage() {
 async function createPicker() {
     await EmojiPicker.init(
         await EmojiSettings.getAllSettings()
-    ).catch(console.error);
+    );
 }
 
 /**

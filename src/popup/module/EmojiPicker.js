@@ -107,13 +107,16 @@ export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
 
     console.debug("Using these emoji-mart settings:", initProperties);
+    const emojiVersion = 14;
+    const set = "native";
 
     const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
-        const response = await fetch(browser.runtime.getURL("/node_modules/@emoji-mart/data/sets/14/native.json"));
+        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}..json`));
 
         console.log(response);
         return response.json();
     }});
 
-    //document.body.append(emojiPicker);
+    // @ts-ignore
+    document.body.appendChild(emojiPicker);
 }
