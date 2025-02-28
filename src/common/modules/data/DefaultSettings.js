@@ -18,9 +18,9 @@ const defaultSettings = {
     },
     emojiPicker: {
         set: "native",
-        native: true,
+        native: true, // TODO: replace with set
         perLine: 9,
-        emojiTooltip: false,
+        // emojiTooltip: false, # TODO: remove
         emojiSize: 24
     },
     pickerResult: {

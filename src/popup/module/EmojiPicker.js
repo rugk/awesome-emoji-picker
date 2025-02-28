@@ -18,16 +18,18 @@ const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
  * @type {Object}
  */
 export const hardcodedSettings = Object.freeze({
-    color: "#ffb03b", // or #d42ecc ?
-    i18n: getEmojiMartLocalised(),
+    // color: "#ffb03b", // or #d42ecc ?
+    // i18n: getEmojiMartLocalised(),
     autoFocus: true,
-    onSelect: EmojiSelect.triggerOnSelect,
-    onClick: EmojiSelect.saveClickPosition,
-    style: { border: "none" },
+    onEmojiSelect: EmojiSelect.triggerOnSelect,
+    // onClickOutside: EmojiSelect.saveClickPosition, // TOOD: ??
+    // style: { border: "none" },
     theme: "auto",
     backgroundImageFn: getEmojiSheet,
-    title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
-    emoji: "star-struck" // default emoji
+    // title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
+    dynamicWidth: false, // will not work with WebExtension popups, the content defines the width
+    // emojiButtonColors:  // TODO: ??,
+    emojiVersion: 15 // TODO: maybe re-enable auto-detection when fetch workaround works
 });
 
 /**
@@ -105,18 +107,21 @@ export function setAttribute(properties) {
  */
 export function init(settings) {
     const initProperties = Object.assign(settings, hardcodedSettings);
+    initProperties.emojiButtonSize = initProperties.emojiSize + 12;
 
     console.debug("Using these emoji-mart settings:", initProperties);
-    const emojiVersion = 14;
+    const emojiVersion = 15;
     const set = "native";
 
     const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
         const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}.json`));
 
-        console.log(response);
-        return response.json();
+        const jsonResult = await response.json();
+        console.log(jsonResult);
+        return jsonResult;
     }});
 
     // @ts-ignore
     document.body.appendChild(emojiPicker);
+    console.log("emojiPicker", emojiPicker);
 }

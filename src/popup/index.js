@@ -27,9 +27,10 @@ function initEmojiMartStorage() {
  * @returns {Promise}
  */
 async function createPicker() {
-    await EmojiPicker.init(
+    EmojiPicker.init(
         await EmojiSettings.getAllSettings()
     );
+    return Promise.resolve();
 }
 
 /**
@@ -76,45 +77,45 @@ createPicker().then(async () => {
     // auto-focus does not always work properly, see
     // https://github.com/rugk/awesome-emoji-picker/issues/28 (now fixed)
     // https://github.com/rugk/awesome-emoji-picker/issues/86 / https://bugzilla.mozilla.org/show_bug.cgi?id=1623875
-    focusElement(document.querySelector(".emoji-mart-search > input"));
+    // focusElement(document.querySelector(".emoji-mart-search > input"));
 
-    // adjust with of picker, if it overflows
-    await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
-    const popupType = EnvironmentDetector.getPopupType();
+    // // adjust with of picker, if it overflows
+    // await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
+    // const popupType = EnvironmentDetector.getPopupType();
 
-    if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
-        popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
-        // prevent overflow and stretch GUI (even if it is a up to 20% underflow)
-        if (EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH) > -20) {
-            // make popup smaller, so it fits
-            document.querySelector(".emoji-mart").style.width = `${window.innerWidth - 20}px`;
-            document.querySelector(".emoji-mart").style.height = `${window.innerHeight + 20}px`;
+    // if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
+    //     popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
+    //     // prevent overflow and stretch GUI (even if it is a up to 20% underflow)
+    //     if (EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH) > -20) {
+    //         // make popup smaller, so it fits
+    //         document.querySelector(".emoji-mart").style.width = `${window.innerWidth - 20}px`;
+    //         document.querySelector(".emoji-mart").style.height = `${window.innerHeight + 20}px`;
 
-            setTimeout(() => {
-                document.querySelector(".emoji-mart").style.width = "100vw";
-            }, 50);
+    //         setTimeout(() => {
+    //             document.querySelector(".emoji-mart").style.width = "100vw";
+    //         }, 50);
 
-            // re-enlarge it at next redraw, so no scrollbars are shown
-            setTimeout(() => {
-                document.querySelector(".emoji-mart").style.width = `${window.innerWidth}px`;
-                document.querySelector(".emoji-mart").style.removeProperty("height");
+    //         // re-enlarge it at next redraw, so no scrollbars are shown
+    //         setTimeout(() => {
+    //             document.querySelector(".emoji-mart").style.width = `${window.innerWidth}px`;
+    //             document.querySelector(".emoji-mart").style.removeProperty("height");
 
-                // also vertically center on Android
-                if (popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
-                    document.querySelector(".emoji-mart").style.removeProperty("border");
-                    document.documentElement.classList.add("center-picker");
-                }
-            }, 60);
-        } else {
-            // center popup
-            document.querySelector(".emoji-mart").style.removeProperty("border");
-            document.documentElement.classList.add("center-picker");
-        }
+    //             // also vertically center on Android
+    //             if (popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
+    //                 document.querySelector(".emoji-mart").style.removeProperty("border");
+    //                 document.documentElement.classList.add("center-picker");
+    //             }
+    //         }, 60);
+    //     } else {
+    //         // center popup
+    //         document.querySelector(".emoji-mart").style.removeProperty("border");
+    //         document.documentElement.classList.add("center-picker");
+    //     }
 
-    }
+    // }
 });
 
-RandomTips.init(tips).then(() => {
-    RandomTips.setContext("popup");
-    RandomTips.showRandomTipIfWanted();
-});
+// RandomTips.init(tips).then(() => {
+//     RandomTips.setContext("popup");
+//     RandomTips.showRandomTipIfWanted();
+// });
