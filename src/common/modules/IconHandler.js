@@ -23,7 +23,7 @@ function setPopupIcon(icon) {
     }
 
     // Thunderbird
-    const browserAction = typeof messenger !== "undefined" ? browser.composeAction : browser.browserAction;
+    const browserAction = globalThis.messenger ? browser.composeAction : browser.browserAction;
 
     // ignore request if API is not available
     if (!browserAction.setIcon) {

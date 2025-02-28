@@ -23,7 +23,7 @@ function changeScreenshotTheme(darkQuery) {
  * @returns {void}
  */
 export function init() {
-    const dark = window.matchMedia("(prefers-color-scheme: dark)");
+    const dark = globalThis.matchMedia("(prefers-color-scheme: dark)");
 
     dark.addEventListener("change", changeScreenshotTheme);
 

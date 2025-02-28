@@ -107,7 +107,7 @@ export function init(settings) {
 
     console.debug("Using these emoji-mart settings:", initProperties);
 
-    const promiseCreateElement = window.emojiMart.definePicker("emoji-picker", initProperties);
+    const promiseCreateElement = globalThis.emojiMart.definePicker("emoji-picker", initProperties);
 
     return promiseCreateElement.then(() => {
         emojiPicker = document.createElement("emoji-picker");

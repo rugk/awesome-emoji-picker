@@ -5,6 +5,8 @@
 const AUTOCORRECT_CONTENT = "autocorrectContent";
 const INSERT = "insert";
 
+const segmenter = new Intl.Segmenter();
+
 let insertedText; // Last insert text
 let deletedText; // Last deleted text
 let lastTarget; // Last target
@@ -41,11 +43,15 @@ function getCaretPosition(target) {
     // ContentEditable elements
     if (target.isContentEditable || document.designMode === "on") {
         target.focus();
-        const _range = document.getSelection().getRangeAt(0);
-        if (!_range.collapsed) {
+        const selection = document.getSelection();
+        if (selection.rangeCount !== 1) {
             return null;
         }
-        const range = _range.cloneRange();
+        const arange = selection.getRangeAt(0);
+        if (!arange.collapsed) {
+            return null;
+        }
+        const range = arange.cloneRange();
         const temp = document.createTextNode("\0");
         range.insertNode(temp);
         const caretposition = target.innerText.indexOf("\0");
@@ -76,7 +82,7 @@ function insertAtCaret(target, atext) {
     }
 
     // Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
-    if (typeof target.setRangeText === "function") {
+    if (target.setRangeText) {
         const start = target.selectionStart;
         const end = target.selectionEnd;
 
@@ -130,22 +136,13 @@ function insertIntoPage(atext) {
 /**
  * Count Unicode characters.
  * Adapted from: https://blog.jonnew.com/posts/poo-dot-length-equals-two
- * Intl.Segmenter is not yet supported by Firefox/Thunderbird: https://bugzilla.mozilla.org/show_bug.cgi?id=1423593
  *
  * @param {string} str
  * @returns {number}
  */
 function countChars(str) {
-    // removing the joiners
-    const split = str.split("\u{200D}");
-    let count = 0;
-
-    for (const s of split) {
-        // removing the variation selectors
-        count += Array.from(s.replaceAll(/[\uFE00-\uFE0F]/gu, "")).length;
-    }
-
-    return count;
+    // removing the Unicode joiner chars \u200D
+    return Array.from(segmenter.segment(str.replaceAll("\u200D", ""))).length;
 }
 
 /**
@@ -165,7 +162,7 @@ function deleteCaret(target, atext) {
             }
         }
         // Firefox input and textarea fields: https://bugzilla.mozilla.org/show_bug.cgi?id=1220696
-        else if (typeof target.setRangeText === "function") {
+        else if (target.setRangeText) {
             const start = target.selectionStart;
 
             target.selectionStart = start - atext.length;
@@ -198,9 +195,9 @@ function autocorrect(event) {
         return;
     }
     running = true;
-    const target = event.target;
+    const { target } = event;
     const caretposition = getCaretPosition(target);
-    if (caretposition) {
+    if (caretposition != null) {
         const value = target.value || target.innerText;
         let deletecount = 0;
         let insert = ["insertLineBreak", "insertParagraph"].includes(event.inputType) ? "\n" : event.data;
@@ -213,8 +210,7 @@ function autocorrect(event) {
             const length = longest - 1;
             const text = value.slice(caretposition < length ? 0 : caretposition - length, caretposition) + inserted;
             const aregexResult = symbolpatterns.exec(text);
-            const aaregexResult = antipatterns.exec(text);
-            if (!aaregexResult && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
+            if (!antipatterns.test(text) && (!aregexResult || (caretposition <= longest ? regexResult.index < aregexResult.index : regexResult.index <= aregexResult.index))) {
                 const [autocorrection] = regexResult;
                 insert = autocorrections[autocorrection] + inserted;
                 deletecount = autocorrection.length;
@@ -288,9 +284,9 @@ function undoAutocorrect(event) {
         return;
     }
     running = true;
-    const target = event.target;
+    const { target } = event;
     const caretposition = getCaretPosition(target);
-    if (caretposition) {
+    if (caretposition != null) {
         if (target === lastTarget && caretposition === lastCaretPosition) {
             event.preventDefault();
 

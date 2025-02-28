@@ -47,17 +47,16 @@ function createRegEx(tree) {
     // Escape special characters
     const regExSpecialChars = /[.*+?^${}()|[\]\\]/gu;
 
-    for (const char in tree) {
+    for (const [char, atree] of Object.entries(tree)) {
         if (char) {
-            const escaptedChar = char.replace(regExSpecialChars, "\\$&");
+            const escaptedChar = RegExp.escape ? RegExp.escape(char) : char.replaceAll(regExSpecialChars, String.raw`\$&`);
 
-            const atree = tree[char];
-            if (!(LEAF in atree && Object.keys(atree).length === 1)) {
+            if (LEAF in atree && Object.keys(atree).length === 0) {
+                characterClass.push(escaptedChar);
+            } else {
                 const recurse = createRegEx(atree);
                 alternatives.push(recurse + escaptedChar);
                 // alternatives.push(escaptedChar + recurse);
-            } else {
-                characterClass.push(escaptedChar);
             }
         }
     }
@@ -149,7 +148,7 @@ function applySettings() {
                 continue;
             }
             const aindex = x.indexOf(y);
-            if (aindex >= 0) {
+            if (aindex !== -1) {
                 if (aindex < index) {
                     index = aindex;
                     length = y.length;
@@ -244,10 +243,10 @@ export async function init() {
     const autocorrect = await AddonSettings.get("autocorrect");
 
     for (const emoji of Object.values(emojiMart.emojiIndex.emojis)) {
-        if (!emoji.native) {
-            emojiShortcodes[emoji[1].colons] = emoji[1].native;
-        } else {
+        if (emoji.native) {
             emojiShortcodes[emoji.colons] = emoji.native;
+        } else {
+            emojiShortcodes[emoji[1].colons] = emoji[1].native;
         }
     }
 
@@ -255,28 +254,9 @@ export async function init() {
 
     setSettings(autocorrect);
 
-    browser.runtime.onMessage.addListener((message, sender) => {
-        // console.log(message);
-        if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
-            const response = {
-                type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-                enabled: settings.enabled,
-                autocomplete: settings.autocomplete,
-                autocompleteSelect: settings.autocompleteSelect,
-                autocorrections,
-                longest,
-                symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
-                antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                emojiShortcodes
-            };
-            // console.log(response);
-            return Promise.resolve(response);
-        }
-    });
-
     // Thunderbird
-    // Remove if part 3 of https://bugzilla.mozilla.org/show_bug.cgi?id=1630786#c4 is ever done
-    if (typeof messenger !== "undefined") {
+    // Cannot register scripts in manifest.json file: https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
+    if (browser.composeScripts) {
         browser.composeScripts.register({
             js: [
                 { file: "/content_scripts/autocorrect.js" }
@@ -290,4 +270,21 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
     // await AddonSettings.loadOptions();
 
     return sendSettings(request.optionValue);
+});
+
+browser.runtime.onMessage.addListener((message, sender) => {
+    if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
+        const response = {
+            type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
+            enabled: settings.enabled,
+            autocomplete: settings.autocomplete,
+            autocompleteSelect: settings.autocompleteSelect,
+            autocorrections,
+            longest,
+            symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
+            antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
+            emojiShortcodes
+        };
+        return Promise.resolve(response);
+    }
 });

@@ -5,7 +5,7 @@ import { isMobile } from "/common/modules/MobileHelper.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
 // Thunderbird
-const IS_THUNDERBIRD = typeof messenger !== "undefined";
+const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 // Chrome
 const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
