@@ -49,7 +49,7 @@
     }
   },
 
-  "content_security_policy": "default-src 'self'",
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",
