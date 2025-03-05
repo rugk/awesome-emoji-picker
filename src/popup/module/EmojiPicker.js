@@ -110,18 +110,15 @@ export function init(settings) {
     initProperties.emojiButtonSize = initProperties.emojiSize + 12;
 
     console.debug("Using these emoji-mart settings:", initProperties);
-    const emojiVersion = 15;
-    const set = "native";
 
     const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
-        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${emojiVersion}/${set}.json`));
+        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${initProperties.emojiVersion}/${initProperties.set}.json`));
 
-        const jsonResult = await response.json();
-        console.log(jsonResult);
-        return jsonResult;
+        return await response.json();
     }});
 
+    // NOTE: Typing is not updated yet, so cannot be used here: https://github.com/missive/emoji-mart/issues/576
     // @ts-ignore
     document.body.appendChild(emojiPicker);
-    console.log("emojiPicker", emojiPicker);
+    console.info("Created EmojiPicker component:", emojiPicker);
 }
