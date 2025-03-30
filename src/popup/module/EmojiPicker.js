@@ -119,6 +119,6 @@ export function init(settings) {
 
     // NOTE: Typing is not updated yet, so cannot be used here: https://github.com/missive/emoji-mart/issues/576
     // @ts-ignore
-    document.body.appendChild(emojiPicker);
+    document.body.append(emojiPicker);
     console.info("Created EmojiPicker component:", emojiPicker);
 }
