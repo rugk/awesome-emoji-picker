@@ -34,9 +34,6 @@
 [submodule "src/common/modules/PermissionRequest"]
 	path = src/common/modules/PermissionRequest
 	url = https://github.com/TinyWebEx/PermissionRequest
-[submodule "src/common/modules/EnvironmentDetector"]
-	path = src/common/modules/EnvironmentDetector
-	url = https://github.com/TinyWebEx/EnvironmentDetector
 [submodule "src/common/modules/CommonCss"]
 	path = src/common/modules/CommonCss
 	url = https://github.com/TinyWebEx/CommonCss

@@ -5,7 +5,6 @@
 
 import { tips } from "/common/modules/data/Tips.js";
 import * as RandomTips from "/common/modules/RandomTips/RandomTips.js";
-import * as EnvironmentDetector from "/common/modules/EnvironmentDetector/EnvironmentDetector.js";
 import * as EmojiSettings from "./module/EmojiSettings.js";
 import * as EmojiPicker from "./module/EmojiPicker.js";
 
