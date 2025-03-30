@@ -45,36 +45,36 @@ body, .message-container, .message-box {
 }
 
 /* Emoji Mart BiDi support */
-emoji-picker .emoji-mart-preview-emoji {
+em-emoji-picker .preview-emoji {
   __MSG_@@bidi_start_edge__: 12px;
   __MSG_@@bidi_end_edge__: initial;
 }
 
-emoji-picker .emoji-mart-preview-data {
+em-emoji-picker .preview-data {
   __MSG_@@bidi_start_edge__: 68px;
   __MSG_@@bidi_end_edge__: 12px;
 }
 
-emoji-picker .emoji-mart-title-label {
+em-emoji-picker .title-label {
   margin-__MSG_@@bidi_end_edge__: 56px;
 }
 
-emoji-picker .emoji-mart-preview-skins {
+em-emoji-picker .preview-skins {
   __MSG_@@bidi_start_edge__: initial;
   __MSG_@@bidi_end_edge__: 30px;
 }
 
-emoji-picker .emoji-mart-preview-skins.custom {
+em-emoji-picker .preview-skins.custom {
   __MSG_@@bidi_start_edge__: initial;
   __MSG_@@bidi_end_edge__: 10px;
 }
 
-emoji-picker .emoji-mart-search-icon {
+em-emoji-picker .search-icon {
   __MSG_@@bidi_start_edge__: initial;
   __MSG_@@bidi_end_edge__: 11px;
 }
 
-emoji-picker .emoji-mart-search input {
+em-emoji-picker .search input {
   padding-__MSG_@@bidi_start_edge__: 10px;
   padding-__MSG_@@bidi_end_edge__: 25px;
 }
