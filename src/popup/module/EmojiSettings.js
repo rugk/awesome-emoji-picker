@@ -10,18 +10,6 @@ import * as EmojiMart from "../../node_modules/emoji-mart/dist/module.js";
 let emojiMartStorage = {};
 
 /**
- * Get the specific setting for an element.
- *
- * @todo create
- * @public
- * @param {string} emoji
- * @returns {void}
- */
-export function copyEmoji(emoji) {
-    navigator.clipboard.writeText(emoji.native);
-}
-
-/**
  * Get all the settings for the Emoji picker.
  *
  * @public
