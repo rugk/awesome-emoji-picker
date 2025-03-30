@@ -115,7 +115,7 @@ createPicker().then(async () => {
     // }
 });
 
-// RandomTips.init(tips).then(() => {
-//     RandomTips.setContext("popup");
-//     RandomTips.showRandomTipIfWanted();
-// });
+RandomTips.init(tips).then(() => {
+    RandomTips.setContext("popup");
+    RandomTips.showRandomTipIfWanted();
+});
