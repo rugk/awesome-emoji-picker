@@ -50,7 +50,7 @@ export function saveClickPosition(emoji, event) {
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;
-    return document.querySelector(`.emoji-mart-scroll [aria-label^="${emojiQuestion}"]`);
+    return document.querySelector(`em-emoji-picker .scroll [aria-label^="${emojiQuestion}"]`);
 }
 
 /**
@@ -82,9 +82,10 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
  *
  * @public
  * @param {Object} emoji
+ * @param {Event} event
  * @returns {Promise}
  */
-export async function triggerOnSelect(emoji) {
+export async function triggerOnSelect(emoji, event) {
     const {
         closePopup,
         showConfirmationMessage,
@@ -92,7 +93,7 @@ export async function triggerOnSelect(emoji) {
     } = optionPickerResult;
 
     // get HTML element that was clicked
-    let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
+    let clickedEmoji = event.target || getEmojiHtml(emoji);
 
     // if we clicked on the exact same emoji, use the last click position
     // (object reference comparison deliberately!)
