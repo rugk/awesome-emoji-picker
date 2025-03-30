@@ -18,31 +18,15 @@ html.center-picker {
 }
 
 /* dark mode */
-@media (prefers-color-scheme: dark) {
-  /* sourrounding parts */
-  body {
-    background-color: var(--grey-60);
-  }
-
-  /* overwrite emoji-marts style to use colors more similar to Firefox Photons */
-  .emoji-mart-dark,
-  .emoji-mart-dark .emoji-mart-category-label span {
-    background-color: var(--grey-60);
-  }
-
-  /* increase contrast for text */
-  .emoji-mart-anchor {
-    color: var(--grey-20);
-  }
-  .emoji-mart-preview-shortname {
-    color: var(--grey-10);
-  }
-
-  /* hover effect */
-  .emoji-mart-dark .emoji-mart-anchor:hover,
-  .emoji-mart-dark .emoji-mart-anchor:focus,
-  .emoji-mart-dark .emoji-mart-anchor-selected {
-    color: rgb(255, 226, 182);
+:root {
+  @media (prefers-color-scheme: dark) {
+    --color: var(--grey-10);
+    --rgb-accent: 88, 166, 255;
+    --background-color: var(--grey-60);
+    --dark-background-color: var(--grey-90);
+    --select-background-color: var(--grey-50);
+    --input-color: rgba(var(--grey-50), .1);
+    --light-shadow: rgba(var(--grey-50), .02);
   }
 }
 
