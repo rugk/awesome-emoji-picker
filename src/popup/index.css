@@ -9,7 +9,7 @@
   }
 }
 
-html.center-picker {
+html .center-picker {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,9 +17,19 @@ html.center-picker {
   height: 100vh;
 }
 
+/* preventing scroll x/width overflowing (only when loaded to make popup adjust to size of emoji-mart) */
+html .loaded > em-emoji-picker {
+  max-width: 100vw;
+}
+
+html .in-popup > em-emoji-picker {
+  --border-radius: 0px;
+}
+
 /* dark mode */
-:root {
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border-radius: 0px;
     --color: var(--grey-10);
     --rgb-accent: 88, 166, 255;
     --background-color: var(--grey-60);
@@ -27,6 +37,11 @@ html.center-picker {
     --select-background-color: var(--grey-50);
     --input-color: rgba(var(--grey-50), .1);
     --light-shadow: rgba(var(--grey-50), .02);
+  }
+
+  /* darken sourroundings (edges), too */
+  body {
+    background-color: var(--grey-60);
   }
 }
 
@@ -45,6 +60,7 @@ body, .message-container, .message-box {
 }
 
 /* Emoji Mart BiDi support */
+/* NOTE: This currently does not work due to the shadow DOM scoping the CSS. */
 em-emoji-picker .preview-emoji {
   __MSG_@@bidi_start_edge__: 12px;
   __MSG_@@bidi_end_edge__: initial;

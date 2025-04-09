@@ -80,33 +80,21 @@ export async function focusElement(element, retries = 20, delay = 50) {
  * @param {Symbol} popupType
  */
 function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupType) {
-    const overflowPercent = EnvironmentDetector.getOverflowInPercentage(EnvironmentDetector.SIZE.WIDTH);
-    // prevent overflow and stretch GUI (even if it is a up to 20% underflow)
-    if (overflowPercent > -20) {
-        // make popup smaller, so it fits
-        emojiMartComponent.style.width = `${window.innerWidth - 20}px`;
-        emojiMartComponent.style.height = `${window.innerHeight + 20}px`;
+    console.info("Detected popup type", popupType, ", centering picker.");
+    emojiMartComponent.style.removeProperty("border");
+    document.documentElement.classList.add("center-picker");
+}
 
-        setTimeout(() => {
-            emojiMartComponent.style.width = "100vw";
-        }, 50);
-
-        // re-enlarge it at next redraw, so no scrollbars are shown
-        setTimeout(() => {
-            emojiMartComponent.style.width = `${window.innerWidth}px`;
-            emojiMartComponent.style.removeProperty("height");
-
-            // also vertically center on Android
-            if (popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
-                emojiMartComponent.style.removeProperty("border");
-                document.documentElement.classList.add("center-picker");
-            }
-        }, 60);
-    } else {
-        // center popup
-        emojiMartComponent.style.removeProperty("border");
-        document.documentElement.classList.add("center-picker");
+function applyMaxWidth(emojiMartComponent) {
+    const emojiMartShadowRoot = emojiMartComponent.shadowRoot;
+    if (!(emojiMartShadowRoot instanceof ShadowRoot)) {
+        throw new Error("Emoji-mart shadow root is not created, but should already have been!");
     }
+    const sizedContainer = emojiMartShadowRoot.querySelector(".scroll > *");
+    if (!(sizedContainer instanceof HTMLElement)) {
+        throw new Error("Emoji-mart .scroll > * could not be found!");
+    }
+    sizedContainer.style.setProperty("max-width", "100vw");
 }
 
 initEmojiMartStorage();
@@ -119,7 +107,7 @@ createPicker().then(async () => {
 
     // adjust with of picker, if it overflows
     await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
-    const popupType = EnvironmentDetector.POPUP_TYPE.NEW_PAGE // EnvironmentDetector.getPopupType();
+    const popupType = EnvironmentDetector.getPopupType();
     const emojiMartComponent = document.querySelector("em-emoji-picker");
 
     if (!(emojiMartComponent instanceof HTMLElement)) {
@@ -128,13 +116,20 @@ createPicker().then(async () => {
 
     if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
         popupType === EnvironmentDetector.POPUP_TYPE.NEW_PAGE) {
-
         // WORKAROUND: Needs to execute when the element has been rendered already, otherwise the overflow detection fails.
         // TODO: may need to be changed into a MutationObserver or so.
         setTimeout(() => {
             centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupType);
         }, 100);
+    } else {
+        document.body.classList.add("in-popup");
     }
+
+    setTimeout(() => {
+        document.body.classList.add("loaded");
+
+        applyMaxWidth(emojiMartComponent);
+    }, 200);
 });
 
 RandomTips.init(tips).then(() => {
