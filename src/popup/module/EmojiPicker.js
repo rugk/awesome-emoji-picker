@@ -55,17 +55,6 @@ function getEmojiSheet(set) {
 }
 
 /**
- * Change the properties of the Emoji selector.
- *
- * @public
- * @param {Object} properties
- * @returns {void}
- */
-export function setAttribute(properties) {
-    emojiPicker.setAttribute("props-json", JSON.stringify(properties));
-}
-
-/**
  * Creates the emoji picker.
  *
  * @public
