@@ -83,18 +83,12 @@ function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupT
     console.info("Detected popup type", popupType, ", centering picker.");
     emojiMartComponent.style.removeProperty("border");
     document.documentElement.classList.add("center-picker");
-}
 
-function applyMaxWidth(emojiMartComponent) {
-    const emojiMartShadowRoot = emojiMartComponent.shadowRoot;
-    if (!(emojiMartShadowRoot instanceof ShadowRoot)) {
-        throw new Error("Emoji-mart shadow root is not created, but should already have been!");
-    }
-    const sizedContainer = emojiMartShadowRoot.querySelector(".scroll > *");
-    if (!(sizedContainer instanceof HTMLElement)) {
-        throw new Error("Emoji-mart .scroll > * could not be found!");
-    }
-    sizedContainer.style.setProperty("max-width", "100vw");
+    // setAttribute with boolean flags does not work
+    // see https://github.com/missive/emoji-mart/issues/992
+    emojiMartComponent.setAttribute("dynamicWidth", "true");
+    // @ts-ignore
+    emojiMartComponent.props.dynamicWidth = true;
 }
 
 initEmojiMartStorage();
@@ -127,8 +121,6 @@ createPicker().then(async () => {
 
     setTimeout(() => {
         document.body.classList.add("loaded");
-
-        applyMaxWidth(emojiMartComponent);
     }, 200);
 });
 

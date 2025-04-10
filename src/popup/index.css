@@ -9,7 +9,7 @@
   }
 }
 
-html .center-picker {
+html.center-picker {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,12 +17,18 @@ html .center-picker {
   height: 100vh;
 }
 
+/* if centered, use all the size you need, but do not exaggerate it */
+html.center-picker em-emoji-picker {
+  width: 100vw;
+  max-width: 800px;
+}
+
 /* preventing scroll x/width overflowing (only when loaded to make popup adjust to size of emoji-mart) */
-html .loaded > em-emoji-picker {
+html.loaded em-emoji-picker {
   max-width: 100vw;
 }
 
-html .in-popup > em-emoji-picker {
+html.in-popup em-emoji-picker {
   --border-radius: 0px;
 }
 
