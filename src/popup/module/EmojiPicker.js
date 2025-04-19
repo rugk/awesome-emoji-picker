@@ -117,7 +117,7 @@ export function init(settings) {
                 console.error("Getting response fallback failed.");
             }
 
-            i18nData.pick = browser.i18n.getMessage("extensionNameShort") // show the extension name by default
+            i18nData.pick = browser.i18n.getMessage("extensionName") // show the extension name by default
             return i18nData;
         },
     });
