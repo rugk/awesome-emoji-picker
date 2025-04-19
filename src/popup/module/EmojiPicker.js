@@ -26,8 +26,7 @@ export const hardcodedSettings = Object.freeze({
     getSpritesheetURL: getEmojiSheet,
     // title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
     dynamicWidth: false, // will not work with WebExtension popups, the content defines the width
-    // emojiButtonColors:  // TODO: ??,
-    emojiVersion: 15 // TODO: maybe re-enable auto-detection when fetch workaround works
+    emojiVersion: 15
 });
 
 /**
