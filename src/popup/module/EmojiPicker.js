@@ -30,6 +30,32 @@ export const hardcodedSettings = Object.freeze({
 });
 
 /**
+ * Fetching an URL in the browser and returns `null` in case of an error.
+ *
+ * Note: This implements some special handling for not found files, see:
+ * https://github.com/mdn/content/issues/39197
+ * https://chatgpt.com/share/68037901-df7c-8009-b91c-77cb44c8c93d
+ *
+ * @param {string} nonBrowserifiedUrl
+ * @returns {Promise<null|Object>}
+ */
+async function tryFetchJson(nonBrowserifiedUrl) {
+    try {
+        console.log("Fetching", nonBrowserifiedUrl);
+        const url = browser.runtime.getURL(nonBrowserifiedUrl);
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.warn("Non-ok response for", nonBrowserifiedUrl, response);
+            return null;
+        }
+        return await response.json();
+    } catch (error) {
+        console.warn("Fetch failed for", nonBrowserifiedUrl, error);
+        return null;
+    }
+}
+
+/**
  * Returns the basic language tag e.g. `en` only in `en-US`. `
  *
  * @returns string
@@ -82,27 +108,17 @@ export function init(settings) {
         i18n: async () => {
             let locale = browser.i18n.getUILanguage();
             console.log("Getting i18n for", locale);
-            let response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
 
-            if (!response.ok) {
-                console.warn("Getting", locale, "failed. Trying base locale.", response);
-                locale = getBaseLanguageTag();
-                console.log("Getting i18n for", locale, "…");
-                response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
-            }
-            if (!response.ok) {
-                console.warn("Getting", locale, "fallback failed. Trying base locale.", response);
-                locale = "en";
-                console.log("Getting i18n for", locale, "…");
-                response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
-            }
-            if (!response.ok) {
-                console.error("Getting English fallback failed.", response);
+            let i18nData = await tryFetchJson(`/node_modules/@emoji-mart/data/i18n/${locale}.json`)
+              || await tryFetchJson(`/node_modules/@emoji-mart/data/i18n/${getBaseLanguageTag()}.json`)
+              || await tryFetchJson("/node_modules/@emoji-mart/data/i18n/en.json");
+
+            if (!i18nData) {
+                console.error("Getting response fallback failed.");
             }
 
-            const i18nResponse = await response.json();
-            i18nResponse.pick = browser.i18n.getMessage("extensionNameShort") // show the extension name by default
-            return i18nResponse;
+            i18nData.pick = browser.i18n.getMessage("extensionNameShort") // show the extension name by default
+            return i18nData;
         },
     });
 
