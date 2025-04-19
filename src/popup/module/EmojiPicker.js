@@ -97,7 +97,7 @@ export function init(settings) {
                 response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
             }
             if (!response.ok) {
-                console.error("Getting English fallback failed.");
+                console.error("Getting English fallback failed.", response);
             }
 
             const i18nResponse = await response.json();
