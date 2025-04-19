@@ -24,10 +24,19 @@ export const hardcodedSettings = Object.freeze({
     // style: { border: "none" },
     theme: "auto",
     getSpritesheetURL: getEmojiSheet,
-    // title: browser.i18n.getMessage("extensionNameShort"), // show the extension name by default
+    locale: getBaseLanguageTag(),
     dynamicWidth: false, // will not work with WebExtension popups, the content defines the width
     emojiVersion: 15
 });
+
+/**
+ * Returns the basic language tag e.g. `en` only in `en-US`. `
+ *
+ * @returns string
+ */
+function getBaseLanguageTag() {
+    return browser.i18n.getUILanguage().split("-")[0];
+}
 
 /**
  * Return the emoji sheet to use.
@@ -64,11 +73,38 @@ export function init(settings) {
 
     console.debug("Using these emoji-mart settings:", initProperties);
 
-    const emojiPicker = new EmojiMart.Picker({ ...initProperties, data: async () => {
-        const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${initProperties.emojiVersion}/${initProperties.set}.json`));
+    const emojiPicker = new EmojiMart.Picker({ ...initProperties,
+        data: async () => {
+            const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${initProperties.emojiVersion}/${initProperties.set}.json`));
 
-        return await response.json();
-    }});
+            return await response.json();
+        },
+        i18n: async () => {
+            let locale = browser.i18n.getUILanguage();
+            console.log("Getting i18n for", locale);
+            let response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
+
+            if (!response.ok) {
+                console.warn("Getting", locale, "failed. Trying base locale.", response);
+                locale = getBaseLanguageTag();
+                console.log("Getting i18n for", locale, "…");
+                response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
+            }
+            if (!response.ok) {
+                console.warn("Getting", locale, "fallback failed. Trying base locale.", response);
+                locale = "en";
+                console.log("Getting i18n for", locale, "…");
+                response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/i18n/${locale}.json`));
+            }
+            if (!response.ok) {
+                console.error("Getting English fallback failed.");
+            }
+
+            const i18nResponse = await response.json();
+            i18nResponse.pick = browser.i18n.getMessage("extensionNameShort") // show the extension name by default
+            return i18nResponse;
+        },
+    });
 
     // NOTE: Typing is not updated yet, so cannot be used here: https://github.com/missive/emoji-mart/issues/576
     // @ts-ignore
