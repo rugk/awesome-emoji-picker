@@ -64,39 +64,3 @@ body {
 body, .message-container, .message-box {
   box-sizing: border-box;
 }
-
-/* Emoji Mart BiDi support */
-/* NOTE: This currently does not work due to the shadow DOM scoping the CSS. */
-em-emoji-picker .preview-emoji {
-  __MSG_@@bidi_start_edge__: 12px;
-  __MSG_@@bidi_end_edge__: initial;
-}
-
-em-emoji-picker .preview-data {
-  __MSG_@@bidi_start_edge__: 68px;
-  __MSG_@@bidi_end_edge__: 12px;
-}
-
-em-emoji-picker .title-label {
-  margin-__MSG_@@bidi_end_edge__: 56px;
-}
-
-em-emoji-picker .preview-skins {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 30px;
-}
-
-em-emoji-picker .preview-skins.custom {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 10px;
-}
-
-em-emoji-picker .search-icon {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 11px;
-}
-
-em-emoji-picker .search input {
-  padding-__MSG_@@bidi_start_edge__: 10px;
-  padding-__MSG_@@bidi_end_edge__: 25px;
-}
