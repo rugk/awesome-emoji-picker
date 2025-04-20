@@ -87,6 +87,33 @@ function getEmojiSheet(set) {
 }
 
 /**
+ * Calculate whether the emoji picker title should be the long one (true) or not (false).
+ *
+ * It determinates this based on the emoji size and emojis shown per line.
+ * It is manually crafted to make sure no line break occurs in the title. So when would occur,
+ *
+ * @param {Object} settings
+ * @returns bool
+ */
+function shouldUseLongEmojiPickerTitle(settings) {
+    switch (settings.emojiSize) {
+        case 16:
+            return settings.perLine >= 11;
+        case 24:
+            return settings.perLine >= 9;
+        case 32:
+            return settings.perLine >= 8;
+        case 40:
+            return settings.perLine >= 7;
+        case 48:
+            return settings.perLine >= 6;
+        default:
+            console.error(new RangeError(`EmojiSize ${settings.emojiSize} is out of range.`));
+            return true;
+    }
+}
+
+/**
  * Creates the emoji picker.
  *
  * @public
@@ -117,7 +144,12 @@ export function init(settings) {
                 console.error("Getting response fallback failed.");
             }
 
-            i18nData.pick = browser.i18n.getMessage("extensionName") // show the extension name by default
+            // show the extension name by default
+            if (shouldUseLongEmojiPickerTitle(settings)) {
+                i18nData.pick = browser.i18n.getMessage("extensionName");
+            } else {
+                i18nData.pick = browser.i18n.getMessage("extensionNameShort");
+            }
             return i18nData;
         },
     });
