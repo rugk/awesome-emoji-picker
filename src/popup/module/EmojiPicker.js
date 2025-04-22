@@ -26,7 +26,8 @@ export const hardcodedSettings = Object.freeze({
     getSpritesheetURL: getEmojiSheet,
     locale: getBaseLanguageTag(),
     dynamicWidth: false, // will not work with WebExtension popups, the content defines the width
-    emojiVersion: 15
+    emojiVersion: 15,
+    previewEmoji: "star-struck"
 });
 
 /**
