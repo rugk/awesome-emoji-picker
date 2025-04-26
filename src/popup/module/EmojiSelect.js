@@ -5,7 +5,7 @@ import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 
 import * as ConfirmationHint from "./ConfirmationHint.js";
 
-let optionPickerResult;
+let pickerSettings;
 
 /**
  * Return the HtmlElement that contains the emoji.
@@ -70,15 +70,15 @@ export async function triggerOnSelect(emoji, event) {
         closePopup,
         showConfirmationMessage,
         resultType
-    } = optionPickerResult;
+    } = pickerSettings;
 
     const {
         isInserted,
         isCopied
     } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
-        insertIntoPage: optionPickerResult.automaticInsert,
-        copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
-        copyToClipboard: optionPickerResult.emojiCopy
+        insertIntoPage: pickerSettings.automaticInsert,
+        copyOnlyOnFallback: pickerSettings.emojiCopyOnlyFallback,
+        copyToClipboard: pickerSettings.emojiCopy
     });
 
     const messageToBeShown = getUserMessageForResult(isInserted, isCopied);
@@ -106,7 +106,7 @@ export async function triggerOnSelect(emoji, event) {
 export async function init() {
     // request it/preload it here, so we need no async request to access it
     // later
-    optionPickerResult = await AddonSettings.get("pickerResult");
+    pickerSettings = await AddonSettings.get("pickerResult");
 }
 
 // automatically init module.
