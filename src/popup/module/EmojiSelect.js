@@ -86,6 +86,11 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
  * @returns {Promise}
  */
 export async function triggerOnSelect(emoji, event) {
+    if (event instanceof MouseEvent) {
+        // @ts-ignore
+        saveClickPosition(emoji, event);
+    }
+
     const {
         closePopup,
         showConfirmationMessage,

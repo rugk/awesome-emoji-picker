@@ -20,7 +20,6 @@ export const hardcodedSettings = Object.freeze({
     // i18n: getEmojiMartLocalised(),
     autoFocus: true,
     onEmojiSelect: EmojiSelect.triggerOnSelect,
-    // onClickOutside: EmojiSelect.saveClickPosition, // TOOD: ??
     // style: { border: "none" },
     theme: "auto",
     getSpritesheetURL: getEmojiSheet,
