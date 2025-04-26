@@ -28,7 +28,7 @@ export function getEmojiHtml(emoji) {
  * @private
  * @param {boolean} isEmojiInserted
  * @param {boolean} isEmojiCopied
- * @returns {string}
+ * @returns {string|null}
  */
 function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
     let messageToBeShown;
@@ -40,7 +40,7 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
         messageToBeShown = "EmojiCopied";
     } else {
         // some other error happened
-        messageToBeShown = "";
+        messageToBeShown = null;
     }
 
     return messageToBeShown;
