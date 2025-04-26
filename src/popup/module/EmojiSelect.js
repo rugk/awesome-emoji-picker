@@ -15,11 +15,11 @@ let optionPickerResult;
  *
  * @public
  * @param {Object|string} emoji
- * @returns {HTMLElement|null}
+ * @returns {HTMLElement|null|undefined}
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;
-    return document.querySelector(`em-emoji-picker .scroll [aria-label^="${emojiQuestion}"]`);
+    return document.querySelector("em-emoji-picker")?.shadowRoot?.querySelector(`.scroll [aria-label^="${emojiQuestion}"]`);
 }
 
 /**
@@ -63,8 +63,8 @@ export async function triggerOnSelect(emoji, event) {
         };
     }
 
-    // get HTML element that was clicked
-    let clickedEmoji = event.target || getEmojiHtml(emoji);
+    // get emoji that was clicked, note the target may often be the search box if the keyboard is used for emoji selection
+    let clickedEmoji = getEmojiHtml(emoji) || event.target;
 
     const {
         closePopup,
