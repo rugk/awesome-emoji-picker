@@ -5,38 +5,7 @@ import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 
 import * as ConfirmationHint from "./ConfirmationHint.js";
 
-/**
- * Saves the last click that selected an emoji.
- *
- * @private
- * @property {int} posX
- * @property {int} posY
- * @property {Object} forEmoji
- * @type {Object}
- */
-const lastClick = {};
-
 let optionPickerResult;
-
-/**
- * Save the position of the click, if needed.
- *
- * @public
- * @param {Object} emoji
- * @param {MouseEvent} event
- * @returns {void}
- */
-export function saveClickPosition(emoji, event) {
-    // in case of an invalid event, ignore it
-    // see https://github.com/missive/emoji-mart/issues/342
-    if (event.pageX === 0 && event.pageY === 0) {
-        return;
-    }
-
-    lastClick.posX = event.pageX;
-    lastClick.posY = event.pageY;
-    lastClick.forEmoji = emoji;
-}
 
 /**
  * Return the HtmlElement that contains the emoji.
@@ -46,7 +15,7 @@ export function saveClickPosition(emoji, event) {
  *
  * @public
  * @param {Object|string} emoji
- * @returns {HTMLElement}
+ * @returns {HTMLElement|null}
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;
@@ -86,28 +55,22 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
  * @returns {Promise}
  */
 export async function triggerOnSelect(emoji, event) {
+    let confirmationPosition = null;
     if (event instanceof MouseEvent) {
-        // @ts-ignore
-        saveClickPosition(emoji, event);
+        confirmationPosition = {
+            left: event.pageX,
+            top: event.pageY
+        };
     }
+
+    // get HTML element that was clicked
+    let clickedEmoji = event.target || getEmojiHtml(emoji);
 
     const {
         closePopup,
         showConfirmationMessage,
         resultType
     } = optionPickerResult;
-
-    // get HTML element that was clicked
-    let clickedEmoji = event.target || getEmojiHtml(emoji);
-
-    // if we clicked on the exact same emoji, use the last click position
-    // (object reference comparison deliberately!)
-    if (lastClick.forEmoji === emoji) {
-        clickedEmoji = {
-            left: lastClick.posX,
-            top: lastClick.posY
-        };
-    }
 
     const {
         isInserted,
@@ -123,7 +86,7 @@ export async function triggerOnSelect(emoji, event) {
     if (messageToBeShown) {
         // if no error happened, show confirmation message
         if (showConfirmationMessage) {
-            await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+            await ConfirmationHint.show(confirmationPosition || clickedEmoji, messageToBeShown);
         }
 
         if (closePopup) {
