@@ -10,6 +10,11 @@ const CLIPBOARD_WRITE_PERMISSION = {
 let emojiMartIsLoaded = false;
 
 /**
+ * @type {import("../../node_modules/emoji-mart/dist/module.js")}
+ */
+let EmojiMart;
+
+/**
  * Lazy-load the emoji-mart library.
  *
  * This consumes some memory (RAM), up-to 10MB, as remount and other things are loaded.
@@ -23,12 +28,12 @@ function loadEmojiMart() {
         return;
     }
 
-    const emojiMartLoader = document.createElement("script");
-    emojiMartLoader.setAttribute("async", true);
-    emojiMartLoader.setAttribute("src", "/common/lib/emoji-mart-embed/dist/emoji-mart.js");
-    document.querySelector("head").append(emojiMartLoader);
-
-    emojiMartIsLoaded = true;
+    import("../../node_modules/emoji-mart/dist/module.js").then((loadedEmojiMart) => {
+        // set emoji-mart as global variable
+        EmojiMart = loadedEmojiMart;
+        console.info("emoji-mart loaded:", EmojiMart);
+        emojiMartIsLoaded = true;
+    });
 }
 
 /**
