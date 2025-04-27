@@ -10,7 +10,11 @@ const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 // Chrome
 const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
 
-const EMOJI = "emoji";
+/**
+ * hardcoded in manifest.json
+ * @type {string}
+ */
+const TRIGGER_KEYWORD = "emoji";
 const menus = browser.menus || browser.contextMenus; // fallback for Thunderbird
 
 /**
@@ -21,7 +25,7 @@ const menus = browser.menus || browser.contextMenus; // fallback for Thunderbird
  * @returns {void}
  */
 function handle(info, tab) {
-    if (info.menuItemId === EMOJI) {
+    if (info.menuItemId === TRIGGER_KEYWORD) {
         // Thunderbird
         // Not yet enabled by Chrome: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/openPopup#browser_compatibility
         (IS_THUNDERBIRD ? browser.composeAction : browser.browserAction).openPopup();
@@ -47,13 +51,13 @@ async function applySettings(contextMenu) {
 
         if (IS_CHROME) {
             menus.create({
-                id: EMOJI,
+                id: TRIGGER_KEYWORD,
                 title: menuText,
                 contexts: ["editable"]
             });
         } else {
             menus.create({
-                id: EMOJI,
+                id: TRIGGER_KEYWORD,
                 title: menuText,
                 command: commandToFind,
                 contexts: ["editable"]
