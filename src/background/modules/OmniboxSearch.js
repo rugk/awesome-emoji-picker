@@ -1,7 +1,6 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
-
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
 const CLIPBOARD_WRITE_PERMISSION = {
