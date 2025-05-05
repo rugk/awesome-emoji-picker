@@ -153,7 +153,7 @@ export async function getEmojiMartInitialisationData(customSettings = null) {
             }
 
             // show the extension name by default
-            if (shouldUseLongEmojiPickerTitle(customSettings)) {
+            if (shouldUseLongEmojiPickerTitle(initProperties)) {
                 i18nData.pick = browser.i18n.getMessage("extensionName");
             } else {
                 i18nData.pick = browser.i18n.getMessage("extensionNameShort");
