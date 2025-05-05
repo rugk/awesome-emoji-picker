@@ -8,10 +8,8 @@
  * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
  */
 async function loadEmojiMart() {
-    const loadedEmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
-
-    // set emoji-mart as global variable
-    globalThis.EmojiMart = loadedEmojiMart;
+    //cache emoji-mart into global variable
+    globalThis.EmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
     console.info("emoji-mart loaded:", globalThis.EmojiMart);
 
     return globalThis.EmojiMart;
