@@ -3,37 +3,31 @@ import * as BrowserCommunication from "/common/modules/BrowserCommunication/Brow
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
-const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: ["clipboardWrite"]
-};
-
-let emojiMartIsLoaded = false;
-
-/**
- * @type {import("../../node_modules/emoji-mart/dist/module.js")}
- */
-let EmojiMart;
-
 /**
  * Lazy-load the emoji-mart library.
  *
- * This consumes some memory (RAM), up-to 10MB, as remount and other things are loaded.
+ * This consumes some memory (RAM).
  *
  * @private
- * @returns {void}
+ * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
  */
-function loadEmojiMart() {
-    // prevent that it is loaded twice
-    if (emojiMartIsLoaded) {
-        return;
-    }
+async function loadEmojiMart() {
+    const loadedEmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
 
-    import("../../node_modules/emoji-mart/dist/module.js").then((loadedEmojiMart) => {
-        // set emoji-mart as global variable
-        EmojiMart = loadedEmojiMart;
-        console.info("emoji-mart loaded:", EmojiMart);
-        emojiMartIsLoaded = true;
-    });
+    // set emoji-mart as global variable
+    globalThis.EmojiMart = loadedEmojiMart;
+    console.info("emoji-mart loaded:", globalThis.EmojiMart);
+
+    return globalThis.EmojiMart;
+}
+
+/**
+ * Get emoji-mart, if needed load it.
+ *
+ * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
+ */
+function getEmojiMart() {
+    return globalThis.EmojiMart || loadEmojiMart();
 }
 
 /**
@@ -72,11 +66,11 @@ function openTabUrl(url, disposition) {
  * @public
  * @param {string} text the string the user entered
  * @param {function} suggest function to call to add suggestions
- * @returns {void}
+ * @returns {Promise<void>}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
-export function triggerOmnixboxSuggestion(text, suggest) {
-    const searchResult = globalThis.emojiMart.emojiIndex.search(text);
+export async function triggerOmnixboxSuggestion(text, suggest) {
+    const searchResult = (await getEmojiMart()).emojiIndex.search(text);
 
     // if none are found, return…
     if (!searchResult) {
@@ -103,7 +97,7 @@ export function triggerOmnixboxSuggestion(text, suggest) {
  * @public
  * @param {string} text the string the user entered or selected
  * @param {string} disposition how the result should be possible
- * @returns {Promise}
+ * @returns {Promise<void>}
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputEntered}
  */
 export async function triggerOmnixboxDisabledSearch(text, disposition) {
@@ -147,14 +141,14 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  */
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
-    const searchResult = globalThis.emojiMart.emojiIndex.search(text);
+    const searchResult = (await getEmojiMart()).emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     try {
-        const foundEmoji = globalThis.emojiMart.getEmojiDataFromNative(text);
+        const foundEmoji = (await getEmojiMart()).getEmojiDataFromNative(text);
 
         if (foundEmoji) {
             searchResult.push(foundEmoji);
@@ -206,6 +200,10 @@ export async function triggerOmnixboxSearch(text, disposition) {
  * @throws TypeError
  */
 async function toggleEnabledStatus(toEnable) {
+    const CLIPBOARD_WRITE_PERMISSION = {
+        permissions: ["clipboardWrite"]
+    };
+
     // Thunderbird
     if (!browser.omnibox) {
         return;
@@ -228,8 +226,7 @@ async function toggleEnabledStatus(toEnable) {
 
     // enable it
     if (toEnable) {
-        // lazy-load emoji-mart
-        loadEmojiMart();
+        // No need to lazy-load emoji-mart yet, will be lazy-loadded as required.
 
         browser.omnibox.onInputChanged.addListener(triggerOmnixboxSuggestion);
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxSearch);
@@ -272,3 +269,6 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.OMNIBAR_TOGGLE, asyn
 
     return toggleEnabledStatus(request.toEnable);
 });
+
+init();
+console.log("background: OmniboxSearch loaded");
