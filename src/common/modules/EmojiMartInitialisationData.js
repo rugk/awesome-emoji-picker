@@ -118,14 +118,12 @@ function shouldUseLongEmojiPickerTitle(settings) {
 /**
  * Return emoji-mart data for it's initialisation.
  *
- * This can be passe to `init` or `new EmojiMart.Picker()`.
+ * This can be passed to `init` or `new EmojiMart.Picker()`.
  *
- * @param {Object} [customSettings=null] The optionally adjusted settings. Addon settings et al. are.already automatically loaded.
+ * @param {Object} [customSettings=null] The optionally adjusted settings. Addon settings et al. are already automatically loaded.
  * @returns {Promise<Object>}
  */
 export async function getEmojiMartInitialisationData(customSettings = null) {
-    customSettings = await getAllSettings();
-
     const initProperties = {
         ...hardcodedSettings,
         ...await getAllSettings(),
