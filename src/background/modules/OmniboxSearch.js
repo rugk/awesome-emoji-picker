@@ -146,7 +146,8 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  */
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
-    const searchResult = (await EmojiMartLazyLoaded.getEmojiMart()).emojiIndex.search(text);
+    const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
+    console.debug("searchResult on search trigger:", searchResult);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
 
