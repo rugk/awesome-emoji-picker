@@ -2,6 +2,7 @@ import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
 import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
+import * as EmojiMartDataStore from "/common/modules/EmojiMartDataStore.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
 /**
@@ -35,6 +36,26 @@ function openTabUrl(url, disposition) {
 }
 
 /**
+ * Return the last used (“current”) skin from emoji-mart.
+ *
+ * It is ensured that in any case of failure the default skin (0) is returned.
+ *
+ * @returns {Promise<number>} the current skin as ID or the default skin
+ */
+async function getCurrentSkinIndex() {
+    const lastSkin = await EmojiMartDataStore.get("skin");
+
+    if (!lastSkin) {
+        // because undefined|null are valid entries
+        return 0;
+    } else if (isNaN(lastSkin)) {
+        console.error(new TypeError(`Invalid skin value: ${lastSkin}, should be a number.`), "using default skin 0 instead of", lastSkin);
+        return 0;
+    }
+    return Math.max((lastSkin - 1), 0) || 0;
+}
+
+/**
  * Trigger the evaluation for the search for emojis.
  *
  * @public
@@ -44,21 +65,31 @@ function openTabUrl(url, disposition) {
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
 export async function triggerOmnixboxSuggestion(text, suggest) {
-    const searchResult = (await EmojiMartLazyLoaded.getEmojiMart()).emojiIndex.search(text);
+    const reloadCachedSettingsPromise = EmojiMartDataStore.reloadCachedSettings();
+
+    const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
+    console.debug("searchResult:", searchResult);
 
     // if none are found, return…
     if (!searchResult) {
         return;
     }
 
+    // Ensures the skin settings are up-to-date by waiting for data refresh
+    await reloadCachedSettingsPromise;
+    const currentSkin = await getCurrentSkinIndex();
+
     const suggestions = searchResult.map((emoji) => {
+        // This falls back to the default skin if the current skin is not available
+        const chosenSkin = emoji.skins[currentSkin] || emoji.skins[0];
         return {
             description: browser.i18n.getMessage("searchResultDescription", [
-                emoji.native,
+                chosenSkin.native,
                 emoji.name,
-                emoji.colons
+                // NOte: This uses the base skin, because the skin tone modifier as a shortcode is not useful UX-wise to display
+                emoji.skins[0].shortcodes
             ]),
-            content: emoji.native
+            content: chosenSkin.native
         };
     });
 

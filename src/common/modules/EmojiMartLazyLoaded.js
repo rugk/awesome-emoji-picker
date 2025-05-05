@@ -1,3 +1,4 @@
+import * as EmojiMartInitialisationData from "/common/modules/EmojiMartInitialisationData.js";
 
 /**
  * Lazy-load the emoji-mart library.
@@ -12,6 +13,10 @@ async function loadEmojiMart() {
     globalThis.EmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
     console.info("emoji-mart loaded:", globalThis.EmojiMart);
 
+    globalThis.EmojiMart.init(
+        await EmojiMartInitialisationData.getEmojiMartInitialisationData()
+    );
+
     return globalThis.EmojiMart;
 }
 
@@ -20,6 +25,6 @@ async function loadEmojiMart() {
  *
  * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
  */
-export function getEmojiMart() {
-    return globalThis.EmojiMart || loadEmojiMart();
+export async function getEmojiMart() {
+    return globalThis.EmojiMart || await loadEmojiMart();
 }

@@ -2,7 +2,7 @@
 
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
-
+import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
 
@@ -240,7 +240,7 @@ function sendSettings(autocorrect) {
 export async function init() {
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    for (const emoji of Object.values(emojiMart.emojiIndex.emojis)) {
+    for (const emoji of Object.values((await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.emojis)) {
         if (emoji.native) {
             emojiShortcodes[emoji.colons] = emoji.native;
         } else {
