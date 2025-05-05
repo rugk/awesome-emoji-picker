@@ -6,7 +6,7 @@ import * as EmojiMartInitialisationData from "/common/modules/EmojiMartInitialis
  * This consumes some memory (RAM).
  *
  * @private
- * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
+ * @returns {Promise<import("../../node_modules/emoji-mart/dist/index.d.js")>}
  */
 async function loadEmojiMart() {
     //cache emoji-mart into global variable
@@ -23,7 +23,7 @@ async function loadEmojiMart() {
 /**
  * Get emoji-mart, if needed load it.
  *
- * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
+ * @returns {Promise<import("../../node_modules/emoji-mart/dist/index.d.js")>}
  */
 export async function getEmojiMart() {
     return globalThis.EmojiMart || await loadEmojiMart();

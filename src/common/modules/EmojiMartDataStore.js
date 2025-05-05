@@ -61,7 +61,7 @@ export function set(key, value) {
  *
  * @returns {Promise<void>}
  * @seealso https://github.com/missive/emoji-mart/blob/main/packages/emoji-mart/src/helpers/store.ts
- * @param {import("../../node_modules/emoji-mart/dist/module.js")} [emojiMartInstance]
+ * @param {import("../../node_modules/emoji-mart/dist/index.d.js")} [emojiMartInstance]
  */
 export async function initEmojiMartStorage(emojiMartInstance) {
     if (!emojiMartInstance) {
