@@ -92,3 +92,5 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU, (reque
 
     return applySettings(request.optionValue);
 });
+
+console.warn("background: ContextMenu loaded");

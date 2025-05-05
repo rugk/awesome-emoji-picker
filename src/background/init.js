@@ -1,0 +1,10 @@
+import * as IconHandler from "/common/modules/IconHandler.js";
+import * as AutocorrectHandler from "/common/modules/AutocorrectHandler.js";
+
+browser.runtime.onInstalled.addListener(() => {
+    IconHandler.init();
+    AutocorrectHandler.init();
+
+    console.warn("background: init loaded");
+});
+

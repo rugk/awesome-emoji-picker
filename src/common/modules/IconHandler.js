@@ -67,8 +67,9 @@ export function changeIconIfColored(popupIconColored) {
  * Init icon module.
  *
  * @public
- * @returns {void}
+ * @returns {Promise<void>}
  */
-export function init() {
-    return AddonSettings.get(POPUP_ICON_OPTION).then((popupIconColored) => changeIconIfColored(popupIconColored));
+export async function init() {
+    const popupIconColored = await AddonSettings.get(POPUP_ICON_OPTION);
+    return await changeIconIfColored(popupIconColored);
 }

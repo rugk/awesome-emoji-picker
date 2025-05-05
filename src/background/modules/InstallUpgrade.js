@@ -62,3 +62,4 @@ async function handleInstalled(details) {
 }
 
 browser.runtime.onInstalled.addListener(handleInstalled);
+console.warn("background: InstallUpgrade loaded");

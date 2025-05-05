@@ -5,8 +5,6 @@ import * as BrowserCommunication from "/common/modules/BrowserCommunication/Brow
 
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
-// Not actually a module, but sets the emojiMart global
-import "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 
 const settings = {
     enabled: null,
@@ -272,7 +270,7 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
     return sendSettings(request.optionValue);
 });
 
-browser.runtime.onMessage.addListener((message, sender) => {
+browser.runtime.onMessage.addListener((message, _sender) => {
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
         const response = {
             type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
@@ -288,3 +286,5 @@ browser.runtime.onMessage.addListener((message, sender) => {
         return Promise.resolve(response);
     }
 });
+
+console.warn("background: AutocorrectHandler loaded");
