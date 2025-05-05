@@ -1,34 +1,8 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
+import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
-
-/**
- * Lazy-load the emoji-mart library.
- *
- * This consumes some memory (RAM).
- *
- * @private
- * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
- */
-async function loadEmojiMart() {
-    const loadedEmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
-
-    // set emoji-mart as global variable
-    globalThis.EmojiMart = loadedEmojiMart;
-    console.info("emoji-mart loaded:", globalThis.EmojiMart);
-
-    return globalThis.EmojiMart;
-}
-
-/**
- * Get emoji-mart, if needed load it.
- *
- * @returns {Promise<import("../../node_modules/emoji-mart/dist/module.js")>}
- */
-function getEmojiMart() {
-    return globalThis.EmojiMart || loadEmojiMart();
-}
 
 /**
  * Navigates to the URL in this tab or a new tab.
@@ -70,7 +44,7 @@ function openTabUrl(url, disposition) {
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
 export async function triggerOmnixboxSuggestion(text, suggest) {
-    const searchResult = (await getEmojiMart()).emojiIndex.search(text);
+    const searchResult = (await EmojiMartLazyLoaded.getEmojiMart()).emojiIndex.search(text);
 
     // if none are found, return…
     if (!searchResult) {
@@ -141,14 +115,14 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  */
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
-    const searchResult = (await getEmojiMart()).emojiIndex.search(text);
+    const searchResult = (await EmojiMartLazyLoaded.getEmojiMart()).emojiIndex.search(text);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     try {
-        const foundEmoji = (await getEmojiMart()).getEmojiDataFromNative(text);
+        const foundEmoji = (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text);
 
         if (foundEmoji) {
             searchResult.push(foundEmoji);
