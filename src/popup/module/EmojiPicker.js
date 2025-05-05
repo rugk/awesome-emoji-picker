@@ -17,7 +17,7 @@ import * as EmojiMartDataStore from "/common/modules/EmojiMartDataStore.js";
  * @see https://github.com/missive/emoji-mart#storage
  */
 export function initEmojiMartStorage() {
-    EmojiMartDataStore.initEmojiMartStorage(EmojiMart);
+    EmojiMartDataStore.initEmojiMartStorage(/** @type {import("../../node_modules/emoji-mart/dist/index.d.js")} *//** @type {never} */(EmojiMart));
 }
 
 /**
@@ -27,12 +27,13 @@ export function initEmojiMartStorage() {
  * @returns {Promise<void>}
  */
 export async function init() {
-    const emojiPicker = new EmojiMart.Picker(await EmojiMartInitialisationData.getEmojiMartInitialisationData({
+    /** @type {import("../../node_modules/emoji-mart/dist/index.d.js")} */
+    const EmojiMartCasted = /** @type {never} */(EmojiMart);
+    const emojiPicker = new EmojiMartCasted.Picker(await EmojiMartInitialisationData.getEmojiMartInitialisationData({
         onEmojiSelect: EmojiSelect.triggerOnSelect,
     }));
 
     // NOTE: Typing is not updated yet, so cannot be used here: https://github.com/missive/emoji-mart/issues/576
-    // @ts-ignore
-    document.body.append(emojiPicker);
+    document.body.append(/** @type {never} */(emojiPicker));
     console.info("Created EmojiPicker component:", emojiPicker);
 }
