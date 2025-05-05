@@ -6,19 +6,7 @@
 import { tips } from "/common/modules/data/Tips.js";
 import * as RandomTips from "/common/modules/RandomTips/RandomTips.js";
 import * as EnvironmentDetector from "/common/modules/EnvironmentDetector/EnvironmentDetector.js";
-import * as EmojiSettings from "./module/EmojiSettings.js";
 import * as EmojiPicker from "./module/EmojiPicker.js";
-
-/**
- * Sets the emoji-mart data storage.
- *
- * @private
- * @returns {void}
- * @see https://github.com/missive/emoji-mart#storage
- */
-function initEmojiMartStorage() {
-    EmojiSettings.initEmojiMartStorage();
-}
 
 /**
  * Creates the emoji picker.
@@ -27,10 +15,7 @@ function initEmojiMartStorage() {
  * @returns {Promise}
  */
 async function createPicker() {
-    EmojiPicker.init(
-        await EmojiSettings.getAllSettings()
-    );
-    return Promise.resolve();
+    return EmojiPicker.init();
 }
 
 /**
@@ -91,7 +76,7 @@ function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupT
     emojiMartComponent.props.dynamicWidth = true;
 }
 
-initEmojiMartStorage();
+EmojiPicker.initEmojiMartStorage();
 createPicker().then(async () => {
     // to be sure, trigger focus manually afterwards
     // auto-focus does not always work properly, see

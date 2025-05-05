@@ -1,8 +1,6 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
-
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
-
 import * as ConfirmationHint from "./ConfirmationHint.js";
 
 let pickerSettings;
