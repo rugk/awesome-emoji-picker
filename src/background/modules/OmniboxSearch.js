@@ -68,7 +68,7 @@ export async function triggerOmnixboxSuggestion(text, suggest) {
     const reloadCachedSettingsPromise = EmojiMartDataStore.reloadCachedSettings();
 
     const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
-    console.debug("searchResult:", searchResult);
+    console.debug(`triggerOmnixboxSuggestion (searching for "${text}"), result:`, searchResult);
 
     // if none are found, return…
     if (!searchResult) {
@@ -147,26 +147,25 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
     const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
-    console.debug("searchResult on search trigger:", searchResult);
+    console.debug(`triggerOmnixboxSearch (searching for "${text}"), result:`, searchResult);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
-    try {
-        const foundEmoji = (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text);
-
-        if (foundEmoji) {
-            searchResult.push(foundEmoji);
-        }
-    } catch {
-        // ignore errors, as we usually expect text strings there and these are
-        // totally fine, too; search may find something here
-    }
+    const foundEmojiWithSkin = await (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text)
+            // ignore errors, as we also allow text strings there and these are
+            // totally fine, too; search may find something here
+            .catch(() => {debugger; return null;});
 
     // emoji itself copied or found
-    if (searchResult.length === 1) {
-        const emojiText = searchResult[0][emojiSearch.resultType];
+    const currentSkin = await getCurrentSkinIndex();
+
+    if (foundEmojiWithSkin || searchResult.length === 1) {
+        const foundEmoji = searchResult[0];
+        // This falls back to the default skin if the current skin is not available
+        const chosenSkin = foundEmoji.skins[currentSkin] || foundEmoji.skins[0];
+        const emojiText = (foundEmojiWithSkin || chosenSkin)[emojiSearch.resultType];
 
         if (emojiSearch.action === "copy") {
             // if result is only one emoji, also instantly copy it
@@ -181,7 +180,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
             // navigate to URL in current or new tab
             openTabUrl(resultUrl, disposition);
         } else {
-            throw new Error(`invalid emojiSearch.resultType setting: ${emojiSearch.resultType}`);
+            throw new Error(`invalid emojiSearch.action setting: ${emojiSearch.action}`);
         }
     } else {
         // fallback when we have either too many or too few emoji results
