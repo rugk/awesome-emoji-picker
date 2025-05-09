@@ -20,7 +20,6 @@ const defaultSettings = {
         set: "native",
         native: true, // TODO: replace with set
         perLine: 9,
-        // emojiTooltip: false, # TODO: remove
         emojiSize: 24
     },
     pickerResult: {

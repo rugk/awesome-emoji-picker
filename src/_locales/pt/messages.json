@@ -284,16 +284,6 @@
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting.",
     "hash": "8ac00cf34b9d5e20ebfcc309df3291ae"
   },
-  "optionEmojiPickerShowTooltip": {
-    "message": "Exibir balão de texto",
-    "description": "This is an option shown in the add-on settings.",
-    "hash": "46833952a772ff61c2f4424a8e352967"
-  },
-  "optionEmojiPickerShowTooltipDescr": {
-    "message": "Exibe um balão de texto com o nome do emoji ao sobrepor o mouse nele.",
-    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting.",
-    "hash": "a72f049744032789d76be901612b0191"
-  },
   "optionAutomaticInsert": {
     "message": "Inserir o emoji automaticamente na página da web.",
     "description": "This is an option shown in the add-on settings.",

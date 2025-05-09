@@ -280,16 +280,6 @@
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting.",
     "hash": "8ac00cf34b9d5e20ebfcc309df3291ae"
   },
-  "optionEmojiPickerShowTooltip": {
-    "message": "Mostrar sugerencias",
-    "description": "This is an option shown in the add-on settings.",
-    "hash": "46833952a772ff61c2f4424a8e352967"
-  },
-  "optionEmojiPickerShowTooltipDescr": {
-    "message": "Muestra una sugerencia con el nombre del emoji al pasarle por encima.",
-    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting.",
-    "hash": "a72f049744032789d76be901612b0191"
-  },
   "optionAutomaticInsert": {
     "message": "Insertar emoji automáticamente en la página activa.",
     "description": "This is an option shown in the add-on settings.",

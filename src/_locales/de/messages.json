@@ -236,14 +236,6 @@
     "message": "Wie viele Emojis pro Zeile angezeigt werden sollen. Dies beeinflusst die Breite des Popups.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting."
   },
-  "optionEmojiPickerShowTooltip": {
-    "message": "Zeige Tooltips",
-    "description": "This is an option shown in the add-on settings."
-  },
-  "optionEmojiPickerShowTooltipDescr": {
-    "message": "Zeigt einen Tooltip wenn der Mauszeiger über dem Namen des Emojis gehalten wird.",
-    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
-  },
 
   "optionAutomaticInsert": {
     "message": "Füge Emoji automatisch in Webseite ein.",
