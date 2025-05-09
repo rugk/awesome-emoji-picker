@@ -30,9 +30,17 @@
   },
 
   "background": {
-    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
-    "type": "module"
+    "scripts": [
+      "background/modules/InstallUpgrade.js",
+      "background/modules/AutocorrectHandler.js",
+      "background/modules/ContextMenu.js",
+      "background/modules/OmniboxSearch.js",
+      "background/init.js"
+    ],
+    "type": "module",
+    "persistent": true
   },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

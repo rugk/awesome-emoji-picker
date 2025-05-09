@@ -30,9 +30,17 @@
   },
 
   "background": {
-    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
-    "type": "module"
+    "scripts": [
+      "background/modules/InstallUpgrade.js",
+      "background/modules/AutocorrectHandler.js",
+      "background/modules/ContextMenu.js",
+      "background/modules/OmniboxSearch.js",
+      "background/init.js"
+    ],
+    "type": "module",
+    "persistent": true
   },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -61,13 +69,13 @@
   "permissions": [
     "storage",
     "activeTab",
-    "tabs",
     "contextMenus"
   ],
 
   "optional_permissions": [
     "clipboardWrite",
-    "search"
+    "search",
+    "tabs"
   ],
   // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
 

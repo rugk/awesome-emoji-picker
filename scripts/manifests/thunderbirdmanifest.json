@@ -28,9 +28,17 @@
   },
 
   "background": {
-    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
-    "type": "module"
+    "scripts": [
+      "background/modules/InstallUpgrade.js",
+      "background/modules/AutocorrectHandler.js",
+      "background/modules/ContextMenu.js",
+      "background/modules/OmniboxSearch.js",
+      "background/init.js"
+    ],
+    "type": "module",
+    "persistent": true
   },
+
   "commands": {
     "_execute_compose_action": {
       "suggested_key": {

@@ -26,8 +26,34 @@ zip -r -FS "../build/$EXTENSION_NAME.xpi" ./* -x "tests/*" -x "**/tests/*" \
     -x "**/.git" -x "**/.gitignore" -x "**/.gitmodules"  -x "**/.gitkeep" \
     -x "**/.eslintrc" \
     -x "**/package.json" -x "**/package-lock.json" -x "**/webpack.config.js" \
-    -x "node_modules/@emoji-mart/data" \
+    -x "node_modules/@emoji-mart/data/1/*" \
+    -x "node_modules/@emoji-mart/data/sets/1/*" \
+    -x "node_modules/@emoji-mart/data/2/*" \
+    -x "node_modules/@emoji-mart/data/sets/2/*" \
+    -x "node_modules/@emoji-mart/data/3/*" \
+    -x "node_modules/@emoji-mart/data/sets/3/*" \
+    -x "node_modules/@emoji-mart/data/4/*" \
+    -x "node_modules/@emoji-mart/data/sets/4/*" \
+    -x "node_modules/@emoji-mart/data/5/*" \
+    -x "node_modules/@emoji-mart/data/sets/5/*" \
+    -x "node_modules/@emoji-mart/data/11/*" \
+    -x "node_modules/@emoji-mart/data/sets/11/*" \
+    -x "node_modules/@emoji-mart/data/12/*" \
+    -x "node_modules/@emoji-mart/data/sets/12/*" \
+    -x "node_modules/@emoji-mart/data/12.1/*" \
+    -x "node_modules/@emoji-mart/data/sets/12.1/*" \
+    -x "node_modules/@emoji-mart/data/13/*" \
+    -x "node_modules/@emoji-mart/data/sets/13/*" \
+    -x "node_modules/@emoji-mart/data/13.1/*" \
+    -x "node_modules/@emoji-mart/data/sets/13.1/*" \
+    -x "node_modules/@emoji-mart/data/14/*" \
+    -x "node_modules/@emoji-mart/data/sets/14/*" \
+    -x "node_modules/@emoji-mart/data/15/all.json" \
+    -x "node_modules/emoji-mart/dist/browser*" \
+    -x "node_modules/emoji-mart/dist/index*" \
+    -x "node_modules/emoji-mart/dist/main*" \
     -x "**/.editorconfig" \
+    -x "**/*.d.ts" \
     -x "**/.github/*"
 
 # revert changes
