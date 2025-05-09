@@ -154,14 +154,19 @@ export async function triggerOmnixboxSearch(text, disposition) {
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     const foundEmojiWithSkin = await (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text)
-            // ignore errors, as we also allow text strings there and these are
-            // totally fine, too; search may find something here
-            .catch(() => {debugger; return null;});
+            // ignore any errors and treat them as no emoji found
+            .catch((error) => {
+                console.warn("getEmojiDataFromNative()", error);
+                return null;}
+            );
 
     // emoji itself copied or found
     const currentSkin = await getCurrentSkinIndex();
 
-    if (foundEmojiWithSkin || searchResult.length === 1) {
+    // Note that this check is added to ensure a native emoji has been searched for and not a text string
+    // see https://github.com/missive/emoji-mart/issues/994
+    const searchWasTriggeredSuccessfullyByNativeEmoji = foundEmojiWithSkin && foundEmojiWithSkin.native === text;
+    if (searchWasTriggeredSuccessfullyByNativeEmoji || searchResult.length === 1) {
         const foundEmoji = searchResult[0];
         // This falls back to the default skin if the current skin is not available
         const chosenSkin = foundEmoji.skins[currentSkin] || foundEmoji.skins[0];
