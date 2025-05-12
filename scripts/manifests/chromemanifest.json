@@ -32,7 +32,6 @@
   "background": {
     "scripts": [
       "background/modules/InstallUpgrade.js",
-      "background/modules/AutocorrectHandler.js",
       "background/modules/ContextMenu.js",
       "background/modules/OmniboxSearch.js",
       "background/init.js"
