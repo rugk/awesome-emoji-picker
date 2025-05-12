@@ -155,6 +155,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
 
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
+    /** @type {import("/common/modules/EmojiSearched.d.ts").SkinSearched} */
     const foundEmojiWithSkin = await (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text)
             // ignore any errors and treat them as no emoji found
             .catch((error) => {
