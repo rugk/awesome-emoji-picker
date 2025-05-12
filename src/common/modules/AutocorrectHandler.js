@@ -240,11 +240,12 @@ function sendSettings(autocorrect) {
 export async function init() {
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
-    const allEmojis = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search("");
-
-    for (const emoji of allEmojis) {
-        emojiShortcodes[emoji.skins[0].shortcodes] = emoji.skins[0].native;
+    for (const emoji of Object.values((await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.emojis)) {
+        if (emoji.native) {
+            emojiShortcodes[emoji.colons] = emoji.native;
+        } else {
+            emojiShortcodes[emoji[1].colons] = emoji[1].native;
+        }
     }
 
     Object.freeze(emojiShortcodes);
