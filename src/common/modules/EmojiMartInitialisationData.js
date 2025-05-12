@@ -121,7 +121,18 @@ function shouldUseLongEmojiPickerTitle(settings) {
  * This can be passed to `init` or `new EmojiMart.Picker()`.
  *
  * @param {Object} [customSettings=null] The optionally adjusted settings. Addon settings et al. are already automatically loaded.
- * @returns {Promise<Object>}
+ * @returns {Promise<{
+ *   data: () => Promise<import("../../node_modules/@emoji-mart/data/sets/15/native.json")>,
+ *   i18n: () => Promise<import("../../node_modules/@emoji-mart/data/i18n/en.json")>,
+ *   emojiButtonSize: number,
+ *   autoFocus: boolean,
+ *   theme: string,
+ *   getSpritesheetURL: (set: string) => string,
+ *   locale: string,
+ *   dynamicWidth: boolean,
+ *   emojiVersion: number,
+ *   previewEmoji: string
+ * }>}
  */
 export async function getEmojiMartInitialisationData(customSettings = null) {
     const initProperties = {

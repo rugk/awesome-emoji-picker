@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "es2022",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false,
