@@ -1,5 +1,6 @@
 "use strict";
 
+import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
@@ -238,17 +239,23 @@ function sendSettings(autocorrect) {
  * @returns {Promise<void>}
  */
 export async function init() {
+    const initData = await (await getEmojiMartInitialisationData()).data();
+
+    debugger;
+
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    for (const emoji of Object.values((await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.emojis)) {
-        if (emoji.native) {
-            emojiShortcodes[emoji.colons] = emoji.native;
-        } else {
-            emojiShortcodes[emoji[1].colons] = emoji[1].native;
-        }
-    }
+    // Flatten skins and map shortcodes to native emojis
+    Object.values(initData.emojis).flatMap((emoji) =>
+        emoji.skins.map((skin) => {
+            if (skin.colons && skin.native) {
+                emojiShortcodes[skin.colons] = skin.native;
+            }
+        })
+    );
 
     Object.freeze(emojiShortcodes);
+    console.debug("Emoji shortcodes:", emojiShortcodes);
 
     setSettings(autocorrect);
 
