@@ -122,7 +122,7 @@ function shouldUseLongEmojiPickerTitle(settings) {
  *
  * @param {Object} [customSettings=null] The optionally adjusted settings. Addon settings et al. are already automatically loaded.
  * @returns {Promise<{
- *   data: () => Promise<import("../../node_modules/@emoji-mart/data/sets/15/native.json")>,
+ *   data: () => Promise<import("../../node_modules/@emoji-mart/data/index.d.ts").EmojiMartData>,
  *   i18n: () => Promise<import("../../node_modules/@emoji-mart/data/i18n/en.json")>,
  *   emojiButtonSize: number,
  *   autoFocus: boolean,

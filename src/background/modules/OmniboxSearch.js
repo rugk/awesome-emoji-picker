@@ -67,6 +67,7 @@ async function getCurrentSkinIndex() {
 export async function triggerOmnixboxSuggestion(text, suggest) {
     const reloadCachedSettingsPromise = EmojiMartDataStore.reloadCachedSettings();
 
+    /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
     const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
     console.debug(`triggerOmnixboxSuggestion (searching for "${text}"), result:`, searchResult);
 
@@ -146,6 +147,7 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
  */
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
+    /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
     const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
     console.debug(`triggerOmnixboxSearch (searching for "${text}"), result:`, searchResult);
 
