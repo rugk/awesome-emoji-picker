@@ -41,7 +41,9 @@ const defaultSettings = {
     emojiSearch: {
         enabled: true,
         resultType: "native",
-        action: "copy"
+        action: "copy",
+        enableFillingResults: false,
+        maximumResults: 0
     },
     emojiMart: {}
 };

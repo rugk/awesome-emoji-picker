@@ -1,9 +1,10 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
-import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
 import * as EmojiMartDataStore from "/common/modules/EmojiMartDataStore.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
+import { getEmojiMart, getFrequentlyUsedEmojis, getCurrentSkinIndex, getCurrrentEmojiSkinFromEmoji } from "/common/modules/EmojiMartLazyLoaded.js";
+import { uniqBy } from "/common/modules/uniqBy.js";
 
 /**
  * Navigates to the URL in this tab or a new tab.
@@ -36,64 +37,83 @@ function openTabUrl(url, disposition) {
 }
 
 /**
- * Return the last used (“current”) skin from emoji-mart.
+ * Returns the frequently used emojis as suggestions.
  *
- * It is ensured that in any case of failure the default skin (0) is returned.
- *
- * @returns {Promise<number>} the current skin as ID or the default skin
+ * @param {number} [maximumNumberOfElements=10] The number of emojis to return (at most!).
+ * {@type Promise<import("webextension-polyfill").Omnibox.SuggestResult[]>}
  */
-async function getCurrentSkinIndex() {
-    const lastSkin = await EmojiMartDataStore.get("skin");
-
-    if (!lastSkin) {
-        // because undefined|null are valid entries
-        return 0;
-    } else if (isNaN(lastSkin)) {
-        console.error(new TypeError(`Invalid skin value: ${lastSkin}, should be a number.`), "using default skin 0 instead of", lastSkin);
-        return 0;
+async function getFrequentlyUsedAsSuggestions(maximumNumberOfElements = 10) {
+    const frequently = await getFrequentlyUsedEmojis(maximumNumberOfElements);
+    if (!frequently) {
+        return [];
     }
-    return Math.max((lastSkin - 1), 0) || 0;
+
+    return await Promise.all(frequently.map(async (emoji) => {
+        const chosenSkin = await getCurrrentEmojiSkinFromEmoji(emoji);
+        return {
+            description: browser.i18n.getMessage("searchResultDescriptionFrequently", [
+                chosenSkin.native,
+                emoji.name,
+                chosenSkin.shortcodes,
+                browser.i18n.getMessage("extensionName")
+            ]),
+            content: chosenSkin.native
+        };
+    }));
 }
 
 /**
  * Trigger the evaluation for the search for emojis.
  *
  * @public
- * @param {string} text the string the user entered
- * @param {function} suggest function to call to add suggestions
- * @returns {Promise<void>}
+ * @param {string} text The text entered by the user.
+ * @param {function(import("webextension-polyfill").Omnibox.SuggestResult[]): void} suggest Callback to provide suggestions.
  * @see {@link https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/omnibox/onInputChanged}
  */
 export async function triggerOmnixboxSuggestion(text, suggest) {
+    text = text.trim();
     const reloadCachedSettingsPromise = EmojiMartDataStore.reloadCachedSettings();
 
-    /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
-    const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
+    /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]?} */
+    const searchResult = await (await getEmojiMart()).SearchIndex.search(text);
     console.debug(`triggerOmnixboxSuggestion (searching for "${text}"), result:`, searchResult);
-
-    // if none are found, return…
-    if (!searchResult) {
-        return;
-    }
 
     // Ensures the skin settings are up-to-date by waiting for data refresh
     await reloadCachedSettingsPromise;
-    const currentSkin = await getCurrentSkinIndex();
 
-    const suggestions = searchResult.map((emoji) => {
-        // This falls back to the default skin if the current skin is not available
-        const chosenSkin = emoji.skins[currentSkin] || emoji.skins[0];
-        return {
-            description: browser.i18n.getMessage("searchResultDescription", [
-                chosenSkin.native,
-                emoji.name,
-                // NOte: This uses the base skin, because the skin tone modifier as a shortcode is not useful UX-wise to display
-                emoji.skins[0].shortcodes
-            ]),
-            content: chosenSkin.native
-        };
-    });
+    /** {@type import("webextension-polyfill").Omnibox.SuggestResult[]} */
+    let suggestions = [];
+    if (searchResult) {
+        suggestions = await Promise.all(searchResult?.map(async (emoji) => {
+            // This falls back to the default skin if the current skin is not available
+            const chosenSkin = await getCurrrentEmojiSkinFromEmoji(emoji);
+            return {
+                description: browser.i18n.getMessage("searchResultDescription", [
+                    chosenSkin.native,
+                    emoji.name,
+                    // NOTE: This uses the base skin, because the skin tone modifier as a shortcode is not useful UX-wise to display
+                    emoji.skins[0].shortcodes
+                ]),
+                content: chosenSkin.native
+            };
+        }));
+    }
 
+    const emojiSearch = await AddonSettings.get("emojiSearch");
+    /** {@type number} */
+    const maximumSuggestions = emojiSearch.maximumResults || 0;
+    if (emojiSearch.enableFillingResults || text == "") {
+        const minimumSuggestions = 5;
+        if (suggestions.length <= minimumSuggestions) {
+            suggestions.push(...(await getFrequentlyUsedAsSuggestions(maximumSuggestions * 2)));
+            // deduplicate suggestions
+            suggestions = uniqBy(suggestions, (element) => element.content);
+        }
+    }
+
+    if (maximumSuggestions > 0) {
+        suggestions = suggestions.slice(0, maximumSuggestions)
+    }
     suggest(suggestions);
 }
 
@@ -148,7 +168,7 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
 export async function triggerOmnixboxSearch(text, disposition) {
     text = text.trim();
     /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
-    const searchResult = await (await EmojiMartLazyLoaded.getEmojiMart()).SearchIndex.search(text);
+    const searchResult = await (await getEmojiMart()).SearchIndex.search(text);
     console.debug(`triggerOmnixboxSearch (searching for "${text}"), result:`, searchResult);
 
     const emojiSearch = await AddonSettings.get("emojiSearch");
@@ -156,7 +176,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
     // if a single emoji is selected or searched for, detect this and return
     // emoji data
     /** @type {import("/common/modules/EmojiSearched.d.ts").SkinSearched} */
-    const foundEmojiWithSkin = await (await EmojiMartLazyLoaded.getEmojiMart()).getEmojiDataFromNative(text)
+    const foundEmojiWithSkin = await (await getEmojiMart()).getEmojiDataFromNative(text)
             // ignore any errors and treat them as no emoji found
             .catch((error) => {
                 console.warn("getEmojiDataFromNative()", error);
@@ -261,7 +281,6 @@ async function toggleEnabledStatus(toEnable) {
         });
     }
 }
-
 
 /**
  * Init omnibox search.

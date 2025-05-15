@@ -400,6 +400,28 @@
       }
     }
   },
+  "searchResultDescriptionFrequently": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result when the default frequently used emojis are shown.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "🐵 (The Unicode symbol for the Emoji)"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Monkey Face (The name of the Emoji)"
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
+      },
+      "addon": {
+        "content": "$4",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
 
   // ARIA labels/descriptions
   "dismissIconDescription": {
