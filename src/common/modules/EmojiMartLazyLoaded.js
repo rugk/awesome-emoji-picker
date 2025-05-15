@@ -37,6 +37,8 @@ async function loadEmojiMart() {
     globalThis.EmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
     console.info("emoji-mart loaded:", globalThis.EmojiMart);
 
+    EmojiMartDataStore.initEmojiMartStorage(globalThis.EmojiMart);
+
     globalThis.EmojiMart.init(
         await EmojiMartInitialisationData.getEmojiMartInitialisationData()
     );
