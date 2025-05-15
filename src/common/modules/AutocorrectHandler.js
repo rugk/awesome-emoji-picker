@@ -3,7 +3,6 @@
 import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
-import * as EmojiMartLazyLoaded from "/common/modules/EmojiMartLazyLoaded.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
 
@@ -240,19 +239,15 @@ function sendSettings(autocorrect) {
  */
 export async function init() {
     const initData = await (await getEmojiMartInitialisationData()).data();
-
-    debugger;
+    const emojiData = initData.emojis;
 
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    // Flatten skins and map shortcodes to native emojis
-    Object.values(initData.emojis).flatMap((emoji) =>
-        emoji.skins.map((skin) => {
-            if (skin.colons && skin.native) {
-                emojiShortcodes[skin.colons] = skin.native;
-            }
-        })
-    );
+    for (const emoji of Object.values(emojiData)) {
+        // The shortcode is just the emoji ID, so we manually add it here
+        // https://github.com/missive/emoji-mart/pull/996#issuecomment-2873326636
+        emojiShortcodes[`:${emoji.id}:`] = emoji.skins[0].native;
+    }
 
     Object.freeze(emojiShortcodes);
     console.debug("Emoji shortcodes:", emojiShortcodes);
