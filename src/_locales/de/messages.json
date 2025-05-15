@@ -374,6 +374,28 @@
     "description": "The link text linking to the contributors file. See contributorsThanks."
   },
 
+  // emoji-search
+  "searchTipDescription": {
+    "message": "Nach Emojis suchen mit $ADDON$…",
+    "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchTipDescriptionDisabled": {
+    "message": "Das Suchen nach Emojis mit $ADDON$ ist deaktiviert… Du kannst es in den Optionen aktivieren.",
+    "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
+    "placeholders": {
+      "addon": {
+        "content": "$1",
+        "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+
   // ARIA labels/descriptions
   "dismissIconDescription": {
     "message": "Diese Nachricht schließen",
