@@ -160,8 +160,8 @@ export async function triggerOmnixboxSearch(text, disposition) {
             // ignore any errors and treat them as no emoji found
             .catch((error) => {
                 console.warn("getEmojiDataFromNative()", error);
-                return null;}
-            );
+                return null;
+            });
 
     // emoji itself copied or found
     const currentSkin = await getCurrentSkinIndex();
