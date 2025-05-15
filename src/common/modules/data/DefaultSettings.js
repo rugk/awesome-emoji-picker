@@ -40,7 +40,7 @@ const defaultSettings = {
         insertEmoji: true
     },
     emojiSearch: {
-        enabled: false,
+        enabled: true,
         resultType: "native",
         action: "copy"
     },
