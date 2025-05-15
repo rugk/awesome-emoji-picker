@@ -103,15 +103,17 @@ export async function triggerOmnixboxSuggestion(text, suggest) {
     /** {@type number} */
     const maximumSuggestions = emojiSearch.maximumResults || 0;
     if (emojiSearch.enableFillingResults || text == "") {
-        const minimumSuggestions = 5;
-        if (suggestions.length <= minimumSuggestions) {
-            suggestions.push(...(await getFrequentlyUsedAsSuggestions(maximumSuggestions * 2)));
+        if (suggestions.length < maximumSuggestions || maximumSuggestions === 0) {
+            const frequentlyUsedSuggestions = await getFrequentlyUsedAsSuggestions(maximumSuggestions || 10);
+            console.debug("Appending frequently used suggestions:", frequentlyUsedSuggestions, "to", suggestions, "and deduplicating…");
+            suggestions.push(...frequentlyUsedSuggestions);
             // deduplicate suggestions
             suggestions = uniqBy(suggestions, (element) => element.content);
         }
     }
 
     if (maximumSuggestions > 0) {
+        console.debug("Limiting suggestions to", maximumSuggestions, "because these are too many:", suggestions);
         suggestions = suggestions.slice(0, maximumSuggestions)
     }
     suggest(suggestions);
