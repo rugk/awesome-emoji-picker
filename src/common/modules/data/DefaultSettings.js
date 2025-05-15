@@ -9,7 +9,6 @@
  *
  * @private
  * @const
- * @type {Object}
  */
 const defaultSettings = {
     popupIconColored: true,
@@ -55,6 +54,5 @@ Object.values(defaultSettings).map(Object.freeze);
  *
  * @public
  * @const
- * @type {Object}
  */
 export const DEFAULT_SETTINGS = Object.freeze(defaultSettings);
