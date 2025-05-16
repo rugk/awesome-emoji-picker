@@ -20,10 +20,10 @@ const menus = browser.menus || browser.contextMenus; // fallback for Thunderbird
  * Handle context menu click.
  *
  * @param {Object} info
- * @param {Object} tab
+ * @param {Object} _tab
  * @returns {void}
  */
-function handle(info, tab) {
+function handle(info, _tab) {
     if (info.menuItemId === TRIGGER_KEYWORD) {
         // Thunderbird
         // Not yet enabled by Chrome: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/openPopup#browser_compatibility
