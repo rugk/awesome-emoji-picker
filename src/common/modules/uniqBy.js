@@ -9,9 +9,9 @@
  * @seealso {@link https://stackoverflow.com/a/9229821/5008962}
  */
 export function uniqBy(a, filter) {
-    let seen = new Set();
-    return a.filter(item => {
-        let k = filter(item);
+    const seen = new Set();
+    return a.filter((item) => {
+        const k = filter(item);
         return seen.has(k) ? false : seen.add(k);
     });
 }

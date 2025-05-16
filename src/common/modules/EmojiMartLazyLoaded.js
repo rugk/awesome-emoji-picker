@@ -10,14 +10,13 @@ import { uniqBy } from "./uniqBy.js";
  *
  * @returns {Promise<number>} the current skin as ID or the default skin
  */
-
 export async function getCurrentSkinIndex() {
     const lastSkin = await EmojiMartDataStore.get("skin");
 
     if (!lastSkin) {
         // because undefined|null are valid entries
         return 0;
-    } else if (isNaN(lastSkin)) {
+    } else if (Number.isNaN(lastSkin)) {
         console.error(new TypeError(`Invalid skin value: ${lastSkin}, should be a number.`), "using default skin 0 instead of", lastSkin);
         return 0;
     }
@@ -82,7 +81,7 @@ export async function getFrequentlyUsedEmojiList(maximumNumberOfElements = 10) {
     if (!frequentlyUsed) {
         console.warn("No frequently used emojis found via FrequentlyUsed getter, falling back to custom implementation.");
 
-        await EmojiMartDataStore.reloadCachedSettings();;
+        await EmojiMartDataStore.reloadCachedSettings();
         /** @type {Record<string, number>} */
         frequentlyUsed = await EmojiMartDataStore.get("frequently");
         console.debug("Frequently used emojis manually:", frequentlyUsed);
