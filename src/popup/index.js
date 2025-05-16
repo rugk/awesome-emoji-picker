@@ -78,12 +78,6 @@ function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupT
 
 EmojiPicker.initEmojiMartStorage();
 createPicker().then(async () => {
-    // to be sure, trigger focus manually afterwards
-    // auto-focus does not always work properly, see
-    // https://github.com/rugk/awesome-emoji-picker/issues/28 (now fixed)
-    // https://github.com/rugk/awesome-emoji-picker/issues/86 / https://bugzilla.mozilla.org/show_bug.cgi?id=1623875
-    // focusElement(document.querySelector(".emoji-mart-search > input"));
-
     // adjust with of picker, if it overflows
     await EnvironmentDetector.waitForPopupOpen().catch(() => {}); // ignore errors
     const popupType = EnvironmentDetector.getPopupType();
