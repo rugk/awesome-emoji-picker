@@ -9,7 +9,7 @@
  *
  * Changes removed emoji sets to best existing/matching one.
  *
- * @param {Object} settings
+ * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} settings
  * @returns {{ settings: Object, changed: boolean }}
  */
 function updateEmojiSet(settings) {
@@ -19,11 +19,13 @@ function updateEmojiSet(settings) {
     switch (settings.set) {
         case "emojione": // removed in v3.0.0 of emoji-mart https://github.com/missive/emoji-mart/blob/master/CHANGELOG.md#v300
             result.set = "twitter";
+            // @ts-ignore
             result.setMigratedToTwitterFrom = "emojione";
             changed = true;
             break;
         case "messenger": // removed in v3.0.0 of emoji-mart https://github.com/missive/emoji-mart/blob/master/CHANGELOG.md#v300
             result.set = "facebook";
+            // @ts-ignore
             result.setMigratedToFacebookFrom = "messenger";
             changed = true;
             break;
@@ -36,7 +38,7 @@ function updateEmojiSet(settings) {
 /**
  * Upgrade the emoji data for emoji-mart v5 removing some not required properties.
  *
- * @param {Object} settings
+ * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} settings
  * @returns {{ settings: Object, changed: boolean }}
  */
 function updateEmojiMart5Data(settings) {
@@ -48,7 +50,7 @@ function updateEmojiMart5Data(settings) {
 /**
  * Persist to storage.
  *
- * @param {Object} emojiPickerSettings
+ * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} emojiPickerSettings
  * @returns {Promise<void>}
  */
 async function saveEmojiPickerData(emojiPickerSettings) {
@@ -60,7 +62,7 @@ async function saveEmojiPickerData(emojiPickerSettings) {
 /**
  * Run all upgrades, then save if anything changed.
  *
- * @param {Object} originalSettings
+ * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} originalSettings
  * @returns {Promise<void>}
  */
 async function upgradeEmojiPicker(originalSettings) {
@@ -102,6 +104,7 @@ async function handleInstalled(details) {
 
     console.log(`Upgrading from v${details.previousVersion}…`, details);
 
+    /** {@type typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS} */
     const oldData = await browser.storage.sync.get();
     console.log("Settings oldData:", oldData);
     await upgradeEmojiPicker(oldData.emojiPicker);
