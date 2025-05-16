@@ -102,7 +102,7 @@ export async function triggerOmnixboxSuggestion(text, suggest) {
     const emojiSearch = await AddonSettings.get("emojiSearch");
     /** {@type number} */
     const maximumSuggestions = emojiSearch.maximumResults || 0;
-    if (emojiSearch.enableFillingResults || text == "") {
+    if (emojiSearch.enableFillingResults || text === "") {
         if (suggestions.length < maximumSuggestions || maximumSuggestions === 0) {
             const frequentlyUsedSuggestions = await getFrequentlyUsedAsSuggestions(maximumSuggestions || 10);
             console.debug("Appending frequently used suggestions:", frequentlyUsedSuggestions, "to", suggestions, "and deduplicating…");
@@ -114,7 +114,7 @@ export async function triggerOmnixboxSuggestion(text, suggest) {
 
     if (maximumSuggestions > 0) {
         console.debug("Limiting suggestions to", maximumSuggestions, "because these are too many:", suggestions);
-        suggestions = suggestions.slice(0, maximumSuggestions)
+        suggestions = suggestions.slice(0, maximumSuggestions);
     }
     suggest(suggestions);
 }

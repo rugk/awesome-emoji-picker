@@ -48,7 +48,7 @@ export function get(key) {
  * @returns {Promise<void>} A promise that resolves when the value is stored. **Note:** This is incompatible aka not-used by/with emoji-mart.
  */
 export function set(key, value) {
-    console.trace("Saving", value, `in '${key}'`);
+    console.debug("Saving", value, `in '${key}'`);
     emojiMartStorage[key] = value;
 
     // and actually save the new value

@@ -56,7 +56,7 @@ async function handleInstalled(details) {
 
     console.log(`Doing upgrade from ${details.previousVersion}.`, details);
     const oldData = await browser.storage.sync.get();
-    console.log(`Settings oldData:`, oldData);
+    console.log("Settings oldData:", oldData);
 
     // ignore returned promise, because it just carries the update status and is already logged
     upgradeEmojiSet(oldData.emojiPicker).catch(() => {});

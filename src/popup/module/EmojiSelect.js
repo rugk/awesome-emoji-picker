@@ -62,7 +62,7 @@ export async function triggerOnSelect(emoji, event) {
     }
 
     // get emoji that was clicked, note the target may often be the search box if the keyboard is used for emoji selection
-    let clickedEmoji = getEmojiHtml(emoji) || event.target;
+    const clickedEmoji = getEmojiHtml(emoji) || event.target;
 
     const {
         closePopup,

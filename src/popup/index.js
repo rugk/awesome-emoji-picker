@@ -90,7 +90,7 @@ createPicker().then(async () => {
     const emojiMartComponent = document.querySelector("em-emoji-picker");
 
     if (!(emojiMartComponent instanceof HTMLElement)) {
-        throw new Error("Emoji-mart component is not created, but should already have been!");
+        throw new TypeError("Emoji-mart component is not created, but should already have been!");
     }
 
     if (popupType === EnvironmentDetector.POPUP_TYPE.OVERFLOW ||
