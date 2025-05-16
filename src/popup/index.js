@@ -14,7 +14,7 @@ import * as EmojiPicker from "./module/EmojiPicker.js";
  * @private
  * @returns {Promise}
  */
-async function createPicker() {
+function createPicker() {
     return EmojiPicker.init();
 }
 
