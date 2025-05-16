@@ -67,7 +67,7 @@ export async function focusElement(element, retries = 20, delay = 50) {
 function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupType) {
     console.info("Detected popup type", popupType, ", centering picker.");
     emojiMartComponent.style.removeProperty("border");
-    document.documentElement.classList.add("center-picker");
+    document.body.classList.add("center-picker");
 
     // setAttribute with boolean flags does not work
     // see https://github.com/missive/emoji-mart/issues/992

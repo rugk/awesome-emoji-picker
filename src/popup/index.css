@@ -9,7 +9,7 @@
   }
 }
 
-html.center-picker {
+body.center-picker {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,24 +18,22 @@ html.center-picker {
 }
 
 /* if centered, use all the size you need, but do not exaggerate it */
-html.center-picker em-emoji-picker {
+body.center-picker em-emoji-picker {
   width: 100vw;
   max-width: 800px;
 }
 
 /* preventing scroll x/width overflowing (only when loaded to make popup adjust to size of emoji-mart) */
-html.loaded em-emoji-picker {
+body.loaded em-emoji-picker {
   max-width: 100vw;
 }
 
-html.in-popup em-emoji-picker {
+body.in-popup em-emoji-picker {
   --border-radius: 0px;
 }
 
 /* emoji-mart styles */
 em-emoji-picker {
-  --border-radius: 0px;
-
   /** custom style for elements */
   --rgb-accent: 244, 163, 43;
   /** contrary to what this says, it also styles the hover effect; see https://github.com/missive/emoji-mart/issues/998 */
@@ -45,7 +43,6 @@ em-emoji-picker {
 /* dark mode */
 @media (prefers-color-scheme: dark) {
   em-emoji-picker {
-    --border-radius: 0px;
     --background-color: var(--grey-60);
     --dark-background-color: var(--grey-90);
     --select-background-color: var(--grey-50);
