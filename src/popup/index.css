@@ -38,7 +38,7 @@ em-emoji-picker {
 
   /** custom style for elements */
   --rgb-accent: 244, 163, 43;
-  /** contrary to what this says, it also styles the hover effect */
+  /** contrary to what this says, it also styles the hover effect; see https://github.com/missive/emoji-mart/issues/998 */
   --color-border: rgba(255, 177, 59, 0.35);
 }
 
