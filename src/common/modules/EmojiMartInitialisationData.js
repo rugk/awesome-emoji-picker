@@ -6,7 +6,7 @@ const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
  * Hardcoded settings for emoji-mart picker
  *
  * @private
- * @type {Object}
+ * @type {Partial<import("./EmojiMart.js").PickerPropsValues>}
  */
 export const hardcodedSettings = Object.freeze({
     // color: "#ffb03b", // or #d42ecc ?
@@ -82,7 +82,7 @@ async function tryFetchJson(nonBrowserifiedUrl) {
 /**
  * Returns the basic language tag e.g. `en` only in `en-US`. `
  *
- * @returns string
+ * @returns {string}
  */
 function getBaseLanguageTag() {
     return browser.i18n.getUILanguage().split("-")[0];
@@ -95,7 +95,7 @@ function getBaseLanguageTag() {
  * It is manually crafted to make sure no line break occurs in the title. So when would occur,
  *
  * @param {Object} settings
- * @returns bool
+ * @returns {boolean}
  */
 function shouldUseLongEmojiPickerTitle(settings) {
     switch (settings.emojiSize) {
@@ -132,7 +132,7 @@ function shouldUseLongEmojiPickerTitle(settings) {
  *   dynamicWidth: boolean,
  *   emojiVersion: number,
  *   previewEmoji: string
- * }>}
+ * } & typeof hardcodedSettings>}
  */
 export async function getEmojiMartInitialisationData(customSettings = null) {
     const initProperties = {
