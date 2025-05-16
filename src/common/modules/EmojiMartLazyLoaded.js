@@ -66,7 +66,7 @@ export async function getFrequentlyUsedEmojiList(maximumNumberOfElements = 10) {
     try {
         /** @type {typeof import("../../node_modules/emoji-mart/dist/index.d.js").FrequentlyUsed._get1} */
         // @ts-ignore
-        const frequentlyUsedGetter = (await (await getEmojiMart()).FrequentlyUsed).get;
+        const frequentlyUsedGetter = ((await getEmojiMart()).FrequentlyUsed).get;
 
         /** {@type string[] */
         frequentlyUsed = frequentlyUsedGetter({
