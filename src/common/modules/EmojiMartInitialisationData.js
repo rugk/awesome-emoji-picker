@@ -9,10 +9,7 @@ const EMOJI_SHEET_DIR = "/popup/img/emoji-images";
  * @type {Partial<import("./EmojiMart.js").PickerPropsValues>}
  */
 export const hardcodedSettings = Object.freeze({
-    // color: "#ffb03b", // or #d42ecc ?
-    // i18n: getEmojiMartLocalised(),
     autoFocus: true,
-    // style: { border: "none" },
     theme: "auto",
     getSpritesheetURL: getEmojiSheet,
     locale: getBaseLanguageTag(),

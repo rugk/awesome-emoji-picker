@@ -32,17 +32,30 @@ html.in-popup em-emoji-picker {
   --border-radius: 0px;
 }
 
+/* emoji-mart styles */
+em-emoji-picker {
+  --border-radius: 0px;
+
+  /** custom style for elements */
+  --rgb-accent: 244, 163, 43;
+  /** contrary to what this says, it also styles the hover effect */
+  --color-border: rgba(255, 177, 59, 0.35);
+}
+
 /* dark mode */
 @media (prefers-color-scheme: dark) {
-  :root {
+  em-emoji-picker {
     --border-radius: 0px;
-    --color: var(--grey-10);
-    --rgb-accent: 88, 166, 255;
     --background-color: var(--grey-60);
     --dark-background-color: var(--grey-90);
     --select-background-color: var(--grey-50);
     --input-color: rgba(var(--grey-50), .1);
     --light-shadow: rgba(var(--grey-50), .02);
+
+    /** custom style for elements (less strong than light version) */
+    --rgb-accent: 255, 176, 59;
+    /** contrary to what this says, it also styles the hover effect */
+    --color-border: rgba(255, 177, 59, 0.21);
   }
 
   /* darken sourroundings (edges), too */
