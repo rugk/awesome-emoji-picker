@@ -19,7 +19,7 @@ It uses up-to-date Emojis and lets you access your Emojis in different styles yo
 * Facebook emojis
 * or just what your system/browser offers (e.g. on Windows thus Windows emojis will be used)
 
-It is based on the awesome [emoji-mart](https://missive.github.io/emoji-mart/). You can test many features there already, before installing it.
+It is based on the awesome [emoji-mart](https://missiveapp.com/open/emoji-mart). You can test many features there already, before installing it.
 
 This extension works with Firefox v125 or higher, Chromium/Chrome and Thunderbird v125 or higher.
 
