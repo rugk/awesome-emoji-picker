@@ -149,10 +149,10 @@ export async function getEmojiMartInitialisationData(customSettings = null) {
             return await response.json();
         },
         i18n: async () => {
-            let locale = browser.i18n.getUILanguage();
+            const locale = browser.i18n.getUILanguage();
             console.log("Getting i18n for", locale);
 
-            let i18nData = await tryFetchJson(`/node_modules/@emoji-mart/data/i18n/${locale}.json`)
+            const i18nData = await tryFetchJson(`/node_modules/@emoji-mart/data/i18n/${locale}.json`)
                 || await tryFetchJson(`/node_modules/@emoji-mart/data/i18n/${getBaseLanguageTag()}.json`)
                 || await tryFetchJson("/node_modules/@emoji-mart/data/i18n/en.json");
 
@@ -161,11 +161,7 @@ export async function getEmojiMartInitialisationData(customSettings = null) {
             }
 
             // show the extension name by default
-            if (shouldUseLongEmojiPickerTitle(initProperties)) {
-                i18nData.pick = browser.i18n.getMessage("extensionName");
-            } else {
-                i18nData.pick = browser.i18n.getMessage("extensionNameShort");
-            }
+            i18nData.pick = browser.i18n.getMessage(shouldUseLongEmojiPickerTitle(initProperties) ? "extensionName" : "extensionNameShort");
             return i18nData;
         },
     };
