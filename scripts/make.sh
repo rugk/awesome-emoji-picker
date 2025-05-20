@@ -22,7 +22,7 @@ cp "./scripts/manifests/$browser.json" "./src/manifest.json" || exit
 
 # create zip
 cd src || exit
-zip -r -FS "../build/$EXTENSION_NAME.xpi" ./* -x "tests/*" -x "**/tests/*" \
+zip -r -FS "../build/${EXTENSION_NAME}_${browser}.zip" ./* -x "tests/*" -x "**/tests/*" \
     -x "docs/*" -x "**/docs/*" \
     -x "examples/*" -x "**/examples/*" -x "**/*.example" \
     -x "**/README.md" -x "**/CONTRIBUTING.md" -x "**/manifest.json" \
