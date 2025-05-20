@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "3.0",
-  "author": "rugk",
+  "version": "3.0.1",
+  "author": "rugk, Teal Dulcet",
 
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
