@@ -13,9 +13,12 @@ mkdir -p "build"
 # license should be in add-on
 mv LICENSE.md src/LICENSE.md
 
+browser="firefox"
+[ -n "$1" ] && browser="$1" && echo "Using browser $browser"
+
 # make sure we are using the stable manifest
 # as the dev edition manifest.json allows mocha.css and mocha.js in the CSP
-cp "./scripts/manifests/firefox.json" "./src/manifest.json" || exit
+cp "./scripts/manifests/$browser.json" "./src/manifest.json" || exit
 
 # create zip
 cd src || exit
