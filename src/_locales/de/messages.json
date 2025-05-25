@@ -123,7 +123,7 @@
 
   // options
   "someSettingsAreManaged": {
-    "message": "Einige Einstellung werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
+    "message": "Einige Einstellungen werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
     "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators."
   },
   "optionIsDisabledBecauseManaged": {
@@ -153,7 +153,7 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionPopupIconColoredDescr": {
-    "message": "Zeigt ein farbiges Icon anstatt eines schwarz/weißen Icons in der Toolbar.",
+    "message": "Zeigt ein farbiges Symbol anstatt eines schwarz/weißen Symbols in der Toolbar.",
     "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
   },
   "optionEmojiPickerSet": {
@@ -246,7 +246,7 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyClipboardFallback": {
-    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehl schlägt.",
+    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehlschlägt.",
     "description": "This is an option shown in the add-on settings."
   },
 
@@ -275,7 +275,7 @@
   },
 
   "optionClosePopup": {
-    "message": "Schließe den Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
+    "message": "Schließe das Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
     "description": "This is an option shown in the add-on settings."
   },
 
@@ -313,12 +313,12 @@
     "description": "This is an radio option shown in the add-on settings."
   },
   "optionImageAltTextSearchBarDemo": {
-    "message": "Ein Beispiel, dass eine Suche in der Addressleiste mit dem Suchbegriff „Hund” zeigt, zu dem einige Emojis vorgeschlagen werden.",
+    "message": "Ein Beispiel, das eine Suche in der Addressleiste mit dem Suchbegriff „Hund” zeigt, zu dem einige Emojis vorgeschlagen werden.",
     "description": "This is the alt description for an image shown in the add-on settings."
   },
 
   "optionsLicenseDisclaimer": {
-    "message": "Alle Emoji-Bilder können unter verschiedene Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
+    "message": "Alle Emoji-Bilder können unter verschiedenen Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
       "link": {
@@ -392,6 +392,24 @@
       "addon": {
         "content": "$1",
         "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchResultDescription": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "🐵 (The Unicode symbol for the Emoji)"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Monkey Face (The name of the Emoji)"
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
       }
     }
   },
