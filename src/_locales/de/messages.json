@@ -345,7 +345,7 @@
   },
 
   "translatorCredit": {
-    "message": "Dieses Add-on wurde von $TRANSLATORS$ ins Deutsche übersetzt.",
+    "message": "Dieses Add-on wurde von $TRANSLATORS$ und anderen ins Deutsche übersetzt.",
     "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
     "placeholders": {
       "translators": {
