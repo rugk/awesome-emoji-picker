@@ -307,10 +307,14 @@ function applyEmojiSearch(optionValue, option, event = {}) {
         document.getElementById("searchCopyAction").disabled = false;
         document.getElementById("emojipediaAction").disabled = false;
         document.getElementById("searchBarDemo").disabled = false;
+        document.getElementById("enableFillingResults").disabled = false;
+        document.getElementById("maximumResults").disabled = false;
     } else {
         document.getElementById("searchCopyAction").disabled = true;
         document.getElementById("emojipediaAction").disabled = true;
         document.getElementById("searchBarDemo").disabled = true;
+        document.getElementById("enableFillingResults").disabled = true;
+        document.getElementById("maximumResults").disabled = true;
     }
 
     // trigger update for current session
