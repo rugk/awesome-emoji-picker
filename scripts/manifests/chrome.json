@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "2.0",
+  "version": "3.0.1",
   "author": "rugk, Teal Dulcet",
 
   "description": "__MSG_extensionDescription__",
@@ -30,9 +30,16 @@
   },
 
   "background": {
-    "scripts": ["browser-polyfill.js", "background/modules/InstallUpgrade.js", "background/background.js"],
-    "type": "module"
+    "scripts": [
+      "background/modules/InstallUpgrade.js",
+      "background/modules/ContextMenu.js",
+      "background/modules/OmniboxSearch.js",
+      "background/init.js"
+    ],
+    "type": "module",
+    "persistent": true
   },
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
@@ -53,7 +60,7 @@
   },
 
   // testing version allows loading unit test libraries from CDNs
-  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' https://unpkg.com; script-src 'self' https://unpkg.com",
+  "content_security_policy": "default-src 'self'; img-src data:; style-src 'self' 'unsafe-inline' https://unpkg.com; script-src 'self' https://unpkg.com",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",

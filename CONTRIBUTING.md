@@ -38,23 +38,6 @@ For more details, [see the official docs](https://developer.mozilla.org/Add-ons/
 
 For more information, see the whole [contributing doc](https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translations).
 
-### Translating emoji terms (categories, skin names etc.)
-
-**Big tip** for translators: If you translate the `emojiMart*` entries, notice that you will likely find correct translations somewhere for these specific emoji terms.
-
-Actually, it's standardized, because emojis are also standardized. It's Unicode, after all!
-
-So the point to look for correct translations is the Unicode [Common Locale Data Repository](http://cldr.unicode.org/) (**CLDR**, see [their Wikipedia entry](https://en.wikipedia.org/wiki/Common_Locale_Data_Repository)). You can download the data there and then try to find the correct term. (I did that, and I know it's hard to find, but yes, it must be somewhere in there!)
-
-You can also try to use [the survey tool](https://st.unicode.org/cldr-apps/v#locales///) and look in the section “Characters”:
-
-![sidebar: after units, there is an entry called characters, with sub-entries like category, smileys and emojis etc.](./assets/l10n-help-cldr-survey-tool-emojis.png)
-
-Related:
-
-* [discussion at emoji-mart of whether to bundle the translations inside of the library](https://github.com/missive/emoji-mart/issues/303)
-* [same discussion for their upstream project emoji-data](https://github.com/iamcal/emoji-data/issues/148)
-
 ## Coding
 
 See the **common guide** on how to [start coding](https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#coding) and what rules to follow.

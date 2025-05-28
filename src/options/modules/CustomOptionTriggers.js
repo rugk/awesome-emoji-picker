@@ -39,23 +39,6 @@ function applyPopupIconColor(optionValue) {
 }
 
 /**
- * Adjusts the emoji set setting for saving.
- *
- * @private
- * @param {Object} param
- * @param {Object} param.optionValue the value of the changed option
- * @param {string} param.option the name of the option that has been changed
- * @param {Array} param.saveTriggerValues all values returned by potentially
- *                                          previously run safe triggers
- * @returns {Promise}
- */
-function saveEmojiSet(param) {
-    param.optionValue.native = param.optionValue.set === "native";
-
-    return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
-}
-
-/**
  * Requests the permission for pickerResult settings.
  *
  * @private
@@ -386,7 +369,6 @@ function applyEmojiSearch(optionValue, option, event = {}) {
  */
 export async function registerTrigger() {
     // override load/safe behaviour for custom fields
-    AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", saveEmojiSet);
     AutomaticSettings.Trigger.addCustomSaveOverride("emojiPicker", adjustEmojiSize);
 
     AutomaticSettings.Trigger.addCustomLoadOverride("resultType", preparePickerResultTypeOptionForInput);

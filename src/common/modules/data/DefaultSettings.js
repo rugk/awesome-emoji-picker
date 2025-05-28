@@ -9,7 +9,6 @@
  *
  * @private
  * @const
- * @type {Object}
  */
 const defaultSettings = {
     popupIconColored: true,
@@ -18,9 +17,7 @@ const defaultSettings = {
     },
     emojiPicker: {
         set: "native",
-        native: true,
         perLine: 9,
-        emojiTooltip: false,
         emojiSize: 24
     },
     pickerResult: {
@@ -42,9 +39,11 @@ const defaultSettings = {
         insertEmoji: true
     },
     emojiSearch: {
-        enabled: false,
+        enabled: true,
         resultType: "native",
-        action: "copy"
+        action: "copy",
+        enableFillingResults: false,
+        maximumResults: 0
     },
     emojiMart: {}
 };
@@ -57,6 +56,5 @@ Object.values(defaultSettings).map(Object.freeze);
  *
  * @public
  * @const
- * @type {Object}
  */
 export const DEFAULT_SETTINGS = Object.freeze(defaultSettings);

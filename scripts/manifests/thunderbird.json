@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
-  "version": "0.9.4",
+  "version": "3.0.1",
   "author": "rugk, Teal Dulcet",
 
   "description": "__MSG_extensionDescription__",
@@ -28,9 +28,16 @@
   },
 
   "background": {
-    "scripts": ["background/modules/InstallUpgrade.js", "background/background.js"],
-    "type": "module"
+    "scripts": [
+      "background/modules/InstallUpgrade.js",
+      "background/modules/ContextMenu.js",
+      "background/modules/OmniboxSearch.js",
+      "background/init.js"
+    ],
+    "type": "module",
+    "persistent": true
   },
+
   "commands": {
     "_execute_compose_action": {
       "suggested_key": {
@@ -40,7 +47,7 @@
     }
   },
 
-  "content_security_policy": "default-src 'self'",
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'",
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",

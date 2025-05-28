@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2021",
-    "module": "es2021",
+    "target": "es2022",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false,
@@ -11,7 +13,8 @@
     "baseUrl": "./src",
     "paths": {
       "/*": ["./*"],
-    }
+    },
+    "types": ["firefox-webext-browser"]
   },
   "exclude": [
     "node_modules",

@@ -232,14 +232,6 @@
     "message": "Combien d'émoticônes devraient être affiché par ligne dans l'application ? Ceci affecte la largeur de la fenêtre.",
     "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting."
   },
-  "optionEmojiPickerShowTooltip": {
-    "message": "Afficher des infos-bulles",
-    "description": "This is an option shown in the add-on settings."
-  },
-  "optionEmojiPickerShowTooltipDescr": {
-    "message": "Afficher une infos-bulle avec le nom de l'émoticône en le survolant.",
-    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerShowTooltip setting."
-  },
 
   "optionAutomaticInsert": {
     "message": "Insérer automatiquement les émoticônes dans la page Web.",
