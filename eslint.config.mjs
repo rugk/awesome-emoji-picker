@@ -14,10 +14,8 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([globalIgnores([
-    "src/common/lib/*",
-    "src/common/modules/lib/*",
-    "src/common/modules/lodash/*",
-    "src/popup/lib/*",
+    "node_modules/*",
+    "src/node_modules/*"
 ]), {
     extends: compat.extends("eslint:recommended"),
 
