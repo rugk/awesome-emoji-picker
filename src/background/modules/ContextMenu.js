@@ -1,7 +1,6 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import { isMobile } from "/common/modules/MobileHelper.js";
-
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
 // Thunderbird
@@ -10,18 +9,22 @@ const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 // Chrome
 const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
 
-const EMOJI = "emoji";
+/**
+ * hardcoded in manifest.json
+ * @type {string}
+ */
+const TRIGGER_KEYWORD = "emoji";
 const menus = browser.menus || browser.contextMenus; // fallback for Thunderbird
 
 /**
  * Handle context menu click.
  *
  * @param {Object} info
- * @param {Object} tab
+ * @param {Object} _tab
  * @returns {void}
  */
-function handle(info, tab) {
-    if (info.menuItemId === EMOJI) {
+function handle(info, _tab) {
+    if (info.menuItemId === TRIGGER_KEYWORD) {
         // Thunderbird
         // Not yet enabled by Chrome: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/openPopup#browser_compatibility
         (IS_THUNDERBIRD ? browser.composeAction : browser.browserAction).openPopup();
@@ -47,13 +50,13 @@ async function applySettings(contextMenu) {
 
         if (IS_CHROME) {
             menus.create({
-                id: EMOJI,
+                id: TRIGGER_KEYWORD,
                 title: menuText,
                 contexts: ["editable"]
             });
         } else {
             menus.create({
-                id: EMOJI,
+                id: TRIGGER_KEYWORD,
                 title: menuText,
                 command: commandToFind,
                 contexts: ["editable"]
@@ -89,3 +92,5 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU, (reque
 
     return applySettings(request.optionValue);
 });
+
+console.warn("background: ContextMenu loaded");

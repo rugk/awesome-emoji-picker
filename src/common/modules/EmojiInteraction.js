@@ -62,16 +62,3 @@ export async function insertOrCopy(text, options) {
         isCopied
     };
 }
-
-/**
- * Init module.
- *
- * @public
- * @returns {Promise}
- */
-export async function init() {
-    // nothing for now
-}
-
-// automatically init module.
-init();

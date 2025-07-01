@@ -1,42 +1,9 @@
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as CommonMessages from "/common/modules/MessageHandler/CommonMessages.js";
-
 import * as EmojiInteraction from "/common/modules/EmojiInteraction.js";
-
 import * as ConfirmationHint from "./ConfirmationHint.js";
 
-/**
- * Saves the last click that selected an emoji.
- *
- * @private
- * @property {int} posX
- * @property {int} posY
- * @property {Object} forEmoji
- * @type {Object}
- */
-const lastClick = {};
-
-let optionPickerResult;
-
-/**
- * Save the position of the click, if needed.
- *
- * @public
- * @param {Object} emoji
- * @param {MouseEvent} event
- * @returns {void}
- */
-export function saveClickPosition(emoji, event) {
-    // in case of an invalid event, ignore it
-    // see https://github.com/missive/emoji-mart/issues/342
-    if (event.pageX === 0 && event.pageY === 0) {
-        return;
-    }
-
-    lastClick.posX = event.pageX;
-    lastClick.posY = event.pageY;
-    lastClick.forEmoji = emoji;
-}
+let pickerSettings;
 
 /**
  * Return the HtmlElement that contains the emoji.
@@ -46,11 +13,11 @@ export function saveClickPosition(emoji, event) {
  *
  * @public
  * @param {Object|string} emoji
- * @returns {HTMLElement}
+ * @returns {HTMLElement|null|undefined}
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;
-    return document.querySelector(`.emoji-mart-scroll [aria-label^="${emojiQuestion}"]`);
+    return document.querySelector("em-emoji-picker")?.shadowRoot?.querySelector(`.scroll [aria-label^="${emojiQuestion}"]`);
 }
 
 /**
@@ -59,7 +26,7 @@ export function getEmojiHtml(emoji) {
  * @private
  * @param {boolean} isEmojiInserted
  * @param {boolean} isEmojiCopied
- * @returns {string}
+ * @returns {string|null}
  */
 function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
     let messageToBeShown;
@@ -71,7 +38,7 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
         messageToBeShown = "EmojiCopied";
     } else {
         // some other error happened
-        messageToBeShown = "";
+        messageToBeShown = null;
     }
 
     return messageToBeShown;
@@ -82,34 +49,34 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
  *
  * @public
  * @param {Object} emoji
+ * @param {Event} event
  * @returns {Promise}
  */
-export async function triggerOnSelect(emoji) {
+export async function triggerOnSelect(emoji, event) {
+    let confirmationPosition = null;
+    if (event instanceof MouseEvent) {
+        confirmationPosition = {
+            left: event.pageX,
+            top: event.pageY
+        };
+    }
+
+    // get emoji that was clicked, note the target may often be the search box if the keyboard is used for emoji selection
+    const clickedEmoji = getEmojiHtml(emoji) || event.target;
+
     const {
         closePopup,
         showConfirmationMessage,
         resultType
-    } = optionPickerResult;
-
-    // get HTML element that was clicked
-    let clickedEmoji = document.activeElement || getEmojiHtml(emoji);
-
-    // if we clicked on the exact same emoji, use the last click psoition
-    // (object reference comparison deliberately!)
-    if (lastClick.forEmoji === emoji) {
-        clickedEmoji = {
-            left: lastClick.posX,
-            top: lastClick.posY
-        };
-    }
+    } = pickerSettings;
 
     const {
         isInserted,
         isCopied
     } = await EmojiInteraction.insertOrCopy(emoji[resultType], {
-        insertIntoPage: optionPickerResult.automaticInsert,
-        copyOnlyOnFallback: optionPickerResult.emojiCopyOnlyFallback,
-        copyToClipboard: optionPickerResult.emojiCopy
+        insertIntoPage: pickerSettings.automaticInsert,
+        copyOnlyOnFallback: pickerSettings.emojiCopyOnlyFallback,
+        copyToClipboard: pickerSettings.emojiCopy
     });
 
     const messageToBeShown = getUserMessageForResult(isInserted, isCopied);
@@ -117,7 +84,7 @@ export async function triggerOnSelect(emoji) {
     if (messageToBeShown) {
         // if no error happened, show confirmation message
         if (showConfirmationMessage) {
-            await ConfirmationHint.show(clickedEmoji, messageToBeShown);
+            await ConfirmationHint.show(confirmationPosition || clickedEmoji, messageToBeShown);
         }
 
         if (closePopup) {
@@ -137,7 +104,7 @@ export async function triggerOnSelect(emoji) {
 export async function init() {
     // request it/preload it here, so we need no async request to access it
     // later
-    optionPickerResult = await AddonSettings.get("pickerResult");
+    pickerSettings = await AddonSettings.get("pickerResult");
 }
 
 // automatically init module.

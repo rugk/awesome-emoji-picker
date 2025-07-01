@@ -14,5 +14,5 @@
 export async function isMobile() {
     const platformInfo = await browser.runtime.getPlatformInfo();
 
-    return platformInfo.os === "android";
+    return platformInfo.os === "android" || platformInfo.os === "ios";
 }

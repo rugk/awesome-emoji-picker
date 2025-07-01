@@ -9,7 +9,7 @@
   }
 }
 
-html.center-picker {
+body.center-picker {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,32 +17,47 @@ html.center-picker {
   height: 100vh;
 }
 
+/* if centered, use all the size you need, but do not exaggerate it */
+body.center-picker em-emoji-picker {
+  width: 100vw;
+  max-width: 800px;
+}
+
+/* preventing scroll x/width overflowing (only when loaded to make popup adjust to size of emoji-mart) */
+body.loaded em-emoji-picker {
+  max-width: 100vw;
+}
+
+body.in-popup em-emoji-picker {
+  --border-radius: 0px;
+}
+
+/* emoji-mart styles */
+em-emoji-picker {
+  /** custom style for elements */
+  --rgb-accent: 244, 163, 43;
+  /** contrary to what this says, it also styles the hover effect; see https://github.com/missive/emoji-mart/issues/998 */
+  --color-border: rgba(255, 177, 59, 0.35);
+}
+
 /* dark mode */
 @media (prefers-color-scheme: dark) {
-  /* sourrounding parts */
+  em-emoji-picker {
+    --background-color: var(--grey-60);
+    --dark-background-color: var(--grey-90);
+    --select-background-color: var(--grey-50);
+    --input-color: rgba(var(--grey-50), .1);
+    --light-shadow: rgba(var(--grey-50), .02);
+
+    /** custom style for elements (less strong than light version) */
+    --rgb-accent: 255, 176, 59;
+    /** contrary to what this says, it also styles the hover effect */
+    --color-border: rgba(255, 177, 59, 0.21);
+  }
+
+  /* darken sourroundings (edges), too */
   body {
     background-color: var(--grey-60);
-  }
-
-  /* overwrite emoji-marts style to use colors more similar to Firefox Photons */
-  .emoji-mart-dark,
-  .emoji-mart-dark .emoji-mart-category-label span {
-    background-color: var(--grey-60);
-  }
-
-  /* increase contrast for text */
-  .emoji-mart-anchor {
-    color: var(--grey-20);
-  }
-  .emoji-mart-preview-shortname {
-    color: var(--grey-10);
-  }
-
-  /* hover effect */
-  .emoji-mart-dark .emoji-mart-anchor:hover,
-  .emoji-mart-dark .emoji-mart-anchor:focus,
-  .emoji-mart-dark .emoji-mart-anchor-selected {
-    color: rgb(255, 226, 182);
   }
 }
 
@@ -58,39 +73,4 @@ body {
 
 body, .message-container, .message-box {
   box-sizing: border-box;
-}
-
-/* Emoji Mart BiDi support */
-emoji-picker .emoji-mart-preview-emoji {
-  __MSG_@@bidi_start_edge__: 12px;
-  __MSG_@@bidi_end_edge__: initial;
-}
-
-emoji-picker .emoji-mart-preview-data {
-  __MSG_@@bidi_start_edge__: 68px;
-  __MSG_@@bidi_end_edge__: 12px;
-}
-
-emoji-picker .emoji-mart-title-label {
-  margin-__MSG_@@bidi_end_edge__: 56px;
-}
-
-emoji-picker .emoji-mart-preview-skins {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 30px;
-}
-
-emoji-picker .emoji-mart-preview-skins.custom {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 10px;
-}
-
-emoji-picker .emoji-mart-search-icon {
-  __MSG_@@bidi_start_edge__: initial;
-  __MSG_@@bidi_end_edge__: 11px;
-}
-
-emoji-picker .emoji-mart-search input {
-  padding-__MSG_@@bidi_start_edge__: 10px;
-  padding-__MSG_@@bidi_end_edge__: 25px;
 }

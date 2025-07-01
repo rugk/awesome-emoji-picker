@@ -1,12 +1,10 @@
 "use strict";
 
+import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
-
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
-// Not actually a module, but sets the emojiMart global
-import "/common/lib/emoji-mart-embed/dist/emoji-mart.js";
 
 const settings = {
     enabled: null,
@@ -240,17 +238,19 @@ function sendSettings(autocorrect) {
  * @returns {Promise<void>}
  */
 export async function init() {
+    const initData = await (await getEmojiMartInitialisationData()).data();
+    const emojiData = initData.emojis;
+
     const autocorrect = await AddonSettings.get("autocorrect");
 
-    for (const emoji of Object.values(emojiMart.emojiIndex.emojis)) {
-        if (emoji.native) {
-            emojiShortcodes[emoji.colons] = emoji.native;
-        } else {
-            emojiShortcodes[emoji[1].colons] = emoji[1].native;
-        }
+    for (const emoji of Object.values(emojiData)) {
+        // The shortcode is just the emoji ID, so we manually add it here
+        // https://github.com/missive/emoji-mart/pull/996#issuecomment-2873326636
+        emojiShortcodes[`:${emoji.id}:`] = emoji.skins[0].native;
     }
 
     Object.freeze(emojiShortcodes);
+    console.debug("Emoji shortcodes:", emojiShortcodes);
 
     setSettings(autocorrect);
 
@@ -272,7 +272,7 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
     return sendSettings(request.optionValue);
 });
 
-browser.runtime.onMessage.addListener((message, sender) => {
+browser.runtime.onMessage.addListener((message, _sender) => {
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
         const response = {
             type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
@@ -288,3 +288,5 @@ browser.runtime.onMessage.addListener((message, sender) => {
         return Promise.resolve(response);
     }
 });
+
+console.warn("background: AutocorrectHandler loaded");
