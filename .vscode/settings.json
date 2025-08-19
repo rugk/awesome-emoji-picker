@@ -1,5 +1,8 @@
 {
     "[javascript]": {
         "javascript.preferences.importModuleSpecifierEnding": "js"
+    },
+    "files.associations": {
+      "**/src/_locales/*/messages.json": "jsonc",
     }
 }
