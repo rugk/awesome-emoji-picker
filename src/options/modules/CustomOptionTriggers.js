@@ -158,7 +158,7 @@ function preparePickerResultTypeOptionForInput(param) {
         param.optionValue = false;
         break;
     default:
-        throw new Error("invalid parameter: ", param.option, param.optionValue);
+        throw new Error(`invalid parameter: ${param.option}, value: ${param.optionValue}`);
     }
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
