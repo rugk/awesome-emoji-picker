@@ -5,9 +5,7 @@
  */
 
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
-
 import * as PermissionRequest from "/common/modules/PermissionRequest/PermissionRequest.js";
-
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 
 // used to apply options
@@ -31,7 +29,6 @@ const IS_THUNDERBIRD = Boolean(globalThis.messenger);
  *
  * @private
  * @param  {boolean} optionValue
- * @param  {string} [option]
  * @returns {void}
  */
 function applyPopupIconColor(optionValue) {
@@ -43,21 +40,21 @@ function applyPopupIconColor(optionValue) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} [option]
- * @param  {Object} [event]
  * @returns {Promise}
  */
 function applyPickerResultPermissions(optionValue) {
-    let retPromise;
-
     // switch status of sub-child
+    const elFallback = /** @type {HTMLInputElement|null} */(document.getElementById("emojiCopyOnlyFallback"));
+    if (!elFallback) {
+        throw new Error('Element with id "emojiCopyOnlyFallback" not found.');
+    }
     if (optionValue.emojiCopy) {
-        document.getElementById("emojiCopyOnlyFallback").disabled = false;
+        elFallback.disabled = false;
     } else {
-        document.getElementById("emojiCopyOnlyFallback").disabled = true;
+        elFallback.disabled = true;
     }
 
-    return retPromise;
+    return Promise.resolve();
 }
 
 /**
@@ -65,11 +62,11 @@ function applyPickerResultPermissions(optionValue) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} [option]
+ * @param  {string} [_option]
  * @param  {Object} [event]
  * @returns {Promise}
  */
-function applyAutocorrectPermissions(optionValue, option, event) {
+function applyAutocorrectPermissions(optionValue, _option, event) {
     if (optionValue.enabled) {
         document.getElementById("autocorrectEmojiShortcodes").disabled = false;
         document.getElementById("autocorrectEmojis").disabled = false;
@@ -109,11 +106,9 @@ function applyAutocorrectPermissions(optionValue, option, event) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} [option]
- * @param  {Object} [event]
  * @returns {void}
  */
-function applyContextMenuSettings(optionValue, option, event) {
+function applyContextMenuSettings(optionValue) {
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.CONTEXT_MENU,
@@ -190,7 +185,7 @@ function adjustPickerResultTypeOption(param) {
  * Gets the plural form of the quiet zone translation, depending on the option value.
  *
  * @private
- * @param {string} language
+ * @param {string|undefined?} language
  * @param {number} optionValue
  * @returns {string} messageName
  */
@@ -212,21 +207,30 @@ function getPluralForm(language, optionValue) {
  *
  * @private
  * @param {Object} optionValue
- * @param {string} option the name of the option that has been changed
- * @param {Event} event the event (input or change) that triggered saving
+ * @param {string} _option the name of the option that has been changed
+ * @param {Event?} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
  * @returns {void}
  * @throws {Error} if no translation could be found
  */
-function updatePerLineStatus(optionValue, option, event) {
+function updatePerLineStatus(optionValue, _option, event = null) {
     // only handle per line status (or if initialisation without event)
-    if (event && "target" in event && event.target.name !== "perLine") {
+    if (
+        event &&
+        "target" in event &&
+        event.target &&
+        /** @type {HTMLInputElement} */ (event.target).name !== "perLine"
+    ) {
         return;
     }
     const perLineValue = optionValue.perLine;
 
     const elEmojisPerLineStatus = document.getElementById("emojisPerLineStatus");
-    const messageName = getPluralForm(document.querySelector("html").getAttribute("lang"), perLineValue);
+    if (!elEmojisPerLineStatus) {
+        throw new Error('Element with id "elEmojisPerLineStatus" not found.');
+    }
+
+    const messageName = getPluralForm(document.querySelector("html")?.getAttribute("lang"), perLineValue);
     const translatedMessage = browser.i18n.getMessage(messageName, perLineValue);
 
     if (!translatedMessage) {
@@ -241,20 +245,29 @@ function updatePerLineStatus(optionValue, option, event) {
  *
  * @private
  * @param {Object} optionValue
- * @param {string} option the name of the option that has been changed
+ * @param {string} _option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
  * @returns {void}
  * @throws {Error} if no translation could be found
  */
-function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
+function updateEmojiPerLineMaxViaEmojiSize(optionValue, _option, event) {
     // only handle per line status (or if initialisation without event)
-    if (event && "target" in event && event.target.name !== "emojiSize") {
+    if (
+        event &&
+        "target" in event &&
+        event.target &&
+        /** @type {HTMLInputElement} */ (event.target).name !== "emojiSize"
+    ) {
         return;
     }
 
     const emojiSizeValue = Number(optionValue.emojiSize);
-    const elEmojisPerLine = document.getElementById("emojisPerLine");
+    const elEmojisPerLine = /** @type {HTMLInputElement|null} */(document.getElementById("emojisPerLine"));
+
+    if (!elEmojisPerLine) {
+        throw new Error('Element with id "emojisPerLine" not found.');
+    }
 
     // popup max with = 800px
     // see https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/user_interface/Popups#Popup_resizing
@@ -274,12 +287,12 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
         "for emojis of size", `${emojiSizeValue}px,`, "resulting in an estimated with of", `${estimatedWidth}px.`);
 
     // apply new max value
-    const oldEmojisPerLineValue = elEmojisPerLine.value;
-    elEmojisPerLine.max = newMaxValue;
+    const oldEmojisPerLineValue = Number(elEmojisPerLine.value);
+    elEmojisPerLine.max = String(newMaxValue);
 
     // adjust value if current one is too large
     if (oldEmojisPerLineValue > newMaxValue) {
-        elEmojisPerLine.value = newMaxValue;
+        elEmojisPerLine.value = String(newMaxValue);
 
         // manually update value/trigger trigger
         updatePerLineStatus({
@@ -297,20 +310,20 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, option, event) {
  *
  * @private
  * @param  {Object} optionValue
- * @param  {string} [option]
+ * @param  {string} [_option]
  * @param  {Object} [event]
  * @returns {Promise}
  */
-function applyEmojiSearch(optionValue, option, event = {}) {
+function applyEmojiSearch(optionValue, _option, event = {}) {
     // switch status of dependent settings
     if (optionValue.enabled) {
-        document.getElementById("searchCopyAction").disabled = false;
-        document.getElementById("emojipediaAction").disabled = false;
-        document.getElementById("searchBarDemo").disabled = false;
+        /** @type {HTMLInputElement} */ (document.getElementById("searchCopyAction")).disabled = false;
+        /** @type {HTMLInputElement} */ (document.getElementById("emojipediaAction")).disabled = false;
+        /** @type {HTMLInputElement} */ (document.getElementById("searchBarDemo")).disabled = false;
     } else {
-        document.getElementById("searchCopyAction").disabled = true;
-        document.getElementById("emojipediaAction").disabled = true;
-        document.getElementById("searchBarDemo").disabled = true;
+        /** @type {HTMLInputElement} */ (document.getElementById("searchCopyAction")).disabled = true;
+        /** @type {HTMLInputElement} */ (document.getElementById("emojipediaAction")).disabled = true;
+        /** @type {HTMLInputElement} */ (document.getElementById("searchBarDemo")).disabled = true;
     }
 
     // trigger update for current session
@@ -322,16 +335,16 @@ function applyEmojiSearch(optionValue, option, event = {}) {
     const reloadEmojiSearchStatus = () => {
         // get new settings, because they could have been changed
         // TODO: generalize in AutomaticSettings
-        const isEnabled = document.getElementById("omnibarIntegration").checked;
+        const isEnabled = /** @type {HTMLInputElement} */ (document.getElementById("omnibarIntegration")).checked;
 
         const newOptionValue = {
             enabled: isEnabled
         };
 
-        if (document.getElementById("searchCopyAction").checked) {
-            newOptionValue.action = document.getElementById("searchCopyAction").value;
-        } else if (document.getElementById("emojipediaAction").checked) {
-            newOptionValue.action = document.getElementById("emojipediaAction").value;
+        if (/** @type {HTMLInputElement} */(document.getElementById("searchCopyAction")).checked) {
+            newOptionValue.action = /** @type {HTMLInputElement} */ (document.getElementById("searchCopyAction")).value;
+        } else if (/** @type {HTMLInputElement} */(document.getElementById("emojipediaAction")).checked) {
+            newOptionValue.action = /** @type {HTMLInputElement} */ (document.getElementById("emojipediaAction")).value;
         }
 
         // we can only all hope, this won't end in an inifnitive loop
