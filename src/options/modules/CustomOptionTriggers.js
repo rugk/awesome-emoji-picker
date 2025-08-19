@@ -12,10 +12,10 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as IconHandler from "/common/modules/IconHandler.js";
 
 const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: ["clipboardWrite"]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("clipboardWrite")]
 };
 const TABS_PERMISSION = {
-    permissions: ["tabs"]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("tabs")]
 };
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
