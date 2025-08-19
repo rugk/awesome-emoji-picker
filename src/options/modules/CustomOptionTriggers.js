@@ -376,6 +376,38 @@ function applyEmojiSearch(optionValue, _option, event = {}) {
     return Promise.resolve();
 }
 
+/**
+ * Adjust UI of maximum results status (the "N results" text). Triggers once
+ * after the options have been loaded and when the option value is updated by the user.
+ *
+ * @private
+ * @param {object} optionValue
+ * @param {string} _option the name of the option that has been changed
+ * @param {Event?} event the event (input or change) that triggered saving
+ *                      (may not always be defined, e.g. when loading)
+ * @returns {void}
+ * @throws {Error} if no translation could be found
+ */
+function updateMaximumResultsStatus(optionValue, _option, event = null) {
+    // only handle maximumResults status (or if initialisation without event)
+    if (
+        event &&
+        "target" in event &&
+        event.target &&
+        /** @type {HTMLInputElement} */ (event.target).name !== "maximumResults"
+    ) {
+        return;
+    }
+    const maxResultsValue = optionValue.maximumResults;
+
+    const elMaximumResultsStatus = document.getElementById("maximumResultsStatus");
+    if (!elMaximumResultsStatus) {
+        throw new Error('Element with id "maximumResultsStatus" not found.');
+    }
+
+    // For now, just show the number. i18n can be added later.
+    elMaximumResultsStatus.textContent = maxResultsValue === 0 ? "∞" : maxResultsValue;
+}
 
 /**
  * Binds the triggers.
@@ -408,6 +440,7 @@ export async function registerTrigger() {
         browserElement.style.display = "none";
     } else {
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
+        AutomaticSettings.Trigger.registerSave("emojiSearch", updateMaximumResultsStatus);
     }
 
     // handle loading of options correctly
