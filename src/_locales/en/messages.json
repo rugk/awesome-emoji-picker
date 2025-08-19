@@ -105,7 +105,7 @@
     "description": "A tip shown to users that potentially speak another language to translate this add-on."
   },
   "tipTranslateAddonLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translations",
     "description": "The link to a description of the translation service/way you can use."
   },
   "tipDonate": {
@@ -310,12 +310,12 @@
     "placeholders": {
       "link": {
         "content": "$1",
-        "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md\">the whole license file</a>"
+        "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/main/LICENSE.md\">the whole license file</a>"
       }
     }
   },
   "optionsLicenseDisclaimerLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/LICENSE.md",
     "description": "This is the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer. Usually, you do not need to translate this as we have only an English version."
   },
   "optionsLicenseDisclaimerLinkText": {
@@ -353,7 +353,7 @@
     }
   },
   "contributorsThanksLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS.md",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTORS.md",
     "description": "The link to the CONTRIBUTORS file."
   },
   "contributorsThanksLinkText": {

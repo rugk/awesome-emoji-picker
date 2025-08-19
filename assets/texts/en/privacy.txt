@@ -1,6 +1,6 @@
 This add-on does not send any information to any third-party or the add-on author.
 
-An explanation of all permissions, this add-on requests, can be found at https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/en/permissions.md.
+An explanation of all permissions, this add-on requests, can be found at https://github.com/rugk/awesome-emoji-picker/blob/main/assets/texts/en/permissions.md.
 
 == THIRD-PARTY SERVICES ==
 
