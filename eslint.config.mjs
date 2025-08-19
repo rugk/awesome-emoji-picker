@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
-import jsdoc from 'eslint-plugin-jsdoc';
+import eslint from "@eslint/js";
+import jsdoc from "eslint-plugin-jsdoc";
 
 export default defineConfig([
     globalIgnores([
@@ -8,24 +9,21 @@ export default defineConfig([
         "!src/common/modules/data/*",
         "src/tests/helper",
         "node_modules/*",
-        "src/node_modules/*"
+        "src/node_modules/*",
     ]),
-    jsdoc.configs['flat/recommended-error'],
-    {
-        extends: ["eslint:recommended"],
-        plugins: {
-            jsdoc
-        },
 
+    eslint.configs.recommended,
+    // JSDoc plugin recommended rules (error level)
+    jsdoc.configs["flat/recommended-error"],
+
+    {
         languageOptions: {
             globals: {
                 ...globals.browser,
                 ...globals.webextensions,
             },
-
-            ecmaVersion: 14,
+            ecmaVersion: 2023,
             sourceType: "module",
-
             parserOptions: {
                 ecmaFeatures: {
                     impliedStrict: true,
@@ -33,13 +31,16 @@ export default defineConfig([
             },
         },
 
+        plugins: {
+            jsdoc
+        },
+
         rules: {
-            // basic rules
+            // base rules
             semi: 1,
             "semi-style": 2,
             "semi-spacing": 1,
             camelcase: 2,
-
             quotes: ["warn", "double", {
                 avoidEscape: true,
                 allowTemplateLiterals: false,
@@ -53,12 +54,9 @@ export default defineConfig([
             // technically required, because of CSP
             "no-eval": 2,
             "no-implied-eval": 2,
-
-            // great new EcmaScript features
             "prefer-const": ["error", {
                 destructuring: "all",
             }],
-
             "no-var": 1,
             "prefer-arrow-callback": 1,
             "implicit-arrow-linebreak": 1,
@@ -72,10 +70,7 @@ export default defineConfig([
             "symbol-description": 2,
             "object-shorthand": ["warn", "consistent-as-needed"],
             "prefer-promise-reject-errors": 2,
-            /* "prefer-destructuring": 1, */ // https://github.com/eslint/eslint/issues/10250
             "prefer-numeric-literals": 1,
-
-            // additional rules
             "no-new-object": 2,
             eqeqeq: ["error", "smart"],
             curly: ["error", "all"],
@@ -85,7 +80,6 @@ export default defineConfig([
             "no-throw-literal": 2,
             "no-self-compare": 2,
             "no-useless-call": 1,
-            /* "no-use-before-define": 1, */
             "consistent-return": 2,
             "spaced-comment": 1,
             "no-multi-spaces": 1,
@@ -96,13 +90,12 @@ export default defineConfig([
             yoda: ["error", "never"],
             /* "no-warning-comments": 1, */ // should be enabled later
             "require-await": 1,
-
-            // custom JSDoc rules via plugin
-            "jsdoc/require-description": 1,
-
             "wrap-iife": ["error", "inside"],
             "no-loop-func": 2,
             "no-unused-expressions": 2,
-            // "linebreak-style": 1, // cannot be used when contributing on Windows
+
+            // custom JSDoc additions on top of recommended-error
+            "jsdoc/require-description": 1,
         },
-    }]);
+    },
+]);
