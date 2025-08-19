@@ -39,7 +39,7 @@ function openTabUrl(url, disposition) {
 /**
  * Returns the frequently used emojis as suggestions.
  *
- * @param {number} [maximumNumberOfElements=10] The number of emojis to return (at most!).
+ * @param {number} [maximumNumberOfElements] The number of emojis to return (at most!).
  * {@type Promise<import("webextension-polyfill").Omnibox.SuggestResult[]>}
  */
 async function getFrequentlyUsedAsSuggestions(maximumNumberOfElements = 10) {
@@ -179,11 +179,11 @@ export async function triggerOmnixboxSearch(text, disposition) {
     // emoji data
     /** @type {import("/common/modules/EmojiSearched.d.ts").SkinSearched} */
     const foundEmojiWithSkin = await (await getEmojiMart()).getEmojiDataFromNative(text)
-            // ignore any errors and treat them as no emoji found
-            .catch((error) => {
-                console.warn("getEmojiDataFromNative()", error);
-                return null;
-            });
+        // ignore any errors and treat them as no emoji found
+        .catch((error) => {
+            console.warn("getEmojiDataFromNative()", error);
+            return null;
+        });
 
     // emoji itself copied or found
     const currentSkin = await getCurrentSkinIndex();
