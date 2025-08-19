@@ -27,9 +27,9 @@ function createPicker() {
  *
  * @public
  * @param {HTMLElement} element the element to focus
- * @param {number} [retries=10] how often to retry at most
- * @param {number} [delay=10] how many ms to re-check
- * @returns {Promise}
+ * @param {number} [retries] how often to retry at most
+ * @param {number} [delay] how many ms to re-check
+ * @returns {Promise<any>}
  */
 export async function focusElement(element, retries = 20, delay = 50) {
     const wait = (ms) => new Promise((func) => {
@@ -43,7 +43,7 @@ export async function focusElement(element, retries = 20, delay = 50) {
     // if element is focused, we are lucky
     if (document.activeElement === element) {
         console.log(element, "focused with", retries, "retries left, at delay", delay);
-        return;
+        return Promise.resolve();
     }
 
     if (retries <= 0) {
@@ -62,7 +62,7 @@ export async function focusElement(element, retries = 20, delay = 50) {
  * Only works on {@see EmojiPicker}/emoji-mart.
  *
  * @param {HTMLElement} emojiMartComponent
- * @param {Symbol} popupType
+ * @param {symbol} popupType
  */
 function centerOrResizeDependingOnOverflowOrUnderflow(emojiMartComponent, popupType) {
     console.info("Detected popup type", popupType, ", centering picker.");
