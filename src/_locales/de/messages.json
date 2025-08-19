@@ -90,11 +90,11 @@
   // tips
   "tipYouLikeAddon": {
     "message": "Magst du dieses Add-on?",
-    "description": "A tip shown to remind the user to rate the addon."
+    "description": "A tip shown to remind the user to rate the add-on."
   },
   "tipYouLikeAddonButton": {
     "message": "Bewerte es",
-    "description": "Button for the tip shown to remind the user to rate the addon."
+    "description": "Button for the tip shown to remind the user to rate the add-on."
   },
   "tipPopupCodeHotkey": {
     "message": "Die Tastenkombination für dieses Add-on ist Strg+Umschalt+Punkt.",
@@ -123,7 +123,7 @@
 
   // options
   "someSettingsAreManaged": {
-    "message": "Einige Einstellung werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
+    "message": "Einige Einstellungen werden von deinem Systemadministrator festgelegt und können nicht geändert werden.",
     "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators."
   },
   "optionIsDisabledBecauseManaged": {
@@ -153,12 +153,12 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionPopupIconColoredDescr": {
-    "message": "Zeigt ein farbiges Icon anstatt eines schwarz/weißen Icons in der Toolbar.",
+    "message": "Zeigt ein farbiges Symbol anstatt eines schwarz/weißen Symbols in der Toolbar.",
     "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details."
   },
   "optionEmojiPickerSet": {
     "message": "Emoji-Design:",
-      "description": "This is an option shown in the add-on settings."
+    "description": "This is an option shown in the add-on settings."
   },
   "optionEmojiSetNative": {
     "message": "Standard deines Betriebssystems",
@@ -190,23 +190,23 @@
   },
   "optionEmojiSize16px": {
     "message": "Klein (16px)",
-    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize24px": {
     "message": "Mittel (24px)",
-    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize32px": {
     "message": "Groß (32px)",
-    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize40px": {
     "message": "Sehr groß (40px)",
-    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size."
   },
   "optionEmojiSize48px": {
     "message": "Extra groß (48px)",
-    "description": "Option of the emoji size. Do mention a 'human-readbable' description first, followed by the technical pixel size."
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size."
   },
   "optionEmojiPickerPerLine": {
     "message": "Breite des Auswahlfensters:",
@@ -246,13 +246,13 @@
     "description": "This is an option shown in the add-on settings."
   },
   "optionCopyClipboardFallback": {
-    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehl schlägt.",
+    "message": "Falle nur darauf zurück, wenn das direkte Einfügen des Emojis fehlschlägt.",
     "description": "This is an option shown in the add-on settings."
   },
 
   "optionCopyEmojiColons": {
     "message": "Nutze die $COLON$-Syntax anstatt des Unicode-Emojis.",
-    "description": "This is an option shown in the add-on settings.",
+    "description": "This is an option shown in the add-on settings. You can also translate 'code' with 'syntax'.",
     "placeholders": {
       "colon": {
         "content": "$1",
@@ -275,7 +275,7 @@
   },
 
   "optionClosePopup": {
-    "message": "Schließe den Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
+    "message": "Schließe das Popup, nachdem das Emoji ausgewählt/eingefügt wurde.",
     "description": "This is an option shown in the add-on settings."
   },
 
@@ -313,12 +313,12 @@
     "description": "This is an radio option shown in the add-on settings."
   },
   "optionImageAltTextSearchBarDemo": {
-    "message": "Ein Beispiel, dass eine Suche in der Addressleiste mit dem Suchbegriff „Hund” zeigt, zu dem einige Emojis vorgeschlagen werden.",
+    "message": "Ein Beispiel, das eine Suche in der Addressleiste mit dem Suchbegriff „Hund” zeigt, zu dem einige Emojis vorgeschlagen werden.",
     "description": "This is the alt description for an image shown in the add-on settings."
   },
 
   "optionsLicenseDisclaimer": {
-    "message": "Alle Emoji-Bilder können unter verschiedene Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
+    "message": "Alle Emoji-Bilder können unter verschiedenen Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
       "link": {
@@ -337,7 +337,7 @@
   },
 
   "translatorCredit": {
-    "message": "Dieses Add-on wurde von $TRANSLATORS$ ins Deutsche übersetzt.",
+    "message": "Dieses Add-on wurde von $TRANSLATORS$ und anderen ins Deutsche übersetzt.",
     "description": "The credit text for the translator. See https://github.com/TinyWebEx/common/blob/master/CONTRIBUTING.md#translator-credit-inside-of-add-on for how to translate this.",
     "placeholders": {
       "translators": {
@@ -392,6 +392,24 @@
       "addon": {
         "content": "$1",
         "example": "The name of the extension. See extensionName."
+      }
+    }
+  },
+  "searchResultDescription": {
+    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
+    "description": "The description for emoji search result.",
+    "placeholders": {
+      "native": {
+        "content": "$1",
+        "example": "🐵 (The Unicode symbol for the Emoji)"
+      },
+      "name": {
+        "content": "$2",
+        "example": "Monkey Face (The name of the Emoji)"
+      },
+      "colon_syntax": {
+        "content": "$3",
+        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
       }
     }
   },

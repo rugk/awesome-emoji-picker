@@ -15,6 +15,7 @@
 ### German
 
 - [@rugk](https://github.com/rugk)
+- Flo Edelmann ([@FloEdelmann](https://github.com/FloEdelmann))
 
 ### Hungarian
 
