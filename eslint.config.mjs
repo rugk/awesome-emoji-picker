@@ -96,6 +96,7 @@ export default defineConfig([
 
             // custom JSDoc additions on top of recommended-error
             "jsdoc/require-returns-description": "warn",
+            "jsdoc/require-param-description": "warn",
             "jsdoc/tag-lines": ["error", "any",{"startLines":1}],
         },
     },
