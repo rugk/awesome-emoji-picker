@@ -39,7 +39,7 @@ function applyPopupIconColor(optionValue) {
  * Requests the permission for pickerResult settings.
  *
  * @private
- * @param  {Object} optionValue
+ * @param  {object} optionValue
  * @returns {Promise}
  */
 function applyPickerResultPermissions(optionValue) {
@@ -61,10 +61,10 @@ function applyPickerResultPermissions(optionValue) {
  * Requests the permission for autocorrect settings.
  *
  * @private
- * @param  {Object} optionValue
+ * @param  {object} optionValue
  * @param  {string} [_option]
- * @param  {Object} [event]
- * @returns {Promise}
+ * @param  {object} [event]
+ * @returns {Promise<any>}
  */
 function applyAutocorrectPermissions(optionValue, _option, event) {
     if (optionValue.enabled) {
@@ -79,7 +79,7 @@ function applyAutocorrectPermissions(optionValue, _option, event) {
         /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = true;
     }
 
-    let retPromise;
+    let retPromise = Promise.resolve();
 
     if (PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
     ) {
@@ -105,7 +105,7 @@ function applyAutocorrectPermissions(optionValue, _option, event) {
  * Apply the new context menu settings.
  *
  * @private
- * @param  {Object} optionValue
+ * @param  {object} optionValue
  * @returns {void}
  */
 function applyContextMenuSettings(optionValue) {
@@ -120,8 +120,8 @@ function applyContextMenuSettings(optionValue) {
  * Adjusts the emoji size setting for saving.
  *
  * @private
- * @param {Object} param
- * @param {Object} param.optionValue the value of the changed option
+ * @param {object} param
+ * @param {object} param.optionValue the value of the changed option
  * @param {string} param.option the name of the option that has been changed
  * @param {Array} param.saveTriggerValues all values returned by potentially
  *                                          previously run safe triggers
@@ -138,12 +138,12 @@ function adjustEmojiSize(param) {
  * Adjusts the pickerResult->resultType setting for saving.
  *
  * @private
- * @param {Object} param
- * @param {Object} param.optionValue the value of the option to be loaded
+ * @param {object} param
+ * @param {object} param.optionValue the value of the option to be loaded
  * @param {string} param.option the name of the option that has been changed
  * @param {HTMLElement} param.elOption where the data is supposed to be loaded
  *                     into
- * @param {Object} param.optionValues result of a storage.[…].get call, which
+ * @param {object} param.optionValues result of a storage.[…].get call, which
  *                  contains the values that should be applied to the file
  *                  Please prefer "optionValue" instead of this, as this may not
  *                  always contain a value here.
@@ -168,8 +168,8 @@ function preparePickerResultTypeOptionForInput(param) {
  * Adjusts the pickerResult->resultType setting for saving.
  *
  * @private
- * @param {Object} param
- * @param {Object} param.optionValue the value of the changed option
+ * @param {object} param
+ * @param {object} param.optionValue the value of the changed option
  * @param {string} param.option the name of the option that has been changed
  * @param {Array} param.saveTriggerValues all values returned by potentially
  *                                          previously run safe triggers
@@ -206,7 +206,7 @@ function getPluralForm(language, optionValue) {
  * after the options have been loaded and when the option value is updated by the user.
  *
  * @private
- * @param {Object} optionValue
+ * @param {object} optionValue
  * @param {string} _option the name of the option that has been changed
  * @param {Event?} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -244,7 +244,7 @@ function updatePerLineStatus(optionValue, _option, event = null) {
  * Adjust maximum value of emojis per line when the emoji size is adjusted.
  *
  * @private
- * @param {Object} optionValue
+ * @param {object} optionValue
  * @param {string} _option the name of the option that has been changed
  * @param {Event} event the event (input or change) that triggered saving
  *                      (may not always be defined, e.g. when loading)
@@ -309,9 +309,9 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, _option, event) {
  * Adjust options page when emojiSearch is changed.
  *
  * @private
- * @param  {Object} optionValue
+ * @param  {object} optionValue
  * @param  {string} [_option]
- * @param  {Object} [event]
+ * @param  {object} [event]
  * @returns {Promise}
  */
 function applyEmojiSearch(optionValue, _option, event = {}) {
