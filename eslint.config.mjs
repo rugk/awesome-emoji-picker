@@ -14,6 +14,9 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([globalIgnores([
+    "src/common/modules/*/*",
+    "!src/common/modules/data/*",
+    "src/tests",
     "node_modules/*",
     "src/node_modules/*"
 ]), {
