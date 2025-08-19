@@ -6,7 +6,7 @@ export default defineConfig([
     globalIgnores([
         "src/common/modules/*/*",
         "!src/common/modules/data/*",
-        "src/tests",
+        "src/tests/helper",
         "node_modules/*",
         "src/node_modules/*"
     ]),
