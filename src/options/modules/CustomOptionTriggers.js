@@ -68,15 +68,15 @@ function applyPickerResultPermissions(optionValue) {
  */
 function applyAutocorrectPermissions(optionValue, _option, event) {
     if (optionValue.enabled) {
-        document.getElementById("autocorrectEmojiShortcodes").disabled = false;
-        document.getElementById("autocorrectEmojis").disabled = false;
-        document.getElementById("autocompleteEmojiShortcodes").disabled = false;
-        document.getElementById("autocompleteSelect").disabled = false;
+        /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojiShortcodes")).disabled = false;
+        /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojis")).disabled = false;
+        /** @type {HTMLInputElement} */(document.getElementById("autocompleteEmojiShortcodes")).disabled = false;
+        /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = false;
     } else {
-        document.getElementById("autocorrectEmojiShortcodes").disabled = true;
-        document.getElementById("autocorrectEmojis").disabled = true;
-        document.getElementById("autocompleteEmojiShortcodes").disabled = true;
-        document.getElementById("autocompleteSelect").disabled = true;
+        /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojiShortcodes")).disabled = true;
+        /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojis")).disabled = true;
+        /** @type {HTMLInputElement} */(document.getElementById("autocompleteEmojiShortcodes")).disabled = true;
+        /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = true;
     }
 
     let retPromise;
@@ -397,7 +397,11 @@ export async function registerTrigger() {
     AutomaticSettings.Trigger.registerSave("emojiPicker", updateEmojiPerLineMaxViaEmojiSize);
     // Thunderbird
     if (IS_THUNDERBIRD) {
-        document.getElementById("browser").style.display = "none";
+        const browserElement = document.getElementById("browser");
+        if (!browserElement) {
+            throw new Error('Element with id "browser" not found.');
+        }
+        browserElement.style.display = "none";
     } else {
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
     }
