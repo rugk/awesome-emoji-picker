@@ -417,13 +417,13 @@ export async function registerTrigger() {
     await PermissionRequest.registerPermissionMessageBox(
         CLIPBOARD_WRITE_PERMISSION,
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
-        document.getElementById("searchActionCopyPermissionInfo"),
+        /** @type {HTMLElement} */(document.getElementById("searchActionCopyPermissionInfo")),
         "permissionRequiredClipboardWrite"
     );
     await PermissionRequest.registerPermissionMessageBox(
         TABS_PERMISSION,
         MESSAGE_TABS_PERMISSION,
-        document.getElementById("tabsPermissionInfo"),
+        /** @type {HTMLElement} */(document.getElementById("tabsPermissionInfo")),
         // "permissionRequiredTabs" // TODO(to: 'rugk'): This will need to be localized
         "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
     );
