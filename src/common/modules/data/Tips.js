@@ -76,7 +76,7 @@
 
 import {isMobile} from "../MobileHelper.js";
 import {userSpeaksLocaleNotYetTranslated} from "../LanguageHelper.js";
-import { getBrowserValue } from "../BrowserCompat.js";
+import { getBrowserValue } from "../BrowserCompat/BrowserCompat.js";
 
 // Thunderbird
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1641573

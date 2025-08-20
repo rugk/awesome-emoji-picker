@@ -31,3 +31,6 @@
 [submodule "src/common/modules/CommonCss"]
 	path = src/common/modules/CommonCss
 	url = https://github.com/TinyWebEx/CommonCss
+[submodule "src/common/modules/BrowserCompat"]
+	path = src/common/modules/BrowserCompat
+	url = https://github.com/TinyWebEx/BrowserCompat
