@@ -184,17 +184,19 @@ function adjustPickerResultTypeOption(param) {
 }
 
 /**
- * Adjusts the emojiSearch->maximumResults setting for loading.
+ * Adjusts the emojiSearch.maximumResults setting for loading.
  *
  * @private
- * @param {object} emojiSearch The emojiSearch option group object
+ * @param param
+ * @param {object} param
+ * @param {object} param.optionValue the value of the changed option
  * @returns {Promise}
  */
-function adjustEmojiSearchMaximumResultsOnLoad(emojiSearch) {
-    if (emojiSearch.maximumResults == null || typeof emojiSearch.maximumResults !== "number" || emojiSearch.maximumResults <= 0) {
-        emojiSearch.maximumResults = MAXIMUM_SEARCH_RESULTS;
+function adjustEmojiSearchMaximumResultsOnLoad(param) {
+    if (param.optionValue == null || typeof param.optionValue.maximumResults !== "number" || param.optionValue.maximumResults <= 0) {
+        return AutomaticSettings.Trigger.overrideContinue(MAXIMUM_SEARCH_RESULTS);
     }
-    return AutomaticSettings.Trigger.overrideContinue(emojiSearch);
+    return Promise.resolve();
 }
 
 /**
@@ -469,7 +471,7 @@ export async function registerTrigger() {
         }
         browserElement.style.display = "none";
     } else {
-        AutomaticSettings.Trigger.addCustomLoadOverride("emojiSearch", adjustEmojiSearchMaximumResultsOnLoad);
+        AutomaticSettings.Trigger.addCustomLoadOverride("maximumResults", adjustEmojiSearchMaximumResultsOnLoad);
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
         AutomaticSettings.Trigger.registerSave("emojiSearch", updateMaximumResultsStatus);
         AutomaticSettings.Trigger.registerSave("emojiSearch", adjustEmojiSearchMaximumResults);
