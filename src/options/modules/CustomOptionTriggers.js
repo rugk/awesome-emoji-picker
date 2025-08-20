@@ -20,6 +20,8 @@ const TABS_PERMISSION = {
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
 
+const MAXIMUM_SEARCH_RESULTS = 21;
+
 // Thunderbird
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
 const IS_THUNDERBIRD = Boolean(globalThis.messenger);
@@ -179,6 +181,20 @@ function adjustPickerResultTypeOption(param) {
     param.optionValue.resultType = param.optionValue.resultType ? "colons" : "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
+}
+
+/**
+ * Adjusts the emojiSearch->maximumResults setting for loading.
+ *
+ * @private
+ * @param {object} emojiSearch The emojiSearch option group object
+ * @returns {Promise}
+ */
+function adjustEmojiSearchMaximumResultsOnLoad(emojiSearch) {
+    if (emojiSearch.maximumResults == null || typeof emojiSearch.maximumResults !== "number" || emojiSearch.maximumResults <= 0) {
+        emojiSearch.maximumResults = MAXIMUM_SEARCH_RESULTS;
+    }
+    return AutomaticSettings.Trigger.overrideContinue(emojiSearch);
 }
 
 /**
@@ -406,7 +422,21 @@ function updateMaximumResultsStatus(optionValue, _option, event = null) {
     }
 
     // For now, just show the number. i18n can be added later.
-    elMaximumResultsStatus.textContent = maxResultsValue === 0 ? "∞" : maxResultsValue;
+    elMaximumResultsStatus.textContent = (maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS) ? "∞" : maxResultsValue;
+}
+
+/**
+ * Adjusts the emojiSearch->maximumResults setting for saving.
+ *
+ * @private
+ * @param {object} emojiSearch The emojiSearch option group object
+ * @returns {Promise}
+ */
+function adjustEmojiSearchMaximumResults(emojiSearch) {
+    if (emojiSearch.maximumResults === MAXIMUM_SEARCH_RESULTS) {
+        emojiSearch.maximumResults = null;
+    }
+    return AutomaticSettings.Trigger.overrideContinue(emojiSearch);
 }
 
 /**
@@ -439,8 +469,10 @@ export async function registerTrigger() {
         }
         browserElement.style.display = "none";
     } else {
+        AutomaticSettings.Trigger.addCustomLoadOverride("emojiSearch", adjustEmojiSearchMaximumResultsOnLoad);
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
         AutomaticSettings.Trigger.registerSave("emojiSearch", updateMaximumResultsStatus);
+        AutomaticSettings.Trigger.registerSave("emojiSearch", adjustEmojiSearchMaximumResults);
     }
 
     // handle loading of options correctly
