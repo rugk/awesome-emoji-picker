@@ -14,9 +14,10 @@ import * as ColorSchemeModeHelper from "./modules/ColorSchemeModeHelper.js";
 import * as ManualAdjustments from "./modules/ManualAdjustments.js";
 
 // init modules
-CustomOptionTriggers.registerTrigger();
-AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
-AutomaticSettings.init();
+CustomOptionTriggers.registerTrigger().then(() => {
+    AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
+    AutomaticSettings.init();
+});
 ColorSchemeModeHelper.init();
 ManualAdjustments.init();
 
