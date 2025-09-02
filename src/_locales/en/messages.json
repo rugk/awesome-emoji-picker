@@ -116,10 +116,6 @@
     "message": "Support development by donating",
     "description": "The button of the donation tip taking the user to the donation site."
   },
-  "tipLearnMore": {
-    "message": "Learn more",
-    "description": "The common button for tips, where you can get more information on click."
-  },
 
   // options
   "someSettingsAreManaged": {
@@ -304,6 +300,143 @@
     "description": "This is the alt description for an image shown in the add-on settings."
   },
 
+  // autocorrect
+  "optionAutocorrectTitle": {
+    "message": "Emoji autocorrection",
+    "description": "Title for the emoji autocorrection section."
+  },
+  "optionAutocorrectHelperText": {
+    "message": "With the exception of the smart quotes, all the autocorrections are done after typing the first nonmatching character following the character sequence, such as a space (␣). Press Backspace (⌫) to undo an autocorrection.",
+    "description": "Helper text for emoji autocorrection section."
+  },
+  "optionAutocorrectUnicodifyText": {
+    "message": "For Unicode Symbol autocorrection and Unicode font conversion from the context menu, please try our $ICON$ $ADDON_NAME$ add-on.",
+    "description": "Helper text for Unicodify add-on suggestion.",
+     "placeholders": {
+      "icon": {
+        "content": "$1",
+        "example": "<strong>υ</strong>"
+      },
+      "addon_name": {
+        "content": "$2",
+        "example": "<a href=\"https://…\">Unicodify</a>"
+      }
+    }
+  },
+  "optionAutocorrectUnicodifyTextIcon": {
+    "message": "υ",
+    "description": "The icon used in the autocorrect text to refer to the Unicodify add-on."
+  },
+  "optionAutocorrectUnicodifyTextAddonTitle": {
+    "message": "Unicodify",
+    "description": "The title of the Unicodify add-on, which is linked in the autocorrect text."
+  },
+  "optionWarningAutocorrectFeature": {
+    "message": "The Emoji autocorrect feature is experimental and may negatively affect some web pages.",
+    "description": "Warning message for experimental autocorrect feature."
+  },
+  "optionWarningAutocorrectFeatureLink": {
+    "message": "https://github.com/rugk/unicodify/wiki/FAQ#why-is-the-autocorrect-feature-experimental",
+    "description": "Link for more information about the experimental autocorrect feature."
+  },
+  "permissionRequiredTabsAutocorrect": {
+    "message": "The permission to access the browser tabs is required for this feature to prevent you having to reload all of them manually if you change these options.",
+    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request permissions to send updated options to all tabs."
+  },
+  "optionAutocorrectEnable": {
+    "message": "Enable autocorrection",
+    "description": "Label for enabling autocorrection."
+  },
+  "optionAutocorrectShortcodes": {
+    "message": "Autocorrect $EXAMPLE_SHORTCODE$Emoji Shortcodes",
+    "description": "Label for enabling shortcode autocorrection.",
+    "placeholders": {
+      "example_shortcode": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionAutocorrectShortcodesDescr": {
+    "message": "For example, this will replace $EXAMPLE_SHORTCODE1$with 😃 and $EXAMPLE_SHORTCODE2$with 🍎.",
+    "description": "Description for shortcode autocorrection.",
+    "placeholders": {
+      "example_shortcode1": {
+        "content": "$1",
+        "example": "<code>:smiley:</code>"
+      },
+      "example_shortcode2": {
+        "content": "$2",
+        "example": "<code>:apple:</code>"
+      }
+    }
+  },
+  "optionAutocorrectEmoticons": {
+    "message": "Autocorrect Emoticon Emojis",
+    "description": "Label for enabling emoticon autocorrection."
+  },
+  "optionAutocorrectEmoticonsDescr": {
+    "message": "For example, this will replace $EXAMPLE_EMOTICON1$ with ☺️, $EXAMPLE_EMOTICON2$ with 😃 and $EXAMPLE_EMOTICON3$ with ☹️.",
+    "description": "Description for emoticon autocorrection.",
+    "placeholders": {
+      "example_emoticon1": {
+        "content": "$1",
+        "example": "<code>:)</code>"
+      },
+      "example_emoticon2": {
+        "content": "$2",
+        "example": "<code>:D</code>"
+      },
+      "example_emoticon3": {
+        "content": "$3",
+        "example": "<code>:(</code>"
+      }
+    }
+  },
+  "optionAutocompleteShortcodes": {
+    "message": "Autocomplete <code>:colon:</code>Emoji Shortcodes",
+    "description": "Label for enabling autocomplete of emoji shortcodes."
+  },
+  "optionAutocompleteShortcodesDescr": {
+    "message": "For example, this will replace $EXAMPLE_SHORTCODE_UNFINISHED$with $EXAMPLE_SHORTCODE_FINISHED$",
+    "description": "Description for autocomplete of emoji shortcodes.",
+    "placeholders": {
+      "example_shortcode_unfinished": {
+        "content": "$1",
+        "example": "<code>:ap</code>"
+      },
+      "example_shortcode_finished": {
+        "content": "$2",
+        "example": "<code>:apple:.</code>"
+      }
+    }
+  },
+  "optionAutocompleteSelect": {
+    "message": "Always select the autocompletions for confirmation.",
+    "description": "Label for always selecting autocompletions."
+  },
+  "tipLearnMore": {
+    "message": "Learn more",
+    "description": "The common button for tips, where you can get more information on click."
+  },
+
+  // options emoji search
+  "optionEmojiSearchMaximumResultsStatusUnlimited": {
+    "message": "∞",
+    "description": "Status text for unlimited emoji search results."
+  },
+  "optionEmojiSearchMaximumResultsStatusNumber": {
+    "message": "$1",
+    "description": "Status text for a specific number of emoji search results.",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+
+  // options footer
   "optionsLicenseDisclaimer": {
     "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
@@ -361,7 +494,7 @@
     "description": "The link text linking to the contributors file. See contributorsThanks."
   },
 
-  // emoji-search
+  // emoji-search bar
   "searchTipDescription": {
     "message": "Search for emojis via $ADDON$…",
     "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",

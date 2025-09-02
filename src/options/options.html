@@ -156,16 +156,16 @@
 			</section>
 			<section>
 				<!-- TODO(to: 'rugk'): This section will need to be localized and you may want to create a warning link specifically for the Awesome Emoji Picker -->
-				<h1 data-i18n="">Emoji autocorrection</h1>
-				<span class="helper-text">With the exception of the smart quotes, all the autocorrections are done after typing the first nonmatching character following the character sequence, such as a space (␣). Press Backspace (⌫) to undo an autocorrection.</span><br>
+				<h1 data-i18n="__MSG_optionAutocorrectTitle__">Emoji autocorrection</h1>
+				<span class="helper-text" data-i18n="__MSG_optionAutocorrectHelperText__">With the exception of the smart quotes, all the autocorrections are done after typing the first nonmatching character following the character sequence, such as a space (␣). Press Backspace (⌫) to undo an autocorrection.</span><br>
 
-				<span class="helper-text">For Unicode Symbol autocorrection and Unicode font conversion from the context menu, please try our <strong>υ</strong> <a id="link-unicodify">Unicodify</a> add-on.</span>
+				<span class="helper-text" data-i18n="__MSG_optionAutocorrectUnicodifyText__" data-opt-i18n-keep-children>For Unicode Symbol autocorrection and Unicode font conversion from the context menu, please try our <strong data-i18n="__MSG_optionAutocorrectUnicodifyTextIcon__">υ</strong> <a id="link-unicodify" data-i18n="__MSG_optionAutocorrectUnicodifyTextAddonTitle__">Unicodify</a> add-on.</span>
 
 				<div class="message-container">
 					<div aria-label="warning message" data-i18n data-i18n-aria-label="__MSG_ariaMessageWarning__" class="message-box warning">
 						<span class="message-text" data-i18n="__MSG_optionWarningAutocorrectFeature__">The Emoji autocorrect feature is experimental and may negatively affect some web pages.</span>
 						<a href="https://github.com/rugk/unicodify/wiki/FAQ#why-is-the-autocorrect-feature-experimental" data-i18n-href="__MSG_optionWarningAutocorrectFeatureLink__" >
-							<button data-i18n="__MSG_optionMoreInformation__" type="button" class="message-action-button micro-button warning">More information</button>
+							<button data-i18n="__MSG_tipLearnMore__" type="button" class="message-action-button micro-button warning">Learn more</button>
 						</a>
 					</div>
 				</div>
@@ -184,7 +184,7 @@
 					<li>
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="autocorrect" data-optiongroup="autocorrect" name="enabled">
-							<label for="autocorrect">Enable autocorrection</label>
+							<label data-i18n="__MSG_optionAutocorrectEnable__" for="autocorrect">Enable autocorrection</label>
 						</div>
 					</li>
 
@@ -193,30 +193,30 @@
 							<li>
 								<div class="line">
 									<input class="setting save-on-change" type="checkbox" id="autocorrectEmojiShortcodes" data-optiongroup="autocorrect" name="autocorrectEmojiShortcodes">
-									<label data-i18n="" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+									<label data-i18n="__MSG_optionAutocorrectShortcodes__" data-opt-i18n-keep-children for="autocorrectEmojiShortcodes">Autocorrect <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
 								</div>
-								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:smiley:</code>with 😃 and <code>:apple:</code>with 🍎.</span>
+								<span data-i18n="__MSG_optionAutocorrectShortcodesDescr__" class="line indent helper-text">For example, this will replace <code>:smiley:</code>with 😃 and <code>:apple:</code>with 🍎.</span>
 							</li>
 
 							<li>
 								<div class="line">
 									<input class="setting save-on-change" type="checkbox" id="autocorrectEmojis" data-optiongroup="autocorrect" name="autocorrectEmojis">
-									<label data-i18n="" for="autocorrectEmojis">Autocorrect Emoticon Emojis</label>
+									<label data-i18n="__MSG_optionAutocorrectEmoticons__" for="autocorrectEmojis">Autocorrect Emoticon Emojis</label>
 								</div>
-								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:)</code>with ☺️, <code>:D</code>with 😃 and <code>:(</code>with ☹️.</span>
+								<span data-i18n="__MSG_optionAutocorrectEmoticonsDescr__" class="line indent helper-text">For example, this will replace <code>:)</code>with ☺️, <code>:D</code> with 😃 and <code>:(</code> with ☹️.</span>
 							</li>
 
 							<li>
 								<div class="line">
 									<input class="setting save-on-change" type="checkbox" id="autocompleteEmojiShortcodes" data-optiongroup="autocorrect" name="autocompleteEmojiShortcodes">
-									<label data-i18n="" data-opt-i18n-keep-children for="autocompleteEmojiShortcodes">Autocomplete <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
+									<label data-i18n="__MSG_optionAutocompleteShortcodes__" data-opt-i18n-keep-children for="autocompleteEmojiShortcodes">Autocomplete <code data-i18n="__MSG_optionCopyEmojiColonsCode__">:colon:</code>Emoji Shortcodes</label>
 								</div>
-								<span data-i18n="" class="line indent helper-text">For example, this will replace <code>:ap</code>with <code>:apple:.</code></span>
+								<span data-i18n="__MSG_optionAutocompleteShortcodesDescr__" class="line indent helper-text">For example, this will replace <code>:ap</code>with <code>:apple:.</code></span>
 								<ul>
 									<li>
 										<div class="line">
 											<input class="setting save-on-change" type="checkbox" id="autocompleteSelect" data-optiongroup="autocorrect" name="autocompleteSelect">
-											<label data-i18n="" for="autocompleteSelect">Always select the autocompletions for confirmation.</label>
+											<label data-i18n="__MSG_optionAutocompleteSelect__" for="autocompleteSelect">Always select the autocompletions for confirmation.</label>
 										</div>
 									</li>
 								</ul>
@@ -286,9 +286,7 @@
 						<div class="line">
 							<label data-i18n="optionEmojiSearchMaximumResults" for="maximumResults">Maximum results:</label>
 							<input class="setting save-on-input" type="range" value="9" min="1" max="21" step="1" id="maximumResults" data-optiongroup="emojiSearch" name="maximumResults">
-							<span>
-								<span id="maximumResultsStatus">(infinite)</span>
-							</span>
+							<span id="maximumResultsStatus" data-i18n="optionEmojiSearchMaximumResultsStatus">∞</span>
 						</div>
 						<span data-i18n="optionEmojiSearchMaximumResultsDescr" class="line indent helper-text">Limit the amount of emoji search results in the list. Drag to the maximum or unlimited results.</span>
 					</li>

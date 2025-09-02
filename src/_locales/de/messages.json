@@ -317,6 +317,131 @@
     "description": "This is the alt description for an image shown in the add-on settings."
   },
 
+  // autocorrect
+  "optionAutocorrectTitle": {
+    "message": "Emoji-Autokorrektur",
+    "description": "Title for the emoji autocorrection section."
+  },
+  "optionAutocorrectHelperText": {
+    "message": "Mit Ausnahme der intelligenten Anführungszeichen werden alle Autokorrekturen nach der Eingabe des ersten nicht passenden Zeichens nach der Zeichenfolge durchgeführt, z. B. einem Leerzeichen (␣). Drücke die Rücktaste (⌫), um eine Autokorrektur rückgängig zu machen.",
+    "description": "Helper text for emoji autocorrection section."
+  },
+  "optionAutocorrectUnicodifyText": {
+    "message": "Für Unicode-Symbol-Autokorrekturen und Unicode-Schriftartenumwandlung über das Kontextmenü, probiere bitte unser $ICON$ $ADDON_NAME$-Add-on.",
+    "description": "Text explaining to use other Unicodify add-on as alternative.",
+    "placeholders": {
+      "icon": {
+        "content": "$1",
+        "example": "<strong>υ</strong>"
+      },
+      "addon_name": {
+        "content": "$2",
+        "example": "<a href=\"https://…\">Unicodify</a>"
+      }
+    }
+  },
+  "optionWarningAutocorrectFeature": {
+    "message": "Die Emoji-Autokorrektur ist experimentell und kann sich negativ auf einige Webseiten auswirken.",
+    "description": "Warning message for experimental autocorrect feature."
+  },
+  "optionWarningAutocorrectFeatureLink": {
+    "message": "https://github.com/rugk/unicodify/wiki/FAQ#why-is-the-autocorrect-feature-experimental",
+    "description": "Link for more information about the experimental autocorrect feature."
+  },
+  "permissionRequiredTabsAutocorrect": {
+    "message": "Die Berechtigung zum Zugriff auf die Browser-Tabs ist für diese Funktion erforderlich, damit nicht alle Tabs manuell neugeladen müssen, wenn diese Optionen sich ändern.",
+    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request permissions to send updated options to all tabs."
+  },
+  "optionAutocorrectEnable": {
+    "message": "Autokorrektur aktivieren",
+    "description": "Label for enabling autocorrection."
+  },
+  "optionAutocorrectShortcodes": {
+    "message": "Autokorrigiere $EXAMPLE_SHORTCODE$Emoji-Shortcodes",
+    "description": "Label for enabling shortcode autocorrection.",
+    "placeholders": {
+      "example_shortcode": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
+  },
+  "optionAutocorrectShortcodesDescr": {
+    "message": "Zum Beispiel wird $EXAMPLE_SHORTCODE1$ durch 😃 und $EXAMPLE_SHORTCODE2$ durch 🍎 ersetzt.",
+    "description": "Description for shortcode autocorrection.",
+    "placeholders": {
+      "example_shortcode1": {
+        "content": "$1",
+        "example": "<code>:smiley:</code>"
+      },
+      "example_shortcode2": {
+        "content": "$2",
+        "example": "<code>:apple:</code>"
+      }
+    }
+  },
+  "optionAutocorrectEmoticons": {
+    "message": "Autokorrigiere Emoticon-Emojis",
+    "description": "Label for enabling emoticon autocorrection."
+  },
+  "optionAutocorrectEmoticonsDescr": {
+    "message": "Zum Beispiel wird $EXAMPLE_EMOTICON1$ durch ☺️, $EXAMPLE_EMOTICON2$ durch 😃 und $EXAMPLE_EMOTICON3$ durch ☹️ ersetzt.",
+    "description": "Description for emoticon autocorrection.",
+    "placeholders": {
+      "example_emoticon1": {
+        "content": "$1",
+        "example": "<code>:)</code>"
+      },
+      "example_emoticon2": {
+        "content": "$2",
+        "example": "<code>:D</code>"
+      },
+      "example_emoticon3": {
+        "content": "$3",
+        "example": "<code>:(</code>"
+      }
+    }
+  },
+  "optionAutocompleteShortcodes": {
+    "message": "Autovervollständige <code>:colon:</code>Emoji-Shortcodes",
+    "description": "Label for enabling autocomplete of emoji shortcodes."
+  },
+  "optionAutocompleteShortcodesDescr": {
+    "message": "Zum Beispiel wird $EXAMPLE_SHORTCODE_UNFINISHED$ durch $EXAMPLE_SHORTCODE_FINISHED$ ersetzt.",
+    "description": "Description for autocomplete of emoji shortcodes.",
+    "placeholders": {
+      "example_shortcode_unfinished": {
+        "content": "$1",
+        "example": "<code>:ap</code>"
+      },
+      "example_shortcode_finished": {
+        "content": "$2",
+        "example": "<code>:apple:.</code>"
+      }
+    }
+  },
+  "optionAutocompleteSelect": {
+    "message": "Autovervollständigungen immer zur Bestätigung auswählen.",
+    "description": "Label for always selecting autocompletions."
+  },
+
+  // options emoji search
+  "optionEmojiSearchMaximumResultsStatusUnlimited": {
+    "message": "∞",
+    "description": "Status text for unlimited emoji search results."
+  },
+  "optionEmojiSearchMaximumResultsStatusNumber": {
+    "message": "$1",
+    "description": "Status text for a specific number of emoji search results.",
+    "placeholders": {
+      "number": {
+        "content": "$1",
+        "example": "10"
+      }
+    }
+  },
+
+  // footer
   "optionsLicenseDisclaimer": {
     "message": "Alle Emoji-Bilder können unter verschiedenen Lizenzen stehen. Siehe $LINK$ für mehr Informationen.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
@@ -372,46 +497,6 @@
   "contributorsThanksLinkText": {
     "message": "alle anderen Beitragenden",
     "description": "The link text linking to the contributors file. See contributorsThanks."
-  },
-
-  // emoji-search
-  "searchTipDescription": {
-    "message": "Nach Emojis suchen mit $ADDON$…",
-    "description": "This is the text that is shown when searching for an emoji. It shows a tip to remind the user how to search for an emoji.",
-    "placeholders": {
-      "addon": {
-        "content": "$1",
-        "example": "The name of the extension. See extensionName."
-      }
-    }
-  },
-  "searchTipDescriptionDisabled": {
-    "message": "Das Suchen nach Emojis mit $ADDON$ ist deaktiviert… Du kannst es in den Optionen aktivieren.",
-    "description": "This is the text that is shown when searching for an emoji, but if the address bar integration is disabled.",
-    "placeholders": {
-      "addon": {
-        "content": "$1",
-        "example": "The name of the extension. See extensionName."
-      }
-    }
-  },
-  "searchResultDescription": {
-    "message": "$NATIVE$ – $NAME$ ($COLON_SYNTAX$)",
-    "description": "The description for emoji search result.",
-    "placeholders": {
-      "native": {
-        "content": "$1",
-        "example": "🐵 (The Unicode symbol for the Emoji)"
-      },
-      "name": {
-        "content": "$2",
-        "example": "Monkey Face (The name of the Emoji)"
-      },
-      "colon_syntax": {
-        "content": "$3",
-        "example": ":monkey_face: (The :colon: syntax of the selected Emoji)"
-      }
-    }
   },
 
   // ARIA labels/descriptions

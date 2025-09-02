@@ -417,14 +417,17 @@ function updateMaximumResultsStatus(optionValue, _option, event = null) {
         return;
     }
     const maxResultsValue = optionValue.maximumResults;
-
     const elMaximumResultsStatus = document.getElementById("maximumResultsStatus");
     if (!elMaximumResultsStatus) {
         throw new Error('Element with id "maximumResultsStatus" not found.');
     }
-
-    // For now, just show the number. i18n can be added later.
-    elMaximumResultsStatus.textContent = (maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS) ? "∞" : maxResultsValue;
+    let message;
+    if (maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS) {
+        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusUnlimited");
+    } else {
+        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusNumber", maxResultsValue);
+    }
+    elMaximumResultsStatus.textContent = message || "∞";
 }
 
 /**
@@ -491,7 +494,6 @@ export async function registerTrigger() {
         TABS_PERMISSION,
         MESSAGE_TABS_PERMISSION,
         /** @type {HTMLElement} */(document.getElementById("tabsPermissionInfo")),
-        // "permissionRequiredTabs" // TODO(to: 'rugk'): This will need to be localized
-        "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
+        "permissionRequiredTabsAutocorrect"
     );
 }
