@@ -29,7 +29,7 @@ function createPicker() {
  * @param {HTMLElement} element the element to focus
  * @param {number} [retries] how often to retry at most
  * @param {number} [delay] how many ms to re-check
- * @returns {Promise<any>}
+ * @returns {Promise<void>}
  */
 export async function focusElement(element, retries = 20, delay = 50) {
     const wait = (ms) => new Promise((func) => {

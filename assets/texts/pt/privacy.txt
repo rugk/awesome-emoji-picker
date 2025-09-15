@@ -1,6 +1,6 @@
 Essa extensão não envia nenhuma informação a terceiros ou ao autor da extensão.
 
-Uma explicação de todas as permissões solicitadas por essa extensão podem ser encontradas em https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/en/permissions.md.
+Uma explicação de todas as permissões solicitadas por essa extensão podem ser encontradas em https://github.com/rugk/awesome-emoji-picker/blob/main/assets/texts/en/permissions.md.
 
 == SERVIÇOS DE TERCEIROS ==
 

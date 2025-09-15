@@ -1,6 +1,6 @@
 Ez a kiegészítő nem küld semmilyen információt harmadik feleknek vagy a kiegészítő szerzőjének.
 
-A kiegészítő által kért összes engedély magyarázata itt található: https://github.com/rugk/awesome-emoji-picker/blob/master/assets/texts/hu/permissions.md.
+A kiegészítő által kért összes engedély magyarázata itt található: https://github.com/rugk/awesome-emoji-picker/blob/main/assets/texts/hu/permissions.md.
 
 == HARMADIK FÉLTŐL SZÁRMAZÓ SZOLGÁLTATÁSOK ==
 

@@ -12,13 +12,15 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as IconHandler from "/common/modules/IconHandler.js";
 
 const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: ["clipboardWrite"]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("clipboardWrite")]
 };
 const TABS_PERMISSION = {
-    permissions: ["tabs"]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("tabs")]
 };
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
+
+const MAXIMUM_SEARCH_RESULTS = 21;
 
 // Thunderbird
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1641573
@@ -158,7 +160,7 @@ function preparePickerResultTypeOptionForInput(param) {
         param.optionValue = false;
         break;
     default:
-        throw new Error("invalid parameter: ", param.option, param.optionValue);
+        throw new Error(`invalid parameter: ${param.option}, value: ${param.optionValue}`);
     }
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
@@ -179,6 +181,22 @@ function adjustPickerResultTypeOption(param) {
     param.optionValue.resultType = param.optionValue.resultType ? "colons" : "native";
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
+}
+
+/**
+ * Adjusts the emojiSearch.maximumResults setting for loading.
+ *
+ * @private
+ * @param param
+ * @param {object} param
+ * @param {object} param.optionValue the value of the changed option
+ * @returns {Promise}
+ */
+function adjustEmojiSearchMaximumResultsOnLoad(param) {
+    if (param.optionValue == null || typeof param.optionValue.maximumResults !== "number" || param.optionValue.maximumResults <= 0) {
+        return AutomaticSettings.Trigger.overrideContinue(MAXIMUM_SEARCH_RESULTS);
+    }
+    return Promise.resolve();
 }
 
 /**
@@ -320,10 +338,14 @@ function applyEmojiSearch(optionValue, _option, event = {}) {
         /** @type {HTMLInputElement} */ (document.getElementById("searchCopyAction")).disabled = false;
         /** @type {HTMLInputElement} */ (document.getElementById("emojipediaAction")).disabled = false;
         /** @type {HTMLInputElement} */ (document.getElementById("searchBarDemo")).disabled = false;
+        /** @type {HTMLInputElement} */ (document.getElementById("enableFillingResults")).disabled = false;
+        /** @type {HTMLInputElement} */ (document.getElementById("maximumResults")).disabled = false;
     } else {
         /** @type {HTMLInputElement} */ (document.getElementById("searchCopyAction")).disabled = true;
         /** @type {HTMLInputElement} */ (document.getElementById("emojipediaAction")).disabled = true;
         /** @type {HTMLInputElement} */ (document.getElementById("searchBarDemo")).disabled = true;
+        /** @type {HTMLInputElement} */ (document.getElementById("enableFillingResults")).disabled = true;
+        /** @type {HTMLInputElement} */ (document.getElementById("maximumResults")).disabled = true;
     }
 
     // trigger update for current session
@@ -372,6 +394,55 @@ function applyEmojiSearch(optionValue, _option, event = {}) {
     return Promise.resolve();
 }
 
+/**
+ * Adjust UI of maximum results status (the "N results" text). Triggers once
+ * after the options have been loaded and when the option value is updated by the user.
+ *
+ * @private
+ * @param {object} optionValue
+ * @param {string} _option the name of the option that has been changed
+ * @param {Event?} event the event (input or change) that triggered saving
+ *                      (may not always be defined, e.g. when loading)
+ * @returns {void}
+ * @throws {Error} if no translation could be found
+ */
+function updateMaximumResultsStatus(optionValue, _option, event = null) {
+    // only handle maximumResults status (or if initialisation without event)
+    if (
+        event &&
+        "target" in event &&
+        event.target &&
+        /** @type {HTMLInputElement} */ (event.target).name !== "maximumResults"
+    ) {
+        return;
+    }
+    const maxResultsValue = optionValue.maximumResults;
+    const elMaximumResultsStatus = document.getElementById("maximumResultsStatus");
+    if (!elMaximumResultsStatus) {
+        throw new Error('Element with id "maximumResultsStatus" not found.');
+    }
+    let message;
+    if (maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS) {
+        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusUnlimited");
+    } else {
+        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusNumber", maxResultsValue);
+    }
+    elMaximumResultsStatus.textContent = message || "∞";
+}
+
+/**
+ * Adjusts the emojiSearch->maximumResults setting for saving.
+ *
+ * @private
+ * @param {object} emojiSearch The emojiSearch option group object
+ * @returns {Promise}
+ */
+function adjustEmojiSearchMaximumResults(emojiSearch) {
+    if (emojiSearch.maximumResults === MAXIMUM_SEARCH_RESULTS) {
+        emojiSearch.maximumResults = null;
+    }
+    return AutomaticSettings.Trigger.overrideContinue(emojiSearch);
+}
 
 /**
  * Binds the triggers.
@@ -403,7 +474,10 @@ export async function registerTrigger() {
         }
         browserElement.style.display = "none";
     } else {
+        AutomaticSettings.Trigger.addCustomLoadOverride("maximumResults", adjustEmojiSearchMaximumResultsOnLoad);
         AutomaticSettings.Trigger.registerSave("emojiSearch", applyEmojiSearch);
+        AutomaticSettings.Trigger.registerSave("emojiSearch", updateMaximumResultsStatus);
+        AutomaticSettings.Trigger.registerSave("emojiSearch", adjustEmojiSearchMaximumResults);
     }
 
     // handle loading of options correctly
@@ -413,14 +487,13 @@ export async function registerTrigger() {
     await PermissionRequest.registerPermissionMessageBox(
         CLIPBOARD_WRITE_PERMISSION,
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
-        document.getElementById("searchActionCopyPermissionInfo"),
+        /** @type {HTMLElement} */(document.getElementById("searchActionCopyPermissionInfo")),
         "permissionRequiredClipboardWrite"
     );
     await PermissionRequest.registerPermissionMessageBox(
         TABS_PERMISSION,
         MESSAGE_TABS_PERMISSION,
-        document.getElementById("tabsPermissionInfo"),
-        // "permissionRequiredTabs" // TODO(to: 'rugk'): This will need to be localized
-        "Permission to send any updated options to your open tabs is required to prevent you having to reload all of them manually."
+        /** @type {HTMLElement} */(document.getElementById("tabsPermissionInfo")),
+        "permissionRequiredTabsAutocorrect"
     );
 }

@@ -132,7 +132,7 @@
     "hash": "f22661cb0e9cdc8144d0c3cf59f854e3"
   },
   "tipTranslateAddonLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translations",
     "description": "The link to a description of the translation service/way you can use.",
     "hash": "c6c442079d7cbebd14843df77883648c"
   },
@@ -361,12 +361,12 @@
     "message": "Minden emodzsiképre más licenc vonatkozhat. További információkért lásd $LINKS$.",
     "description": "This is a text shown in the add-on settings explaining the license terms.",
     "placeholders": {
-      "link": { "content": "$1", "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md\">the whole license file</a>" }
+      "link": { "content": "$1", "example": "<a href=\"https://github.com/rugk/awesome-emoji-picker/blob/main/LICENSE.md\">the whole license file</a>" }
     },
     "hash": "18dfd0f38e1d38504273202e88121e67"
   },
   "optionsLicenseDisclaimerLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/LICENSE.md",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/LICENSE.md",
     "description": "This is the link to the LICENSE file of this add-on. Used in the license disclaimer, see optionsLicenseDisclaimer. Usually, you do not need to translate this as we have only an English version.",
     "hash": "a941d363fa723fc089f7d9600e292c1f"
   },
@@ -402,7 +402,7 @@
     "hash": "b1434b8b42b1707f37d0531a8efdc7f8"
   },
   "contributorsThanksLink": {
-    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTORS.md",
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTORS.md",
     "description": "The link to the CONTRIBUTORS file.",
     "hash": "30b2457355af889c726c252b04f561b2"
   },
@@ -444,7 +444,7 @@
 
   // see https://github.com/missive/emoji-mart#i18n
 
-  // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
+  // please DO READ this section for translating the emoji-specific terms: https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc
   "emojiMartSearch": {
     "message": "Keresés",
     "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n",
@@ -477,42 +477,42 @@
   },
   "emojiMartCategoryPeople": {
     "message": "Hangulatjelek és emberek",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "8619678ea5acf19b5b5d8534d1a3ca37"
   },
   "emojiMartCategoryNature": {
     "message": "Állatok és természet",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "768e2edb2aabe23a1743d7a1ad0c84f0"
   },
   "emojiMartCategoryFoods": {
     "message": "Étel és ital",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "ee96ea07804521621b7e319e3a430b28"
   },
   "emojiMartCategoryActivity": {
     "message": "Tevékenységek",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "8e2c99c85d8a35826ac629bd3805f0c6"
   },
   "emojiMartCategoryPlaces": {
     "message": "Utazás és helyek",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "f9faa7133b4157529e438458e8d084dd"
   },
   "emojiMartCategoryObjects": {
     "message": "Tárgyak",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "9967e4738968c728f28db4f6bd8238f4"
   },
   "emojiMartCategorySymbols": {
     "message": "Szimbólumok",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "a9ad94e3700cbfb8972bd68e28c68fe2"
   },
   "emojiMartCategoryFlags": {
     "message": "Zászlók",
-    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of an emoji category option of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "31a86798742bc224e67e9ebaebdd648f"
   },
   "emojiMartCategoryCustom": {
@@ -527,32 +527,32 @@
   },
   "emojiMartSkintone1": {
     "message": "Alapértelmezett bőrtónus",
-    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "facd192c7c7e7f85beb6c53c7936a2f4"
   },
   "emojiMartSkintone2": {
     "message": "Világos bőrtónus",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "22f4ccc8fc3915555cfb800a5e07aa99"
   },
   "emojiMartSkintone3": {
     "message": "Közepesen világos bőrtónus",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "cae479e6b0b94c3ce477b61304fdf41b"
   },
   "emojiMartSkintone4": {
     "message": "Közepes bőrtónus",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "94ef1f400240418ba61280573fd00aa4"
   },
   "emojiMartSkintone5": {
     "message": "Közepesen sötét bőrtónus",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "08a71e5cdc6fd226ac18bb9db553e1ed"
   },
   "emojiMartSkintone6": {
     "message": "Sötét bőrtónus",
-    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
+    "description": "Localisation of the skin tone of emoji-mart, the emoji-picker. See: https://github.com/missive/emoji-mart#i18n and https://github.com/rugk/awesome-emoji-picker/blob/main/CONTRIBUTING.md#translating-emoji-terms-categories-skin-names-etc",
     "hash": "32d4661a5870de1c571a3987578f68ee"
   },
 

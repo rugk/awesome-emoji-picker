@@ -1,4 +1,4 @@
-import { getBrowserValue } from "/common/modules/BrowserCompat.js";
+import { getBrowserValue } from "/common/modules/BrowserCompat/BrowserCompat.js";
 
 /**
  * Initializes module.
