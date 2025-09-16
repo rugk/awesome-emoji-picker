@@ -1,4 +1,6 @@
 * **New:** Updated the emoji-mart library, which brings many new emojis aka support for Emoji v13, v13.1, v14, v15, v15.1 up to v16 support. ([#116](https://github.com/rugk/awesome-emoji-picker/issues/116))
+* **New:** The omnibox (search bar) integration has been reworked and is now enabled by default.
+* **New:** You can now limit the amount of emojis to be shown and show the frequently used emojis in the omnibox (search bar) integration when typing the “emoji” keyword.
 * **New:** The translation for Hungarian has been added, thanks to [@meskobalazs](https://github.com/meskobalazs).
 * **New:** The translation for Portuguese has been added, thanks to [@marceloaof](https://github.com/marceloaof).
 * **New:** The translation for Portuguese (Brazil) has been added, thanks to [@joaooliva](https://github.com/joaooliva).
