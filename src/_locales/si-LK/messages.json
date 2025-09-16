@@ -1,0 +1,282 @@
+{
+  // manifest.json
+  "extensionName": {
+    "message": "අපූරු ඉමොජි තෝරකය",
+    "description": "Name of the extension. I suggest not to translate it.",
+    "hash": "c5f266279feb065e53e69a1fddfff0f2"
+  },
+  "extensionNameShort": {
+    "message": "අපූරු ඉමොජි",
+    "description": "Short name of the extension. I suggest not to translate it.",
+    "hash": "0862f0659c82660cb8a73d5cff518976"
+  },
+  "extensionDescription": {
+    "message": "මෙම ඇඩෝනය ඔබට ඉමෝජි සොයා ගැනීමට භාවිතා කළ හැකි නවීන ඉමොජි තෝරකයක් සපයයි. ඉන්පසු ඔබට ඒ  ඉමොජිය පසුරු පුවරුවට පිටපත් කිරීමට හෝ වෙබ් පිටුවකට ඇතුළු කිරීමට හැකිය.",
+    "description": "Description of the extension.",
+    "hash": "5f9b3f45151291caa8015586e9d8fcb6"
+  },
+  "browserActionButtonTitle": {
+    "message": "අපූරු ඉමොජි තෝරකය",
+    "description": "The title for the button, which opens the popup. I suggest not to translate it.",
+    "hash": "c5f266279feb065e53e69a1fddfff0f2"
+  },
+  "commandOpenPopup": {
+    "message": "ඉමොජි තෝරකය දියත් කරන්න",
+    "description": "Description of the hot key command to open the emoji popup (by default with Ctrl+Shift+Period).",
+    "hash": "4aeed4cf10e929762d43ba14d42fef6b"
+  },
+
+  // errors or other messages (mostly for settings)
+  "errorShowingMessage": {
+    "message": "පණිවිඩය පෙන්වීමට නොහැකි විය.",
+    "description": "When there is an error when showing the error/info/….",
+    "hash": "a9440e4f824a372841d4de2b7e2643ee"
+  },
+  "couldNotLoadOptions": {
+    "message": "සැකසුම් පූරණය කිරීමට නොහැකි විය.",
+    "description": "When one or all settings could not be loaded.",
+    "hash": "9497a5d2c9473aeb2ed9601f46c456be"
+  },
+  "couldNotSaveOption": {
+    "message": "මෙම සැකසුම සුරැකීමට නොහැකි විය.",
+    "description": "When a setting could not be saved.",
+    "hash": "6bcb9e36d2c33172b948515a9c50aa8e"
+  },
+  "messageUndoButton": {
+    "message": "අස් කරන්න",
+    "description": "The text of a button that undoes the last action.",
+    "hash": "a85e775d7404b86c8060a20efd31241c"
+  },
+  "couldNotUndoAction": {
+    "message": "අස් කරන්න නොහැකි විය.",
+    "description": "Shown when an action cannot be undone.",
+    "hash": "d2883c6ca0164afc4f360f3e02e3166a"
+  },
+  "resettingOptionsWorked": {
+    "message": "සියලුම සැකසුම් දැන් නැවත පෙරනිමියට පැමිණ ඇත!",
+    "description": "The message shown, when the options of the settings were reset.",
+    "hash": "257b99ed2a074fccbfc658d770b50107"
+  },
+  "resettingOptionsFailed": {
+    "message": "විකල්පයන් නැවත සකසන්න නොහැකි විය!",
+    "description": "The message shown, when the options of the settings could not have been reset.",
+    "hash": "76e950d2db72a824482411ca6564fb1f"
+  },
+  "messageOpenOptionsButton": {
+    "message": "විකල්පයන් දියත් කරන්න",
+    "description": "The text of a button that opens the options page.",
+    "hash": "b9cfa2cbfe4d77715a12f0ca99c53963"
+  },
+  "couldNotDoAction": {
+    "message": "ඔබට කිරීමට අවශ්‍ය ක්‍රියාව අසාර්ථක විය.",
+    "description": "A generic error message shown, if nothing else/more specific can be shown.",
+    "hash": "6edea27add637cb37d254080c4a6cfb5"
+  },
+  "permissionRequiredClipboardWrite": {
+    "message": "මෙම විශේෂාංගය සඳහා පසුරු පුවරුවට දත්ත පිටපත් කිරීමට අවසරය අවශ්‍ය වේ.",
+    "description": "The message shown, when the emojiCopyOnlyFallback option in the settings needs to request permissions to work.",
+    "hash": "1a9cb2af1d8cc2d42365821676b66acd"
+  },
+  "buttonRequestPermission": {
+    "message": "අවසර දෙන්න",
+    "description": "The button label, used for requesting a permission that is missing.",
+    "hash": "4689dc838288903e92432d87c1b8fea2"
+  },
+  "couldNotRequestPermission": {
+    "message": "අවසර ගැනීම අසාර්ථක විය.",
+    "description": "When the permission request fails.",
+    "hash": "53e3617a82c33e20fb22eed64dced8de"
+  },
+
+  // confirmation hints
+  "confirmationHintEmojiCopied": {
+    "message": "ඉමොජිය පිටපත් කර ඇත",
+    "description": "The confirmation shown, if an emoji has been copied to clipboard. Try to keep it short, as it is a big message.",
+    "hash": "ad28e8c01480141e7500921f3b140db3"
+  },
+  "confirmationHintEmojiInserted": {
+    "message": "ඉමොජිය ඇතුළු කර ඇත",
+    "description": "The confirmation shown, if an emoji has been inserted into the active web page. Try to keep it short, as it is a big message.",
+    "hash": "b8cb77259ecb40aeaf09a58937369648"
+  },
+  "confirmationHintEmojiCopiedAndInserted": {
+    "message": "ඉමොජි පිටපත් කර ඇතුළු කර ඇත",
+    "description": "The confirmation shown, if an emoji has been copied to the clipboard *and* has been inserted into the active web page. Try to keep it short, as it is a big message.",
+    "hash": "925b14d15d6bb013a09973f2913fac35"
+  },
+
+  // tips
+  "tipYouLikeAddon": {
+    "message": "ඔබ මෙම ඇඩෝනයට කැමතිද?",
+    "description": "A tip shown to remind the user to rate the add-on.",
+    "hash": "0f5680a5a42bcebf793a44b9dfcf79a1"
+  },
+  "tipYouLikeAddonButton": {
+    "message": "එය අගය කරන්න",
+    "description": "Button for the tip shown to remind the user to rate the add-on.",
+    "hash": "821d7f942b02e2b56cd0424d3ab65de8"
+  },
+  "tipPopupCodeHotkey": {
+    "message": "මතක තබා ගන්න මෙම ඇඩෝනය සඳහා හොට් යතුර Ctrl+Shift+Period.",
+    "description": "A tip shown to get the user to notice that there is a hot key.",
+    "hash": "d214cd7e3ea8612b0b83ce308687aed4"
+  },
+  "tipTranslateAddon": {
+    "message": "ඔබ වෙනත් භාෂාවක් කතා කරන්නේ නම්, ඔබට මෙම ඇඩෝනය පරිවර්තනය කිරීමට උදව් කළ හැකිය.",
+    "description": "A tip shown to users that potentially speak another language to translate this add-on.",
+    "hash": "f22661cb0e9cdc8144d0c3cf59f854e3"
+  },
+  "tipTranslateAddonLink": {
+    "message": "https://github.com/rugk/awesome-emoji-picker/blob/master/CONTRIBUTING.md#translations",
+    "description": "The link to a description of the translation service/way you can use.",
+    "hash": "c6c442079d7cbebd14843df77883648c"
+  },
+  "tipDonate": {
+    "message": "මෙම ඇඩෝනය නොමිලේ භාවිතා කිරීම තෘප්තිමත් ද?",
+    "description": "A tip shown to get the remind them of a donation.",
+    "hash": "1ca77d6621635ae0bec563e15fbc3791"
+  },
+  "tipDonateButton": {
+    "message": "මුදල් පරිත්‍යාග කිරීමෙන් සංවර්ධනයට සහාය වන්න",
+    "description": "The button of the donation tip taking the user to the donation site.",
+    "hash": "8ec498495b752c6d9358208a5564d42c"
+  },
+  "tipLearnMore": {
+    "message": "තවත් දැනගන්න",
+    "description": "The common button for tips, where you can get more information on click.",
+    "hash": "9085b09f4748be12ab0c241d2e643b31"
+  },
+
+  // options
+  "someSettingsAreManaged": {
+    "message": "සමහර සැකසුම් ඔබගේ පද්ධති පරිපාලක විසින් කළමනාකරණය කරනු ලබන අතර වෙනස් කළ නොහැක.",
+    "description": "The message, which appears, when settings are pre-defined (as managed options) by administrators.",
+    "hash": "148604ebbeb7df28974d8233f1418d1f"
+  },
+  "optionIsDisabledBecauseManaged": {
+    "message": "මෙම විකල්පය ඔබගේ පද්ධති පරිපාලක විසින් වින්‍යාස කර ඇති බැවින්, අක්‍රිය කර ඇත.",
+    "description": "The title (tooltip) shown, when hovering over a disabled, managed option.",
+    "hash": "50fb70682c64e1a1fb4d8884b33cca64"
+  },
+  "optionLearnMore": {
+    "message": "තවත් දැනගන්න",
+    "description": "When a link to an explainer needs to be added, this is the link text.",
+    "hash": "9085b09f4748be12ab0c241d2e643b31"
+  },
+  "optionsResetButton": {
+    "message": "සියලුම සැකසුම් නැවත පෙරනිමියට පත් කරන්න",
+    "description": "The button to delete all current settings and load the defaults, shown in the add-on settings.",
+    "hash": "4bb60c6c7e7b9e2ff987c244e76ee044"
+  },
+  "titleAppearance": {
+    "message": "බාහිර පෙනුම",
+    "description": "The title for a settings group.",
+    "hash": "4e916e83dfa642d4d35d88b3910ef1ab"
+  },
+  "titleBehaviour": {
+    "message": "හැසිරීම",
+    "description": "The title for a settings group.",
+    "hash": "45d36519df9b967161f37d271b20cca5"
+  },
+  "optionPopupIconColored": {
+    "message": "වර්ණවත් නිරූපකය",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "d1a73cea0718b619bd2adcfe97bd66a8"
+  },
+  "optionPopupIconColoredDescr": {
+    "message": "මෙවලම් තීරුවේ කළු/සුදු නිරූපකය වෙනුවට වර්ණවත් නිරූපකයක් පෙන්වයි.",
+    "description": "This is an option shown in the add-on settings. It describes the optionPopupIconColored setting in more details.",
+    "hash": "5d8459d16f7e1ed774fc85f40ce8963e"
+  },
+  "optionEmojiPickerSet": {
+    "message": "ඉමොජි නිර්මාණය:",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "d4bf1667bdacd694bb73d30901243735"
+  },
+  "optionEmojiSetNative": {
+    "message": "ඔබගේ OS වෙතින් පෙරනිමිය",
+    "description": "Option of the emoji set. It uses the native emojis of the platform (OS/browser) of the add-on.",
+    "hash": "8870cf3ed2dd2a119fee2d43be9a1e62"
+  },
+  "optionEmojiSetApple": {
+    "message": "Apple",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "4d0a37fd8f053c6ca8654de2db3a1254"
+  },
+  "optionEmojiSetGoogle": {
+    "message": "Google",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "db426fbce7c158af2dcbcd6fcb305137"
+  },
+  "optionEmojiSetTwitter": {
+    "message": "Twitter",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "3bae8ce17ed128fd3ccc45099b57e13c"
+  },
+  "optionEmojiSetFacebook": {
+    "message": "Facebook",
+    "description": "Option of the emoji set. This is a company name and should thus, usually, not translated. Only translate if it's the official company translation.",
+    "hash": "ebe9928c05d67c31313efa37fbda9c94"
+  },
+  "optionEmojiPickerSetDescr": {
+    "message": "ඉමෝජි සඳහා භාවිතා කළ යුතු විලාසය.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerSet setting.",
+    "hash": "8ab696ff2c252f4a51bc77af8f6f6776"
+  },
+  "optionEmojiPickerEmojiSize": {
+    "message": "ඉමොජි විශාලත්වය",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "73f1c488865c17ab2ecbbeac865f85b2"
+  },
+  "optionEmojiSize16px": {
+    "message": "කුඩා (16px)",
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size.",
+    "hash": "1a0e72fdec9138f9adaf01d1123adff8"
+  },
+  "optionEmojiSize24px": {
+    "message": "මධ්‍යම (24px)",
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size.",
+    "hash": "6ddc2c24416122b6eb5a1dabed4c400b"
+  },
+  "optionEmojiSize32px": {
+    "message": "විශාල (32px)",
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size.",
+    "hash": "60226233320471d72f35dbcbe065721a"
+  },
+  "optionEmojiSize40px": {
+    "message": "අති විශාල (40px)",
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size.",
+    "hash": "a300dae53a5d6003b04fb85fc62e43ef"
+  },
+  "optionEmojiSize48px": {
+    "message": "දැවැන්ත (48px)",
+    "description": "Option of the emoji size. Do mention a 'human-readable' description first, followed by the technical pixel size.",
+    "hash": "2f5902c374a502230d47347cb9e8ba39"
+  },
+  "optionEmojiPickerPerLine": {
+    "message": "තෝරකයේ පළල:",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "40cf9fd1296c35150e262679e7c64a1d"
+  },
+  "optionEmojiPickerPerLineDescr": {
+    "message": "ඉමොජි තෝරකයේ පේළියකට ඉමොජි කීයක් පෙන්විය යුතුද? මෙය උත්පතනයේ පළලට බලපායි.",
+    "description": "This is an option shown in the add-on settings. It describes the optionEmojiPickerPerLine setting.",
+    "hash": "8ac00cf34b9d5e20ebfcc309df3291ae"
+  },
+  "optionAutomaticInsert": {
+    "message": "වෙබ් පිටුවට ඉමොජි ස්වයංක්‍රීයව ඇතුළු කරන්න.",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "c798d0ce95af6f30ab30f8228f330b6e"
+  },
+  "optionCopyClipboard": {
+    "message": "ඉමොජි පසුරු පුවරුවට පිටපත් කරන්න.",
+    "description": "This is an option shown in the add-on settings.",
+    "hash": "2d1fe2b04a246a6d6bc98dec0cef4dde"
+  },
+
+  // emoji-search
+
+  // ARIA labels/descriptions
+
+  "__WET_LOCALE__": { "message": "si-LK" }
+}
