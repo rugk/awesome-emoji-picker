@@ -29,7 +29,12 @@
 
 - [@joaooliva](https://github.com/joaooliva)
 
+### Sinhalese (Sinhala)
+
+- [@KikiCooled](https://github.com/KikiCooled)
+
 ### Spanish
 
 - Enrico Lamperti ([@elamperti](https://github.com/elamperti))
 - Aaron ([GamerZPlay268](https://github.com/GamerZPlay268))
+
