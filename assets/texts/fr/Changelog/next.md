@@ -1,0 +1,12 @@
+* **Nouveauté :** MàJ de la la librairie emoji-mart, apportant de nombreux nouveaux émoticônes, soit la compatibilité envers Emoji v13, v13.1, v14, v15, v15.1 jusqu'à la v16. ([#116](https://github.com/rugk/awesome-emoji-picker/issues/116))
+* **Nouveauté :** L'intégration de la barre de recherche a été révoquée et est maintenant activée par défaut.
+* **Nouveauté :** Vous pouvez maintenant limiter le nombre d'émojis affichés et afficher les émojis fréquemment utilisés dans la barre de recherche en tapant le mot-clé *emoji*.
+* **Nouveauté :** La traduction en Hongrois a été ajoutée, grâce à [@meskobalazs](https://github.com/meskobalazs).
+* **Nouveauté :** La traduction en Portugais a été ajoutée, grâce à [@marceloaof](https://github.com/marceloaof).
+* **Nouveauté :** La traduction en Portugais (Brésil) a été ajoutée, grâce à [@joaooliva](https://github.com/joaooliva).
+* **Amélioration :** La traduction en Espagnol a été améliorée, grâce à [@GamerZPlay268](https://github.com/GamerZPlay268).
+* **Amélioration :** La traduction en Allemand a été améliorée, grâce à [@FloEdelmann](https://github.com/FloEdelmann). ([#151](https://github.com/rugk/awesome-emoji-picker/pull/151))
+* **Réparé :** Résolution de nombreux bogues concernant l'Hébreux et la localisation linguistique de droite-à-gauche, grâce à [@danielrozenberg](https://github.com/danielrozenberg). ([#63](https://github.com/rugk/awesome-emoji-picker/issues/63), [#64](https://github.com/rugk/awesome-emoji-picker/issues/64), [#70](https://github.com/rugk/awesome-emoji-picker/issues/70))
+* **Réparé :** Autres résolutions de bogues mineurs
+* **Interne :** Abandon de la comptabilité envers les versions Firefox antérieures à Firefox 74 ([#90](https://github.com/rugk/awesome-emoji-picker/issues/90))
+* **Interne :** MàJ des dépendances afin d'assurer la sécurité et fiabilité de l'extension. ([#103](https://github.com/rugk/awesome-emoji-picker/issues/103))
