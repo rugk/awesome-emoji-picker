@@ -6,6 +6,7 @@
 * **Nouveauté :** La traduction en Portugais (Brésil) a été ajoutée, grâce à [@joaooliva](https://github.com/joaooliva).
 * **Amélioration :** La traduction en Espagnol a été améliorée, grâce à [@GamerZPlay268](https://github.com/GamerZPlay268).
 * **Amélioration :** La traduction en Allemand a été améliorée, grâce à [@FloEdelmann](https://github.com/FloEdelmann). ([#151](https://github.com/rugk/awesome-emoji-picker/pull/151))
+* **Amélioration :** La traduction en Français a été améliorée, grâce à [@Prometheos2](https://github.com/Prometheos2). ([#165](https://github.com/rugk/awesome-emoji-picker/pull/165))
 * **Réparé :** Résolution de nombreux bogues concernant l'Hébreux et la localisation linguistique de droite-à-gauche, grâce à [@danielrozenberg](https://github.com/danielrozenberg). ([#63](https://github.com/rugk/awesome-emoji-picker/issues/63), [#64](https://github.com/rugk/awesome-emoji-picker/issues/64), [#70](https://github.com/rugk/awesome-emoji-picker/issues/70))
 * **Réparé :** Autres résolutions de bogues mineurs
 * **Interne :** Abandon de la comptabilité envers les versions Firefox antérieures à Firefox 74 ([#90](https://github.com/rugk/awesome-emoji-picker/issues/90))
