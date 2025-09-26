@@ -29,6 +29,12 @@ Of course, you can (and should) improve existing translations.
 
 For more details, [see the official docs](https://developer.mozilla.org/Add-ons/WebExtensions/Internationalization#Providing_localized_strings_in__locales).
 
+### Translating emoji (picker) terms itself (categories, skin names etc.)
+The translations for many emoji terms or most of the picker GUI is actually [managed upstream by the library we use here](https://github.com/missive/emoji-mart/tree/main?tab=readme-ov-file#-internationalization). It is integrated here and will be used when the library is updated the next time here.
+
+Thus, we advise you to contribute your translations/improvements or other localization data there. As a pointer, the directory is this one here: https://github.com/missive/emoji-mart/tree/main/packages/emoji-mart-data/i18n
+You'll find a simple JSON to use for your translation there. You can just create a PR there.
+
 ### Other items to translate
 
 * Text assets to translate: [`assets/texts`](assets/texts)
