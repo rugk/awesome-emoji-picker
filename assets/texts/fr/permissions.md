@@ -1,4 +1,4 @@
-# Droits requises
+# Droits requis
 
 Pour une explication générale des droits des modules complémentaires, cf. [cet article du support Mozilla pour Firefox](
 https://support.mozilla.org/fr/kb/messages-demande-permission-extensions-firefox) et [celui-ci pour Thunderbird](https://support.mozilla.org/fr/kb/messages-demande-permission-extensions-thunderbird).
@@ -9,7 +9,7 @@ Les droits suivants sont demandés lors de l’installation ou de la mise-à-jou
 
 | ID Interne       | Droits                                    | Explication                                                                             |
 | :--------------- | :---------------------------------------- | :-------------------------------------------------------------------------------------- |
-| `[context]menus` | Modifier le menu contextuel du navigateur | Nécéssaire pour ajouter une entrée au menu contextuel pour ouvrir le sélecteur d'émojis |
+| `[context]menus` | Modifier le menu contextuel du navigateur | Nécessaire pour ajouter une entrée au menu contextuel pour ouvrir le sélecteur d'émojis |
 
 ## Droits spécifiques à certaines fonctionnalités (optionnelles)
 
