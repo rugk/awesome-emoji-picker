@@ -65,7 +65,7 @@ See:
 * Adjust the style and many other options to your liking.
 * The size of the whole emoji picker and the emojis themselves is also adjustable.
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
-* Follows the [Firefox](https://design.firefox.com/photon) and [Thunderbird](https://style.thunderbird.net/) Photon Design.
+* Follows the [Firefox Acorn Design](https://acorn.firefox.com/latest/home/acorn-aRSAh0Sp") and the [Thunderbird Photon Design](https://style.thunderbird.net/).
 * Puts your privacy first and does not send data anywhere.
 * Compatible with Firefox for Android
 * Translated into several languages already. [Contribute your own language!](CONTRIBUTING.md#Translations)
