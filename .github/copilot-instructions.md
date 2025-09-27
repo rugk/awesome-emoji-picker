@@ -23,7 +23,7 @@ This project is a cross-browser WebExtension (Firefox, Chromium, Thunderbird) fo
 - **Testing:**
   - Tests are in `src/tests/` and `tests/`. Run them in a browser context; see `CONTRIBUTING.md` for details.
 - **Linting:**
-  - Run ESLint with `eslint` (no AI; `npm run lint` is not yet setup) (configured for JSDoc and modern JS).
+  - Run ESLint with `eslint` (configured for JSDoc and modern JS).
 - **Debugging:**
   - Load `src/` as an unpacked extension in your browser for development.
 
