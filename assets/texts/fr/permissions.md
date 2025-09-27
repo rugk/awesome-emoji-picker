@@ -1,24 +1,29 @@
-# Autorisations requises
+# Droits requis
 
-Pour une explication générale des autorisations de modules complémentaires, cf. [cet article du support Mozilla](
-https://support.mozilla.org/fr/kb/messages-de-demande-de-autorisation-pour-les-extensi).
+Pour une explication générale des droits des modules complémentaires, cf. [cet article du support Mozilla pour Firefox](
+https://support.mozilla.org/fr/kb/messages-demande-permission-extensions-firefox) et [celui-ci pour Thunderbird](https://support.mozilla.org/fr/kb/messages-demande-permission-extensions-thunderbird).
 
-## Autorisations d'installation
+## Droits lors de l'installation
 
-Actuellement, aucune autorisation n'est requise à l'installation ou lors des mises à jour.
+Les droits suivants sont demandés lors de l’installation ou de la mise-à-jour :
 
-## Autorisations spécifiques à certaines fonctionnalités (optionnelles)
+| ID Interne       | Droits                                    | Explication                                                                             |
+| :--------------- | :---------------------------------------- | :-------------------------------------------------------------------------------------- |
+| `[context]menus` | Modifier le menu contextuel du navigateur | Nécessaire pour ajouter une entrée au menu contextuel pour ouvrir le sélecteur d'émojis |
 
-Ces autorisations sont requises pour effectuer certaines actions, si elles sont nécessaires.
+## Droits spécifiques à certaines fonctionnalités (optionnelles)
 
-|    ID Interne    | Autorisations                           | Demandé …                                                                         | Explication                                                                                                                                                                                                                                |
-|:-----------------|:----------------------------------------|:----------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `clipboardWrite` | Écrit des données vers le presse-papier | À l'activation d'une option nécessitant de copier les émojis de façon asynchrone. | Utilisée pour copier les émojis, _seulement_ si l'insertion dans la page échoue (si vous voulez tout le temps les copier, il n'y a pas besoin de cette permission). _ou_ si vous voulez copier l'émoji via la barre d'adresse (recherche). |
+Ces droits sont requis pour effectuer certaines actions, s'ils sont nécessaires.
 
-## Autorisations cachées
-De plus, l'extension requiert ces autorisations, qui ne sont pas requises dans Firefox quand l'extension est installée, car elles sont superficielles.
+| ID Interne       | Droits                                  | Demandé …                                                                         | Explication                                                                                                                                                                                                                      |
+| :--------------- | :-------------------------------------- | :-------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `clipboardWrite` | Écrit des données vers le presse-papier | À l'activation d'une option nécessitant de copier les émojis de façon asynchrone. | Utilisé pour copier les émojis, _seulement_ si l'insertion dans la page échoue (si vous voulez tout le temps les copier, il n'y a pas besoin de ce droit) _ou_ si vous voulez copier l'émoji via la barre d'adresse (recherche). |
 
-| Id Interne  | Autorisations                 | Explication                                                       |
-|:------------|:------------------------------|:------------------------------------------------------------------|
+## Droits cachées
+
+De plus, l'extension requiert ces droits, qui ne sont pas requis dans Firefox quand l'extension est installée, car ils sont superficiels.
+
+| Id Interne  | Droits                        | Explication                                                       |
+| :---------- | :---------------------------- | :---------------------------------------------------------------- |
 | `activeTab` | Accéder à l'onglet/site actif | Requis pour insérer l'émoji dans le site courant, le cas échéant. |
 | `storage`   | Accéder au stockage local     | Requis pour sauvegarder les paramètres.                           |

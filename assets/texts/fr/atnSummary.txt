@@ -1,0 +1,3 @@
+Sélecteur d'émoji moderne et joli pour trouver et sélectionner les émojis. Il sera ajouté à votre presse-papier 📋 ("Copier-coller"), ou inséré directement, quand vous cliquez dessus.
+
+Vous allez certainement l'aimer.
