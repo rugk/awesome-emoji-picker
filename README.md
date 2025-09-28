@@ -1,6 +1,6 @@
 # Awesome Emoji Picker <img align="right" height="425" width="365" src="assets/screenshots/popupSelectFemaleDetective.png">
 
-[![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-version&campaign=github)  
+[![Mozilla Add-on version](https://img.shields.io/amo/v/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-version&campaign=github)
 [![Mozilla Add-on downloads](https://img.shields.io/amo/d/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-downloads&campaign=github)
 [![Mozilla Add-on users](https://img.shields.io/amo/users/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/?utm_source=github.com&utm_medium=git&utm_content=badge-users&campaign=github)
 [![Mozilla Add-on stars](https://img.shields.io/amo/stars/awesome-emoji-picker.svg)](https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=github.com&utm_medium=git&utm_content=badge-stars&campaign=github)
@@ -65,7 +65,7 @@ See:
 * Adjust the style and many other options to your liking.
 * The size of the whole emoji picker and the emojis themselves is also adjustable.
 * Use a colored toolbar icon or a decent monochrome (black/white) one.
-* Follows the [Firefox Acorn Design](https://acorn.firefox.com/latest/home/acorn-aRSAh0Sp") and the [Thunderbird Photon Design](https://style.thunderbird.net/).
+* Follows the [Firefox Acorn Design](https://acorn.firefox.com") and the [Thunderbird Photon Design](https://style.thunderbird.net/).
 * Puts your privacy first and does not send data anywhere.
 * Compatible with Firefox for Android
 * Translated into several languages already. [Contribute your own language!](CONTRIBUTING.md#Translations)
