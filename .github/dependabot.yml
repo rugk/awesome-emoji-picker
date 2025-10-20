@@ -6,6 +6,16 @@
 
 version: 2
 updates:
+ # main package.json update
+ - package-ecosystem: "npm"
+   directory: "/"
+   schedule:
+     interval: "daily"
+ # sub-package.json update
+ - package-ecosystem: "npm"
+   directory: "/src"
+   schedule:
+     interval: "daily"
  - package-ecosystem: "devcontainers"
    directory: "/"
    schedule:
