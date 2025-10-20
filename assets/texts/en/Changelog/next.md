@@ -4,6 +4,7 @@
 * **New:** The translation for Hungarian has been added, thanks to [@meskobalazs](https://github.com/meskobalazs).
 * **New:** The translation for Portuguese has been added, thanks to [@marceloaof](https://github.com/marceloaof).
 * **New:** The translation for Portuguese (Brazil) has been added, thanks to [@joaooliva](https://github.com/joaooliva).
+* **New:** The translation for Sinhalese, Sinhala (Sri Lanka) has been added, thanks to [@KikiCooled](https://github.com/KikiCooled).
 * **Enhanced:** The translation for Spanish has been improved, thanks to [@GamerZPlay268](https://github.com/GamerZPlay268).
 * **Enhanced:** The translation for German has been improved, thanks to [@FloEdelmann](https://github.com/FloEdelmann). ([#151](https://github.com/rugk/awesome-emoji-picker/pull/151))
 * **Enhanced:** The translation for French has been improved, thanks to [@Prometheos2](https://github.com/Prometheos2). ([#165](https://github.com/rugk/awesome-emoji-picker/pull/165))
