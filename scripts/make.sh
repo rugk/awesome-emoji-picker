@@ -28,6 +28,7 @@ zip -r -FS "../build/${EXTENSION_NAME}_${browser}.zip" ./* -x "tests/*" -x "**/t
     -x "**/README.md" -x "**/CONTRIBUTING.md" -x "**/manifest.json" \
     -x "**/.git" -x "**/.gitignore" -x "**/.gitmodules"  -x "**/.gitkeep" \
     -x "**/.eslintrc" \
+    -x "package.json" -x "package-lock.json" -x "webpack.config.js" \
     -x "**/package.json" -x "**/package-lock.json" -x "**/webpack.config.js" \
     -x "node_modules/@emoji-mart/data/1/*" \
     -x "node_modules/@emoji-mart/data/sets/1/*" \
