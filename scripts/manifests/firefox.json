@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
   "version": "3.0.1",
@@ -8,7 +8,7 @@
   "description": "__MSG_extensionDescription__",
   "homepage_url": "https://github.com/rugk/awesome-emoji-picker",
 
-  "browser_action": {
+  "action": {
     "default_icon": "icons/fa-grin-dark.svg",
     "default_title": "__MSG_browserActionButtonTitle__",
     "default_popup": "popup/index.html",
@@ -36,8 +36,7 @@
       "background/modules/OmniboxSearch.js",
       "background/init.js"
     ],
-    "type": "module",
-    "persistent": true
+    "type": "module"
   },
 
   "content_scripts": [
@@ -48,7 +47,7 @@
     }
   ],
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+Period"
       },
@@ -56,7 +55,9 @@
     }
   },
 
-  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'",
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'"
+  },
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",
@@ -75,7 +76,6 @@
     "search",
     "tabs"
   ],
-  // "search" currently not requested though, see https://discourse.mozilla.org/t/why-do-we-need-an-extra-permission-simply-for-starting-a-search/41174?u=rugkx
 
   "browser_specific_settings": {
     "gecko": {
