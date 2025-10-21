@@ -27,7 +27,7 @@ function handle(info, _tab) {
     if (info.menuItemId === TRIGGER_KEYWORD) {
         // Thunderbird
         // Not yet enabled by Chrome: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/openPopup#browser_compatibility
-        (IS_THUNDERBIRD ? browser.composeAction : browser.browserAction).openPopup();
+        (IS_THUNDERBIRD ? browser.composeAction : browser.action).openPopup();
     }
 }
 
@@ -43,7 +43,7 @@ async function applySettings(contextMenu) {
     if (contextMenu.insertEmoji) {
         // find command
         const allCommands = await browser.commands.getAll();
-        const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
+        const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_action";
         const popupOpenCommand = allCommands.find((command) => command.name === commandToFind);
 
         const menuText = `${popupOpenCommand.description || "Insert Emoji"} (${popupOpenCommand.shortcut})`;
