@@ -218,7 +218,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
         // otherwise open popup to show all emoji choices
         // does not work, because we have no permission
         // see https://bugzilla.mozilla.org/show_bug.cgi?id=1542358
-        // browser.browserAction.openPopup();
+        // browser.action.openPopup();
 
         // search for result in emojipedia
         const resultUrl = `https://emojipedia.org/search/?${new URLSearchParams({ q: text })}`;
