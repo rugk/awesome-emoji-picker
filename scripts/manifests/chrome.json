@@ -44,7 +44,6 @@
       "matches": ["<all_urls>"],
       "all_frames": true,
       "js": [
-        "browser-polyfill.js",
         "content_scripts/autocorrect.js"
       ]
     }
