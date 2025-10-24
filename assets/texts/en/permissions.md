@@ -32,6 +32,7 @@ Additionally, it requests these permissions, which are not requested in Firefox 
 Some browsers may display an **`access to all data on all websites`** message after updating the extension to version **`3.0.1`**.
 This occurs because browsers currently lack more fine-grained permissions. Using a content script (needed for automatic emoji insertion on websites) automatically requires including the broad `<all_urls>` permission in the `content_scripts` section of the manifest.
 Unless browsers introduce a new permission type that allows loading content scripts in all tabs without also granting the full network access implied by `<all_urls>`, this message cannot be avoided.
+
 No additional permissions are technically requested compared to previous versions, and the extension does not read or transmit any data from your tabs or websites.
 **It is safe to update the extension.**
 

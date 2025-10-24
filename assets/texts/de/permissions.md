@@ -28,6 +28,7 @@ Zusätzlich verlangt dieses Add-on folgende Berechtigungen, welche in Firefox ab
 Einige Browser können nach dem Update der Erweiterung auf Version **`3.0.1`** die Meldung **`Zugriff auf alle Daten auf allen Websites`** anzeigen.
 Dies liegt daran, dass Browser derzeit keine feineren Berechtigungen unterstützen. Die Verwendung eines Content Scripts (erforderlich für das automatische Einfügen von Emojis auf Websites) erfordert automatisch die Angabe der weitreichenden Berechtigung `<all_urls>` im Abschnitt `content_scripts` der Manifest-Datei.
 Sofern Browser keinen neuen Berechtigungstyp einführen, der das Laden von Content Scripts in allen Tabs erlaubt, ohne den vollständigen Netzwerkzugriff von `<all_urls>` zu gewähren, kann diese Meldung nicht vermieden werden.
+
 Es werden technisch keine zusätzlichen Berechtigungen im Vergleich zu früheren Versionen angefordert, und die Erweiterung liest oder überträgt keine Daten aus Ihren Tabs oder Websites.
 **Das Aktualisieren der Erweiterung ist sicher.**
 
