@@ -22,3 +22,13 @@ Továbbá ezeket az engedélyeket kéri, melyek nem lesznek kérve a Firefoxban 
 |:----------------|:-------------------------------|:--------------------------------------------------------------------------|
 | `activeTab`     | Jelenlegi lap/weboldal elérése | Az emodzsi a jelenlegi lapra beszúrásához szükséges, ha az engedélyezett. |
 | `storage`       | Helyi tároló elérése           | A mentési beállításokhoz szükséges.                                       |
+
+## Magyarázat az engedélykérésre a 3.0.1 verzióban
+
+Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a bővítményt frissítették a **`3.0.1`** verzióra.
+Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb engedélyeket. A tartalmi szkript használata (amely az automatikus emoji-beillesztéshez szükséges) automatikusan megköveteli a széleskörű `<all_urls>` engedélyt a `content_scripts` szekcióban a manifest fájlban.
+Amíg a böngészők nem vezetnek be új engedélyt, amely lehetővé teszi tartalmi szkriptek betöltését minden fülön anélkül, hogy teljes hálózati hozzáférést adna, a `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
+Technikailag nem kér több engedélyt, mint a korábbi verziók, és a bővítmény nem olvassa vagy továbbítja a lapok és webhelyek adatait.
+**A bővítmény frissítése biztonságos.**
+
+További információ: Issue [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
