@@ -27,7 +27,7 @@ Additionally, it requests these permissions, which are not requested in Firefox 
 | `activeTab` | Access current tab/website | Needed for inserting the Emoji into the current site, if enabled. |
 | `storage`   | Access local storage       | Needed for saving options                                         |
 
-## Clarification on permission prompt in version `3.0.1`.
+## Clarification on permission prompt in version `3.0`.
 
 Some browsers may display that this extension can **`access your data for all websites`** message after updating the extension to version **`3.0.1`**.
 This occurs because browsers currently lack more fine-grained permissions. Using a content script (needed for automatic emoji insertion on websites) automatically requires the broad `<all_urls>` permission.
