@@ -22,3 +22,14 @@ Além disso, essa extensão solicita as seguintes permissões, que não solicita
 |:------------|:---------------------------|:------------------------------------------------------------------|
 | `activeTab` | Acessa a aba/site atual    | Necessária para inserir o emoji no site atual, quando essa possibilidade está ativada. |
 | `storage`   | Accessa o armazenamento local | Necessária para salvar opções                                  |
+
+## Esclarecimento sobre o aviso de permissão na versão 3.0.1
+
+Alguns navegadores podem exibir a mensagem **`acesso a todos os dados em todos os sites`** após atualizar a extensão para a versão **`3.0.1`**.
+Isso ocorre porque os navegadores ainda não possuem permissões mais detalhadas. O uso de um script de conteúdo (necessário para a inserção automática de emojis em sites) exige automaticamente a inclusão da permissão ampla `<all_urls>` na seção `content_scripts` do manifesto.
+A menos que os navegadores introduzam um novo tipo de permissão que permita carregar scripts de conteúdo em todas as abas sem conceder o acesso total à rede implicado por `<all_urls>`, essa mensagem não pode ser evitada.
+Nenhuma permissão adicional é tecnicamente solicitada em comparação com versões anteriores, e a extensão não lê nem transmite dados das suas abas ou sites.
+**É seguro atualizar a extensão.**
+
+Para mais informações, consulte [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
+.
