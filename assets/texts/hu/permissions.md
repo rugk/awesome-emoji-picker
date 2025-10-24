@@ -25,7 +25,7 @@ Továbbá ezeket az engedélyeket kéri, melyek nem lesznek kérve a Firefoxban 
 
 ## Magyarázat az engedélykérésre a 3.0.1 verzióban
 
-Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a bővítményt frissítették a **`3.0.1`** verzióra.
+Egyes böngészők a bővítmény **`3.0.1`** verzióra történő frissítése után megjeleníthetik az üzenetet, miszerint ez a kiegészítő **`hozzáférhet az adataihoz minden webhelyen`**.
 Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb engedélyeket. A tartalmi szkript használata (amely az automatikus emoji-beillesztéshez szükséges) automatikusan megköveteli a széleskörű `<all_urls>` engedélyt a `content_scripts` szekcióban a manifest fájlban.
 Amíg a böngészők nem vezetnek be új engedélyt, amely lehetővé teszi tartalmi szkriptek betöltését minden fülön anélkül, hogy teljes hálózati hozzáférést adna, a `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
 

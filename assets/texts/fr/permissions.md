@@ -30,7 +30,7 @@ De plus, l'extension requiert ces droits, qui ne sont pas requis dans Firefox qu
 
 ## Précision sur l’avertissement de permission dans la version `3.0.1`
 
-Certains navigateurs peuvent afficher le message **`accès à toutes les données sur tous les sites web`** après la mise à jour de l’extension vers la version **`3.0.1`**.
+Certains navigateurs peuvent afficher, après la mise à jour de l’extension vers la version **`3.0.1`**, le message indiquant que cette extension peut **`accéder à vos données pour tous les sites web`**.
 Cela se produit car les navigateurs ne disposent pas encore de permissions plus précises. L’utilisation d’un script de contenu (nécessaire pour l’insertion automatique d’emojis sur les sites web) impose automatiquement l’ajout de la permission étendue `<all_urls>` dans la section `content_scripts` du manifeste.
 À moins que les navigateurs n’introduisent un nouveau type de permission permettant de charger des scripts de contenu dans tous les onglets sans accorder l’accès réseau complet impliqué par `<all_urls>`, ce message ne peut pas être évité.
 
