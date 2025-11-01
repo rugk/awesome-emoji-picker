@@ -31,7 +31,7 @@ A menos que os navegadores introduzam um novo tipo de permissão que permita car
 
 Nenhuma permissão adicional é tecnicamente solicitada em comparação com versões anteriores, e a extensão não lê nem transmite dados das suas abas ou sites.
 
-[!OBSERVAÇÃO]
+[!NOTE]
 É seguro atualizar a extensão.
 
 Para mais informações, consulte [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)

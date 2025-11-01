@@ -36,7 +36,7 @@ Cela se produit car les navigateurs ne disposent pas encore de permissions plus 
 
 Aucune permission supplémentaire n’est techniquement demandée par rapport aux versions précédentes, et l’extension ne lit ni ne transmet aucune donnée de vos onglets ou sites web.
 
-[!REMARQUE]
+[!NOTE]
 La mise à jour de l’extension est sans danger.
 
 Pour plus de détails, voir [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
