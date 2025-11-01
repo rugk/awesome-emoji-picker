@@ -34,6 +34,8 @@ This occurs because browsers currently lack more fine-grained permissions. Using
 Unless browsers introduce a new permission type that allows loading content scripts in all tabs without also granting the full network access implied by `<all_urls>`, this message cannot be avoided.
 
 No additional permissions are technically requested compared to previous versions, and the extension does not read or transmit any data from your tabs or websites.
-**It is safe to update the extension.**
+
+[!NOTE]  
+It is safe to update the extension.
 
 For more clarification, see [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)

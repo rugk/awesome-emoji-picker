@@ -23,13 +23,17 @@ Továbbá ezeket az engedélyeket kéri, melyek nem lesznek kérve a Firefoxban 
 | `activeTab`     | Jelenlegi lap/weboldal elérése | Az emodzsi a jelenlegi lapra beszúrásához szükséges, ha az engedélyezett. |
 | `storage`       | Helyi tároló elérése           | A mentési beállításokhoz szükséges.                                       |
 
-## Magyarázat az engedélykérésre a 3.0.1 verzióban
+I'd use this translation instead (mostly minor fixes):
 
-Egyes böngészők a bővítmény **`3.0.1`** verzióra történő frissítése után megjeleníthetik az üzenetet, miszerint ez a kiegészítő **`hozzáférhet az adataihoz minden webhelyen`**.
-Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb engedélyeket. A tartalmi szkript használata (amely az automatikus emoji-beillesztéshez szükséges) automatikusan megköveteli a széleskörű `<all_urls>` engedélyt a `content_scripts` szekcióban a manifest fájlban.
-Amíg a böngészők nem vezetnek be új engedélyt, amely lehetővé teszi tartalmi szkriptek betöltését minden fülön anélkül, hogy teljes hálózati hozzáférést adna, a `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
 
-Technikailag nem kér több engedélyt, mint a korábbi verziók, és a bővítmény nem olvassa vagy továbbítja a lapok és webhelyek adatait.
-**A bővítmény frissítése biztonságos.**
+## Magyarázat az engedélykérésre a 3.0-es verzióban
 
-További információ: Issue [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
+Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a kiegészítő a **`3.0.1`-es** verzióra lett frissítve.
+Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb engedélyeket. A tartalmi szkript használata (amely az automatikus emodzsibeillesztéshez szükséges) automatikusan megköveteli a széleskörű `<all_urls>` engedélyt a leírófájl `content_scripts` szakaszában.
+Amíg a böngészők nem vezetnek be új engedélyt, amely anélkül teszi lehetővé a tartalmi szkriptek betöltését az összes lapon, hogy teljes hálózati hozzáférést adna, az `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
+Technikailag nem kér több engedélyt, mint a korábbi verziók, és a kiegészítő nem olvassa vagy továbbítja a lapok és webhelyek adatait.
+
+[!MEGJEGYZÉSE]
+A bővítmény frissítése biztonságos.
+
+További információk: [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
