@@ -29,7 +29,7 @@ Additionally, it requests these permissions, which are not requested in Firefox 
 
 ## Clarification on permission prompt in version `3.0`.
 
-Some browsers may display that this extension can **`access your data for all websites`** message after updating the extension to version **`3.0.1`**.
+Some browsers may display that this extension can **`access your data for all websites`** message after updating the extension to version **`3.0`**.
 This occurs because browsers currently lack more fine-grained permissions. Using a content script (needed for automatic emoji insertion on websites) automatically requires the broad `<all_urls>` permission.
 Unless browsers introduce a new permission type that allows loading content scripts in all tabs without also granting the full network access implied by `<all_urls>`, this message cannot be avoided.
 

@@ -25,7 +25,7 @@ Além disso, essa extensão solicita as seguintes permissões, que não solicita
 
 ## Esclarecimento sobre o aviso de permissão na versão 3.0
 
-Alguns navegadores podem exibir, após a atualização da extensão para a versão **`3.0.1`**, a mensagem de que esta extensão pode **`acessar seus dados em todos os sites`**.
+Alguns navegadores podem exibir, após a atualização da extensão para a versão **`3.0`**, a mensagem de que esta extensão pode **`acessar seus dados em todos os sites`**.
 Isso ocorre porque os navegadores ainda não possuem permissões mais detalhadas. O uso de um script de conteúdo (necessário para a inserção automática de emojis em sites) exige automaticamente a inclusão da permissão ampla `<all_urls>` na seção `content_scripts` do manifesto.
 A menos que os navegadores introduzam um novo tipo de permissão que permita carregar scripts de conteúdo em todas as abas sem conceder o acesso total à rede implicado por `<all_urls>`, essa mensagem não pode ser evitada.
 

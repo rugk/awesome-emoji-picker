@@ -28,7 +28,7 @@ I'd use this translation instead (mostly minor fixes):
 
 ## Magyarázat az engedélykérésre a 3.0-es verzióban
 
-Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a kiegészítő a **`3.0.1`-es** verzióra lett frissítve.
+Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a kiegészítő a **`3.0`-es** verzióra lett frissítve.
 Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb engedélyeket. A tartalmi szkript használata (amely az automatikus emodzsibeillesztéshez szükséges) automatikusan megköveteli a széleskörű `<all_urls>` engedélyt a leírófájl `content_scripts` szakaszában.
 Amíg a böngészők nem vezetnek be új engedélyt, amely anélkül teszi lehetővé a tartalmi szkriptek betöltését az összes lapon, hogy teljes hálózati hozzáférést adna, az `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
 Technikailag nem kér több engedélyt, mint a korábbi verziók, és a kiegészítő nem olvassa vagy továbbítja a lapok és webhelyek adatait.
