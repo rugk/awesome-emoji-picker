@@ -23,9 +23,6 @@ Továbbá ezeket az engedélyeket kéri, melyek nem lesznek kérve a Firefoxban 
 | `activeTab`     | Jelenlegi lap/weboldal elérése | Az emodzsi a jelenlegi lapra beszúrásához szükséges, ha az engedélyezett. |
 | `storage`       | Helyi tároló elérése           | A mentési beállításokhoz szükséges.                                       |
 
-I'd use this translation instead (mostly minor fixes):
-
-
 ## Magyarázat az engedélykérésre a 3.0-es verzióban
 
 Egyes böngészők a **`hozzáférés az összes webhely összes adatához`** üzenetet jeleníthetik meg, miután a kiegészítő a **`3.0`-es** verzióra lett frissítve.
