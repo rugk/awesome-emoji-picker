@@ -31,7 +31,7 @@ Sofern Browser keinen neuen Berechtigungstyp einführen, der das Laden von Conte
 
 Es werden technisch keine zusätzlichen Berechtigungen im Vergleich zu früheren Versionen angefordert, und die Erweiterung liest oder überträgt keine Daten aus Ihren Tabs oder Websites.
 
-[!NOTE]
-Das Aktualisieren der Erweiterung ist sicher.
+> [!NOTE]
+> Das Aktualisieren der Erweiterung ist sicher.
 
 Weitere Informationen finden Sie in [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)

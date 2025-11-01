@@ -33,7 +33,7 @@ Ez azért történik, mert a böngészők jelenleg nem támogatnak finomabb enge
 Amíg a böngészők nem vezetnek be új engedélyt, amely anélkül teszi lehetővé a tartalmi szkriptek betöltését az összes lapon, hogy teljes hálózati hozzáférést adna, az `<all_urls>` engedélyhez hasonlóan, addig ez az üzenet nem kerülhető el.
 Technikailag nem kér több engedélyt, mint a korábbi verziók, és a kiegészítő nem olvassa vagy továbbítja a lapok és webhelyek adatait.
 
-[!NOTE]
-A bővítmény frissítése biztonságos.
+> [!NOTE]
+> A bővítmény frissítése biztonságos.
 
 További információk: [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)

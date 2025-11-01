@@ -35,7 +35,7 @@ Unless browsers introduce a new permission type that allows loading content scri
 
 No additional permissions are technically requested compared to previous versions, and the extension does not read or transmit any data from your tabs or websites.
 
-[!NOTE]  
-It is safe to update the extension.
+> [!NOTE]  
+> It is safe to update the extension.
 
 For more clarification, see [Issue #171](https://github.com/rugk/awesome-emoji-picker/issues/171)
