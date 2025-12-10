@@ -221,14 +221,13 @@ async function sendSettings(autocorrect) {
 
     try {
         const tabs = await browser.tabs.query({});
-        for (const tab of tabs) {
-            if (!tab.id) {
-                continue;
-            }
-            try {
-                await browser.tabs.sendMessage(
-                    tab.id,
-                    {
+        await Promise.allSettled(
+            tabs.map(async (tab) => {
+                if (!tab.id) {
+                    return;
+                }
+                try {
+                    await browser.tabs.sendMessage(tab.id, {
                         type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
                         enabled: settings.enabled,
                         autocomplete: settings.autocomplete,
@@ -237,13 +236,16 @@ async function sendSettings(autocorrect) {
                         longest,
                         symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
                         antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                        emojiShortcodes
-                    }
-                );
-            } catch (error) {
-                console.error(`Error sending autocorrect settings to tab ${tab.id}:`, error);
-            }
-        }
+                        emojiShortcodes,
+                    });
+                } catch (error) {
+                    console.error(
+                        `Error sending autocorrect settings to tab ${tab.id}:`,
+                        error
+                    );
+                }
+            })
+        );
     } catch (error) {
         console.error("Error querying tabs:", error);
     }
