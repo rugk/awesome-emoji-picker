@@ -13,6 +13,18 @@ import * as CustomOptionTriggers from "./modules/CustomOptionTriggers.js";
 import * as ColorSchemeModeHelper from "./modules/ColorSchemeModeHelper.js";
 import * as ManualAdjustments from "./modules/ManualAdjustments.js";
 
+document.getElementById("shortcut").addEventListener("click", (event) => {
+    event.target.disabled = true;
+
+    if (browser.commands.openShortcutSettings) {
+        browser.commands.openShortcutSettings().finally(() => {
+            event.target.disabled = false;
+        });
+    } else {
+        alert("Unable to automatically open the Shortcut Settings (requires Firefox or Thunderbird 137 or greater).");
+    }
+});
+
 // init modules
 CustomOptionTriggers.registerTrigger().then(() => {
     AutomaticSettings.setDefaultOptionProvider(AddonSettings.getDefaultValue);
