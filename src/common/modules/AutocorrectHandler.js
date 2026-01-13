@@ -7,6 +7,12 @@ import * as BrowserCommunication from "/common/modules/BrowserCommunication/Brow
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
 
+// Deferred initialization promise to ensure all data is ready before use handling messages
+let initializedResolver;
+const isInitialized = new Promise((resolve) => {
+    initializedResolver = resolve;
+});
+
 const settings = {
     enabled: null,
     autocorrectEmojis: null,
@@ -283,6 +289,8 @@ export async function init() {
             ]
         });
     }
+
+    initializedResolver();
 }
 
 BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, async (request) => {
@@ -292,8 +300,11 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
     return sendSettings(request.optionValue);
 });
 
-browser.runtime.onMessage.addListener((message, _sender) => {
+browser.runtime.onMessage.addListener(async (message, _sender) => {
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
+        // Ensure autocorrect data is initialized before responding to content script requests.
+        await isInitialized;
+
         const response = {
             type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
             enabled: settings.enabled,
@@ -305,7 +316,7 @@ browser.runtime.onMessage.addListener((message, _sender) => {
             antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
             emojiShortcodes
         };
-        return Promise.resolve(response);
+        return response;
     }
 });
 
