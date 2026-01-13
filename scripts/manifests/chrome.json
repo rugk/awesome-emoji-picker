@@ -30,12 +30,7 @@
   },
 
   "background": {
-    "scripts": [
-      "background/modules/InstallUpgrade.js",
-      "background/modules/ContextMenu.js",
-      "background/modules/OmniboxSearch.js",
-      "background/init.js"
-    ],
+    "service_worker": "background/chromeServiceWorker.js",
     "type": "module"
   },
 
@@ -43,9 +38,7 @@
     {
       "matches": ["<all_urls>"],
       "all_frames": true,
-      "js": [
-        "content_scripts/autocorrect.js"
-      ]
+      "js": ["content_scripts/autocorrect.js"]
     }
   ],
   "commands": {
@@ -70,11 +63,12 @@
   "permissions": [
     "storage",
     "activeTab",
-    "tabs",
     "contextMenus"
   ],
 
   "optional_permissions": [
-    "clipboardWrite"
+    "clipboardWrite",
+    "search",
+    "tabs"
   ]
 }

@@ -1,5 +1,6 @@
 "use strict";
 
+import { isChrome } from "../BrowserCompat.js";
 import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
@@ -31,8 +32,7 @@ let antipatterns = null;
 const emojiShortcodes = {};
 
 // Chrome
-// Adapted from: https://github.com/mozilla/webextension-polyfill/blob/master/src/browser-polyfill.js
-const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
+const IS_CHROME = isChrome();
 
 /**
  * Traverse Trie tree of objects to create RegEx.

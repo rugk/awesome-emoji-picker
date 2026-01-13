@@ -1,3 +1,4 @@
+import { isChrome } from "../../common/BrowserCompat.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import { isMobile } from "/common/modules/MobileHelper.js";
@@ -7,7 +8,7 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 // Chrome
-const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
+const IS_CHROME = isChrome();
 
 /**
  * hardcoded in manifest.json
