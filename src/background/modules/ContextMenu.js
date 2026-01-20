@@ -1,3 +1,4 @@
+import { isChrome } from "../../common/BrowserCompat.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import { isMobile } from "/common/modules/MobileHelper.js";
@@ -7,7 +8,7 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 // Chrome
-const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
+const IS_CHROME = isChrome();
 
 /**
  * hardcoded in manifest.json
@@ -27,7 +28,7 @@ function handle(info, _tab) {
     if (info.menuItemId === TRIGGER_KEYWORD) {
         // Thunderbird
         // Not yet enabled by Chrome: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/openPopup#browser_compatibility
-        (IS_THUNDERBIRD ? browser.composeAction : browser.browserAction).openPopup();
+        (IS_THUNDERBIRD ? browser.composeAction : browser.action).openPopup();
     }
 }
 
@@ -43,7 +44,7 @@ async function applySettings(contextMenu) {
     if (contextMenu.insertEmoji) {
         // find command
         const allCommands = await browser.commands.getAll();
-        const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
+        const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_action";
         const popupOpenCommand = allCommands.find((command) => command.name === commandToFind);
 
         const menuText = `${popupOpenCommand.description || "Insert Emoji"} (${popupOpenCommand.shortcut})`;
