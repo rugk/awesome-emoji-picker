@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_extensionName__",
   "short_name": "__MSG_extensionNameShort__",
   "version": "3.0.2",
@@ -34,8 +34,7 @@
       "background/modules/OmniboxSearch.js",
       "background/init.js"
     ],
-    "type": "module",
-    "persistent": true
+    "type": "module"
   },
 
   "commands": {
@@ -47,7 +46,9 @@
     }
   },
 
-  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'",
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; style-src 'self' 'unsafe-inline'"
+  },
   "icons": {
     "32": "icons/icon_32.png",
     "64": "icons/icon_64.png",

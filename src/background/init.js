@@ -4,7 +4,9 @@ import * as ContextMenu from "./modules/ContextMenu.js";
 
 IconHandler.init();
 AutocorrectHandler.init();
-ContextMenu.init();
+
+browser.runtime.onInstalled.addListener(async () => {
+    await ContextMenu.init();
+});
 
 console.warn("background: init loaded");
-
