@@ -6,6 +6,7 @@
 
 import { tips } from "/common/modules/data/Tips.js";
 
+import { isChrome } from "/common/BrowserCompat.js";
 import * as RandomTips from "/common/modules/RandomTips/RandomTips.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as AutomaticSettings from "/common/modules/AutomaticSettings/AutomaticSettings.js";
@@ -13,11 +14,18 @@ import * as CustomOptionTriggers from "./modules/CustomOptionTriggers.js";
 import * as ColorSchemeModeHelper from "./modules/ColorSchemeModeHelper.js";
 import * as ManualAdjustments from "./modules/ManualAdjustments.js";
 
+// Chrome
+const IS_CHROME = await isChrome();
+
 document.getElementById("shortcut").addEventListener("click", (event) => {
     event.target.disabled = true;
 
     if (browser.commands.openShortcutSettings) {
         browser.commands.openShortcutSettings().finally(() => {
+            event.target.disabled = false;
+        });
+    } else if (IS_CHROME) {
+        browser.tabs.create({ url: "chrome://extensions/shortcuts" }).finally(() => {
             event.target.disabled = false;
         });
     } else {
