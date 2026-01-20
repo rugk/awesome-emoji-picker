@@ -1,7 +1,9 @@
 import { getBrowserValue } from "/common/modules/BrowserCompat/BrowserCompat.js";
 import { isChrome } from "/common/modules/BrowserCompat/BrowserCompat.js";
 
-
+/**
+ * Adds a "link"/trigger to the shortcut option so that it opens.
+ */
 function addShortcutsLink() {
     document.getElementById("shortcut").addEventListener("click", async (event) => {
         event.target.disabled = true;
