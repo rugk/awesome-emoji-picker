@@ -1,4 +1,24 @@
 import { getBrowserValue } from "/common/modules/BrowserCompat/BrowserCompat.js";
+import { isChrome } from "/common/modules/BrowserCompat/BrowserCompat.js";
+
+
+function addShortcutsLink() {
+    document.getElementById("shortcut").addEventListener("click", async (event) => {
+        event.target.disabled = true;
+
+        if (browser.commands.openShortcutSettings) {
+            browser.commands.openShortcutSettings().finally(() => {
+                event.target.disabled = false;
+            });
+        } else if (await isChrome()) {
+            browser.tabs.create({ url: "chrome://extensions/shortcuts" }).finally(() => {
+                event.target.disabled = false;
+            });
+        } else {
+            alert("Unable to automatically open the Shortcut Settings (requires Firefox or Thunderbird 137 or greater).");
+        }
+    });
+}
 
 /**
  * Initializes module.
@@ -15,4 +35,7 @@ export function init() {
     }).then((browserUrl) => {
         document.getElementById("link-unicodify").href = browserUrl;
     });
+
+    addShortcutsLink();
 }
+
