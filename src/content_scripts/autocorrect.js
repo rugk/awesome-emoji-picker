@@ -347,4 +347,3 @@ function handleError(error) {
 
 browser.runtime.sendMessage({ type: AUTOCORRECT_CONTENT }).then(handleResponse, handleError);
 browser.runtime.onMessage.addListener(handleResponse);
-console.log("AwesomeEmoji autocorrect module loaded.");

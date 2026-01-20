@@ -444,6 +444,26 @@
     "description": "Label for maximum results slider."
   },
 
+  // options shortcuts
+  "titleShortcuts": {
+    "message": "Tastenkombinationen",
+    "description": "Title for the shortcuts section."
+  },
+  "shortcutsExplanation": {
+    "message": "Du kannst die Tastenkombinationen/Hotkeys für diese Erweiterung $LINK$.",
+    "description": "This is a text shown in the add-on settings explaining how to manage shortcuts/hotkeys.",
+    "placeholders": {
+      "link": {
+        "content": "$1",
+        "example": "<a href=\"#\" id=\"shortcut\">in your browser here</a>"
+      }
+    }
+  },
+  "shortcutsExplanationLinkText": {
+    "message": "hier in deinem Browser verwalten",
+    "description": "This is text of the link to the shortcuts/hotkeys page, see shortcutsExplanation."
+  },
+
   // options footer
   "optionsLicenseDisclaimer": {
     "message": "All emoji images may subject to different licenses. For more information, see $LINK$.",
