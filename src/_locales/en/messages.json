@@ -421,6 +421,10 @@
   },
 
   // options emoji search
+  "optionEmojiSearchMaximumResults": {
+    "message": "Maximum results:",
+    "description": "Label for maximum results slider."
+  },
   "optionEmojiSearchMaximumResultsStatusUnlimited": {
     "message": "∞",
     "description": "Status text for unlimited emoji search results."
@@ -434,6 +438,10 @@
         "example": "10"
       }
     }
+  },
+  "optionEmojiSearchMaximumResultsDescr": {
+    "message": "Limit the amount of emoji search results in the list. Drag to the maximum for unlimited results.",
+    "description": "Label for maximum results slider."
   },
 
   // options footer
