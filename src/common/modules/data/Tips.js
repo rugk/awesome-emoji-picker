@@ -131,7 +131,7 @@ const tipArray = [
 
             // find command
             const allCommands = await browser.commands.getAll();
-            const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_browser_action";
+            const commandToFind = IS_THUNDERBIRD ? "_execute_compose_action" : "_execute_action";
             const popupOpenCommand = allCommands.find((command) => command.name === commandToFind);
 
             // if shortcut is modified, do not show tip

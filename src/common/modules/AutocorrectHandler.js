@@ -1,10 +1,17 @@
 "use strict";
 
+import { isChrome } from "../BrowserCompat.js";
 import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
+
+// Deferred initialization promise to ensure all data is ready before use handling messages
+let initializedResolver;
+const isInitialized = new Promise((resolve) => {
+    initializedResolver = resolve;
+});
 
 const settings = {
     enabled: null,
@@ -22,20 +29,21 @@ let autocorrections = {};
 // Longest autocorrection
 let longest = 0;
 
-let symbolpatterns = [];
+/* @type {RegExp|null} */
+let symbolpatterns = null;
 // Exceptions, do not autocorrect for these patterns
-let antipatterns = [];
+/* @type {RegExp|null} */
+let antipatterns = null;
 
 const emojiShortcodes = {};
 
 // Chrome
-// Adapted from: https://github.com/mozilla/webextension-polyfill/blob/master/src/browser-polyfill.js
-const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
+const IS_CHROME = isChrome();
 
 /**
  * Traverse Trie tree of objects to create RegEx.
  *
- * @param {Object.<string, Object|boolean>} tree
+ * @param {Object.<string, object | boolean>} tree
  * @returns {string}
  */
 function createRegEx(tree) {
@@ -109,10 +117,15 @@ function createTree(arr) {
 /**
  * Apply new autocorrect settings and create regular expressions.
  *
- * @returns {void}
+ * @param {boolean} forceRebuild whether to force rebuild of the autocorrect RegExp patterns
+ * @returns {Promise<void>}
  */
-function applySettings() {
+async function applySettings(forceRebuild) {
     const start = performance.now();
+
+    let symbolpatternsRegexpString = "";
+    let antipatternsRegexpString = "";
+
     autocorrections = {};
 
     // Add all symbols to our autocorrections map, we want to replace
@@ -124,73 +137,74 @@ function applySettings() {
     }
 
     // Longest autocorrection
-    longest = 0;
-
-    for (const symbol in autocorrections) {
-        if (symbol.length > longest) {
-            longest = symbol.length;
-        }
-    }
+    longest = Math.max(...Object.keys(autocorrections).map((s) => s.length), 0);
     console.log("Longest autocorrection", longest);
 
-    symbolpatterns = createTree(Object.keys(autocorrections));
+    if (!forceRebuild) {
+        const cachedRegexpStrings = await browser.storage.session.get({
+            symbolpatternsRegexpString: "",
+            antipatternsRegexpString: ""
+        });
+        symbolpatternsRegexpString = cachedRegexpStrings.symbolpatternsRegexpString;
+        antipatternsRegexpString = cachedRegexpStrings.antipatternsRegexpString;
+    }
 
-    // Do not autocorrect for these patterns
-    antipatterns = [];
-    for (const x in autocorrections) {
-        let length = 0;
-        let index = x.length;
+    if (!symbolpatternsRegexpString || !antipatternsRegexpString) {
+        console.log("Building autocorrect RegExp patterns");
+        // Do not autocorrect for these patterns
+        let antipatternsList = [];
+        for (const x in autocorrections) {
+            let length = 0;
+            let index = x.length;
 
-        for (const y in autocorrections) {
-            if (x === y) {
-                continue;
+            for (const y in autocorrections) {
+                if (x === y) {
+                    continue;
+                }
+                const aindex = x.indexOf(y);
+                if (aindex !== -1) {
+                    if (aindex < index) {
+                        index = aindex;
+                        length = y.length;
+                    } else if (aindex === index && y.length > length) {
+                        length = y.length;
+                    }
+                }
             }
-            const aindex = x.indexOf(y);
-            if (aindex !== -1) {
-                if (aindex < index) {
-                    index = aindex;
-                    length = y.length;
-                } else if (aindex === index && y.length > length) {
-                    length = y.length;
+
+            if (length) {
+                length = x.length - (index + length);
+                if (length > 1) {
+                    antipatternsList.push(x.slice(0, -(length - 1)));
                 }
             }
         }
+        antipatternsList = antipatternsList.filter((item, pos) => antipatternsList.indexOf(item) === pos);
+        console.log("Do not autocorrect for these patterns", antipatternsList);
 
-        if (length) {
-            length = x.length - (index + length);
-            if (length > 1) {
-                antipatterns.push(x.slice(0, -(length - 1)));
-            }
-        }
+        symbolpatternsRegexpString = createTree(Object.keys(autocorrections));
+        antipatternsRegexpString = createTree(antipatternsList);
+        await browser.storage.session.set({
+            symbolpatternsRegexpString,
+            antipatternsRegexpString
+        });
     }
-    antipatterns = antipatterns.filter((item, pos) => antipatterns.indexOf(item) === pos);
-    console.log("Do not autocorrect for these patterns", antipatterns);
 
-    antipatterns = createTree(antipatterns);
+    symbolpatterns = new RegExp(`(${symbolpatternsRegexpString})$`, "u");
+    antipatterns = new RegExp(`(${antipatternsRegexpString})$`, "u");
 
-    symbolpatterns = new RegExp(`(${symbolpatterns})$`, "u");
-    antipatterns = new RegExp(`(${antipatterns})$`, "u");
     const end = performance.now();
     console.log(`The new autocorrect settings were applied in ${end - start} ms.`);
 }
 
 /**
- * On error.
- *
- * @param {string} error
- * @returns {void}
- */
-function onError(error) {
-    console.error(`Error: ${error}`);
-}
-
-/**
  * Set autocorrect settings.
  *
- * @param {Object} autocorrect
- * @returns {void}
+ * @param {object} autocorrect
+ * @param {boolean} [modified] whether settings were modified (true) or loaded from storage (false)
+ * @returns {Promise<void>}
  */
-function setSettings(autocorrect) {
+async function setSettings(autocorrect, modified = true) {
     settings.enabled = autocorrect.enabled;
     settings.autocorrectEmojis = autocorrect.autocorrectEmojis;
     settings.autocorrectEmojiShortcodes = autocorrect.autocorrectEmojiShortcodes;
@@ -198,37 +212,49 @@ function setSettings(autocorrect) {
     settings.autocompleteSelect = autocorrect.autocompleteSelect;
 
     if (settings.enabled) {
-        applySettings();
+        await applySettings(/* forceRebuild= */ modified);
     }
 }
 
 /**
  * Send autocorrect settings to content scripts.
  *
- * @param {Object} autocorrect
- * @returns {void}
+ * @param {object} autocorrect
+ * @returns {Promise<void>}
  */
-function sendSettings(autocorrect) {
-    setSettings(autocorrect);
+async function sendSettings(autocorrect) {
+    await setSettings(autocorrect, /* modified= */ true);
 
-    browser.tabs.query({}).then((tabs) => {
-        for (const tab of tabs) {
-            browser.tabs.sendMessage(
-                tab.id,
-                {
-                    type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-                    enabled: settings.enabled,
-                    autocomplete: settings.autocomplete,
-                    autocompleteSelect: settings.autocompleteSelect,
-                    autocorrections,
-                    longest,
-                    symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
-                    antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                    emojiShortcodes
+    try {
+        const tabs = await browser.tabs.query({});
+        await Promise.allSettled(
+            tabs.map(async (tab) => {
+                if (!tab.id) {
+                    return;
                 }
-            ).catch(onError);
-        }
-    }).catch(onError);
+                try {
+                    await browser.tabs.sendMessage(tab.id, {
+                        type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
+                        enabled: settings.enabled,
+                        autocomplete: settings.autocomplete,
+                        autocompleteSelect: settings.autocompleteSelect,
+                        autocorrections,
+                        longest,
+                        symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
+                        antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
+                        emojiShortcodes,
+                    });
+                } catch (error) {
+                    console.error(
+                        `Error sending autocorrect settings to tab ${tab.id}:`,
+                        error
+                    );
+                }
+            })
+        );
+    } catch (error) {
+        console.error("Error querying tabs:", error);
+    }
 }
 
 /**
@@ -252,7 +278,7 @@ export async function init() {
     Object.freeze(emojiShortcodes);
     console.debug("Emoji shortcodes:", emojiShortcodes);
 
-    setSettings(autocorrect);
+    await setSettings(autocorrect, /* modified= */ false);
 
     // Thunderbird
     // Cannot register scripts in manifest.json file: https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
@@ -263,17 +289,22 @@ export async function init() {
             ]
         });
     }
+
+    initializedResolver();
 }
 
-BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, (request) => {
+BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, async (request) => {
     // clear cache by reloading all options
     // await AddonSettings.loadOptions();
 
     return sendSettings(request.optionValue);
 });
 
-browser.runtime.onMessage.addListener((message, _sender) => {
+browser.runtime.onMessage.addListener(async (message, _sender) => {
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
+        // Ensure autocorrect data is initialized before responding to content script requests.
+        await isInitialized;
+
         const response = {
             type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
             enabled: settings.enabled,
@@ -285,7 +316,7 @@ browser.runtime.onMessage.addListener((message, _sender) => {
             antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
             emojiShortcodes
         };
-        return Promise.resolve(response);
+        return response;
     }
 });
 

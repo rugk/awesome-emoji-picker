@@ -29,10 +29,6 @@ let emojiShortcodes = {};
 
 let running = false;
 
-// Chrome
-// Adapted from: https://github.com/mozilla/webextension-polyfill/blob/master/src/browser-polyfill.js
-const IS_CHROME = Object.getPrototypeOf(browser) !== Object.prototype;
-
 /**
  * Get caret position.
  *
@@ -324,8 +320,8 @@ function handleResponse(message, sender) {
             antipatterns,
             emojiShortcodes
         } = message);
-        symbolpatterns = IS_CHROME ? new RegExp(symbolpatterns, "u") : symbolpatterns;
-        antipatterns = IS_CHROME ? new RegExp(antipatterns, "u") : antipatterns;
+        symbolpatterns = (typeof symbolpatterns === "string") ? new RegExp(symbolpatterns, "u") : symbolpatterns;
+        antipatterns = (typeof antipatterns === "string") ? new RegExp(antipatterns, "u") : antipatterns;
 
         if (enabled) {
             addEventListener("beforeinput", undoAutocorrect, true);
