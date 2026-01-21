@@ -8,10 +8,7 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as symbols from "/common/modules/data/Symbols.js";
 
 // Deferred initialization promise to ensure all data is ready before use handling messages
-let initializedResolver;
-const isInitialized = new Promise((resolve) => {
-    initializedResolver = resolve;
-});
+const { promise: isInitialized, resolve: initializedResolver } = Promise.withResolvers();
 
 const settings = {
     enabled: null,
