@@ -1,6 +1,6 @@
 "use strict";
 
-import { isChrome } from "../BrowserCompat.js";
+import { isChrome } from "/common/modules/BrowserCompat/BrowserCompat.js";
 import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
@@ -8,10 +8,7 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as symbols from "/common/modules/data/Symbols.js";
 
 // Deferred initialization promise to ensure all data is ready before use handling messages
-let initializedResolver;
-const isInitialized = new Promise((resolve) => {
-    initializedResolver = resolve;
-});
+const { promise: isInitialized, resolve: initializedResolver } = Promise.withResolvers();
 
 const settings = {
     enabled: null,
@@ -36,9 +33,6 @@ let symbolpatterns = null;
 let antipatterns = null;
 
 const emojiShortcodes = {};
-
-// Chrome
-const IS_CHROME = isChrome();
 
 /**
  * Traverse Trie tree of objects to create RegEx.
@@ -224,6 +218,7 @@ async function setSettings(autocorrect, modified = true) {
  */
 async function sendSettings(autocorrect) {
     await setSettings(autocorrect, /* modified= */ true);
+    const IS_CHROME = await isChrome();
 
     try {
         const tabs = await browser.tabs.query({});
@@ -301,6 +296,8 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
 });
 
 browser.runtime.onMessage.addListener(async (message, _sender) => {
+    const IS_CHROME = await isChrome();
+
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
         // Ensure autocorrect data is initialized before responding to content script requests.
         await isInitialized;

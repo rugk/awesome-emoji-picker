@@ -1,4 +1,4 @@
-import { isChrome } from "../../common/BrowserCompat.js";
+import { isChrome } from "/common/modules/BrowserCompat/BrowserCompat.js";
 import * as AddonSettings from "/common/modules/AddonSettings/AddonSettings.js";
 import * as BrowserCommunication from "/common/modules/BrowserCommunication/BrowserCommunication.js";
 import { isMobile } from "/common/modules/MobileHelper.js";
@@ -6,9 +6,6 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 
 // Thunderbird
 const IS_THUNDERBIRD = Boolean(globalThis.messenger);
-
-// Chrome
-const IS_CHROME = isChrome();
 
 /**
  * hardcoded in manifest.json
@@ -49,7 +46,7 @@ async function applySettings(contextMenu) {
 
         const menuText = `${popupOpenCommand.description || "Insert Emoji"} (${popupOpenCommand.shortcut})`;
 
-        if (IS_CHROME) {
+        if (await isChrome()) {
             menus.create({
                 id: TRIGGER_KEYWORD,
                 title: menuText,
@@ -82,7 +79,7 @@ export async function init() {
 
     applySettings(contextMenu);
 
-    if (IS_CHROME) {
+    if (await isChrome()) {
         menus.onClicked.addListener(handle);
     }
 }
