@@ -449,6 +449,20 @@
     "description": "Label for maximum results slider."
   },
 
+  // option: enable filling results
+  "optionEnableFillingResults": {
+    "message": "Fülle zu wenige Emoji-Ergebnisse mit häufig verwendeten Emojis auf.",
+    "description": "Label for enableFillingResults."
+  },
+  "optionEnableFillingResultsDescr": {
+    "message": "Wenn diese Option aktiviert ist, werden den Suchergebnissen häufig verwendete Emojis hinzugefügt.",
+    "description": "Description for enableFillingResults option."
+  },
+  "tipFilling": {
+    "message": "Wenn du nach einem Leerzeichen („ “) suchst, erhältst du immer eine Liste der häufig verwendeten Emojis.",
+    "description": "Description for enableFillingResults option."
+  },
+  
   // options shortcuts
   "titleShortcuts": {
     "message": "Tastenkombinationen",

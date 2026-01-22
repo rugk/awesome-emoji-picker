@@ -285,7 +285,7 @@
 						<div class="line">
 							<label data-i18n="optionEmojiSearchMaximumResults" for="maximumResults">Maximum results:</label>
 							<input class="setting save-on-input" type="range" value="9" min="1" max="21" step="1" id="maximumResults" data-optiongroup="emojiSearch" name="maximumResults">
-							<span id="maximumResultsStatus" data-i18n="optionEmojiSearchMaximumResultsStatus">∞</span>
+							<span id="maximumResultsStatus">∞</span>
 						</div>
 						<span data-i18n="optionEmojiSearchMaximumResultsDescr" class="line indent helper-text">Limit the amount of emoji search results in the list. Drag to the maximum for unlimited results.</span>
 					</li>
@@ -293,12 +293,12 @@
 					<li class="indent">
 						<div class="line">
 							<input class="setting save-on-change" type="checkbox" id="enableFillingResults" data-optiongroup="emojiSearch" name="enableFillingResults">
-							<label data-i18n="enableFillingResults" for="enableFillingResults">Fill too few emoji results up with frequently used emojis.</label>
+							<label data-i18n="optionEnableFillingResults" for="enableFillingResults">Fill too few emoji results up with frequently used emojis.</label>
 						</div>
-						<span data-i18n="enableFillingResultsDescr" class="line indent helper-text">If enabled, the search results are followed by frequently used emojis.</span>
+						<span data-i18n="optionEnableFillingResultsDescr" class="line indent helper-text">If enabled, the search results are followed by frequently used emojis.</span>
 
 						<div class="message-container">
-							<div id="tipFilling" aria-label="info message" data-i18n data-i18n-aria-label="ariaMessageInfo" class="message-box info">
+							<div id="tipFilling" aria-label="info message" data-i18n="tipFilling" data-i18n-aria-label="ariaMessageInfo" class="message-box info">
 								<span class="message-text">When you search for a space (“ ”) you will always get your list of frequently used emojis.</span>
 								<a href="#">
 									<button type="button" class="message-action-button micro-button info invisible"></button>

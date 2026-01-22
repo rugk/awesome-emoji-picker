@@ -300,7 +300,7 @@
     "description": "This is the alt description for an image shown in the add-on settings."
   },
 
-  // autocorrect
+  // option: autocorrect
   "optionAutocorrectTitle": {
     "message": "Emoji autocorrection",
     "description": "Title for the emoji autocorrection section."
@@ -415,10 +415,6 @@
     "message": "Always select the autocompletions for confirmation.",
     "description": "Label for always selecting autocompletions."
   },
-  "tipLearnMore": {
-    "message": "Learn more",
-    "description": "The common button for tips, where you can get more information on click."
-  },
 
   // options emoji search
   "optionEmojiSearchMaximumResults": {
@@ -441,7 +437,23 @@
   },
   "optionEmojiSearchMaximumResultsDescr": {
     "message": "Limit the amount of emoji search results in the list. Drag to the maximum for unlimited results.",
-    "description": "Label for maximum results slider."
+    "description": "Description for maximum results option."
+  },
+
+  // option: enable filling results
+  "optionEnableFillingResults": {
+    "message": "Fill too few emoji results up with frequently used emojis.",
+    "description": "Label for enableFillingResults."
+  },
+  "optionEnableFillingResultsDescr": {
+    "message": "If enabled, the search results are followed by frequently used emojis.",
+    "description": "Description for enableFillingResults option."
+  },
+
+  // common
+  "tipLearnMore": {
+    "message": "Learn more",
+    "description": "The common button for tips, where you can get more information on click."
   },
 
   // options shortcuts
