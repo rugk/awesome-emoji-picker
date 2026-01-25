@@ -7,7 +7,11 @@ import * as BrowserCommunication from "/common/modules/BrowserCommunication/Brow
 import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunicationTypes.js";
 import * as symbols from "/common/modules/data/Symbols.js";
 
-// Deferred initialization promise to ensure all data is ready before use handling messages
+/**
+ * Deferred initialization promise to ensure all data is ready before use handling messages
+ *  
+ * @type {PromiseWithResolvers<void>}
+ */
 const { promise: isInitialized, resolve: initializedResolver } = Promise.withResolvers();
 
 const settings = {
@@ -18,18 +22,22 @@ const settings = {
     autocompleteSelect: null
 };
 
-// Leaf node
+/** Leaf node */
 const LEAF = Symbol("leaf");
 
 let autocorrections = {};
 
-// Longest autocorrection
+/** Longest autocorrection */
 let longest = 0;
 
-/* @type {RegExp|null} */
+/** @type {RegExp|null} */
 let symbolpatterns = null;
-// Exceptions, do not autocorrect for these patterns
-/* @type {RegExp|null} */
+
+/**
+ * Exceptions, do not autocorrect for these patterns
+ * 
+ * @type {RegExp|null}
+ */
 let antipatterns = null;
 
 const emojiShortcodes = {};
@@ -44,7 +52,7 @@ function createRegEx(tree) {
     const alternatives = [];
     const characterClass = [];
 
-    // Escape special characters
+    /** escape special characters */
     const regExSpecialChars = /[.*+?^${}()|[\]\\]/gu;
 
     for (const [char, atree] of Object.entries(tree)) {
