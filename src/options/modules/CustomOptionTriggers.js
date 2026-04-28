@@ -12,10 +12,10 @@ import { COMMUNICATION_MESSAGE_TYPE } from "/common/modules/data/BrowserCommunic
 import * as IconHandler from "/common/modules/IconHandler.js";
 
 const CLIPBOARD_WRITE_PERMISSION = {
-    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("clipboardWrite")]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ "clipboardWrite"]
 };
 const TABS_PERMISSION = {
-    permissions: [/** @type {browser._manifest.OptionalPermission} */ ("tabs")]
+    permissions: [/** @type {browser._manifest.OptionalPermission} */ "tabs"]
 };
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
 const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
@@ -46,15 +46,11 @@ function applyPopupIconColor(optionValue) {
  */
 function applyPickerResultPermissions(optionValue) {
     // switch status of sub-child
-    const elFallback = /** @type {HTMLInputElement|null} */(document.getElementById("emojiCopyOnlyFallback"));
+    const elFallback = /** @type {HTMLInputElement|null} */document.getElementById("emojiCopyOnlyFallback");
     if (!elFallback) {
         throw new Error('Element with id "emojiCopyOnlyFallback" not found.');
     }
-    if (optionValue.emojiCopy) {
-        elFallback.disabled = false;
-    } else {
-        elFallback.disabled = true;
-    }
+    elFallback.disabled = !optionValue.emojiCopy;
 
     return Promise.resolve();
 }
@@ -153,14 +149,14 @@ function adjustEmojiSize(param) {
  */
 function preparePickerResultTypeOptionForInput(param) {
     switch (param.optionValue) {
-    case "colons":
-        param.optionValue = true;
-        break;
-    case "native":
-        param.optionValue = false;
-        break;
-    default:
-        throw new Error(`invalid parameter: ${param.option}, value: ${param.optionValue}`);
+        case "colons":
+            param.optionValue = true;
+            break;
+        case "native":
+            param.optionValue = false;
+            break;
+        default:
+            throw new Error(`invalid parameter: ${param.option}, value: ${param.optionValue}`);
     }
 
     return AutomaticSettings.Trigger.overrideContinue(param.optionValue);
@@ -211,11 +207,11 @@ function getPluralForm(language, optionValue) {
     language ||= "en";
 
     switch (language) {
-    case "tr":
-        return optionValue > 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
+        case "tr":
+            return optionValue > 1 ? "optionEmojisPerLineStatusPlural" : "optionEmojisPerLineStatusSingular";
         // en, de
-    default:
-        return optionValue === 1 ? "optionEmojisPerLineStatusSingular" : "optionEmojisPerLineStatusPlural";
+        default:
+            return optionValue === 1 ? "optionEmojisPerLineStatusSingular" : "optionEmojisPerLineStatusPlural";
     }
 }
 
@@ -281,7 +277,7 @@ function updateEmojiPerLineMaxViaEmojiSize(optionValue, _option, event) {
     }
 
     const emojiSizeValue = Number(optionValue.emojiSize);
-    const elEmojisPerLine = /** @type {HTMLInputElement|null} */(document.getElementById("emojisPerLine"));
+    const elEmojisPerLine = /** @type {HTMLInputElement|null} */document.getElementById("emojisPerLine");
 
     if (!elEmojisPerLine) {
         throw new Error('Element with id "emojisPerLine" not found.');
@@ -421,12 +417,7 @@ function updateMaximumResultsStatus(optionValue, _option, event = null) {
     if (!elMaximumResultsStatus) {
         throw new Error('Element with id "maximumResultsStatus" not found.');
     }
-    let message;
-    if (maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS) {
-        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusUnlimited");
-    } else {
-        message = browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusNumber", maxResultsValue);
-    }
+    const message = maxResultsValue == null || maxResultsValue <= 0 || maxResultsValue >= MAXIMUM_SEARCH_RESULTS ? browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusUnlimited") : browser.i18n.getMessage("optionEmojiSearchMaximumResultsStatusNumber", maxResultsValue);
     elMaximumResultsStatus.textContent = message || "∞";
 }
 
@@ -487,13 +478,13 @@ export async function registerTrigger() {
     await PermissionRequest.registerPermissionMessageBox(
         CLIPBOARD_WRITE_PERMISSION,
         MESSAGE_EMOJI_COPY_PERMISSION_SEARCH,
-        /** @type {HTMLElement} */(document.getElementById("searchActionCopyPermissionInfo")),
+        /** @type {HTMLElement} */document.getElementById("searchActionCopyPermissionInfo"),
         "permissionRequiredClipboardWrite"
     );
     await PermissionRequest.registerPermissionMessageBox(
         TABS_PERMISSION,
         MESSAGE_TABS_PERMISSION,
-        /** @type {HTMLElement} */(document.getElementById("tabsPermissionInfo")),
+        /** @type {HTMLElement} */document.getElementById("tabsPermissionInfo"),
         "permissionRequiredTabsAutocorrect"
     );
 }

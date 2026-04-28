@@ -12,7 +12,7 @@ let pickerSettings;
  * always returns the first emoji it can find.
  *
  * @public
- * @param {Object|string} emoji
+ * @param {object | string} emoji
  * @returns {HTMLElement|null|undefined}
  */
 export function getEmojiHtml(emoji) {
@@ -48,7 +48,7 @@ function getUserMessageForResult(isEmojiInserted, isEmojiCopied) {
  * When an emoji is selected, .
  *
  * @public
- * @param {Object} emoji
+ * @param {object} emoji
  * @param {Event} event
  * @returns {Promise}
  */

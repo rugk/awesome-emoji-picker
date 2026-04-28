@@ -9,6 +9,7 @@ const IS_THUNDERBIRD = Boolean(globalThis.messenger);
 
 /**
  * hardcoded in manifest.json
+ *
  * @type {string}
  */
 const TRIGGER_KEYWORD = "emoji";
@@ -17,8 +18,8 @@ const menus = browser.menus || browser.contextMenus; // fallback for Thunderbird
 /**
  * Handle context menu click.
  *
- * @param {Object} info
- * @param {Object} _tab
+ * @param {object} info
+ * @param {object} _tab
  * @returns {void}
  */
 function handle(info, _tab) {
@@ -32,7 +33,7 @@ function handle(info, _tab) {
 /**
  * Apply new context menu settings.
  *
- * @param {Object} contextMenu
+ * @param {object} contextMenu
  * @returns {Promise<void>}
  */
 async function applySettings(contextMenu) {

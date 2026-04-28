@@ -10,7 +10,7 @@
  * Changes removed emoji sets to best existing/matching one.
  *
  * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} settings
- * @returns {{ settings: Object, changed: boolean }}
+ * @returns {{settings: object, changed: boolean}}
  */
 function updateEmojiSet(settings) {
     const result = { ...settings };
@@ -39,11 +39,11 @@ function updateEmojiSet(settings) {
  * Upgrade the emoji data for emoji-mart v5 removing some not required properties.
  *
  * @param {typeof import("/common/modules/data/DefaultSettings.js").DEFAULT_SETTINGS.emojiPicker} settings
- * @returns {{ settings: Object, changed: boolean }}
+ * @returns {{settings: object, changed: boolean}}
  */
 function updateEmojiMart5Data(settings) {
     const { native, emojiTooltip, ...clean } = settings;
-    const changed = native !== undefined || emojiTooltip !== undefined;
+    const changed = native != null || emojiTooltip != null;
     return { settings: clean, changed };
 }
 
@@ -94,7 +94,7 @@ async function upgradeEmojiPicker(originalSettings) {
  * @see {@link https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onInstalled}
  *
  * @private
- * @param {Object} details
+ * @param {object} details
  */
 async function handleInstalled(details) {
     // only trigger for usual addon updates

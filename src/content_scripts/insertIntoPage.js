@@ -1,4 +1,4 @@
-"use strict";
+
 
 /**
  * Return the username, you want to follow.

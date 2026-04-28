@@ -2,7 +2,7 @@
  * The settings/constraints for a tip, represented in an object.
  *
  * @public
- * @typedef {Object} TipObject
+ * @typedef {object} TipObject
  * @property {string} id just some ID
  * @property {number|null} requiredShowCount Shows the message x times; set
  * to `null` to show infinitively. This is the maximum value.
@@ -32,7 +32,7 @@
  * with a chance of 20%, see {@link RandomTips.GLOBAL_RANDOMIZE}.
  * @property {string} text The text to actually show. It is passed to the
  * {@link MessageHandler}, so you can (& should) use a translatable string here.
- * @property {Object} [actionButton] adds an action button to the message, is
+ * @property {object} [actionButton] adds an action button to the message, is
  * passed as-is to the {@link MessageHandler} module.
  * @property {string} actionButton.text the text to use for the button
  * @property {string|function} actionButton.action the link or function to
@@ -47,10 +47,10 @@
  * **Attention:** This is evaluated before all other constraints were evaluated.
  * Be careful before returning `true`, you may actually want to return `null`.
  *
- * * If you return `true`, it means you **force**(!) the tip to be shown. This
+ * If you return `true`, it means you **force**(!) the tip to be shown. This
  *   overrides the usual conditions and shows the tip immediately.
- * * If you return `false`, it means you disallow the tip to be shown.
- * * If `null` is returned, the usual (other) conditions that determinate whether
+ * If you return `false`, it means you disallow the tip to be shown.
+ * If `null` is returned, the usual (other) conditions that determinate whether
  *   to show the tip are evaluated.
  * If you throw something, this cancels the whole tip selection process.
  *
@@ -71,7 +71,7 @@
  * @param  {TipObject} tipSpecOrig the original, unmodified (frozen) TipObject
  *                                  of the tip
  * @param  {module:RandomTips~ModuleConfig} moduleConfig the whole config of this module
- * @return {Promise<boolean|null>}
+ * @returns {Promise<boolean|null>}
  */
 
 import {isMobile} from "../MobileHelper.js";
@@ -88,7 +88,7 @@ const DEFAULT_POPUP_HOT_KEY = "Ctrl+Shift+Period";
  * An array of all tips.
  *
  * @private
- * @const
+ * @constant
  * @type {Array.<TipObject>}
  */
 const tipArray = [
@@ -107,7 +107,7 @@ const tipArray = [
             text: "tipYouLikeAddonButton",
             action: ""
         },
-        showTip: async (tipSpec, thisTipConfig) => {
+        showTip: async (tipSpec, _thisTipConfig) => {
             tipSpec.actionButton.action = await getBrowserValue({
                 firefox: "https://addons.mozilla.org/firefox/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
                 thunderbird: "https://addons.thunderbird.net/thunderbird/addon/awesome-emoji-picker/reviews/?utm_source=addon-tips&utm_medium=addon&utm_content=addon-tips-tipYouLikeAddon&utm_campaign=addon-tips",
@@ -181,7 +181,7 @@ for (const object of tipArray) {
  * The list of all tips. (now exported)
  *
  * @public
- * @const
+ * @constant
  * @type {readonly TipObject[]}
  */
 export const tips = Object.freeze(tipArray);
