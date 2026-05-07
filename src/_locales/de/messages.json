@@ -348,9 +348,9 @@
     "message": "https://github.com/rugk/unicodify/wiki/FAQ#why-is-the-autocorrect-feature-experimental",
     "description": "Link for more information about the experimental autocorrect feature."
   },
-  "permissionRequiredTabsAutocorrect": {
-    "message": "Die Berechtigung zum Zugriff auf die Browser-Tabs ist für diese Funktion erforderlich, damit nicht alle Tabs manuell neugeladen müssen, wenn diese Optionen sich ändern.",
-    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request permissions to send updated options to all tabs."
+  "permissionRequiredHostAutocorrect": {
+    "message": "Die Berechtigung zum Zugriff auf alle Webseiten ist erforderlich, um die Autokorrektur-Funktion zu aktivieren.",
+    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request host permissions to inject the autocorrect content script."
   },
   "optionAutocorrectEnable": {
     "message": "Autokorrektur aktivieren",

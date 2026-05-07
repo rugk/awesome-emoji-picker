@@ -373,10 +373,9 @@
     "description": "Warning message for experimental autocorrect feature.",
     "hash": "f6b25d9c9a95653e6ca3ebdadd8a9f9e"
   },
-  "permissionRequiredTabsAutocorrect": {
-    "message": "Le droit d'accès aux onglets du navigateur est nécessaire pour cette fonctionnalité, afin d'éviter de devoir les recharger manuellement quand vous changez ces paramètres.",
-    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request permissions to send updated options to all tabs.",
-    "hash": "1cd70b15f711c5c70713bab7877b4c9a"
+  "permissionRequiredHostAutocorrect": {
+    "message": "Le droit d'accès à tous les sites web est nécessaire pour activer la fonctionnalité de correction automatique.",
+    "description": "The message shown, when the optionAutocorrectEnable option in the settings needs to request host permissions to inject the autocorrect content script."
   },
   "optionAutocorrectEnable": {
     "message": "Activer la correction automatique",
