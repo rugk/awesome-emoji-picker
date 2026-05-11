@@ -60,11 +60,11 @@ function applyPickerResultPermissions(optionValue) {
  *
  * @private
  * @param  {object} optionValue
- * @param  {string} [_option]
+ * @param  {string} [option]
  * @param  {object} [event]
  * @returns {Promise<any>}
  */
-function applyAutocorrectPermissions(optionValue, _option, event) {
+function applyAutocorrectPermissions(optionValue, option, event) {
     if (optionValue.enabled) {
         /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojiShortcodes")).disabled = false;
         /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojis")).disabled = false;
