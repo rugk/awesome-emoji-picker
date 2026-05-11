@@ -2,8 +2,8 @@
 
 // Guard against double-initialization when injected via both registerContentScripts
 // (persistent, fires on page load) and executeScript (immediate injection into open tabs).
-if (!window.__awesomeEmojiPickerAutocorrectLoaded) {
-    window.__awesomeEmojiPickerAutocorrectLoaded = true;
+if (!globalThis.__awesomeEmojiPickerAutocorrectLoaded) {
+    globalThis.__awesomeEmojiPickerAutocorrectLoaded = true;
     console.debug("Awesome Emoji Picker autocorrect loaded.");
 
     // communication type
