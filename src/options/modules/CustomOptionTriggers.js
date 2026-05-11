@@ -108,7 +108,7 @@ function applyAutocorrectPermissions(optionValue, _option, event) {
     }).catch(() => {
         // if the user denies the permission, we disable the setting again and show an error message
         /** @type {HTMLInputElement} */(document.getElementById("autocorrect")).checked = false;
-        applyAutocorrectPermissions({enabled: false}, _option, event);
+        applyAutocorrectPermissions({enabled: false}, option, event);
     });
 }
 
