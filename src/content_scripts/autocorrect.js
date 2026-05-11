@@ -4,7 +4,6 @@
 // (persistent, fires on page load) and executeScript (immediate injection into open tabs).
 if (!globalThis.__awesomeEmojiPickerAutocorrectLoaded) {
     globalThis.__awesomeEmojiPickerAutocorrectLoaded = true;
-    console.debug("Awesome Emoji Picker autocorrect loaded.");
 
     // communication type
     // directly include magic constant as a workaround as we cannot import modules in content scripts due to https://bugzilla.mozilla.org/show_bug.cgi?id=1451545
