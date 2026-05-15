@@ -77,6 +77,11 @@ function applyAutocorrectPermissions(optionValue, option, event) {
         /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = true;
     }
 
+    if (IS_THUNDERBIRD) {
+        // Thunderbird does not require the <all_urls> to enable this feature.
+        return Promise.resolve();
+    }
+
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
@@ -494,10 +499,15 @@ export async function registerTrigger() {
         /** @type {HTMLElement} */document.getElementById("searchActionCopyPermissionInfo"),
         "permissionRequiredClipboardWrite"
     );
-    await PermissionRequest.registerPermissionMessageBox(
-        AUTOCORRECT_HOST_PERMISSION,
-        MESSAGE_HOST_PERMISSION,
-        /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")),
-        "permissionRequiredHostAutocorrect"
-    );
+
+    if (!IS_THUNDERBIRD) {
+        await PermissionRequest.registerPermissionMessageBox(
+            AUTOCORRECT_HOST_PERMISSION,
+            MESSAGE_HOST_PERMISSION,
+            /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")),
+            "permissionRequiredHostAutocorrect"
+        );
+    } else {
+        /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")).parentElement?.remove();
+    }
 }
