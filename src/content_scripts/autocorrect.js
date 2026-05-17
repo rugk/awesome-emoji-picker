@@ -1,4 +1,4 @@
-"use strict";
+
 
 // communication type
 // directly include magic constant as a workaround as we cannot import modules in content scripts due to https://bugzilla.mozilla.org/show_bug.cgi?id=1451545
@@ -304,11 +304,11 @@ function undoAutocorrect(event) {
 /**
  * Handle response from the autocorrect module.
  *
- * @param {Object} message
- * @param {Object} sender
+ * @param {object} message
+ * @param {object} sender
  * @returns {void}
  */
-function handleResponse(message, sender) {
+function handleResponse(message, _sender) {
     if (message.type === AUTOCORRECT_CONTENT) {
         ({
             enabled,
@@ -320,8 +320,8 @@ function handleResponse(message, sender) {
             antipatterns,
             emojiShortcodes
         } = message);
-        symbolpatterns = (typeof symbolpatterns === "string") ? new RegExp(symbolpatterns, "u") : symbolpatterns;
-        antipatterns = (typeof antipatterns === "string") ? new RegExp(antipatterns, "u") : antipatterns;
+        symbolpatterns = typeof symbolpatterns === "string" ? new RegExp(symbolpatterns, "u") : symbolpatterns;
+        antipatterns = typeof antipatterns === "string" ? new RegExp(antipatterns, "u") : antipatterns;
 
         if (enabled) {
             addEventListener("beforeinput", undoAutocorrect, true);

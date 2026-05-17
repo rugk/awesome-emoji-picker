@@ -5,7 +5,7 @@
  *
  * @private
  * @note does not work in Firefox currently due to https://bugzilla.mozilla.org/show_bug.cgi?id=1595037
- * @param  {Object} darkQuery
+ * @param  {object} darkQuery
  * @returns {void}
  */
 function changeScreenshotTheme(darkQuery) {

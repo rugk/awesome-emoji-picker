@@ -1,4 +1,4 @@
-"use strict";
+
 
 import { isChrome } from "/common/modules/BrowserCompat/BrowserCompat.js";
 import { getEmojiMartInitialisationData } from "./EmojiMartInitialisationData.js";
@@ -9,7 +9,7 @@ import * as symbols from "/common/modules/data/Symbols.js";
 
 /**
  * Deferred initialization promise to ensure all data is ready before use handling messages
- *  
+ *
  * @type {PromiseWithResolvers<void>}
  */
 const { promise: isInitialized, resolve: initializedResolver } = Promise.withResolvers();
@@ -35,7 +35,7 @@ let symbolpatterns = null;
 
 /**
  * Exceptions, do not autocorrect for these patterns
- * 
+ *
  * @type {RegExp|null}
  */
 let antipatterns = null;
@@ -143,12 +143,10 @@ async function applySettings(forceRebuild) {
     console.log("Longest autocorrection", longest);
 
     if (!forceRebuild) {
-        const cachedRegexpStrings = await browser.storage.session.get({
+        ({ symbolpatternsRegexpString, antipatternsRegexpString } = await browser.storage.session.get({
             symbolpatternsRegexpString: "",
             antipatternsRegexpString: ""
-        });
-        symbolpatternsRegexpString = cachedRegexpStrings.symbolpatternsRegexpString;
-        antipatternsRegexpString = cachedRegexpStrings.antipatternsRegexpString;
+        }));
     }
 
     if (!symbolpatternsRegexpString || !antipatternsRegexpString) {
@@ -167,9 +165,9 @@ async function applySettings(forceRebuild) {
                 if (aindex !== -1) {
                     if (aindex < index) {
                         index = aindex;
-                        length = y.length;
+                        ({ length } = y);
                     } else if (aindex === index && y.length > length) {
-                        length = y.length;
+                        ({ length } = y);
                     }
                 }
             }
@@ -245,7 +243,7 @@ async function sendSettings(autocorrect) {
                         longest,
                         symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
                         antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                        emojiShortcodes,
+                        emojiShortcodes
                     });
                 } catch (error) {
                     console.error(
@@ -296,7 +294,7 @@ export async function init() {
     initializedResolver();
 }
 
-BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, async (request) => {
+BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND, (request) => {
     // clear cache by reloading all options
     // await AddonSettings.loadOptions();
 

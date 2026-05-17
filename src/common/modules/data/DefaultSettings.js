@@ -8,7 +8,7 @@
  * An object of all default settings.
  *
  * @private
- * @const
+ * @constant
  */
 const defaultSettings = {
     popupIconColored: true,
@@ -55,6 +55,6 @@ Object.values(defaultSettings).map(Object.freeze);
  * Export the default settings to be used.
  *
  * @public
- * @const
+ * @constant
  */
 export const DEFAULT_SETTINGS = Object.freeze(defaultSettings);

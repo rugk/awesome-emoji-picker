@@ -1,10 +1,10 @@
-"use strict";
+
 
 /**
  * Emojis
  *
  * @public
- * @const
+ * @constant
  * @type {Object.<string, string>}
  */
 export const emojis = Object.freeze({

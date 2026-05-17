@@ -27,6 +27,7 @@ export async function reloadCachedSettings() {
 
 /**
  * Retrieves a stored value by key.
+ *
  * @param {string} key - The key of the stored value.
  * @returns {any} The retrieved value.
  */
@@ -43,6 +44,7 @@ export function get(key) {
 
 /**
  * Stores a value under a specific key.
+ *
  * @param {string} key - The key to store the value under.
  * @param {any} value - The value to store.
  * @returns {Promise<void>} A promise that resolves when the value is stored. **Note:** This is incompatible aka not-used by/with emoji-mart.

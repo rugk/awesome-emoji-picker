@@ -9,7 +9,7 @@
  * An object of all available communication types.
  *
  * @public
- * @const
+ * @constant
  */
 export const COMMUNICATION_MESSAGE_TYPE = Object.freeze({
     OMNIBAR_TOGGLE: "omnibarToggle",

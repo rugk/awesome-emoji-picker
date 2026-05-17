@@ -16,23 +16,23 @@ import { uniqBy } from "/common/modules/uniqBy.js";
  */
 function openTabUrl(url, disposition) {
     switch (disposition) {
-    case "currentTab":
-        browser.tabs.update({
-            url
-        });
-        break;
-    case "newForegroundTab":
-        browser.tabs.create({
-            active: true,
-            url
-        });
-        break;
-    case "newBackgroundTab":
-        browser.tabs.create({
-            active: false,
-            url
-        });
-        break;
+        case "currentTab":
+            browser.tabs.update({
+                url
+            });
+            break;
+        case "newForegroundTab":
+            browser.tabs.create({
+                active: true,
+                url
+            });
+            break;
+        case "newBackgroundTab":
+            browser.tabs.create({
+                active: false,
+                url
+            });
+            break;
     }
 }
 
@@ -48,7 +48,7 @@ async function getFrequentlyUsedAsSuggestions(maximumNumberOfElements = 10) {
         return [];
     }
 
-    return await Promise.all(frequently.map(async (emoji) => {
+    return Promise.all(frequently.map(async (emoji) => {
         const chosenSkin = await getCurrrentEmojiSkinFromEmoji(emoji);
         return {
             description: browser.i18n.getMessage("searchResultDescriptionFrequently", [
@@ -134,23 +134,23 @@ export async function triggerOmnixboxDisabledSearch(text, disposition) {
         let tabId;
 
         switch (disposition) {
-        case "currentTab": {
-            const currentTab = await browser.tabs.query({
-                active: true,
-                currentWindow: true
-            });
+            case "currentTab": {
+                const currentTab = await browser.tabs.query({
+                    active: true,
+                    currentWindow: true
+                });
 
-            if (currentTab.length >= 1) {
-                tabId = currentTab[0].id;
-            }
+                if (currentTab.length >= 1) {
+                    tabId = currentTab[0].id;
+                }
 
             // deliberately fall-through
-        }
-        default: // eslint-disable-line no-fallthrough
-            return browser.search.search({
-                query: text,
-                tabId
-            });
+            }
+            default: // eslint-disable-line no-fallthrough
+                return browser.search.search({
+                    query: text,
+                    tabId
+                });
         }
     }
 
@@ -192,7 +192,7 @@ export async function triggerOmnixboxSearch(text, disposition) {
     // see https://github.com/missive/emoji-mart/issues/994
     const searchWasTriggeredSuccessfullyByNativeEmoji = foundEmojiWithSkin && foundEmojiWithSkin.native === text;
     if (searchWasTriggeredSuccessfullyByNativeEmoji || searchResult.length === 1) {
-        const foundEmoji = searchResult[0];
+        const [foundEmoji] = searchResult;
         // This falls back to the default skin if the current skin is not available
         const chosenSkin = foundEmoji.skins[currentSkin] || foundEmoji.skins[0];
         const emojiText = (foundEmojiWithSkin || chosenSkin)[emojiSearch.resultType];
@@ -271,8 +271,6 @@ async function toggleEnabledStatus(toEnable) {
                 browser.i18n.getMessage("extensionName")
             ])
         });
-    } else if (toEnable) {
-        throw new TypeError("isEnabled must be boolean!");
     } else {
         browser.omnibox.onInputEntered.addListener(triggerOmnixboxDisabledSearch);
 

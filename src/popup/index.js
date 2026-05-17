@@ -18,6 +18,10 @@ function createPicker() {
     return EmojiPicker.init();
 }
 
+const wait = (ms) => new Promise((func) => {
+    setTimeout(func, ms);
+});
+
 /**
  * Focus element.
  *
@@ -32,10 +36,6 @@ function createPicker() {
  * @returns {Promise<void>}
  */
 export async function focusElement(element, retries = 20, delay = 50) {
-    const wait = (ms) => new Promise((func) => {
-        setTimeout(func, ms);
-    });
-
     element.focus();
 
     await wait();
@@ -43,7 +43,7 @@ export async function focusElement(element, retries = 20, delay = 50) {
     // if element is focused, we are lucky
     if (document.activeElement === element) {
         console.log(element, "focused with", retries, "retries left, at delay", delay);
-        return Promise.resolve();
+        return;
     }
 
     if (retries <= 0) {

@@ -20,7 +20,7 @@ export async function getCurrentSkinIndex() {
         console.error(new TypeError(`Invalid skin value: ${lastSkin}, should be a number.`), "using default skin 0 instead of", lastSkin);
         return 0;
     }
-    return Math.max((lastSkin - 1), 0) || 0;
+    return Math.max(lastSkin - 1, 0) || 0;
 }
 
 /**
@@ -32,7 +32,7 @@ export async function getCurrentSkinIndex() {
  * @returns {Promise<import("../../node_modules/emoji-mart/dist/index.d.js")>}
  */
 async function loadEmojiMart() {
-    //cache emoji-mart into global variable
+    // cache emoji-mart into global variable
     globalThis.EmojiMart = await import("../../node_modules/emoji-mart/dist/module.js");
     console.info("emoji-mart loaded:", globalThis.EmojiMart);
 
@@ -51,13 +51,13 @@ async function loadEmojiMart() {
  * @returns {Promise<import("../../node_modules/emoji-mart/dist/index.d.js")>}
  */
 export async function getEmojiMart() {
-    return globalThis.EmojiMart || await loadEmojiMart();
+    return globalThis.EmojiMart || loadEmojiMart();
 }
 
 /**
  * Get list of frequently used emojis.
  *
- * ·@param {number} [maximumNumberOfElements=10] The number of emojis to return (at most!).
+ * @param {number} [maximumNumberOfElements] The number of emojis to return (at most!).
  * @returns {Promise<string[]>}
  */
 export async function getFrequentlyUsedEmojiList(maximumNumberOfElements = 10) {
@@ -102,22 +102,21 @@ export async function getFrequentlyUsedEmojiList(maximumNumberOfElements = 10) {
 /**
  * Get list of frequently used emojis.
  *
- *·@param {number} [maximumNumberOfElements=10] The number of emojis to return (at most!).
+ * @param {number} [maximumNumberOfElements] The number of emojis to return (at most!).
  * @returns {Promise<import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]>}
  */
 export async function getFrequentlyUsedEmojis(maximumNumberOfElements = 10) {
     const frequentlyUsedIds = await getFrequentlyUsedEmojiList(maximumNumberOfElements);
 
     const emojiMart = await getEmojiMart();
-    const frequentlyUsedEmojis = await Promise.all(frequentlyUsedIds.map(async (emojiId) =>
-        {
-            /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
-            const searchResults = await emojiMart.SearchIndex.search(emojiId, {
-                maxResults: 1,
-                caller: "getFrequentlyUsedEmojis"
-            });
-            return searchResults[0];
-        }
+    const frequentlyUsedEmojis = await Promise.all(frequentlyUsedIds.map(async (emojiId) => {
+        /** @type {import("/common/modules/EmojiSearched.d.ts").EmojiSearched[]} */
+        const searchResults = await emojiMart.SearchIndex.search(emojiId, {
+            maxResults: 1,
+            caller: "getFrequentlyUsedEmojis"
+        });
+        return searchResults[0];
+    }
     ));
 
     console.debug("Comverted frequently used emojis:", frequentlyUsedEmojis);

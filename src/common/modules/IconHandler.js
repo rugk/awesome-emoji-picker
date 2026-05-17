@@ -12,14 +12,14 @@ const POPUP_ICON_OPTION = "popupIconColored";
 function setPopupIcon(icon) {
     // verify parameter
     switch (icon) {
-    case "dark": // fall through
-    case "light":
-    case "colored":
-    case null:
+        case "dark": // fall through
+        case "light":
+        case "colored":
+        case null:
         // ok
-        break;
-    default:
-        throw new TypeError(`invalid parameter: ${icon}`);
+            break;
+        default:
+            throw new TypeError(`invalid parameter: ${icon}`);
     }
 
     // Thunderbird
@@ -71,5 +71,5 @@ export function changeIconIfColored(popupIconColored) {
  */
 export async function init() {
     const popupIconColored = await AddonSettings.get(POPUP_ICON_OPTION);
-    return await changeIconIfColored(popupIconColored);
+    return changeIconIfColored(popupIconColored);
 }

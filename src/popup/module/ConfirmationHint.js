@@ -18,12 +18,12 @@ const elPanelTemplate = elTemplate.content.getElementById("confirmation-hint");
  * Calculate/correct the position, so it dos not overflow.the window (popup).
  *
  * @private
- * @param  {Object} position where to put the message (top left border)
+ * @param  {object} position where to put the message (top left border)
  * @param  {number} position.left manual position
  * @param  {number} position.top manual position
  * @param  {number} height the height of the popup
  * @param  {number} width the width of the popup
- * @returns {Object} the fixed position
+ * @returns {object} the fixed position
  */
 function keepMessageInsideOfPopup(position, height, width) {
     const TOLERANCE = 3; // px
@@ -61,7 +61,7 @@ function keepMessageInsideOfPopup(position, height, width) {
  *
  * @private
  * @param  {HTMLElement} elPanel The panel to show..
- * @param  {HTMLElement|Object} position where to put the message (top left border)
+ * @param  {HTMLElement | object} position where to put the message (top left border)
  * puts it at the bottom right border of the HTMLElement, if you pass that
  * @param  {number} position.left if no HTMLElement is given, set a manual position here
  * @param  {number} position.top if no HTMLElement is given, set a manual position here
@@ -115,7 +115,7 @@ function hidePopup(elPanel) {
  * - "Queued (offline)" when attempting to send a tab to another device
  *   while offline
  *
- * @param  {HTMLElement|Object} position where to put the message (top left border)
+ * @param  {HTMLElement | object} position where to put the message (top left border)
  * puts it at the bottom right border of the HTMLElement, if you pass that
  * @param  {number} position.left if no HTMLElement is given, set a manual position here
  * @param  {number} position.top if no HTMLElement is given, set a manual position here

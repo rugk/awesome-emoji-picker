@@ -19,19 +19,20 @@ export const hardcodedSettings = Object.freeze({
 });
 
 /**
-* Get all the settings for the Emoji picker.
-*
-* @public
-* @returns {Promise<Object>}
-*/
+ * Get all the settings for the Emoji picker.
+ *
+ * @public
+ * @returns {Promise<object>}
+ */
 export async function getAllSettings() {
-   return await AddonSettings.get("emojiPicker");
+    return AddonSettings.get("emojiPicker");
 }
 
 /**
  * Return the emoji sheet to use.
  *
  * Called from:
+ *
  * @link {https://github.com/missive/emoji-mart/blob/16978d04a766eec6455e2e8bb21cd8dc0b3c7436/packages/emoji-mart/src/components/Emoji/Emoji.tsx#L34}
  *
  * For more information see the download script in the `/scripts` directory.
@@ -58,7 +59,7 @@ function getEmojiSheet(set) {
  * https://chatgpt.com/share/68037901-df7c-8009-b91c-77cb44c8c93d
  *
  * @param {string} nonBrowserifiedUrl
- * @returns {Promise<null|Object>}
+ * @returns {Promise<null | object>}
  */
 async function tryFetchJson(nonBrowserifiedUrl) {
     try {
@@ -91,7 +92,7 @@ function getBaseLanguageTag() {
  * It determinates this based on the emoji size and emojis shown per line.
  * It is manually crafted to make sure no line break occurs in the title. So when would occur,
  *
- * @param {Object} settings
+ * @param {object} settings
  * @returns {boolean}
  */
 function shouldUseLongEmojiPickerTitle(settings) {
@@ -117,7 +118,7 @@ function shouldUseLongEmojiPickerTitle(settings) {
  *
  * This can be passed to `init` or `new EmojiMart.Picker()`.
  *
- * @param {Object} [customSettings=null] The optionally adjusted settings. Addon settings et al. are already automatically loaded.
+ * @param {object} [customSettings] The optionally adjusted settings. Addon settings et al. are already automatically loaded.
  * @returns {Promise<{
  *   data: () => Promise<import("../../node_modules/@emoji-mart/data/index.d.ts").EmojiMartData>,
  *   i18n: () => Promise<import("../../node_modules/@emoji-mart/data/i18n/en.json")>,
@@ -146,7 +147,7 @@ export async function getEmojiMartInitialisationData(customSettings = null) {
         data: async () => {
             const response = await fetch(browser.runtime.getURL(`/node_modules/@emoji-mart/data/sets/${initProperties.emojiVersion}/${initProperties.set}.json`));
 
-            return await response.json();
+            return response.json();
         },
         i18n: async () => {
             const locale = browser.i18n.getUILanguage();
@@ -163,7 +164,7 @@ export async function getEmojiMartInitialisationData(customSettings = null) {
             // show the extension name by default
             i18nData.pick = browser.i18n.getMessage(shouldUseLongEmojiPickerTitle(initProperties) ? "extensionName" : "extensionNameShort");
             return i18nData;
-        },
+        }
     };
 
     console.debug("Initialisation data for emoji-mart:", initialisationData);
