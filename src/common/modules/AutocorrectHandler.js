@@ -300,11 +300,6 @@ function autocorrectContentMessage(isChrome) {
  * @returns {Promise<void>}
  */
 async function registerAutocorrectScript() {
-    // Scripting API is not available in Thunderbird.
-    if (!browser.scripting?.registerContentScripts) {
-        return;
-    }
-
     const existing = await browser.scripting.getRegisteredContentScripts({ ids: ["autocorrect"] });
     if (existing.length > 0) {
         return;
@@ -326,10 +321,6 @@ async function registerAutocorrectScript() {
  * @returns {Promise<void>}
  */
 async function unregisterAutocorrectScript() {
-    if (!browser.scripting?.unregisterContentScripts) {
-        return;
-    }
-
     try {
         await browser.scripting.unregisterContentScripts({ ids: ["autocorrect"] });
     } catch {
@@ -345,10 +336,6 @@ async function unregisterAutocorrectScript() {
  * @returns {Promise<void>}
  */
 async function injectIntoExistingTabs() {
-    if (!browser.scripting?.executeScript) {
-        return;
-    }
-
     const IS_CHROME = await isChrome();
 
     const tabs = await browser.tabs.query({}).catch(() => []);
@@ -392,17 +379,6 @@ export async function init() {
     console.debug("Emoji shortcodes:", emojiShortcodes);
 
     await setSettings(autocorrect, /* modified= */ false);
-
-    // Thunderbird
-    // Cannot register scripts in manifest.json file: https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
-    if (browser.composeScripts) {
-        browser.composeScripts.register({
-            js: [
-                { file: "/content_scripts/autocorrect.js" }
-            ]
-        });
-    }
-
     initializedResolver();
 }
 
