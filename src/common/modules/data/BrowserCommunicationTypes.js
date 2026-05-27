@@ -15,6 +15,7 @@ export const COMMUNICATION_MESSAGE_TYPE = Object.freeze({
     OMNIBAR_TOGGLE: "omnibarToggle",
     AUTOCORRECT_BACKGROUND: "autocorrectBackground",
     AUTOCORRECT_CONTENT: "autocorrectContent",
+    AUTOCORRECT_REGISTER_SCRIPT: "autocorrectRegisterScript",
     CONTEXT_MENU: "contextMenu",
     INSERT: "insert"
 });

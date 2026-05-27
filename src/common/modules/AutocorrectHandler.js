@@ -42,6 +42,9 @@ let antipatterns = null;
 
 const emojiShortcodes = {};
 
+/** This Promise is pending while setSettings() is in progress, and is resolved at all other times. */
+let settingsReady = Promise.resolve();
+
 /**
  * Traverse Trie tree of objects to create RegEx.
  *
@@ -205,6 +208,10 @@ async function applySettings(forceRebuild) {
  * @returns {Promise<void>}
  */
 async function setSettings(autocorrect, modified = true) {
+    /** @type {{promise: Promise<void>, resolve: () => void}} */
+    const { promise, resolve } = Promise.withResolvers();
+    settingsReady = promise;
+
     settings.enabled = autocorrect.enabled;
     settings.autocorrectEmojis = autocorrect.autocorrectEmojis;
     settings.autocorrectEmojiShortcodes = autocorrect.autocorrectEmojiShortcodes;
@@ -214,6 +221,8 @@ async function setSettings(autocorrect, modified = true) {
     if (settings.enabled) {
         await applySettings(/* forceRebuild= */ modified);
     }
+
+    resolve();
 }
 
 /**
@@ -223,39 +232,129 @@ async function setSettings(autocorrect, modified = true) {
  * @returns {Promise<void>}
  */
 async function sendSettings(autocorrect) {
-    await setSettings(autocorrect, /* modified= */ true);
+    const wasEnabled = settings.enabled;
+    settingsReady = setSettings(autocorrect, /* modified= */ true);
+    await settingsReady;
+
     const IS_CHROME = await isChrome();
 
     try {
         const tabs = await browser.tabs.query({});
         await Promise.allSettled(
-            tabs.map(async (tab) => {
-                if (!tab.id) {
-                    return;
-                }
-                try {
-                    await browser.tabs.sendMessage(tab.id, {
-                        type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-                        enabled: settings.enabled,
-                        autocomplete: settings.autocomplete,
-                        autocompleteSelect: settings.autocompleteSelect,
-                        autocorrections,
-                        longest,
-                        symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
-                        antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-                        emojiShortcodes
-                    });
-                } catch (error) {
-                    console.error(
-                        `Error sending autocorrect settings to tab ${tab.id}:`,
-                        error
-                    );
-                }
-            })
+            tabs.map((tab) => sendSettingsToTab(tab, IS_CHROME))
         );
     } catch (error) {
         console.error("Error querying tabs:", error);
     }
+
+    // If transitioning to disabled, stop future injections
+    if (wasEnabled && !settings.enabled) {
+        await unregisterAutocorrectScript();
+    }
+}
+
+/**
+ * Send autocorrect settings to a specific tab.
+ *
+ * @param {browser.tabs.Tab} tab
+ * @param {boolean} isChrome
+ * @returns {Promise<void>}
+ */
+async function sendSettingsToTab(tab, isChrome) {
+    if (!tab.id) {
+        return;
+    }
+    try {
+        await browser.tabs.sendMessage(tab.id, autocorrectContentMessage(isChrome));
+    } catch (error) {
+        console.error(
+            `Error sending autocorrect settings to tab ${tab.id}:`,
+            error,
+        );
+    }
+};
+
+/**
+ * Return the message object containing autocorrect settings and patterns to be sent to content scripts.
+ *
+ * @param {boolean} isChrome
+ * @returns {object}
+ */
+function autocorrectContentMessage(isChrome) {
+    return {
+        type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
+        enabled: settings.enabled,
+        autocomplete: settings.autocomplete,
+        autocompleteSelect: settings.autocompleteSelect,
+        autocorrections,
+        longest,
+        symbolpatterns: isChrome ? symbolpatterns.source : symbolpatterns,
+        antipatterns: isChrome ? antipatterns.source : antipatterns,
+        emojiShortcodes,
+    }
+}
+
+/**
+ * Register the autocorrect content script dynamically.
+ *
+ * @returns {Promise<void>}
+ */
+async function registerAutocorrectScript() {
+    const existing = await browser.scripting.getRegisteredContentScripts({ ids: ["autocorrect"] });
+    if (existing.length > 0) {
+        return;
+    }
+
+    await browser.scripting.registerContentScripts([{
+        id: "autocorrect",
+        matches: ["<all_urls>"],
+        allFrames: true,
+        js: ["/content_scripts/autocorrect.js"],
+        persistAcrossSessions: true,
+        runAt: "document_idle"
+    }]);
+}
+
+/**
+ * Unregister the autocorrect content script.
+ *
+ * @returns {Promise<void>}
+ */
+async function unregisterAutocorrectScript() {
+    try {
+        await browser.scripting.unregisterContentScripts({ ids: ["autocorrect"] });
+    } catch {
+        // Not registered. Safely ignore.
+    }
+}
+
+/**
+ * Inject the autocorrect script into all currently open tabs.
+ * Used immediately after enabling autocorrect so existing tabs get the script
+ * without requiring a page reload.
+ *
+ * @returns {Promise<void>}
+ */
+async function injectIntoExistingTabs() {
+    const IS_CHROME = await isChrome();
+
+    const tabs = await browser.tabs.query({}).catch(() => []);
+    await Promise.allSettled(
+        tabs.map(async (tab) => {
+            if (!tab.id) {
+                return;
+            }
+            try {
+                await browser.scripting.executeScript({
+                    target: { tabId: tab.id, allFrames: true },
+                    files: ["/content_scripts/autocorrect.js"]
+                });
+                await sendSettingsToTab(tab, IS_CHROME);
+            } catch {
+                // Tabs such as about:, moz-extension:, and internal pages will throw. Safely ignore.
+            }
+        })
+    );
 }
 
 /**
@@ -279,18 +378,17 @@ export async function init() {
     Object.freeze(emojiShortcodes);
     console.debug("Emoji shortcodes:", emojiShortcodes);
 
-    await setSettings(autocorrect, /* modified= */ false);
-
     // Thunderbird
-    // Cannot register scripts in manifest.json file: https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
-    if (browser.composeScripts) {
-        browser.composeScripts.register({
-            js: [
-                { file: "/content_scripts/autocorrect.js" }
-            ]
-        });
-    }
+    // Replace this with manifest.json registration when the fix for this bug is deployed to Thunderbird ESR:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
+    browser.scripting?.compose?.registerScripts?.([
+        {
+            id: "autocorrect-compose",
+            js: ["/content_scripts/autocorrect.js"],
+        }
+    ]);
 
+    await setSettings(autocorrect, /* modified= */ false);
     initializedResolver();
 }
 
@@ -301,25 +399,28 @@ BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROU
     return sendSettings(request.optionValue);
 });
 
+BrowserCommunication.addListener(COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_REGISTER_SCRIPT, async () => {
+    // Wait for any in-flight setSettings() from AUTOCORRECT_BACKGROUND to finish
+    // before injecting, so content scripts get the latest patterns on initial load.
+    await settingsReady;
+    await registerAutocorrectScript();
+    await injectIntoExistingTabs();
+});
+
+// Handle host permission being externally revoked (e.g., via browser settings UI)
+browser.permissions.onRemoved?.addListener(async (permissions) => {
+    if (permissions.origins?.includes("<all_urls>")) {
+        await unregisterAutocorrectScript();
+    }
+});
+
 browser.runtime.onMessage.addListener(async (message, _sender) => {
     const IS_CHROME = await isChrome();
 
     if (message.type === COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT) {
         // Ensure autocorrect data is initialized before responding to content script requests.
         await isInitialized;
-
-        const response = {
-            type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_CONTENT,
-            enabled: settings.enabled,
-            autocomplete: settings.autocomplete,
-            autocompleteSelect: settings.autocompleteSelect,
-            autocorrections,
-            longest,
-            symbolpatterns: IS_CHROME ? symbolpatterns.source : symbolpatterns,
-            antipatterns: IS_CHROME ? antipatterns.source : antipatterns,
-            emojiShortcodes
-        };
-        return response;
+        return autocorrectContentMessage(IS_CHROME);
     }
 });
 

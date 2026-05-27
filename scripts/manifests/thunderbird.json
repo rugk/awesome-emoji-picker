@@ -58,9 +58,9 @@
 
   "permissions": [
     "storage",
-    "tabs",
     "compose",
-    "menus"
+    "menus",
+    "scripting"
   ],
 
   "optional_permissions": [
@@ -70,7 +70,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "125.0"
+      "strict_min_version": "128.0"
     }
   }
 }

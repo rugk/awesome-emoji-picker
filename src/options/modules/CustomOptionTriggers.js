@@ -14,11 +14,11 @@ import * as IconHandler from "/common/modules/IconHandler.js";
 const CLIPBOARD_WRITE_PERMISSION = {
     permissions: [/** @type {browser._manifest.OptionalPermission} */ "clipboardWrite"]
 };
-const TABS_PERMISSION = {
-    permissions: [/** @type {browser._manifest.OptionalPermission} */ "tabs"]
+const AUTOCORRECT_HOST_PERMISSION = {
+    origins: [/** @type {string} */ ("<all_urls>")]
 };
 const MESSAGE_EMOJI_COPY_PERMISSION_SEARCH = "searchActionCopyPermissionInfo";
-const MESSAGE_TABS_PERMISSION = "tabsPermissionInfo";
+const MESSAGE_HOST_PERMISSION = "hostPermissionInfo";
 
 const MAXIMUM_SEARCH_RESULTS = 21;
 
@@ -60,11 +60,11 @@ function applyPickerResultPermissions(optionValue) {
  *
  * @private
  * @param  {object} optionValue
- * @param  {string} [_option]
+ * @param  {string} [option]
  * @param  {object} [event]
  * @returns {Promise<any>}
  */
-function applyAutocorrectPermissions(optionValue, _option, event) {
+function applyAutocorrectPermissions(optionValue, option, event) {
     if (optionValue.enabled) {
         /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojiShortcodes")).disabled = false;
         /** @type {HTMLInputElement} */(document.getElementById("autocorrectEmojis")).disabled = false;
@@ -77,26 +77,44 @@ function applyAutocorrectPermissions(optionValue, _option, event) {
         /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = true;
     }
 
-    let retPromise = Promise.resolve();
-
-    if (PermissionRequest.isPermissionGranted(TABS_PERMISSION) // and not already granted
-    ) {
-        PermissionRequest.cancelPermissionPrompt(TABS_PERMISSION, MESSAGE_TABS_PERMISSION);
-    } else {
-        retPromise = PermissionRequest.requestPermission(
-            TABS_PERMISSION,
-            MESSAGE_TABS_PERMISSION,
-            event
-        );
-    }
-
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
         optionValue
     });
 
-    return retPromise;
+    if (IS_THUNDERBIRD) {
+        // Thunderbird does not require the <all_urls> to enable this feature.
+        return Promise.resolve();
+    }
+
+    if (!optionValue.enabled) {
+        PermissionRequest.cancelPermissionPrompt(AUTOCORRECT_HOST_PERMISSION, MESSAGE_HOST_PERMISSION);
+        browser.permissions.remove(AUTOCORRECT_HOST_PERMISSION);
+        return Promise.resolve();
+    }
+
+    if (PermissionRequest.isPermissionGranted(AUTOCORRECT_HOST_PERMISSION)) {
+        PermissionRequest.cancelPermissionPrompt(AUTOCORRECT_HOST_PERMISSION, MESSAGE_HOST_PERMISSION);
+        browser.runtime.sendMessage({
+            type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_REGISTER_SCRIPT
+        });
+        return Promise.resolve();
+    }
+
+    return PermissionRequest.requestPermission(
+        AUTOCORRECT_HOST_PERMISSION,
+        MESSAGE_HOST_PERMISSION,
+        event
+    ).then(() => {
+        browser.runtime.sendMessage({
+            type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_REGISTER_SCRIPT
+        });
+    }).catch(() => {
+        // if the user denies the permission, we disable the setting again and show an error message
+        /** @type {HTMLInputElement} */(document.getElementById("autocorrect")).checked = false;
+        applyAutocorrectPermissions({enabled: false}, option, event);
+    });
 }
 
 /**
@@ -481,10 +499,15 @@ export async function registerTrigger() {
         /** @type {HTMLElement} */document.getElementById("searchActionCopyPermissionInfo"),
         "permissionRequiredClipboardWrite"
     );
-    await PermissionRequest.registerPermissionMessageBox(
-        TABS_PERMISSION,
-        MESSAGE_TABS_PERMISSION,
-        /** @type {HTMLElement} */document.getElementById("tabsPermissionInfo"),
-        "permissionRequiredTabsAutocorrect"
-    );
+
+    if (!IS_THUNDERBIRD) {
+        await PermissionRequest.registerPermissionMessageBox(
+            AUTOCORRECT_HOST_PERMISSION,
+            MESSAGE_HOST_PERMISSION,
+            /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")),
+            "permissionRequiredHostAutocorrect"
+        );
+    } else {
+        /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")).parentElement?.remove();
+    }
 }
