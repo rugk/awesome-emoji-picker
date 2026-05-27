@@ -378,6 +378,16 @@ export async function init() {
     Object.freeze(emojiShortcodes);
     console.debug("Emoji shortcodes:", emojiShortcodes);
 
+    // Thunderbird
+    // Replace this with manifest.json registration when the fix for this bug is deployed to Thunderbird ESR:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1902843
+    browser.scripting?.compose?.registerScripts?.([
+        {
+            id: "autocorrect-compose",
+            js: ["/content_scripts/autocorrect.js"],
+        }
+    ]);
+
     await setSettings(autocorrect, /* modified= */ false);
     initializedResolver();
 }

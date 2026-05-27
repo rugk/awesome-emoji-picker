@@ -77,16 +77,16 @@ function applyAutocorrectPermissions(optionValue, option, event) {
         /** @type {HTMLInputElement} */(document.getElementById("autocompleteSelect")).disabled = true;
     }
 
-    if (IS_THUNDERBIRD) {
-        // Thunderbird does not require the <all_urls> to enable this feature.
-        return Promise.resolve();
-    }
-
     // trigger update for current session
     browser.runtime.sendMessage({
         type: COMMUNICATION_MESSAGE_TYPE.AUTOCORRECT_BACKGROUND,
         optionValue
     });
+
+    if (IS_THUNDERBIRD) {
+        // Thunderbird does not require the <all_urls> to enable this feature.
+        return Promise.resolve();
+    }
 
     if (!optionValue.enabled) {
         PermissionRequest.cancelPermissionPrompt(AUTOCORRECT_HOST_PERMISSION, MESSAGE_HOST_PERMISSION);
