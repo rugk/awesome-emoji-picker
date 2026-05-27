@@ -70,7 +70,7 @@
   "browser_specific_settings": {
     "gecko": {
       "id": "awesome-emoji-picker@rugk.github.io",
-      "strict_min_version": "151.0"
+      "strict_min_version": "128.0"
     }
   }
 }
