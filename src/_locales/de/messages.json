@@ -475,7 +475,7 @@
     "description": "Title for the shortcuts section."
   },
   "shortcutsExplanation": {
-    "message": "Du kannst die Tastenkombinationen/Hotkeys für diese Erweiterung $LINK$.",
+    "message": "You can change the hotkeys for this extension $LINK$.",
     "description": "This is a text shown in the add-on settings explaining how to manage shortcuts/hotkeys.",
     "placeholders": {
       "link": {
@@ -485,7 +485,7 @@
     }
   },
   "shortcutsExplanationLinkText": {
-    "message": "hier in deinem Browser verwalten",
+    "message": "in your browser here",
     "description": "This is text of the link to the shortcuts/hotkeys page, see shortcutsExplanation."
   },
 
