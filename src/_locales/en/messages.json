@@ -348,7 +348,7 @@
     "description": "Label for enabling autocorrection."
   },
   "optionAutocorrectShortcodes": {
-    "message": "Autocorrect $EXAMPLE_SHORTCODE$Emoji Shortcodes",
+    "message": "Autocorrect $EXAMPLE_SHORTCODE$ emoji Shortcodes",
     "description": "Label for enabling shortcode autocorrection.",
     "placeholders": {
       "example_shortcode": {
@@ -358,7 +358,7 @@
     }
   },
   "optionAutocorrectShortcodesDescr": {
-    "message": "For example, this will replace $EXAMPLE_SHORTCODE1$with 😃 and $EXAMPLE_SHORTCODE2$with 🍎.",
+    "message": "For example, this will replace $EXAMPLE_SHORTCODE1$ with 😃 and $EXAMPLE_SHORTCODE2$ with 🍎.",
     "description": "Description for shortcode autocorrection.",
     "placeholders": {
       "example_shortcode1": {
@@ -394,8 +394,14 @@
     }
   },
   "optionAutocompleteShortcodes": {
-    "message": "Autocomplete <code>:colon:</code>Emoji Shortcodes",
-    "description": "Label for enabling autocomplete of emoji shortcodes."
+    "message": "Autocomplete $COLON$-Emoji Shortcodes",
+    "description": "Label for enabling autocomplete of emoji shortcodes.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
   },
   "optionAutocompleteShortcodesDescr": {
     "message": "For example, this will replace $EXAMPLE_SHORTCODE_UNFINISHED$with $EXAMPLE_SHORTCODE_FINISHED$",
@@ -407,7 +413,7 @@
       },
       "example_shortcode_finished": {
         "content": "$2",
-        "example": "<code>:apple:.</code>"
+        "example": "<code>:apple:</code>"
       }
     }
   },
