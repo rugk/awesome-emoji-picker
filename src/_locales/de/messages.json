@@ -357,7 +357,7 @@
     "description": "Label for enabling autocorrection."
   },
   "optionAutocorrectShortcodes": {
-    "message": "Autokorrigiere $EXAMPLE_SHORTCODE$Emoji-Shortcodes",
+    "message": "Autokorrigiere $EXAMPLE_SHORTCODE$-Emoji-Shortcodes",
     "description": "Label for enabling shortcode autocorrection.",
     "placeholders": {
       "example_shortcode": {
@@ -403,8 +403,14 @@
     }
   },
   "optionAutocompleteShortcodes": {
-    "message": "Autovervollständige <code>:colon:</code>Emoji-Shortcodes",
-    "description": "Label for enabling autocomplete of emoji shortcodes."
+    "message": "Autovervollständige $COLON$-Emoji-Shortcodes",
+    "description": "Label for enabling autocomplete of emoji shortcodes.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    }
   },
   "optionAutocompleteShortcodesDescr": {
     "message": "Zum Beispiel wird $EXAMPLE_SHORTCODE_UNFINISHED$ durch $EXAMPLE_SHORTCODE_FINISHED$ ersetzt.",
@@ -416,7 +422,7 @@
       },
       "example_shortcode_finished": {
         "content": "$2",
-        "example": "<code>:apple:.</code>"
+        "example": "<code>:apple:</code>"
       }
     }
   },
@@ -462,7 +468,7 @@
     "message": "Wenn du nach einem Leerzeichen („ “) suchst, erhältst du immer eine Liste der häufig verwendeten Emojis.",
     "description": "Description for enableFillingResults option."
   },
-  
+
   // options shortcuts
   "titleShortcuts": {
     "message": "Tastenkombinationen",

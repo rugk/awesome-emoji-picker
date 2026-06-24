@@ -415,8 +415,14 @@
     "hash": "b178d4d497d7dbfe2c18a41e6046b348"
   },
   "optionAutocompleteShortcodes": {
-    "message": "Compléter automatiquement les codes d'émoticônes <code>:nom:</code>",
+    "message": "Compléter automatiquement les codes d'émoticônes $COLON$",
     "description": "Label for enabling autocomplete of emoji shortcodes.",
+    "placeholders": {
+      "colon": {
+        "content": "$1",
+        "example": "<code>:colon:</code>"
+      }
+    },
     "hash": "b3d603d8dd3cd59395027a9c0a990599"
   },
   "optionAutocompleteShortcodesDescr": {
@@ -424,7 +430,7 @@
     "description": "Description for autocomplete of emoji shortcodes.",
     "placeholders": {
       "example_shortcode_unfinished": { "content": "$1", "example": "<code>:ap</code>" },
-      "example_shortcode_finished": { "content": "$2", "example": "<code>:apple:.</code>" }
+      "example_shortcode_finished": { "content": "$2", "example": "<code>:apple:</code>" }
     },
     "hash": "1e6281a2d7081f0328e64cd6f051d449"
   },
