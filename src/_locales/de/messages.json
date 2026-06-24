@@ -485,7 +485,7 @@
     }
   },
   "shortcutsExplanationLinkText": {
-    "message": "in your browser here",
+    "message": "hier in deinem Browser verwalten",
     "description": "This is text of the link to the shortcuts/hotkeys page, see shortcutsExplanation."
   },
 
