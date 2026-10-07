@@ -17,7 +17,7 @@ let pickerSettings;
  */
 export function getEmojiHtml(emoji) {
     const emojiQuestion = emoji.native || emoji;
-    return document.querySelector("em-emoji-picker")?.shadowRoot?.querySelector(`.scroll [aria-label^="${emojiQuestion}"]`);
+    return document.querySelector("em-emoji-picker")?.shadowRoot?.querySelector(`.scroll [aria-label^="${CSS.escape(emojiQuestion)}"]`);
 }
 
 /**

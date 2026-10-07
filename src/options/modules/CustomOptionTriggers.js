@@ -500,14 +500,14 @@ export async function registerTrigger() {
         "permissionRequiredClipboardWrite"
     );
 
-    if (!IS_THUNDERBIRD) {
+    if (IS_THUNDERBIRD) {
+        /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")).parentElement?.remove();
+    } else {
         await PermissionRequest.registerPermissionMessageBox(
             AUTOCORRECT_HOST_PERMISSION,
             MESSAGE_HOST_PERMISSION,
             /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")),
             "permissionRequiredHostAutocorrect"
         );
-    } else {
-        /** @type {HTMLElement} */(document.getElementById("hostPermissionInfo")).parentElement?.remove();
     }
 }

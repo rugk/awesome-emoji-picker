@@ -16,7 +16,8 @@ export async function getCurrentSkinIndex() {
     if (!lastSkin) {
         // because undefined|null are valid entries
         return 0;
-    } else if (Number.isNaN(lastSkin)) {
+    }
+    if (Number.isNaN(lastSkin)) {
         console.error(new TypeError(`Invalid skin value: ${lastSkin}, should be a number.`), "using default skin 0 instead of", lastSkin);
         return 0;
     }
