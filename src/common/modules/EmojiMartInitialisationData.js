@@ -24,7 +24,7 @@ export const hardcodedSettings = Object.freeze({
  * @public
  * @returns {Promise<object>}
  */
-export async function getAllSettings() {
+export function getAllSettings() {
     return AddonSettings.get("emojiPicker");
 }
 
@@ -83,7 +83,7 @@ async function tryFetchJson(nonBrowserifiedUrl) {
  * @returns {string}
  */
 function getBaseLanguageTag() {
-    return browser.i18n.getUILanguage().split("-")[0];
+    return browser.i18n.getUILanguage().split("-", 1)[0];
 }
 
 /**

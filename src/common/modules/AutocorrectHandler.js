@@ -269,7 +269,7 @@ async function sendSettingsToTab(tab, isChrome) {
     } catch (error) {
         console.error(
             `Error sending autocorrect settings to tab ${tab.id}:`,
-            error,
+            error
         );
     }
 };
@@ -290,8 +290,8 @@ function autocorrectContentMessage(isChrome) {
         longest,
         symbolpatterns: isChrome ? symbolpatterns.source : symbolpatterns,
         antipatterns: isChrome ? antipatterns.source : antipatterns,
-        emojiShortcodes,
-    }
+        emojiShortcodes
+    };
 }
 
 /**
@@ -384,7 +384,7 @@ export async function init() {
     browser.scripting?.compose?.registerScripts?.([
         {
             id: "autocorrect-compose",
-            js: ["/content_scripts/autocorrect.js"],
+            js: ["/content_scripts/autocorrect.js"]
         }
     ]);
 
